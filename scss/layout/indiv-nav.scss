@@ -14,6 +14,20 @@
         font-size: 2vh;
         font-family: $second-text;
         color: $light-blue;
+        
+        @include tab(){
+
+            font-size: 2.5vh;
+        }
+    }
+
+    > span{
+
+        cursor: pointer;
+
+        &:hover{
+            border-bottom: solid $light-blue 3px;
+        }
     }
  
     // the trade icon
@@ -28,10 +42,17 @@
     // for the cell layout
 
     div:nth-child(2){
-        flex-grow: .5;
         display: flex;
         justify-content: center;
         align-items: center;
+        
+        @include cell(){
+            flex-grow: .5;
+        }
+
+        @include tab(){
+            flex-grow: initial;
+        }
     }
 
     div > i {
@@ -39,13 +60,6 @@
         position: relative;
         bottom: .1vh;
         left: 1vh;
-    }
-
-    // the trade box
-
-    span:last-child{
-
-        
     }
 }
 
@@ -59,15 +73,27 @@
     z-index: 4;
 
     display: flex;
-    justify-content: center;
     align-items: flex-start;
     
+    justify-content: center;
+    
+    @include desk(){
+
+        justify-content: flex-end;
+    }
+
     .trade-box {
 
         margin-top: 10vh;
         background-color: white;
         width: 40vh;
         height: 40vh;
+        cursor: pointer;
+
+        @include desk(){
+
+            margin-right: 20vw;
+        }
         
         > div {
 
@@ -87,10 +113,11 @@
         }
 
         button {
-            width: 10vh;
+            width: 10.5vh;
             height: 8vh;
             background-color: $light-blue;
             font-size: 5vh;
+            text-align: center;
 
             &:nth-of-type(1){
                 margin-right: 4vh;
@@ -100,6 +127,7 @@
         > div > span {
             font-size: 5vh;
             color: $light-blue;
+            
         }
     }
 }
@@ -131,11 +159,16 @@
             align-items: center;
             justify-content: space-evenly;
         }
+
+        @include desk(){
+
+
+        }
     }
 
     .selected {
 
-        border-bottom: solid $light-blue 5px;
+        border-bottom: solid $light-blue 3px;
     }
      
     span, a {
@@ -158,6 +191,10 @@
             @include cell(){
 
                 margin-bottom: 2.5vh;
+            }
+
+            @include desk(){
+                // margin-right: 10vh;
             }
         }
     }

@@ -39,7 +39,7 @@ export default class IndivNav2 extends React.Component {
              onClick={()=>this.setState({isModalShowing: true, whichModal: 'selector'})}
           />
           :
-          <div style={{width: "7vw"}}></div>
+          <div style={{width: isDesktop()? "3.5vw" : "7vw"}}></div>
         
         }
 
@@ -71,7 +71,7 @@ export default class IndivNav2 extends React.Component {
             pathname={pathname} 
             exit={()=>{}}
           />
-          
+
         </div>
       
       }

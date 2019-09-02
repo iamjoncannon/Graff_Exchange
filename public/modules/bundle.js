@@ -206,7 +206,7 @@ var IndivNav2 = function (_React$Component) {
             onClick: function onClick() {
               return _this2.setState({ isModalShowing: true, whichModal: 'selector' });
             }
-          }) : _react2.default.createElement('div', { style: { width: "7vw" } }),
+          }) : _react2.default.createElement('div', { style: { width: (0, _utils.isDesktop)() ? "3.5vw" : "7vw" } }),
           _react2.default.createElement(
             'div',
             null,
