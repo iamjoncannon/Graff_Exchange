@@ -1,0 +1,76 @@
+.individual-nav {
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 10vh;
+
+    a {
+        text-decoration: none;
+    }
+
+    span {
+
+        font-size: 2vh;
+        font-family: $second-text;
+        color: $light-blue;
+    }
+ 
+    // the trade icon
+    // for the cell layout
+
+    > i {
+
+        color: black;
+    }
+
+    // the chevron icon 
+    // for the cell layout
+
+    div:nth-child(2){
+        flex-grow: .5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    div > i {
+        color: $light-blue;
+        position: relative;
+        bottom: .1vh;
+        left: 1vh;
+    }
+
+    // the trade box
+
+    span:last-child{
+
+        
+    }
+}
+
+.modal-container {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.4);
+    z-index: 4;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    
+    .selector {
+        
+        margin-top: 10vh;
+        background-color: white;
+        width: 40vh;
+        height: 40vh;
+
+        span {
+            color: black;
+            font-size: 3vh;
+        }
+    }
+}

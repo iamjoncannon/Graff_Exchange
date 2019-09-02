@@ -124,6 +124,129 @@ exports.default = Footer;
 
 /***/ }),
 
+/***/ "./app/components/IndivNav.js":
+/*!************************************!*\
+  !*** ./app/components/IndivNav.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utils = __webpack_require__(/*! ./utils */ "./app/components/utils.js");
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var IndivNav2 = function (_React$Component) {
+  _inherits(IndivNav2, _React$Component);
+
+  function IndivNav2(props) {
+    _classCallCheck(this, IndivNav2);
+
+    var _this = _possibleConstructorReturn(this, (IndivNav2.__proto__ || Object.getPrototypeOf(IndivNav2)).call(this, props));
+
+    _this.state = {
+
+      isModalShowing: false,
+      whichModal: null // options || tradeBox
+    };
+    return _this;
+  }
+
+  _createClass(IndivNav2, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _state = this.state,
+          isModalShowing = _state.isModalShowing,
+          whichModal = _state.whichModal;
+
+
+      return _react2.default.createElement(
+        'div',
+        { style: { height: "100vh" } },
+        _react2.default.createElement(
+          'div',
+          { className: 'individual-nav' },
+          !(0, _utils.isCell)() ? _react2.default.createElement(
+            'div',
+            { className: 'section-selector' },
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/indiv/fin' },
+              'Financials'
+            )
+          ) : _react2.default.createElement('i', { className: 'fas fa-bars fa-7x', onClick: function onClick() {
+              return _this2.setState({ isModalShowing: true, whichModal: 'selector' });
+            } }),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'span',
+              null,
+              'AAPL'
+            ),
+            !(0, _utils.isDesktop)() && _react2.default.createElement('i', { className: 'fas fa-angle-down fa-7x' })
+          ),
+          _react2.default.createElement(
+            'span',
+            null,
+            'Trade'
+          )
+        ),
+        isModalShowing && _react2.default.createElement(
+          'div',
+          { className: 'modal-container', onClick: function onClick() {
+              return _this2.setState({ isModalShowing: false });
+            } },
+          _react2.default.createElement(
+            'div',
+            { onClick: function onClick(e) {
+                return e.stopPropagation();
+              }, className: whichModal },
+            whichModal === 'selector' ? _react2.default.createElement(
+              'span',
+              null,
+              ' selector'
+            ) : _react2.default.createElement(
+              'span',
+              null,
+              ' trade box '
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return IndivNav2;
+}(_react2.default.Component);
+
+exports.default = IndivNav2;
+
+/***/ }),
+
 /***/ "./app/components/Landing.js":
 /*!***********************************!*\
   !*** ./app/components/Landing.js ***!
@@ -144,9 +267,7 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Footer = __webpack_require__(/*! ./Footer */ "./app/components/Footer.js");
-
-var _Footer2 = _interopRequireDefault(_Footer);
+var _utils = __webpack_require__(/*! ./utils */ "./app/components/utils.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -155,8 +276,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var logoUrl = "https://png2.cleanpng.com/sh/ff9084e417b3bcc3e44546e48badd691/L0KzQYm3V8MyN6RnkZH0aYP2gLBuTfdweJlqip9tb3PudcO0gB9ueKZ5feQ2cILyd8Pojf1qdpgye954aoX1dX68gsYxapRnetZrMEnmRXA4U8A4QWQ5SKMAM0OzRoe7Usc5QWg3RuJ3Zx==/kisspng-gopher-docker-computer-programming-clojure-5b60bcbbdb09c5.1307934015330664278972.png";
 
 var Landing = function (_React$Component) {
   _inherits(Landing, _React$Component);
@@ -188,6 +307,7 @@ var Landing = function (_React$Component) {
       document.body.style.backgroundColor = "#F9FAFB";
 
       // the background needs to be cream for the desktop to seem inset
+      // ...but only for this page
 
       return _react2.default.createElement(
         'div',
@@ -205,7 +325,7 @@ var Landing = function (_React$Component) {
             { className: 'blurb' },
             'Gopher Exchange, a real-time stock portfolio dashboard powered by React, Redux, Socket.io, Sass, Golang, Redis, and PostgreSQL.'
           ),
-          _react2.default.createElement('img', { src: logoUrl }),
+          _react2.default.createElement('img', { src: _utils.logoUrl }),
           !isDesktop && _react2.default.createElement(
             'div',
             { className: 'sign-btns' },
@@ -354,6 +474,70 @@ exports.default = Landing;
 
 /***/ }),
 
+/***/ "./app/components/MainNav.js":
+/*!***********************************!*\
+  !*** ./app/components/MainNav.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = MainNav;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utils = __webpack_require__(/*! ./utils */ "./app/components/utils.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
+function MainNav(props) {
+  _objectDestructuringEmpty(props);
+
+  var isDesktop = window.innerWidth > 1100;
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'main-nav' },
+    isDesktop && _react2.default.createElement(
+      'div',
+      { className: 'desk-nav' },
+      _react2.default.createElement(
+        'span',
+        null,
+        'Gopher Exchange'
+      ),
+      _react2.default.createElement(
+        'span',
+        null,
+        'Account'
+      ),
+      _react2.default.createElement(
+        'span',
+        null,
+        'Log Out'
+      )
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'all-screens' },
+      _react2.default.createElement('i', { className: 'fas fa-chart-bar fa-' + (isDesktop ? "2" : "7") + 'x' }),
+      _react2.default.createElement('img', { src: _utils.logoUrl }),
+      _react2.default.createElement('i', { className: 'fas fa-home fa-' + (isDesktop ? "2" : "7") + 'x' })
+    )
+  );
+};
+
+/***/ }),
+
 /***/ "./app/components/app.js":
 /*!*******************************!*\
   !*** ./app/components/app.js ***!
@@ -381,6 +565,14 @@ var _Landing2 = _interopRequireDefault(_Landing);
 var _Footer = __webpack_require__(/*! ./Footer */ "./app/components/Footer.js");
 
 var _Footer2 = _interopRequireDefault(_Footer);
+
+var _MainNav = __webpack_require__(/*! ./MainNav */ "./app/components/MainNav.js");
+
+var _MainNav2 = _interopRequireDefault(_MainNav);
+
+var _IndivNav = __webpack_require__(/*! ./IndivNav */ "./app/components/IndivNav.js");
+
+var _IndivNav2 = _interopRequireDefault(_IndivNav);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -414,11 +606,42 @@ var App = function App() {
     'div',
     { className: 'app-container' },
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Landing2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Footer2.default })
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Footer2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/indiv', component: _MainNav2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/indiv', component: _IndivNav2.default })
   );
 };
 
 exports.default = (0, _reactRouterDom.withRouter)(App);
+
+/***/ }),
+
+/***/ "./app/components/utils.js":
+/*!*********************************!*\
+  !*** ./app/components/utils.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.isDesktop = isDesktop;
+exports.isCell = isCell;
+var logoUrl = exports.logoUrl = "https://cdn.freebiesupply.com/logos/large/2x/gopher-logo-png-transparent.png";
+
+function isDesktop() {
+
+    return window.outerWidth > 1100;
+}
+
+function isCell() {
+
+    return window.outerWidth < 601;
+}
 
 /***/ }),
 

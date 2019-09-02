@@ -1,0 +1,37 @@
+// mixins
+
+@mixin text-justify {
+
+    text-align: justify;
+}
+
+@mixin no-text-break {
+
+    white-space: nowrap
+}
+
+@mixin absCenter {
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin cell(){
+    @media only screen and ($max: 600px) { 
+        @content 
+    };    //600px
+}
+
+@mixin tab(){
+    @media only screen and ($min: 601px) { 
+        @content 
+    };    //600px
+}
+
+@mixin desk(){
+    @media only screen and ($min: 1100px) { 
+        @content 
+    };   
+}

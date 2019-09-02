@@ -1,38 +1,10 @@
-html {
-  font-size: 62.5%;
-  height: 100%; }
-
-body {
-  height: 100%;
-  margin: 0;
-  background-color: white;
-  font-family: 'Sarabun', sans-serif;
-  line-height: 1.5;
-  color: white; }
-
-#app, .app-container {
-  height: 100%; }
-
-*:focus {
-  outline: none; }
-
-button {
-  background-color: #613EEA;
-  color: white;
-  cursor: pointer; }
-  button:hover {
-    opacity: .9; }
-  button:active {
-    opacity: .5; }
-
 .landing-rev {
-  flex-direction: row-reverse !important;
-  transition: display 2s; }
+  flex-direction: row-reverse !important; }
 
 .landing {
   height: 100%;
   background-color: white;
-  transition: display 2s; }
+  overflow: hidden; }
   @media only screen and (min-device-width: 1100px) {
     .landing {
       display: flex;
@@ -206,14 +178,144 @@ button {
 
 footer {
   display: flex;
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  width: 100%;
   justify-content: space-evenly;
   background-color: rgba(97, 62, 234, 0.1);
-  padding: 1vh; }
+  padding: 1vh;
+  width: 100vw; }
   footer img {
-    height: 5vh;
+    height: 4.5vh;
     background-color: white;
     padding: .5vh;
     border-radius: 10px; }
+
+.all-screens {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(97, 62, 234, 0.1);
+  width: 100%; }
+  @media only screen and (max-device-width: 600px) {
+    .all-screens {
+      position: fixed;
+      bottom: 0; }
+      .all-screens img {
+        height: 7vh; }
+      .all-screens i {
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+        color: grey; } }
+  @media only screen and (min-device-width: 601px) {
+    .all-screens {
+      position: fixed;
+      bottom: 0; }
+      .all-screens img {
+        height: 6vh; }
+      .all-screens i {
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+        color: grey; } }
+  @media only screen and (min-device-width: 1100px) {
+    .all-screens {
+      position: static;
+      height: 4vh;
+      bottom: initial; }
+      .all-screens img {
+        height: 6vh;
+        z-index: 2; }
+      .all-screens i {
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+        color: grey; } }
+
+.desk-nav {
+  width: 100%;
+  height: 5vh;
+  background-color: #613EEA;
+  text-align: right;
+  position: relative;
+  white-space: nowrap; }
+  .desk-nav span {
+    font-size: 2.5vh;
+    cursor: pointer; }
+    .desk-nav span:hover {
+      text-decoration: underline;
+      opacity: .5; }
+  .desk-nav span:first-child {
+    position: absolute;
+    left: 2vh; }
+  .desk-nav span:nth-child(2) {
+    margin-right: 4vh; }
+  .desk-nav span:last-child {
+    margin-right: 2vh; }
+
+.individual-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 10vh; }
+  .individual-nav a {
+    text-decoration: none; }
+  .individual-nav span {
+    font-size: 2vh;
+    font-family: "Exo 2", sans-serif;
+    color: #34A9FF; }
+  .individual-nav > i {
+    color: black; }
+  .individual-nav div:nth-child(2) {
+    flex-grow: .5;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .individual-nav div > i {
+    color: #34A9FF;
+    position: relative;
+    bottom: .1vh;
+    left: 1vh; }
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; }
+  .modal-container .selector {
+    margin-top: 10vh;
+    background-color: white;
+    width: 40vh;
+    height: 40vh; }
+    .modal-container .selector span {
+      color: black;
+      font-size: 3vh; }
+
+html {
+  font-size: 62.5%;
+  height: 100%; }
+
+body {
+  height: 100%;
+  margin: 0;
+  background-color: white;
+  font-family: 'Sarabun', sans-serif;
+  line-height: 1.5;
+  color: white; }
+
+#app, .app-container {
+  height: 100%; }
+
+*:focus {
+  outline: none; }
+
+button {
+  background-color: #613EEA;
+  color: white;
+  cursor: pointer; }
+  button:hover {
+    opacity: .9; }
+  button:active {
+    opacity: .5; }

@@ -1,7 +1,5 @@
 import React from 'react';
-import Footer from './Footer'
-
-const logoUrl = "https://png2.cleanpng.com/sh/ff9084e417b3bcc3e44546e48badd691/L0KzQYm3V8MyN6RnkZH0aYP2gLBuTfdweJlqip9tb3PudcO0gB9ueKZ5feQ2cILyd8Pojf1qdpgye954aoX1dX68gsYxapRnetZrMEnmRXA4U8A4QWQ5SKMAM0OzRoe7Usc5QWg3RuJ3Zx==/kisspng-gopher-docker-computer-programming-clojure-5b60bcbbdb09c5.1307934015330664278972.png"
+import { logoUrl } from './utils'
 
 export default class Landing extends React.Component {
  
@@ -25,6 +23,7 @@ export default class Landing extends React.Component {
     document.body.style.backgroundColor = "#F9FAFB" 
     
     // the background needs to be cream for the desktop to seem inset
+    // ...but only for this page
 
     return (
 

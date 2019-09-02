@@ -2,6 +2,9 @@ import React from 'react';
 import { Route, withRouter } from 'react-router-dom'
 import Landing from './Landing'
 import Footer from './Footer'
+import MainNav from './MainNav'
+import IndivNav from './IndivNav'
+
 // import Navbar from './components/Navbar';
 
 /*
@@ -35,25 +38,25 @@ const App = () => {
         <Route exact path="/" component={Landing} />
         <Route exact path="/" component={Footer} />
 
-        {/*
-        
-
-        <Route path="/" component={NavBar} />
-
+        <Route path="/indiv" component={MainNav} />
         <Route path="/indiv" component={IndivNav} />
+         
+        {/*
+
         <Route exact path="/indiv" component={Performance} />
         <Route exact path="/indiv/fin" component={Financials} />
         <Route exact path="/indiv/news" component={News} />
         <Route exact path="/indiv/trans" component={Trans} />
 
+        <Route path="/all" component={NavBar} />
         <Route path="/all" component={PortNav} />
-
         <Route exact path="/all" component={WatchList} />
         <Route exact path="/all/trans" component={Trans} />
 
         
 
          */}
+
     </div>
   );
 };
