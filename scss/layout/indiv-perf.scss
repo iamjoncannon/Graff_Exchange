@@ -1,5 +1,62 @@
-
 .indiv-perf {
     color: black;
-    font-size: 5vh;
+
+    .ticker-box {
+        display: inline;
+        position: relative;
+        font-family: 'Exo 2', sans-serif;
+ 
+        span:first-child{
+            font-size: 5vh;
+            position: relative;
+            left: 7vh;
+            top: 5vh;
+            color: $light-blue;
+        }
+
+        span:nth-of-type(2){
+            color: green;
+            position: relative;
+            font-size: 2vh;
+            right: 3vh;
+            top: 8vh;
+            font-weight: 100;
+        }
+    }
+    
+    .first-datapoints {
+
+        display: flex;
+        justify-content: space-evenly;
+        position: relative;
+        top: 12vh;
+        font-family: 'Exo 2', sans-serif;
+
+        div {
+            display: inline-block;
+        }
+        
+        span:first-child{
+            @include secondary-grey-text;
+            font-size: 2vh;
+            display: block;
+        }
+
+        span:last-child{
+            @include secondary-text;
+            font-size: 3vh;
+            display: block;
+        }
+    }
+
+    .chart-container {
+
+        border: solid black 5px;
+        height: 20vh;
+        height: 40vh;
+        position: relative;
+        top: 15vh;
+        font-size: 5vh;
+        text-align: center;
+    }
 }

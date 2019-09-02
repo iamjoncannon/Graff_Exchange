@@ -425,7 +425,7 @@ var IndivPerf = function (_React$Component) {
 
     _this.state = {
 
-      selectedDataNavItem: null
+      selectedDataNavItem: "Day"
     };
     return _this;
   }
@@ -442,6 +442,51 @@ var IndivPerf = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'indiv-perf' },
+        _react2.default.createElement(
+          'div',
+          { className: 'ticker-box' },
+          _react2.default.createElement(
+            'span',
+            null,
+            '$ 231.79'
+          ),
+          _react2.default.createElement(
+            'span',
+            null,
+            '+17,39%'
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'first-datapoints' },
+          [["Open", "$ 232.41"], ["24H  High", "$ 234.00"], ["24H Low", "$233.85"]].map(function (item) {
+
+            return _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'span',
+                null,
+                item[0]
+              ),
+              _react2.default.createElement(
+                'span',
+                null,
+                item[1]
+              )
+            );
+          })
+        ),
+        _react2.default.createElement('div', { className: 'second-datapoints' }),
+        _react2.default.createElement(
+          'div',
+          { className: 'chart-container' },
+          _react2.default.createElement(
+            'span',
+            null,
+            selectedDataNavItem
+          )
+        ),
         _react2.default.createElement(_DataNav2.default, {
           data: ["Day", "Week", "Month", "Year"],
           selectedDataNavItem: selectedDataNavItem,

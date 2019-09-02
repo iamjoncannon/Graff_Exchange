@@ -375,8 +375,51 @@ footer {
   background-color: orange; }
 
 .indiv-perf {
-  color: black;
-  font-size: 5vh; }
+  color: black; }
+  .indiv-perf .ticker-box {
+    display: inline;
+    position: relative;
+    font-family: 'Exo 2', sans-serif; }
+    .indiv-perf .ticker-box span:first-child {
+      font-size: 5vh;
+      position: relative;
+      left: 7vh;
+      top: 5vh;
+      color: #34A9FF; }
+    .indiv-perf .ticker-box span:nth-of-type(2) {
+      color: green;
+      position: relative;
+      font-size: 2vh;
+      right: 3vh;
+      top: 8vh;
+      font-weight: 100; }
+  .indiv-perf .first-datapoints {
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    top: 12vh;
+    font-family: 'Exo 2', sans-serif; }
+    .indiv-perf .first-datapoints div {
+      display: inline-block; }
+    .indiv-perf .first-datapoints span:first-child {
+      font-family: "Exo 2", sans-serif;
+      font-weight: 500;
+      color: #ADADBD;
+      font-size: 2vh;
+      display: block; }
+    .indiv-perf .first-datapoints span:last-child {
+      font-family: "Exo 2", sans-serif;
+      font-weight: 500;
+      font-size: 3vh;
+      display: block; }
+  .indiv-perf .chart-container {
+    border: solid black 5px;
+    height: 20vh;
+    height: 40vh;
+    position: relative;
+    top: 15vh;
+    font-size: 5vh;
+    text-align: center; }
 
 .data-nav {
   position: fixed;
