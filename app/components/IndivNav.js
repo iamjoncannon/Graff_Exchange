@@ -2,6 +2,7 @@ import React from 'react';
 import { isDesktop, isCell } from './utils'
 import { Link } from 'react-router-dom'
 import IndivSelector from './IndivSelector'
+import TradeBox from './TradeBox'
 
 export default class IndivNav2 extends React.Component {
  
@@ -13,6 +14,11 @@ export default class IndivNav2 extends React.Component {
         isModalShowing : false,
         whichModal : null // options || tradeBox
     }
+  }
+  
+  closeModal = () => {
+
+    this.setState({ isModalShowing : false })
   }
 
   render() {
@@ -27,20 +33,10 @@ export default class IndivNav2 extends React.Component {
       
       <div className="individual-nav">
   
-        { !isCell() ? 
-          <div className="section-selector"> 
-  
-            <Link to="/indiv/fin">
-                  Financials
-            </Link>
-          
-            
-          </div> 
-          
-          : 
-        
+        { isCell() &&
+       
           <i className="fas fa-bars fa-7x" 
-              onClick={()=>this.setState({isModalShowing: true, whichModal: 'selector'})}
+             onClick={()=>this.setState({isModalShowing: true, whichModal: 'selector'})}
           />
         
         }
@@ -57,11 +53,13 @@ export default class IndivNav2 extends React.Component {
   
         </div>
   
-        <span>Trade</span>
+        <span     
+          onClick={()=>this.setState({isModalShowing: true, whichModal: 'trade-box'})}
+        >
+          Trade
+        </span>
       
       </div>
-
-
 
       {
         isModalShowing && 
@@ -74,15 +72,16 @@ export default class IndivNav2 extends React.Component {
 
                 <IndivSelector 
                   pathname={pathname} 
-                  exit={()=> this.setState({ isModalShowing : false }) }
+                  exit={this.closeModal}
                 />
 
                 : 
-                <span> trade box </span>
+                
+                <TradeBox  
+                  exit={this.closeModal}
+                />
               }
-
           </div>
-
         </div>
       }
     </div>

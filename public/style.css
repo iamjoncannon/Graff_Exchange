@@ -304,6 +304,32 @@ footer {
       display: inline-block; }
       .modal-container .selector span:not(:last-child), .modal-container .selector a:not(:last-child) {
         margin-bottom: 2.5vh; }
+  .modal-container .trade-box {
+    margin-top: 10vh;
+    background-color: white;
+    width: 40vh;
+    height: 40vh; }
+    .modal-container .trade-box > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      height: 100%; }
+    .modal-container .trade-box input {
+      width: 18vh;
+      height: 9vh;
+      border: solid black 1px;
+      font-size: 8vh; }
+    .modal-container .trade-box button {
+      width: 10vh;
+      height: 8vh;
+      background-color: #34A9FF;
+      font-size: 5vh; }
+      .modal-container .trade-box button:nth-of-type(1) {
+        margin-right: 4vh; }
+    .modal-container .trade-box > div > span {
+      font-size: 5vh;
+      color: #34A9FF; }
 
 html {
   font-size: 62.5%;

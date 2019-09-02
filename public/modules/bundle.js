@@ -152,6 +152,10 @@ var _IndivSelector = __webpack_require__(/*! ./IndivSelector */ "./app/component
 
 var _IndivSelector2 = _interopRequireDefault(_IndivSelector);
 
+var _TradeBox = __webpack_require__(/*! ./TradeBox */ "./app/components/TradeBox.js");
+
+var _TradeBox2 = _interopRequireDefault(_TradeBox);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -167,6 +171,11 @@ var IndivNav2 = function (_React$Component) {
     _classCallCheck(this, IndivNav2);
 
     var _this = _possibleConstructorReturn(this, (IndivNav2.__proto__ || Object.getPrototypeOf(IndivNav2)).call(this, props));
+
+    _this.closeModal = function () {
+
+      _this.setState({ isModalShowing: false });
+    };
 
     _this.state = {
 
@@ -193,15 +202,7 @@ var IndivNav2 = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'individual-nav' },
-          !(0, _utils.isCell)() ? _react2.default.createElement(
-            'div',
-            { className: 'section-selector' },
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: '/indiv/fin' },
-              'Financials'
-            )
-          ) : _react2.default.createElement('i', { className: 'fas fa-bars fa-7x',
+          (0, _utils.isCell)() && _react2.default.createElement('i', { className: 'fas fa-bars fa-7x',
             onClick: function onClick() {
               return _this2.setState({ isModalShowing: true, whichModal: 'selector' });
             }
@@ -218,7 +219,11 @@ var IndivNav2 = function (_React$Component) {
           ),
           _react2.default.createElement(
             'span',
-            null,
+            {
+              onClick: function onClick() {
+                return _this2.setState({ isModalShowing: true, whichModal: 'trade-box' });
+              }
+            },
             'Trade'
           )
         ),
@@ -234,14 +239,10 @@ var IndivNav2 = function (_React$Component) {
               }, className: whichModal },
             whichModal === 'selector' ? _react2.default.createElement(_IndivSelector2.default, {
               pathname: pathname,
-              exit: function exit() {
-                return _this2.setState({ isModalShowing: false });
-              }
-            }) : _react2.default.createElement(
-              'span',
-              null,
-              ' trade box '
-            )
+              exit: this.closeModal
+            }) : _react2.default.createElement(_TradeBox2.default, {
+              exit: this.closeModal
+            })
           )
         )
       );
@@ -616,6 +617,61 @@ function MainNav(props) {
       _react2.default.createElement('i', { className: 'fas fa-chart-bar fa-' + (isDesktop ? "2" : "7") + 'x' }),
       _react2.default.createElement('img', { src: _utils.logoUrl }),
       _react2.default.createElement('i', { className: 'fas fa-home fa-' + (isDesktop ? "2" : "7") + 'x' })
+    )
+  );
+};
+
+/***/ }),
+
+/***/ "./app/components/TradeBox.js":
+/*!************************************!*\
+  !*** ./app/components/TradeBox.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = TradeBox;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function TradeBox(props) {
+
+  return _react2.default.createElement(
+    "div",
+    null,
+    _react2.default.createElement(
+      "span",
+      null,
+      "Quantity"
+    ),
+    _react2.default.createElement("input", {
+      type: "number",
+      min: "1",
+      max: "5"
+    }),
+    _react2.default.createElement(
+      "div",
+      null,
+      _react2.default.createElement(
+        "button",
+        { onClick: props.exit },
+        "Buy"
+      ),
+      _react2.default.createElement(
+        "button",
+        { onClick: props.exit },
+        "Sell"
+      )
     )
   );
 };
