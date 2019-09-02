@@ -477,7 +477,27 @@ var IndivPerf = function (_React$Component) {
             );
           })
         ),
-        _react2.default.createElement('div', { className: 'second-datapoints' }),
+        _react2.default.createElement(
+          'div',
+          { className: 'second-datapoints' },
+          [["Open", "$ 232.41"], ["24H  High", "$ 234.00"], ["24H Low", "$233.85"]].map(function (item) {
+
+            return _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'span',
+                null,
+                item[0]
+              ),
+              _react2.default.createElement(
+                'span',
+                null,
+                item[1]
+              )
+            );
+          })
+        ),
         _react2.default.createElement(
           'div',
           { className: 'chart-container' },

@@ -49,13 +49,44 @@
         }
     }
 
+    .second-datapoints {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        position: relative;
+        font-family: 'Exo 2', sans-serif;
+        top: 35vh;
+        margin-top: 4vh;
+
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        span:first-child{
+            @include secondary-grey-text;
+            font-size: 2vh;
+            display: block;
+            margin-right: 3vh;
+        }
+
+
+        span:last-child{
+            @include secondary-text;
+            font-size: 2vh;
+            display: block;
+        }
+
+    }
+
     .chart-container {
 
         border: solid black 5px;
         height: 20vh;
         height: 40vh;
         position: relative;
-        top: 15vh;
         font-size: 5vh;
         text-align: center;
     }

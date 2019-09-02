@@ -412,12 +412,35 @@ footer {
       font-weight: 500;
       font-size: 3vh;
       display: block; }
+  .indiv-perf .second-datapoints {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+    font-family: 'Exo 2', sans-serif;
+    top: 35vh;
+    margin-top: 4vh; }
+    .indiv-perf .second-datapoints div {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+    .indiv-perf .second-datapoints span:first-child {
+      font-family: "Exo 2", sans-serif;
+      font-weight: 500;
+      color: #ADADBD;
+      font-size: 2vh;
+      display: block;
+      margin-right: 3vh; }
+    .indiv-perf .second-datapoints span:last-child {
+      font-family: "Exo 2", sans-serif;
+      font-weight: 500;
+      font-size: 2vh;
+      display: block; }
   .indiv-perf .chart-container {
     border: solid black 5px;
     height: 20vh;
     height: 40vh;
     position: relative;
-    top: 15vh;
     font-size: 5vh;
     text-align: center; }
 

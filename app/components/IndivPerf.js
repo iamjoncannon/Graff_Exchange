@@ -64,7 +64,25 @@ export default class IndivPerf extends React.Component {
         </div>
 
         <div className="second-datapoints">
+          
+              {
+                [["Open", "$ 232.41"],
+                  ["24H  High","$ 234.00"],
+                  ["24H Low", "$233.85"]].map(item=>{
 
+                  return(
+
+                    <div>
+                      <span>
+                        {item[0]}
+                      </span>
+                      <span>
+                        {item[1]}
+                      </span>
+                    </div>
+                  )
+                })
+              }
 
         </div>
 
