@@ -361,6 +361,10 @@ footer {
     width: 40vh;
     height: 40vh; } }
 
+@media only screen and (min-device-width: 601px) {
+  .selector {
+    margin-bottom: 1vh; } }
+
 @media only screen and (max-device-width: 600px) {
   .selector > div {
     height: 100%;
@@ -489,12 +493,14 @@ footer {
         width: 75vw;
         margin-bottom: 2vh; } }
 
-.news-container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center; }
+.indiv-news-container {
+  overflow: scroll; }
+  @media only screen and (max-device-width: 600px) {
+    .indiv-news-container {
+      max-height: 83vh; } }
+  @media only screen and (min-device-width: 601px) {
+    .indiv-news-container {
+      max-height: 77vh; } }
 
 .news-box {
   width: 100%;

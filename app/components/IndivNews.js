@@ -7,6 +7,13 @@ export default function IndivNews (props){
      {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
      {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
      {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
+     {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
+     {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
+     {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
+     {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
+     {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
+     {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
+     {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
     ];
 
   return (

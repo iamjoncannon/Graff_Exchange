@@ -141,6 +141,11 @@
         height: 40vh;
     }
 
+    @include tab(){
+
+        margin-bottom: 1vh;
+    }
+
     > div {
         
         @include cell(){

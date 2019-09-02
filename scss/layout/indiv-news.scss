@@ -1,10 +1,22 @@
-.news-container {
+.indiv-news-container {
 
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    // display: flex;
+    // flex-wrap: wrap;
+    // flex-direction: row;
+    // align-items: center;
+    // justify-content: center;
+
+    overflow: scroll;
+
+    @include cell(){
+
+        max-height: 83vh;
+    }
+
+    @include tab(){
+
+        max-height: 77vh;
+    }
 }
 
 

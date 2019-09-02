@@ -400,7 +400,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function IndivNews(props) {
 
-    var news = [{ title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }];
+    var news = [{ title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }];
 
     return _react2.default.createElement(
         'div',
