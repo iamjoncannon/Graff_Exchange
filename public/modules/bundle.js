@@ -375,6 +375,74 @@ exports.default = IndivNav2;
 
 /***/ }),
 
+/***/ "./app/components/IndivNews.js":
+/*!*************************************!*\
+  !*** ./app/components/IndivNews.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = IndivNews;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utils = __webpack_require__(/*! ./utils */ "./app/components/utils.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function IndivNews(props) {
+
+    var news = [{ title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }];
+
+    return _react2.default.createElement(
+        'div',
+        { className: 'indiv-news-container' },
+        news.map(function (newsItem, i) {
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'news-box' },
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'span',
+                        null,
+                        _react2.default.createElement(
+                            'a',
+                            { href: newsItem.news_url, target: '_blank' },
+                            newsItem.title
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'span',
+                        null,
+                        newsItem.date
+                    ),
+                    _react2.default.createElement(
+                        'span',
+                        null,
+                        newsItem.text
+                    )
+                ),
+                _react2.default.createElement('img', {
+                    src: newsItem.image_url
+                })
+            );
+        })
+    );
+};
+
+/***/ }),
+
 /***/ "./app/components/IndivPerf.js":
 /*!*************************************!*\
   !*** ./app/components/IndivPerf.js ***!
@@ -989,9 +1057,11 @@ var _IndivFin = __webpack_require__(/*! ./IndivFin */ "./app/components/IndivFin
 
 var _IndivFin2 = _interopRequireDefault(_IndivFin);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _IndivNews = __webpack_require__(/*! ./IndivNews */ "./app/components/IndivNews.js");
 
-// import Navbar from './components/Navbar';
+var _IndivNews2 = _interopRequireDefault(_IndivNews);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
 
@@ -1025,7 +1095,8 @@ var App = function App() {
     _react2.default.createElement(_reactRouterDom.Route, { path: '/indiv', component: _MainNav2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { path: '/indiv', component: _IndivNav2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/perf', component: _IndivPerf2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/finan', component: _IndivFin2.default })
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/finan', component: _IndivFin2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/news', component: _IndivNews2.default })
   );
 };
 

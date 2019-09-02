@@ -1,11 +1,14 @@
 @import "abstracts/mixins";
 @import "abstracts/variables";
+
 @import "layout/landing";
 @import "layout/main-nav";
+@import "layout/data-nav";
+
 @import "layout/indiv-nav";
 @import "layout/indiv-fin";
 @import "layout/indiv-perf";
-@import "layout/data-nav";
+@import "layout/indiv-news";
 
 // globals
 

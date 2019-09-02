@@ -98,13 +98,11 @@
             margin-right: 3vh;
         }
 
-
         span:last-child{
             @include secondary-text;
             font-size: 2vh;
             display: block;
         }
-
     }
 
     .chart-container {

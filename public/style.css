@@ -250,6 +250,29 @@ footer {
   .desk-nav span:last-child {
     margin-right: 2vh; }
 
+.data-nav {
+  font-family: "Exo 2", sans-serif;
+  font-weight: 500;
+  color: #ADADBD;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-evenly;
+  position: fixed;
+  top: 85vh;
+  width: 100vw;
+  font-size: 2vh; }
+  @media only screen and (min-device-width: 1100px) {
+    .data-nav {
+      position: static;
+      justify-content: space-around;
+      width: 25vw;
+      margin: auto; } }
+  .data-nav span {
+    cursor: pointer;
+    border-top: solid grey 2px; }
+  .data-nav .selected {
+    border-top: solid #34A9FF 10px; }
+
 .individual-nav {
   display: flex;
   justify-content: space-around;
@@ -466,28 +489,40 @@ footer {
         width: 75vw;
         margin-bottom: 2vh; } }
 
-.data-nav {
-  font-family: "Exo 2", sans-serif;
-  font-weight: 500;
-  color: #ADADBD;
-  text-transform: uppercase;
+.news-container {
   display: flex;
-  justify-content: space-evenly;
-  position: fixed;
-  top: 85vh;
-  width: 100vw;
-  font-size: 2vh; }
-  @media only screen and (min-device-width: 1100px) {
-    .data-nav {
-      position: static;
-      justify-content: space-around;
-      width: 25vw;
-      margin: auto; } }
-  .data-nav span {
-    cursor: pointer;
-    border-top: solid grey 2px; }
-  .data-nav .selected {
-    border-top: solid #34A9FF 10px; }
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; }
+
+.news-box {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: white;
+  margin-bottom: 1vh;
+  color: black;
+  border-bottom: solid grey 1px; }
+  .news-box img {
+    height: 15vh;
+    width: auto;
+    padding: 0 2vh 2vh 2vh; }
+  .news-box > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 65%; }
+    .news-box > div span {
+      line-height: 1; }
+    .news-box > div span:nth-of-type(1) {
+      font-size: 4vh; }
+    .news-box > div span:nth-of-type(2) {
+      font-size: 2vh; }
+    .news-box > div span:nth-of-type(3) {
+      font-size: 3vh; }
 
 html {
   font-size: 62.5%;
