@@ -1,21 +1,36 @@
 
 .data-nav {
-    position: fixed;
-    top: 85vh;
-
-    width: 100vw;
 
     @include secondary-grey-text;
-
-    font-size: 2vh;
     text-transform: uppercase;
-
     display: flex;
     justify-content: space-evenly;
 
-    span{
 
+    position: fixed;
+    top: 85vh;
+    width: 100vw;
+    font-size: 2vh;
+
+    @include desk(){
+
+        position: static;
+        justify-content: space-around;
+        width: 25vw;
+        margin: auto;
+    }
+
+    span{
+        cursor: pointer;
         border-top: solid grey 2px;
+
+        @include desk(){
+
+            
+            &:not(:last-child){
+                // margin-right: 10vh;
+            }
+        }
     }
 
     .selected {

@@ -376,16 +376,28 @@ footer {
 
 .indiv-perf {
   color: black; }
+  @media only screen and (min-device-width: 1100px) {
+    .indiv-perf {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100vw; } }
   .indiv-perf .ticker-box {
     display: inline;
     position: relative;
     font-family: 'Exo 2', sans-serif; }
+    @media only screen and (min-device-width: 1100px) {
+      .indiv-perf .ticker-box {
+        position: static; } }
     .indiv-perf .ticker-box span:first-child {
       font-size: 5vh;
       position: relative;
       left: 7vh;
       top: 5vh;
       color: #34A9FF; }
+      @media only screen and (min-device-width: 1100px) {
+        .indiv-perf .ticker-box span:first-child {
+          position: static; } }
     .indiv-perf .ticker-box span:nth-of-type(2) {
       color: green;
       position: relative;
@@ -393,12 +405,19 @@ footer {
       right: 3vh;
       top: 8vh;
       font-weight: 100; }
+      @media only screen and (min-device-width: 1100px) {
+        .indiv-perf .ticker-box span:nth-of-type(2) {
+          position: static; } }
   .indiv-perf .first-datapoints {
     display: flex;
     justify-content: space-evenly;
     position: relative;
     top: 12vh;
     font-family: 'Exo 2', sans-serif; }
+    @media only screen and (min-device-width: 1100px) {
+      .indiv-perf .first-datapoints {
+        position: static;
+        width: 30vw; } }
     .indiv-perf .first-datapoints div {
       display: inline-block; }
     .indiv-perf .first-datapoints span:first-child {
@@ -438,24 +457,34 @@ footer {
       display: block; }
   .indiv-perf .chart-container {
     border: solid black 5px;
-    height: 20vh;
     height: 40vh;
     position: relative;
     font-size: 5vh;
     text-align: center; }
+    @media only screen and (min-device-width: 1100px) {
+      .indiv-perf .chart-container {
+        width: 75vw;
+        margin-bottom: 2vh; } }
 
 .data-nav {
-  position: fixed;
-  top: 85vh;
-  width: 100vw;
   font-family: "Exo 2", sans-serif;
   font-weight: 500;
   color: #ADADBD;
-  font-size: 2vh;
   text-transform: uppercase;
   display: flex;
-  justify-content: space-evenly; }
+  justify-content: space-evenly;
+  position: fixed;
+  top: 85vh;
+  width: 100vw;
+  font-size: 2vh; }
+  @media only screen and (min-device-width: 1100px) {
+    .data-nav {
+      position: static;
+      justify-content: space-around;
+      width: 25vw;
+      margin: auto; } }
   .data-nav span {
+    cursor: pointer;
     border-top: solid grey 2px; }
   .data-nav .selected {
     border-top: solid #34A9FF 10px; }

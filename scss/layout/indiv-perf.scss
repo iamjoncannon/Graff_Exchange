@@ -1,10 +1,23 @@
 .indiv-perf {
     color: black;
 
+    @include desk(){
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100vw;
+    }
+
     .ticker-box {
+
         display: inline;
         position: relative;
         font-family: 'Exo 2', sans-serif;
+
+        @include desk(){
+            position: static;
+        }
  
         span:first-child{
             font-size: 5vh;
@@ -12,6 +25,10 @@
             left: 7vh;
             top: 5vh;
             color: $light-blue;
+
+            @include desk(){
+                position: static;
+            }
         }
 
         span:nth-of-type(2){
@@ -21,6 +38,10 @@
             right: 3vh;
             top: 8vh;
             font-weight: 100;
+
+            @include desk(){
+                position: static;
+            }
         }
     }
     
@@ -31,6 +52,11 @@
         position: relative;
         top: 12vh;
         font-family: 'Exo 2', sans-serif;
+
+        @include desk(){
+            position: static;
+            width: 30vw;
+        }
 
         div {
             display: inline-block;
@@ -84,10 +110,15 @@
     .chart-container {
 
         border: solid black 5px;
-        height: 20vh;
         height: 40vh;
         position: relative;
         font-size: 5vh;
         text-align: center;
+
+        @include desk(){
+
+            width: 75vw;
+            margin-bottom: 2vh;
+        }
     }
 }
