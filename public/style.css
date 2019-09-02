@@ -1,0 +1,219 @@
+html {
+  font-size: 62.5%;
+  height: 100%; }
+
+body {
+  height: 100%;
+  margin: 0;
+  background-color: white;
+  font-family: 'Sarabun', sans-serif;
+  line-height: 1.5;
+  color: white; }
+
+#app, .app-container {
+  height: 100%; }
+
+*:focus {
+  outline: none; }
+
+button {
+  background-color: #613EEA;
+  color: white;
+  cursor: pointer; }
+  button:hover {
+    opacity: .9; }
+  button:active {
+    opacity: .5; }
+
+.landing-rev {
+  flex-direction: row-reverse !important;
+  transition: display 2s; }
+
+.landing {
+  height: 100%;
+  background-color: white;
+  transition: display 2s; }
+  @media only screen and (min-device-width: 1100px) {
+    .landing {
+      display: flex;
+      flex-direction: row;
+      height: 75%;
+      width: 75%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); } }
+  .landing .header {
+    background-color: #613EEA;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative; }
+    @media only screen and (max-device-width: 600px) {
+      .landing .header {
+        height: 30%; } }
+    @media only screen and (min-device-width: 601px) {
+      .landing .header {
+        height: 25%; } }
+    @media only screen and (min-device-width: 1100px) {
+      .landing .header {
+        width: 40%;
+        height: 100%; } }
+    .landing .header img {
+      position: absolute;
+      top: 2vh;
+      right: 2vh; }
+      @media only screen and (max-device-width: 600px) {
+        .landing .header img {
+          height: 15rem; } }
+      @media only screen and (min-device-width: 601px) {
+        .landing .header img {
+          height: 12rem; } }
+      @media only screen and (min-device-width: 1100px) {
+        .landing .header img {
+          height: 6vh; } }
+    @media only screen and (max-device-width: 600px) {
+      .landing .header .title {
+        line-height: 2;
+        font-size: 3vh; } }
+    @media only screen and (min-device-width: 601px) {
+      .landing .header .title {
+        font-size: 3vh; } }
+    @media only screen and (min-device-width: 1100px) {
+      .landing .header .title {
+        font-size: 4vh;
+        align-self: flex-start;
+        margin-top: 2vh;
+        margin-left: 2vh; } }
+    .landing .header .blurb {
+      display: inline-block;
+      width: 60%;
+      margin-top: .5vh;
+      text-align: justify; }
+      @media only screen and (max-device-width: 600px) {
+        .landing .header .blurb {
+          font-size: 2.1vh; } }
+      @media only screen and (min-device-width: 601px) {
+        .landing .header .blurb {
+          font-size: 2.1vh; } }
+      @media only screen and (min-device-width: 1100px) {
+        .landing .header .blurb {
+          align-self: flex-start;
+          margin-top: 15vh;
+          margin-left: 2vh;
+          width: 80%; } }
+    .landing .header .sign-btns {
+      margin: end;
+      display: flex;
+      justify-content: space-between; }
+      .landing .header .sign-btns span {
+        margin-top: auto;
+        cursor: pointer; }
+      @media only screen and (max-device-width: 600px) {
+        .landing .header .sign-btns {
+          width: 90%;
+          margin-top: auto;
+          margin-bottom: 2vh;
+          font-size: 6rem; } }
+      @media only screen and (min-device-width: 601px) {
+        .landing .header .sign-btns {
+          font-size: 3vh;
+          margin-top: auto;
+          margin-right: auto;
+          margin-left: 2vh; }
+          .landing .header .sign-btns span:nth-child(1) {
+            margin-right: 2vh; } }
+      @media only screen and (min-device-width: 1100px) {
+        .landing .header .sign-btns span:nth-child(1) {
+          margin-right: 0;
+          font-size: 75%;
+          opacity: .4;
+          cursor: text; }
+          .landing .header .sign-btns span:nth-child(1):hover {
+            text-decoration: none; }
+        .landing .header .sign-btns span {
+          white-space: nowrap;
+          margin-left: 1vh;
+          margin-bottom: 6vh; }
+          .landing .header .sign-btns span:hover {
+            text-decoration: underline; } }
+      .landing .header .sign-btns .unselected {
+        opacity: .5;
+        font-size: 75%; }
+  .landing .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem; }
+    @media only screen and (min-device-width: 1100px) {
+      .landing .form {
+        width: 60%;
+        justify-content: center; } }
+    .landing .form span {
+      display: block;
+      color: black; }
+      @media only screen and (max-device-width: 600px) {
+        .landing .form span {
+          font-size: 3vh; } }
+      @media only screen and (min-device-width: 601px) {
+        .landing .form span {
+          font-size: 3vh; } }
+      @media only screen and (min-device-width: 1100px) {
+        .landing .form span {
+          font-size: 2vh; } }
+      .landing .form span:last-child {
+        margin-top: .5vh;
+        font-size: 2vh;
+        cursor: pointer; }
+        .landing .form span:last-child:hover {
+          text-decoration: underline;
+          opacity: .5; }
+    .landing .form input {
+      caret-color: black;
+      height: 3vh; }
+      @media only screen and (max-device-width: 600px) {
+        .landing .form input {
+          width: 80vw;
+          font-size: 3vh;
+          border: solid black 1px; } }
+      @media only screen and (min-device-width: 601px) {
+        .landing .form input {
+          width: 80vw;
+          font-size: 3vh;
+          border: solid black 1px; } }
+      @media only screen and (min-device-width: 1100px) {
+        .landing .form input {
+          height: 4vh;
+          width: 20vw; } }
+    @media only screen and (max-device-width: 600px) {
+      .landing .form button {
+        height: 4vh;
+        width: 82%;
+        font-size: 5rem;
+        padding: 3px;
+        margin-top: 2vh; } }
+    @media only screen and (min-device-width: 601px) {
+      .landing .form button {
+        height: 4vh;
+        width: 50%;
+        font-size: 3vh;
+        margin-top: 2vh; } }
+    @media only screen and (min-device-width: 1100px) {
+      .landing .form button {
+        width: 20vw; } }
+
+footer {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  justify-content: space-evenly;
+  background-color: rgba(97, 62, 234, 0.1);
+  padding: 1vh; }
+  footer img {
+    height: 5vh;
+    background-color: white;
+    padding: .5vh;
+    border-radius: 10px; }
