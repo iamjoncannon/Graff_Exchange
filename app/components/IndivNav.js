@@ -29,8 +29,8 @@ export default class IndivNav2 extends React.Component {
 
     return (
 
-    <div style={{height: "100vh"}}>
-      
+      <div>
+
       <div className="individual-nav">
   
         { isCell() ? 

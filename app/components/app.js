@@ -4,7 +4,8 @@ import Landing from './Landing'
 import Footer from './Footer'
 import MainNav from './MainNav'
 import IndivNav from './IndivNav'
-
+import IndivPerf from './IndivPerf'
+import IndivFin from './IndivFin'
 // import Navbar from './components/Navbar';
 
 /*
@@ -40,11 +41,11 @@ const App = () => {
 
         <Route path="/indiv" component={MainNav} />
         <Route path="/indiv" component={IndivNav} />
+
+        <Route exact path="/indiv/perf" component={IndivPerf} />
+        <Route exact path="/indiv/finan" component={IndivFin} />
          
         {/*
-
-        <Route exact path="/indiv" component={Performance} />
-        <Route exact path="/indiv/fin" component={Financials} />
         <Route exact path="/indiv/news" component={News} />
         <Route exact path="/indiv/trans" component={Trans} />
 

@@ -370,6 +370,30 @@ footer {
     .selector span:not(:last-child), .selector a:not(:last-child) {
       margin-bottom: 2.5vh; } }
 
+.indiv-fin {
+  height: 100%;
+  background-color: orange; }
+
+.indiv-perf {
+  color: black;
+  font-size: 5vh; }
+
+.data-nav {
+  position: fixed;
+  top: 85vh;
+  width: 100vw;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 500;
+  color: #ADADBD;
+  font-size: 2vh;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-evenly; }
+  .data-nav span {
+    border-top: solid grey 2px; }
+  .data-nav .selected {
+    border-top: solid #34A9FF 10px; }
+
 html {
   font-size: 62.5%;
   height: 100%; }

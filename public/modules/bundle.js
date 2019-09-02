@@ -86,6 +86,55 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./app/components/DataNav.js":
+/*!***********************************!*\
+  !*** ./app/components/DataNav.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = DataNav;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function DataNav(props) {
+  var data = props.data,
+      switchItem = props.switchItem,
+      selectedDataNavItem = props.selectedDataNavItem;
+
+
+  return _react2.default.createElement(
+    "div",
+    { className: "data-nav" },
+    data.map(function (item, i) {
+
+      return _react2.default.createElement(
+        "span",
+        {
+          key: i,
+          onClick: function onClick() {
+            return switchItem(item);
+          },
+          className: selectedDataNavItem === item ? "selected" : undefined
+        },
+        item
+      );
+    })
+  );
+};
+
+/***/ }),
+
 /***/ "./app/components/Footer.js":
 /*!**********************************!*\
   !*** ./app/components/Footer.js ***!
@@ -121,6 +170,68 @@ var Footer = function Footer(props) {
 };
 
 exports.default = Footer;
+
+/***/ }),
+
+/***/ "./app/components/IndivFin.js":
+/*!************************************!*\
+  !*** ./app/components/IndivFin.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var IndivFin = function (_React$Component) {
+  _inherits(IndivFin, _React$Component);
+
+  function IndivFin(props) {
+    _classCallCheck(this, IndivFin);
+
+    var _this = _possibleConstructorReturn(this, (IndivFin.__proto__ || Object.getPrototypeOf(IndivFin)).call(this, props));
+
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(IndivFin, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
+    key: "render",
+    value: function render() {
+
+      return _react2.default.createElement(
+        "div",
+        { className: "indiv-fin" },
+        "hitting indivFin"
+      );
+    }
+  }]);
+
+  return IndivFin;
+}(_react2.default.Component);
+
+exports.default = IndivFin;
 
 /***/ }),
 
@@ -198,7 +309,7 @@ var IndivNav2 = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { style: { height: "100vh" } },
+        null,
         _react2.default.createElement(
           'div',
           { className: 'individual-nav' },
@@ -261,6 +372,89 @@ var IndivNav2 = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = IndivNav2;
+
+/***/ }),
+
+/***/ "./app/components/IndivPerf.js":
+/*!*************************************!*\
+  !*** ./app/components/IndivPerf.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _DataNav = __webpack_require__(/*! ./DataNav */ "./app/components/DataNav.js");
+
+var _DataNav2 = _interopRequireDefault(_DataNav);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var IndivPerf = function (_React$Component) {
+  _inherits(IndivPerf, _React$Component);
+
+  function IndivPerf(props) {
+    _classCallCheck(this, IndivPerf);
+
+    var _this = _possibleConstructorReturn(this, (IndivPerf.__proto__ || Object.getPrototypeOf(IndivPerf)).call(this, props));
+
+    _this.dataSwitch = function (newDisplay) {
+
+      _this.setState({
+
+        selectedDataNavItem: newDisplay
+      });
+    };
+
+    _this.state = {
+
+      selectedDataNavItem: null
+    };
+    return _this;
+  }
+
+  _createClass(IndivPerf, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {}
+  }, {
+    key: 'render',
+    value: function render() {
+      var selectedDataNavItem = this.state.selectedDataNavItem;
+
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'indiv-perf' },
+        _react2.default.createElement(_DataNav2.default, {
+          data: ["Day", "Week", "Month", "Year"],
+          selectedDataNavItem: selectedDataNavItem,
+          switchItem: this.dataSwitch
+        })
+      );
+    }
+  }]);
+
+  return IndivPerf;
+}(_react2.default.Component);
+
+exports.default = IndivPerf;
 
 /***/ }),
 
@@ -722,6 +916,14 @@ var _IndivNav = __webpack_require__(/*! ./IndivNav */ "./app/components/IndivNav
 
 var _IndivNav2 = _interopRequireDefault(_IndivNav);
 
+var _IndivPerf = __webpack_require__(/*! ./IndivPerf */ "./app/components/IndivPerf.js");
+
+var _IndivPerf2 = _interopRequireDefault(_IndivPerf);
+
+var _IndivFin = __webpack_require__(/*! ./IndivFin */ "./app/components/IndivFin.js");
+
+var _IndivFin2 = _interopRequireDefault(_IndivFin);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // import Navbar from './components/Navbar';
@@ -756,7 +958,9 @@ var App = function App() {
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Landing2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Footer2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { path: '/indiv', component: _MainNav2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/indiv', component: _IndivNav2.default })
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/indiv', component: _IndivNav2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/perf', component: _IndivPerf2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/finan', component: _IndivFin2.default })
   );
 };
 

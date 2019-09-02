@@ -10,6 +10,19 @@
     white-space: nowrap
 }
 
+@mixin secondary-grey-text {
+
+    font-family: $second-text;
+    font-weight: 500;
+    color: #ADADBD;
+}
+
+@mixin secondary-text{
+
+    font-family: $second-text;
+    font-weight: 500;
+}
+
 @mixin absCenter {
     
     position: absolute;

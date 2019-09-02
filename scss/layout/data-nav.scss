@@ -1,0 +1,24 @@
+
+.data-nav {
+    position: fixed;
+    top: 85vh;
+
+    width: 100vw;
+
+    @include secondary-grey-text;
+
+    font-size: 2vh;
+    text-transform: uppercase;
+
+    display: flex;
+    justify-content: space-evenly;
+
+    span{
+
+        border-top: solid grey 2px;
+    }
+
+    .selected {
+        border-top: solid $light-blue 10px;
+    }
+}
