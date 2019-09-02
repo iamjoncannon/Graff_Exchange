@@ -9,3 +9,8 @@ export function isCell(){
 
     return window.outerWidth < 601;
 }
+
+export function isTab(){
+
+    return !isCell && !isDesktop;
+}

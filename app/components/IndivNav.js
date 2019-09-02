@@ -1,5 +1,5 @@
 import React from 'react';
-import { isDesktop, isCell } from './utils'
+import { isDesktop, isCell, isTab } from './utils'
 import { Link } from 'react-router-dom'
 import IndivSelector from './IndivSelector'
 import TradeBox from './TradeBox'
@@ -33,11 +33,13 @@ export default class IndivNav2 extends React.Component {
       
       <div className="individual-nav">
   
-        { isCell() &&
+        { isCell() ? 
        
           <i className="fas fa-bars fa-7x" 
              onClick={()=>this.setState({isModalShowing: true, whichModal: 'selector'})}
           />
+          :
+          <div style={{width: "7vw"}}></div>
         
         }
 
@@ -60,6 +62,19 @@ export default class IndivNav2 extends React.Component {
         </span>
       
       </div>
+      {
+        !isCell() &&
+        
+        <div className="selector">
+        
+          <IndivSelector 
+            pathname={pathname} 
+            exit={()=>{}}
+          />
+          
+        </div>
+      
+      }
 
       {
         isModalShowing && 
@@ -84,6 +99,7 @@ export default class IndivNav2 extends React.Component {
           </div>
         </div>
       }
+
     </div>
     );
   }

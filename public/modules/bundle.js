@@ -202,11 +202,11 @@ var IndivNav2 = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'individual-nav' },
-          (0, _utils.isCell)() && _react2.default.createElement('i', { className: 'fas fa-bars fa-7x',
+          (0, _utils.isCell)() ? _react2.default.createElement('i', { className: 'fas fa-bars fa-7x',
             onClick: function onClick() {
               return _this2.setState({ isModalShowing: true, whichModal: 'selector' });
             }
-          }),
+          }) : _react2.default.createElement('div', { style: { width: "7vw" } }),
           _react2.default.createElement(
             'div',
             null,
@@ -226,6 +226,14 @@ var IndivNav2 = function (_React$Component) {
             },
             'Trade'
           )
+        ),
+        !(0, _utils.isCell)() && _react2.default.createElement(
+          'div',
+          { className: 'selector' },
+          _react2.default.createElement(_IndivSelector2.default, {
+            pathname: pathname,
+            exit: function exit() {}
+          })
         ),
         isModalShowing && _react2.default.createElement(
           'div',
@@ -771,6 +779,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.isDesktop = isDesktop;
 exports.isCell = isCell;
+exports.isTab = isTab;
 var logoUrl = exports.logoUrl = "../assets/gopher-logo-png-transparent.png";
 
 function isDesktop() {
@@ -781,6 +790,11 @@ function isDesktop() {
 function isCell() {
 
     return window.outerWidth < 601;
+}
+
+function isTab() {
+
+    return !isCell && !isDesktop;
 }
 
 /***/ }),

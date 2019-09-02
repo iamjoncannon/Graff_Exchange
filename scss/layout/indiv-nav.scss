@@ -50,6 +50,7 @@
 }
 
 .modal-container {
+
     position: fixed;
     top: 0;
     width: 100vw;
@@ -61,40 +62,6 @@
     justify-content: center;
     align-items: flex-start;
     
-    .selector {
-        
-        margin-top: 10vh;
-        background-color: white;
-        width: 40vh;
-        height: 40vh;
-
-        > div {
-            height: 100%;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .selected {
-
-            border-bottom: solid $light-blue 5px;
-        }
-        
-        span, a {
-
-            color: black;
-            font-size: 4vh;
-            display: inline-block;
-
-            &:not(:last-child){
-
-                margin-bottom: 2.5vh;
-            }
-        }
-    }
-
     .trade-box {
 
         margin-top: 10vh;
@@ -137,3 +104,62 @@
     }
 }
 
+.selector {
+        
+    @include cell(){
+        margin-top: 10vh;
+        background-color: white;
+        width: 40vh;
+        height: 40vh;
+    }
+
+    > div {
+        
+        @include cell(){
+            
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @include tab(){
+
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+    }
+
+    .selected {
+
+        border-bottom: solid $light-blue 5px;
+    }
+     
+    span, a {
+
+        color: black;
+        display: inline-block;
+
+        @include cell(){
+
+            font-size: 4vh;
+        }
+
+        @include tab(){
+            text-align: center;
+            font-size: 2vh;
+        }
+
+        &:not(:last-child){
+
+            @include cell(){
+
+                margin-bottom: 2.5vh;
+            }
+        }
+    }
+
+}

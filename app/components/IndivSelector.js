@@ -45,9 +45,8 @@ export default function IndivSelector (props){
         </span>
       
       </Link>
-
-
     </div>
+    
   );
 };
 
