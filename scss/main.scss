@@ -53,3 +53,24 @@ button {
         opacity: .5;
     }
 }
+
+
+.indiv-container {
+
+    overflow: scroll;
+
+    @include cell(){
+
+        max-height: 83vh;
+    }
+
+    @include tab(){
+
+        max-height: 77vh;
+    }
+
+    @include desk(){
+
+        margin-top: 3vh;
+    }
+}

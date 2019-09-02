@@ -189,6 +189,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _dummyData;
+
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
@@ -200,6 +202,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var dummyData = (_dummyData = {
+  thing: 'value',
+  anotherThing: 'another value',
+  thing2: 'value',
+  anotherThing2: 'another value',
+  thing3: 'value',
+  anotherThing3: 'another value',
+  thing4: 'value',
+  anotherThing4: 'another value',
+  thing5: 'value',
+  anotherThing5: 'another value',
+  thing6: 'value',
+  anotherThing6: 'another value',
+  thing7: 'value',
+  anotherThing7: 'another value',
+  thing8: 'value',
+  anotherThing8: 'another value',
+  athing: 'value',
+  aanotherThing: 'another value',
+  athing2: 'value',
+  aanotherThing2: 'another value',
+  athing3: 'value',
+  aanotherThing3: 'another value',
+  athing4: 'value'
+}, _defineProperty(_dummyData, 'anotherThing4', 'another value'), _defineProperty(_dummyData, 'athing5', 'value'), _defineProperty(_dummyData, 'aanotherThing5', 'another value'), _defineProperty(_dummyData, 'athing6', 'value'), _defineProperty(_dummyData, 'aanotherThing6', 'another value'), _defineProperty(_dummyData, 'athing7', 'value'), _defineProperty(_dummyData, 'aanotherThing7', 'another value'), _defineProperty(_dummyData, 'athing8', 'value'), _defineProperty(_dummyData, 'aanotherThing8', 'another value'), _dummyData);
 
 var IndivFin = function (_React$Component) {
   _inherits(IndivFin, _React$Component);
@@ -214,16 +244,37 @@ var IndivFin = function (_React$Component) {
   }
 
   _createClass(IndivFin, [{
-    key: "componentDidMount",
+    key: 'componentDidMount',
     value: function componentDidMount() {}
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
 
       return _react2.default.createElement(
-        "div",
-        { className: "indiv-fin" },
-        "hitting indivFin"
+        'div',
+        { className: 'indiv-fin indiv-container' },
+        _react2.default.createElement(
+          'span',
+          null,
+          'Q4 Financials'
+        ),
+        Object.entries(dummyData).map(function (item) {
+
+          return _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'span',
+              null,
+              item[0]
+            ),
+            _react2.default.createElement(
+              'span',
+              null,
+              item[1]
+            )
+          );
+        })
       );
     }
   }]);
@@ -404,7 +455,7 @@ function IndivNews(props) {
 
     return _react2.default.createElement(
         'div',
-        { className: 'indiv-news-container' },
+        { className: 'indiv-container' },
         news.map(function (newsItem, i) {
 
             return _react2.default.createElement(

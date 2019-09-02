@@ -18,7 +18,7 @@ export default function IndivNews (props){
 
   return (
 
-    <div className="indiv-news-container">
+    <div className="indiv-container">
 
       {news.map((newsItem, i) =>{
 

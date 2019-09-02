@@ -398,8 +398,22 @@ footer {
       margin-bottom: 2.5vh; } }
 
 .indiv-fin {
-  height: 100%;
-  background-color: orange; }
+  font-family: "Exo 2", sans-serif;
+  font-size: 3vh;
+  color: black; }
+  .indiv-fin > span:first-child {
+    font-size: 6vh;
+    display: block;
+    margin: auto; }
+  .indiv-fin div {
+    border: solid black 1px;
+    position: relative; }
+  .indiv-fin span:first-child {
+    margin-left: 1vh;
+    font-weight: 200; }
+  .indiv-fin span:last-child {
+    margin-right: 1vh;
+    float: right; }
 
 .indiv-perf {
   color: black; }
@@ -493,15 +507,6 @@ footer {
         width: 75vw;
         margin-bottom: 2vh; } }
 
-.indiv-news-container {
-  overflow: scroll; }
-  @media only screen and (max-device-width: 600px) {
-    .indiv-news-container {
-      max-height: 83vh; } }
-  @media only screen and (min-device-width: 601px) {
-    .indiv-news-container {
-      max-height: 77vh; } }
-
 .news-box {
   width: 100%;
   display: flex;
@@ -511,6 +516,11 @@ footer {
   margin-bottom: 1vh;
   color: black;
   border-bottom: solid grey 1px; }
+  @media only screen and (min-device-width: 1100px) {
+    .news-box {
+      width: 75%;
+      margin: auto;
+      margin-bottom: 2vh; } }
   .news-box img {
     height: 15vh;
     width: auto;
@@ -556,3 +566,15 @@ button {
     opacity: .9; }
   button:active {
     opacity: .5; }
+
+.indiv-container {
+  overflow: scroll; }
+  @media only screen and (max-device-width: 600px) {
+    .indiv-container {
+      max-height: 83vh; } }
+  @media only screen and (min-device-width: 601px) {
+    .indiv-container {
+      max-height: 77vh; } }
+  @media only screen and (min-device-width: 1100px) {
+    .indiv-container {
+      margin-top: 3vh; } }

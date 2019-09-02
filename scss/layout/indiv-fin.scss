@@ -1,6 +1,27 @@
 
 .indiv-fin {
+    font-family: $second-text;
+    font-size: 3vh;
+    color: black;
 
-    height: 100%;
-    background-color: orange;
+    > span:first-child {
+        font-size: 6vh;
+        display: block;
+        margin: auto;
+    }
+
+    div {
+        border: solid black 1px;
+        position: relative;
+    }
+
+    span:first-child{
+        margin-left: 1vh;
+        font-weight: 200;
+    }
+
+    span:last-child{
+        margin-right: 1vh;
+        float: right;
+    }
 }
