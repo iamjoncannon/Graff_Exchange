@@ -148,6 +148,10 @@ var _utils = __webpack_require__(/*! ./utils */ "./app/components/utils.js");
 
 var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 
+var _IndivSelector = __webpack_require__(/*! ./IndivSelector */ "./app/components/IndivSelector.js");
+
+var _IndivSelector2 = _interopRequireDefault(_IndivSelector);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -180,6 +184,7 @@ var IndivNav2 = function (_React$Component) {
       var _state = this.state,
           isModalShowing = _state.isModalShowing,
           whichModal = _state.whichModal;
+      var pathname = this.props.location.pathname;
 
 
       return _react2.default.createElement(
@@ -196,9 +201,11 @@ var IndivNav2 = function (_React$Component) {
               { to: '/indiv/fin' },
               'Financials'
             )
-          ) : _react2.default.createElement('i', { className: 'fas fa-bars fa-7x', onClick: function onClick() {
+          ) : _react2.default.createElement('i', { className: 'fas fa-bars fa-7x',
+            onClick: function onClick() {
               return _this2.setState({ isModalShowing: true, whichModal: 'selector' });
-            } }),
+            }
+          }),
           _react2.default.createElement(
             'div',
             null,
@@ -225,11 +232,12 @@ var IndivNav2 = function (_React$Component) {
             { onClick: function onClick(e) {
                 return e.stopPropagation();
               }, className: whichModal },
-            whichModal === 'selector' ? _react2.default.createElement(
-              'span',
-              null,
-              ' selector'
-            ) : _react2.default.createElement(
+            whichModal === 'selector' ? _react2.default.createElement(_IndivSelector2.default, {
+              pathname: pathname,
+              exit: function exit() {
+                return _this2.setState({ isModalShowing: false });
+              }
+            }) : _react2.default.createElement(
               'span',
               null,
               ' trade box '
@@ -244,6 +252,82 @@ var IndivNav2 = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = IndivNav2;
+
+/***/ }),
+
+/***/ "./app/components/IndivSelector.js":
+/*!*****************************************!*\
+  !*** ./app/components/IndivSelector.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = IndivSelector;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function IndivSelector(props) {
+  var pathname = props.pathname;
+
+
+  function isSelectedSelector(selector) {
+
+    return pathname.includes(selector) ? "selected" : undefined;
+  }
+
+  return _react2.default.createElement(
+    'div',
+    { onClick: props.exit },
+    _react2.default.createElement(
+      _reactRouterDom.Link,
+      { to: '/indiv/perf' },
+      _react2.default.createElement(
+        'span',
+        { className: isSelectedSelector("perf") },
+        'Performance'
+      )
+    ),
+    _react2.default.createElement(
+      _reactRouterDom.Link,
+      { to: '/indiv/finan' },
+      _react2.default.createElement(
+        'span',
+        { className: isSelectedSelector("finan") },
+        'Financials'
+      )
+    ),
+    _react2.default.createElement(
+      _reactRouterDom.Link,
+      { to: '/indiv/news' },
+      _react2.default.createElement(
+        'span',
+        { className: isSelectedSelector("news") },
+        'News'
+      )
+    ),
+    _react2.default.createElement(
+      _reactRouterDom.Link,
+      { to: '/indiv/trans' },
+      _react2.default.createElement(
+        'span',
+        { className: isSelectedSelector("trans") },
+        'Transactions'
+      )
+    )
+  );
+};
 
 /***/ }),
 
@@ -631,7 +715,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.isDesktop = isDesktop;
 exports.isCell = isCell;
-var logoUrl = exports.logoUrl = "https://cdn.freebiesupply.com/logos/large/2x/gopher-logo-png-transparent.png";
+var logoUrl = exports.logoUrl = "../assets/gopher-logo-png-transparent.png";
 
 function isDesktop() {
 

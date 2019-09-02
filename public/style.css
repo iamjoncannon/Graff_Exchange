@@ -289,9 +289,21 @@ footer {
     background-color: white;
     width: 40vh;
     height: 40vh; }
-    .modal-container .selector span {
+    .modal-container .selector > div {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+    .modal-container .selector .selected {
+      border-bottom: solid #34A9FF 5px; }
+    .modal-container .selector span, .modal-container .selector a {
       color: black;
-      font-size: 3vh; }
+      font-size: 4vh;
+      display: inline-block; }
+      .modal-container .selector span:not(:last-child), .modal-container .selector a:not(:last-child) {
+        margin-bottom: 2.5vh; }
 
 html {
   font-size: 62.5%;

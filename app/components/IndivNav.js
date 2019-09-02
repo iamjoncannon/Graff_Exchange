@@ -1,6 +1,7 @@
 import React from 'react';
 import { isDesktop, isCell } from './utils'
 import { Link } from 'react-router-dom'
+import IndivSelector from './IndivSelector'
 
 export default class IndivNav2 extends React.Component {
  
@@ -18,7 +19,10 @@ export default class IndivNav2 extends React.Component {
 
     const {isModalShowing, whichModal} = this.state
 
+    const { pathname } = this.props.location
+
     return (
+
     <div style={{height: "100vh"}}>
       
       <div className="individual-nav">
@@ -35,7 +39,9 @@ export default class IndivNav2 extends React.Component {
           
           : 
         
-          <i className="fas fa-bars fa-7x" onClick={()=>this.setState({isModalShowing: true, whichModal: 'selector'})}/>
+          <i className="fas fa-bars fa-7x" 
+              onClick={()=>this.setState({isModalShowing: true, whichModal: 'selector'})}
+          />
         
         }
 
@@ -55,14 +61,22 @@ export default class IndivNav2 extends React.Component {
       
       </div>
 
+
+
       {
         isModalShowing && 
+
         <div className="modal-container" onClick={()=>this.setState({isModalShowing: false})}>
 
           <div onClick={ (e)=> e.stopPropagation() } className={whichModal}>
             
               { whichModal === 'selector' ? 
-                <span> selector</span>
+
+                <IndivSelector 
+                  pathname={pathname} 
+                  exit={()=> this.setState({ isModalShowing : false }) }
+                />
+
                 : 
                 <span> trade box </span>
               }
@@ -71,7 +85,6 @@ export default class IndivNav2 extends React.Component {
 
         </div>
       }
-
     </div>
     );
   }
