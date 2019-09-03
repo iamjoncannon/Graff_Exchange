@@ -45,19 +45,22 @@
       @media only screen and (min-device-width: 1100px) {
         .landing .header img {
           height: 6vh; } }
-    @media only screen and (max-device-width: 600px) {
-      .landing .header .title {
-        line-height: 2;
-        font-size: 3vh; } }
-    @media only screen and (min-device-width: 601px) {
-      .landing .header .title {
-        font-size: 3vh; } }
-    @media only screen and (min-device-width: 1100px) {
-      .landing .header .title {
-        font-size: 4vh;
-        align-self: flex-start;
-        margin-top: 2vh;
-        margin-left: 2vh; } }
+    .landing .header .title {
+      font-family: "Exo 2", sans-serif;
+      font-weight: 100; }
+      @media only screen and (max-device-width: 600px) {
+        .landing .header .title {
+          line-height: 2;
+          font-size: 3vh; } }
+      @media only screen and (min-device-width: 601px) {
+        .landing .header .title {
+          font-size: 3vh; } }
+      @media only screen and (min-device-width: 1100px) {
+        .landing .header .title {
+          font-size: 4vh;
+          align-self: flex-start;
+          margin-top: 2vh;
+          margin-left: 2vh; } }
     .landing .header .blurb {
       display: inline-block;
       width: 60%;
@@ -245,48 +248,17 @@ footer {
       text-decoration: underline;
       opacity: .5; }
   .desk-nav span:first-child {
+    margin-top: .5vh;
     position: absolute;
-    left: 2vh; }
+    left: 2vh;
+    font-family: "Exo 2", sans-serif;
+    font-weight: 100; }
   .desk-nav span:nth-child(2) {
+    margin-top: .5vh;
     margin-right: 4vh; }
   .desk-nav span:last-child {
+    margin-top: .5vh;
     margin-right: 2vh; }
-
-.individual-nav {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 10vh; }
-  .individual-nav a {
-    text-decoration: none; }
-  .individual-nav span {
-    font-size: 2vh;
-    font-family: "Exo 2", sans-serif;
-    color: #34A9FF; }
-    @media only screen and (min-device-width: 601px) {
-      .individual-nav span {
-        font-size: 2.5vh; } }
-  .individual-nav > span {
-    cursor: pointer; }
-    .individual-nav > span:hover {
-      border-bottom: solid #34A9FF 3px; }
-  .individual-nav > i {
-    color: black; }
-  .individual-nav div:nth-child(2) {
-    display: flex;
-    justify-content: center;
-    align-items: center; }
-    @media only screen and (max-device-width: 600px) {
-      .individual-nav div:nth-child(2) {
-        flex-grow: .5; } }
-    @media only screen and (min-device-width: 601px) {
-      .individual-nav div:nth-child(2) {
-        flex-grow: initial; } }
-  .individual-nav div > i {
-    color: #34A9FF;
-    position: relative;
-    bottom: .1vh;
-    left: 1vh; }
 
 .modal-container {
   position: fixed;
@@ -332,6 +304,42 @@ footer {
     .modal-container .trade-box > div > span {
       font-size: 5vh;
       color: #34A9FF; }
+
+.individual-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 10vh; }
+  .individual-nav a {
+    text-decoration: none; }
+  .individual-nav span {
+    font-size: 2vh;
+    font-family: "Exo 2", sans-serif;
+    color: #34A9FF; }
+    @media only screen and (min-device-width: 601px) {
+      .individual-nav span {
+        font-size: 2.5vh; } }
+  .individual-nav > span {
+    cursor: pointer; }
+    .individual-nav > span:hover {
+      border-bottom: solid #34A9FF 3px; }
+  .individual-nav > i {
+    color: black; }
+  .individual-nav div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    @media only screen and (max-device-width: 600px) {
+      .individual-nav div:nth-child(2) {
+        flex-grow: .5; } }
+    @media only screen and (min-device-width: 601px) {
+      .individual-nav div:nth-child(2) {
+        flex-grow: initial; } }
+  .individual-nav div > i {
+    color: #34A9FF;
+    position: relative;
+    bottom: .1vh;
+    left: 1vh; }
 
 @media only screen and (max-device-width: 600px) {
   .selector {
@@ -667,7 +675,8 @@ footer {
     margin-bottom: 4vh; }
   .all-watchlist i {
     color: black;
-    font-size: 3.5vh; }
+    font-size: 3.5vh;
+    background-color: white; }
     .all-watchlist i:nth-of-type(1) {
       margin-right: 4vh; }
   .all-watchlist > div:first-child {
@@ -691,6 +700,20 @@ footer {
       color: orange; }
       .all-watchlist > div:not(:first-child) div:nth-child(2) span:last-child {
         display: block; }
+
+.symbol-box {
+  background-color: green;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .symbol-box div {
+    height: 10vh !important; }
+  .symbol-box span {
+    font-size: 4vh;
+    color: #34A9FF; }
+  .symbol-box button {
+    margin: 0 !important; }
 
 html {
   font-size: 62.5%;

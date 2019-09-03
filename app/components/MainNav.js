@@ -8,8 +8,6 @@ export default function MainNav (props){
 
   const isDesktop = window.innerWidth > 1100;
 
-  console.log(props)
-
   return (
 
 

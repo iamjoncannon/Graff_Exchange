@@ -24,6 +24,7 @@
     i {
         color: black;
         font-size: 3.5vh;
+        background-color: white;
 
         &:nth-of-type(1){
 
@@ -78,5 +79,28 @@
                 display: block;
             }
         }
+    }
+}
+
+.symbol-box {
+
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    div {
+        height: 10vh !important;
+    }
+
+    span {
+        font-size: 4vh;
+        color: $light-blue;
+
+    }
+
+    button {
+        margin: 0 !important;
     }
 }

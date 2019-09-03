@@ -86,6 +86,56 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./app/components/AddSymbolBox.js":
+/*!****************************************!*\
+  !*** ./app/components/AddSymbolBox.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = TradeBox;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function TradeBox(props) {
+
+  return _react2.default.createElement(
+    "div",
+    { className: "trade-box symbol-box" },
+    _react2.default.createElement(
+      "span",
+      null,
+      "Symbol"
+    ),
+    _react2.default.createElement("input", {
+      type: "text",
+      min: "1",
+      max: "5"
+    }),
+    _react2.default.createElement(
+      "div",
+      null,
+      _react2.default.createElement(
+        "button",
+        { onClick: props.exit },
+        "Add"
+      )
+    )
+  );
+};
+
+/***/ }),
+
 /***/ "./app/components/AllNav.js":
 /*!**********************************!*\
   !*** ./app/components/AllNav.js ***!
@@ -180,7 +230,8 @@ exports.default = AllNav;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = Watchlist;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
@@ -188,64 +239,130 @@ var _react2 = _interopRequireDefault(_react);
 
 var _utils = __webpack_require__(/*! ./utils */ "./app/components/utils.js");
 
+var _AddSymbolBox = __webpack_require__(/*! ./AddSymbolBox */ "./app/components/AddSymbolBox.js");
+
+var _AddSymbolBox2 = _interopRequireDefault(_AddSymbolBox);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var dummyData = [["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin4", "BTC", "4878", "2.54"], ["Bitcoinr", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"]];
 
-function Watchlist(props) {
+var AllWatchList = function (_React$Component) {
+  _inherits(AllWatchList, _React$Component);
 
-  return _react2.default.createElement(
-    'div',
-    { className: 'all-watchlist' },
-    _react2.default.createElement(
-      'div',
-      null,
-      _react2.default.createElement('i', { className: 'fas fa-plus fa-' + ((0, _utils.isDesktop)() ? "2" : "7") + 'x' }),
-      _react2.default.createElement('i', { className: 'fas fa-edit fa-' + ((0, _utils.isDesktop)() ? "2" : "7") + 'x' })
-    ),
-    _react2.default.createElement(
-      'span',
-      null,
-      'Portfolio'
-    ),
-    dummyData.map(function (item, i) {
+  function AllWatchList(props) {
+    _classCallCheck(this, AllWatchList);
+
+    var _this = _possibleConstructorReturn(this, (AllWatchList.__proto__ || Object.getPrototypeOf(AllWatchList)).call(this, props));
+
+    _this.closeModal = function () {
+
+      _this.setState({ isModalShowing: false });
+    };
+
+    _this.state = {
+
+      isModalShowing: false
+    };
+    return _this;
+  }
+
+  _createClass(AllWatchList, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _state = this.state,
+          isModalShowing = _state.isModalShowing,
+          whichModal = _state.whichModal;
+
 
       return _react2.default.createElement(
         'div',
         null,
         _react2.default.createElement(
           'div',
-          null,
+          { className: 'all-watchlist' },
           _react2.default.createElement(
-            'span',
+            'div',
             null,
-            item[0]
+            _react2.default.createElement('i', {
+              className: 'fas fa-plus fa-' + ((0, _utils.isDesktop)() ? "2" : "7") + 'x',
+              onClick: function onClick() {
+                return _this2.setState({ isModalShowing: true });
+              }
+            }),
+            _react2.default.createElement('i', { className: 'fas fa-edit fa-' + ((0, _utils.isDesktop)() ? "2" : "7") + 'x' })
           ),
           _react2.default.createElement(
             'span',
             null,
-            item[1],
-            ' '
-          )
+            'Portfolio'
+          ),
+          dummyData.map(function (item, i) {
+
+            return _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  item[0]
+                ),
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  item[1],
+                  ' '
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  item[2]
+                ),
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  item[3]
+                )
+              )
+            );
+          })
         ),
-        _react2.default.createElement(
+        isModalShowing && _react2.default.createElement(
           'div',
-          null,
+          { className: 'modal-container', onClick: function onClick() {
+              return _this2.setState({ isModalShowing: false });
+            } },
           _react2.default.createElement(
-            'span',
-            null,
-            item[2]
-          ),
-          _react2.default.createElement(
-            'span',
-            null,
-            item[3]
+            'div',
+            { onClick: function onClick(e) {
+                return e.stopPropagation();
+              } },
+            _react2.default.createElement(_AddSymbolBox2.default, null)
           )
         )
       );
-    })
-  );
-};
+    }
+  }]);
+
+  return AllWatchList;
+}(_react2.default.Component);
+
+exports.default = AllWatchList;
 
 /***/ }),
 
@@ -1283,8 +1400,6 @@ function MainNav(props) {
 
 
   var isDesktop = window.innerWidth > 1100;
-
-  console.log(props);
 
   return _react2.default.createElement(
     'div',

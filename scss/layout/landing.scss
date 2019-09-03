@@ -69,6 +69,10 @@
         }
             
         .title {
+
+            font-family: $second-text;
+            font-weight: 100;
+            
             
             @include cell(){
                 line-height: 2;

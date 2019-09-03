@@ -90,20 +90,23 @@
         }
     }
 
-    span:first-child {
+    // main title
 
+    span:first-child {
+        margin-top: .5vh;
         position: absolute;
         left: 2vh;
-
+        font-family: $second-text;
+        font-weight: 100;
     }
 
     span:nth-child(2){
-
+        margin-top: .5vh;
         margin-right: 4vh;
     }
 
     span:last-child{
-
+        margin-top: .5vh;
         margin-right: 2vh;
     }
 }

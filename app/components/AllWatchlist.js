@@ -1,6 +1,6 @@
 import React from 'react';
 import {isDesktop} from './utils'
-
+import AddSymbolBox from "./AddSymbolBox"
 
 const dummyData = [
   ["Bitcoin", "BTC", "4878", "2.54"],
@@ -15,40 +15,84 @@ const dummyData = [
   ["Bitcoin", "BTC", "4878", "2.54"],
 ]
 
-export default function Watchlist (props){
+export default class AllWatchList extends React.Component {
+ 
+  constructor(props) {
+    super(props);
 
-  return (
-    <div className="all-watchlist">
-    
-      <div>
-        <i className={`fas fa-plus fa-${isDesktop() ? "2" : "7"}x`} />
-        <i className={`fas fa-edit fa-${isDesktop() ? "2" : "7"}x`} />
-      </div>
+    this.state = {
 
-      <span>Portfolio</span>
+        isModalShowing : false,
+    }
+   }
 
-      {
-        dummyData.map((item, i)=>{
+    closeModal = () => {
 
-          return(
+      this.setState({ isModalShowing : false })
+    }
+  
+    render() {
 
-            <div>
-              <div>
+      const {isModalShowing, whichModal} = this.state
 
-                <span>{item[0]}</span>
-                <span>{item[1]} </span>
+ 
+      return (
+        <div>
+
+        <div className="all-watchlist">
+        
+          <div>
+            <i 
+              className={`fas fa-plus fa-${isDesktop() ? "2" : "7"}x`} 
+              onClick={()=>this.setState({isModalShowing: true})}
+            />
+          
+            <i className={`fas fa-edit fa-${isDesktop() ? "2" : "7"}x`} />
+          
+          </div>
+
+          <span>Portfolio</span>
+
+          {
+            dummyData.map((item, i)=>{
+
+              return(
+
+                <div>
+                  <div>
+
+                    <span>{item[0]}</span>
+                    <span>{item[1]} </span>
+                    
+                  </div>
+
+                  <div>
+              
+                    <span>{item[2]}</span>
+                    <span>{item[3]}</span>
+                  </div>
+                </div>
+              )
+            })
+          }
+        </div>
+
+          {
+            isModalShowing && 
+
+            <div className="modal-container" onClick={()=>this.setState({isModalShowing: false})}>
+
+              <div onClick={ (e)=> e.stopPropagation()} >
                 
+                    <AddSymbolBox />
+                  
+
               </div>
 
-              <div>
-           
-                <span>{item[2]}</span>
-                <span>{item[3]}</span>
-              </div>
             </div>
-          )
-        })
-      }
-    </div>
-  );
-};
+          }
+
+        </div>
+      );
+    };
+}
