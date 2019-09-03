@@ -28,7 +28,6 @@ export default class AllNav extends React.Component {
         <Link to="/all/transactions">
 
           <span className={pathname.includes("transactions") ? "selected" : undefined}>
-            
               Transactions
           </span>   
   

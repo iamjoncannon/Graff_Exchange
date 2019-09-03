@@ -1,0 +1,82 @@
+
+.all-watchlist {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+
+    @include cell(){
+
+        max-height: 84vh;
+    }
+
+    > span {
+        color: black;
+        font-size: 3vh;
+        font-family: $second-text;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-top: 4vh;
+        margin-bottom: 4vh;
+    }
+
+    i {
+        color: black;
+        font-size: 3.5vh;
+
+        &:nth-of-type(1){
+
+            margin-right: 4vh;
+        }
+    }
+
+    > div:first-child {
+        position: fixed;
+        right: 2vh;
+        top: 2vh;
+    }
+
+    > div:not(:first-child){
+        
+        border-bottom: solid black 1px;
+        width: 60vw;
+        height: 6vh;
+        margin-bottom: 3vh;
+
+        display: flex;
+        justify-content: space-between;
+
+        span {
+
+            font-size: 2vh;
+        }
+
+        div:first-child{
+
+            color: green;
+            
+            span:first-child{
+                
+            }
+
+            span:last-child{
+                display: block;
+            }
+        }
+
+        div:nth-child(2){
+
+            color: orange;
+
+            span:first-child{
+
+            }
+            
+            span:last-child{
+
+                display: block;
+            }
+        }
+    }
+}

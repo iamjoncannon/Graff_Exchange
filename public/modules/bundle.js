@@ -167,6 +167,88 @@ exports.default = AllNav;
 
 /***/ }),
 
+/***/ "./app/components/AllWatchlist.js":
+/*!****************************************!*\
+  !*** ./app/components/AllWatchlist.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Watchlist;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utils = __webpack_require__(/*! ./utils */ "./app/components/utils.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var dummyData = [["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin4", "BTC", "4878", "2.54"], ["Bitcoinr", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"]];
+
+function Watchlist(props) {
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'all-watchlist' },
+    _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement('i', { className: 'fas fa-plus fa-' + ((0, _utils.isDesktop)() ? "2" : "7") + 'x' }),
+      _react2.default.createElement('i', { className: 'fas fa-edit fa-' + ((0, _utils.isDesktop)() ? "2" : "7") + 'x' })
+    ),
+    _react2.default.createElement(
+      'span',
+      null,
+      'Portfolio'
+    ),
+    dummyData.map(function (item, i) {
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'span',
+            null,
+            item[0]
+          ),
+          _react2.default.createElement(
+            'span',
+            null,
+            item[1],
+            ' '
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'span',
+            null,
+            item[2]
+          ),
+          _react2.default.createElement(
+            'span',
+            null,
+            item[3]
+          )
+        )
+      );
+    })
+  );
+};
+
+/***/ }),
+
 /***/ "./app/components/DataNav.js":
 /*!***********************************!*\
   !*** ./app/components/DataNav.js ***!
@@ -434,13 +516,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var IndivNav2 = function (_React$Component) {
-  _inherits(IndivNav2, _React$Component);
+var IndivNav = function (_React$Component) {
+  _inherits(IndivNav, _React$Component);
 
-  function IndivNav2(props) {
-    _classCallCheck(this, IndivNav2);
+  function IndivNav(props) {
+    _classCallCheck(this, IndivNav);
 
-    var _this = _possibleConstructorReturn(this, (IndivNav2.__proto__ || Object.getPrototypeOf(IndivNav2)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (IndivNav.__proto__ || Object.getPrototypeOf(IndivNav)).call(this, props));
 
     _this.closeModal = function () {
 
@@ -455,7 +537,7 @@ var IndivNav2 = function (_React$Component) {
     return _this;
   }
 
-  _createClass(IndivNav2, [{
+  _createClass(IndivNav, [{
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -527,10 +609,10 @@ var IndivNav2 = function (_React$Component) {
     }
   }]);
 
-  return IndivNav2;
+  return IndivNav;
 }(_react2.default.Component);
 
-exports.default = IndivNav2;
+exports.default = IndivNav;
 
 /***/ }),
 
@@ -1357,6 +1439,10 @@ var _AllNav = __webpack_require__(/*! ./AllNav */ "./app/components/AllNav.js");
 
 var _AllNav2 = _interopRequireDefault(_AllNav);
 
+var _AllWatchlist = __webpack_require__(/*! ./AllWatchlist */ "./app/components/AllWatchlist.js");
+
+var _AllWatchlist2 = _interopRequireDefault(_AllWatchlist);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
@@ -1395,7 +1481,8 @@ var App = function App() {
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/news', component: _IndivNews2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/trans', component: _IndivTrans2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { path: '/all', component: _MainNav2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/all', component: _AllNav2.default })
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/all', component: _AllNav2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/all/watchlist', component: _AllWatchlist2.default })
   );
 };
 

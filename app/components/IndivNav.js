@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import IndivSelector from './IndivSelector'
 import TradeBox from './TradeBox'
 
-export default class IndivNav2 extends React.Component {
+export default class IndivNav extends React.Component {
  
   constructor(props) {
     super(props);
@@ -100,7 +100,7 @@ export default class IndivNav2 extends React.Component {
           </div>
         </div>
       }
-      
+
     </div>
     );
   }

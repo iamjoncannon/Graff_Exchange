@@ -10,6 +10,7 @@ import IndivNews from './IndivNews'
 import IndivTrans from './IndivTrans'
 
 import AllNav from './AllNav'
+import AllWatchlist from './AllWatchlist'
 
 /*
 
@@ -53,6 +54,8 @@ const App = () => {
 
         <Route path="/all" component={MainNav} />
         <Route path="/all" component={AllNav} />
+
+        <Route path="/all/watchlist" component={AllWatchlist} />
 
         {/*
 
