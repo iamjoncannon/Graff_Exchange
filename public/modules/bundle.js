@@ -86,6 +86,87 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./app/components/AllNav.js":
+/*!**********************************!*\
+  !*** ./app/components/AllNav.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _DataNav = __webpack_require__(/*! ./DataNav */ "./app/components/DataNav.js");
+
+var _DataNav2 = _interopRequireDefault(_DataNav);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AllNav = function (_React$Component) {
+  _inherits(AllNav, _React$Component);
+
+  function AllNav(props) {
+    _classCallCheck(this, AllNav);
+
+    return _possibleConstructorReturn(this, (AllNav.__proto__ || Object.getPrototypeOf(AllNav)).call(this, props));
+  }
+
+  _createClass(AllNav, [{
+    key: 'render',
+    value: function render() {
+      var pathname = this.props.location.pathname;
+
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'all-nav' },
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/all/watchlist' },
+          _react2.default.createElement(
+            'span',
+            { className: pathname.includes("watchlist") ? "selected" : undefined },
+            'Portfolio'
+          )
+        ),
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/all/transactions' },
+          _react2.default.createElement(
+            'span',
+            { className: pathname.includes("transactions") ? "selected" : undefined },
+            'Transactions'
+          )
+        )
+      );
+    }
+  }]);
+
+  return AllNav;
+}(_react2.default.Component);
+
+exports.default = AllNav;
+
+/***/ }),
+
 /***/ "./app/components/DataNav.js":
 /*!***********************************!*\
   !*** ./app/components/DataNav.js ***!
@@ -1111,14 +1192,17 @@ var _react2 = _interopRequireDefault(_react);
 
 var _utils = __webpack_require__(/*! ./utils */ "./app/components/utils.js");
 
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
-
 function MainNav(props) {
-  _objectDestructuringEmpty(props);
+  var path = props.match.path;
+
 
   var isDesktop = window.innerWidth > 1100;
+
+  console.log(props);
 
   return _react2.default.createElement(
     'div',
@@ -1145,9 +1229,17 @@ function MainNav(props) {
     _react2.default.createElement(
       'div',
       { className: 'all-screens' },
-      _react2.default.createElement('i', { className: 'fas fa-chart-bar fa-' + (isDesktop ? "2" : "7") + 'x' }),
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: '/indiv/perf' },
+        _react2.default.createElement('i', { className: 'fas fa-chart-bar fa-' + (isDesktop ? "2" : "7") + 'x ' + (path === "/indiv" ? "selected" : "") })
+      ),
       _react2.default.createElement('img', { src: _utils.logoUrl }),
-      _react2.default.createElement('i', { className: 'fas fa-home fa-' + (isDesktop ? "2" : "7") + 'x' })
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: '/all/watchlist' },
+        _react2.default.createElement('i', { className: 'fas fa-home fa-' + (isDesktop ? "2" : "7") + 'x ' + (path === "/all" ? "selected" : "") })
+      )
     )
   );
 };
@@ -1261,6 +1353,10 @@ var _IndivTrans = __webpack_require__(/*! ./IndivTrans */ "./app/components/Indi
 
 var _IndivTrans2 = _interopRequireDefault(_IndivTrans);
 
+var _AllNav = __webpack_require__(/*! ./AllNav */ "./app/components/AllNav.js");
+
+var _AllNav2 = _interopRequireDefault(_AllNav);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
@@ -1297,7 +1393,9 @@ var App = function App() {
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/perf', component: _IndivPerf2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/finan', component: _IndivFin2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/news', component: _IndivNews2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/trans', component: _IndivTrans2.default })
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/trans', component: _IndivTrans2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/all', component: _MainNav2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/all', component: _AllNav2.default })
   );
 };
 

@@ -9,6 +9,8 @@ import IndivFin from './IndivFin'
 import IndivNews from './IndivNews'
 import IndivTrans from './IndivTrans'
 
+import AllNav from './AllNav'
+
 /*
 
 Use RR instead of a nav state slice to manage navigation
@@ -48,9 +50,12 @@ const App = () => {
         <Route exact path="/indiv/news" component={IndivNews} />
         <Route exact path="/indiv/trans" component={IndivTrans} />
          
+
+        <Route path="/all" component={MainNav} />
+        <Route path="/all" component={AllNav} />
+
         {/*
 
-        <Route exact path="/indiv/trans" component={Trans} />
         <Route path="/all" component={NavBar} />
         <Route path="/all" component={PortNav} />
         <Route exact path="/all" component={WatchList} />

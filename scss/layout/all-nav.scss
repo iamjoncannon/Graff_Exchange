@@ -1,0 +1,37 @@
+
+.all-nav {
+
+    display: flex;
+    justify-content: space-evenly;
+
+    @include cell(){
+
+        position: absolute;
+        bottom: 10vh;
+        width: 100vw;
+    }
+
+    @include tab(){
+
+        position: absolute;
+        bottom: 10vh;
+        width: 100vw;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    .selected {
+        color: $light-blue;
+        border-top: solid $light-blue 4px;
+    }
+
+    span {
+        
+        border-top: solid grey 4px;
+        font-size: 3vh;
+        color: grey;
+
+    }
+}

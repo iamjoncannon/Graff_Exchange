@@ -6,6 +6,12 @@
     align-items: center;
     background-color: $purple-light;
     width: 100%;
+        
+    .selected{
+
+        color: $light-blue;
+    }
+    
 
     @include cell(){
 
@@ -99,8 +105,5 @@
     span:last-child{
 
         margin-right: 2vh;
-
-        
     }
-
 }

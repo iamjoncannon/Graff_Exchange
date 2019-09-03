@@ -96,10 +96,11 @@ export default class IndivNav2 extends React.Component {
                   exit={this.closeModal}
                 />
               }
+
           </div>
         </div>
       }
-
+      
     </div>
     );
   }
