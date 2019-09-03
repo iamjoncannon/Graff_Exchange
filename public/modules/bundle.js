@@ -195,6 +195,10 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _DataNav = __webpack_require__(/*! ./DataNav */ "./app/components/DataNav.js");
+
+var _DataNav2 = _interopRequireDefault(_DataNav);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -239,7 +243,19 @@ var IndivFin = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (IndivFin.__proto__ || Object.getPrototypeOf(IndivFin)).call(this, props));
 
-    _this.state = {};
+    _this.dataSwitch = function (newDisplay) {
+      window.scrollTo(0, 0);
+
+      _this.setState({
+
+        selectedDataNavItem: newDisplay
+      });
+    };
+
+    _this.state = {
+
+      selectedDataNavItem: "Q2 2019"
+    };
     return _this;
   }
 
@@ -250,30 +266,41 @@ var IndivFin = function (_React$Component) {
     key: 'render',
     value: function render() {
 
+      window.scrollTo(0, 0);
+
       return _react2.default.createElement(
         'div',
-        { className: 'indiv-fin indiv-container' },
+        null,
         _react2.default.createElement(
-          'span',
-          null,
-          'Q4 Financials'
-        ),
-        Object.entries(dummyData).map(function (item) {
-
-          return _react2.default.createElement(
-            'div',
+          'div',
+          { className: 'indiv-fin indiv-container' },
+          _react2.default.createElement(
+            'span',
             null,
-            _react2.default.createElement(
-              'span',
+            this.state.selectedDataNavItem
+          ),
+          Object.entries(dummyData).map(function (item) {
+
+            return _react2.default.createElement(
+              'div',
               null,
-              item[0]
-            ),
-            _react2.default.createElement(
-              'span',
-              null,
-              item[1]
-            )
-          );
+              _react2.default.createElement(
+                'span',
+                null,
+                item[0]
+              ),
+              _react2.default.createElement(
+                'span',
+                null,
+                item[1]
+              )
+            );
+          })
+        ),
+        _react2.default.createElement(_DataNav2.default, {
+          data: ["Q2 2019", "Q1 2019", "Q4 2018", "Q3 2018"],
+          selectedDataNavItem: this.state.selectedDataNavItem,
+          switchItem: this.dataSwitch
         })
       );
     }

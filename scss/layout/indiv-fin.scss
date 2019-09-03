@@ -4,6 +4,19 @@
     font-size: 3vh;
     color: black;
 
+    @include cell(){
+
+        max-height: 75vh !important;
+    }
+
+    @include desk(){
+
+        max-height: 100vh;
+        width: 65%;
+        margin: auto;
+        margin-top: 4vh !important;
+    }
+
     > span:first-child {
         font-size: 6vh;
         display: block;
@@ -23,5 +36,56 @@
     span:last-child{
         margin-right: 1vh;
         float: right;
+    }
+}
+
+.indiv-fin + .data-nav {
+
+    @include secondary-grey-text;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: white;
+    position: fixed;
+    top: 85vh;
+    width: 100vw;
+    font-size: 2vh;
+
+    @include tab(){
+        top: 88vh;
+    }
+
+    @include desk(){
+
+        position: fixed;
+        top: 23vh;
+        width: 100vw;
+        height: 4vh;
+        background-color: white;
+        justify-content: center;
+    }
+
+    span{
+        cursor: pointer;
+        border-top: solid grey 2px;
+
+        @include desk(){
+            border-top: initial;
+            border-bottom: solid grey 1px;
+
+            &:not(:last-child){
+
+                margin-right: 3vh;
+            }
+        }
+    }
+
+    .selected {
+        border-top: solid $light-blue 10px;
+
+        @include desk(){
+            border-top: initial;
+            border-bottom: solid $light-blue .5vh;
+        }
     }
 }
