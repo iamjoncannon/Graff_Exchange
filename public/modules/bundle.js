@@ -745,6 +745,124 @@ function IndivSelector(props) {
 
 /***/ }),
 
+/***/ "./app/components/IndivTrans.js":
+/*!**************************************!*\
+  !*** ./app/components/IndivTrans.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var dummyData = [["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"]];
+
+var IndivTrans = function (_React$Component) {
+  _inherits(IndivTrans, _React$Component);
+
+  function IndivTrans(props) {
+    _classCallCheck(this, IndivTrans);
+
+    var _this = _possibleConstructorReturn(this, (IndivTrans.__proto__ || Object.getPrototypeOf(IndivTrans)).call(this, props));
+
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(IndivTrans, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
+    key: "render",
+    value: function render() {
+
+      return _react2.default.createElement(
+        "div",
+        { className: "indiv-trans indiv-container" },
+        _react2.default.createElement(
+          "div",
+          null,
+          _react2.default.createElement(
+            "span",
+            null,
+            "Type"
+          ),
+          _react2.default.createElement(
+            "span",
+            null,
+            "Quantity"
+          ),
+          _react2.default.createElement(
+            "span",
+            null,
+            "Price"
+          ),
+          _react2.default.createElement(
+            "span",
+            null,
+            "Date"
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          dummyData.map(function (item, i) {
+            return _react2.default.createElement(
+              "div",
+              null,
+              _react2.default.createElement(
+                "span",
+                null,
+                item[0]
+              ),
+              _react2.default.createElement(
+                "span",
+                null,
+                item[1],
+                " "
+              ),
+              _react2.default.createElement(
+                "span",
+                null,
+                item[2]
+              ),
+              _react2.default.createElement(
+                "span",
+                null,
+                item[3]
+              )
+            );
+          })
+        )
+      );
+    }
+  }]);
+
+  return IndivTrans;
+}(_react2.default.Component);
+
+exports.default = IndivTrans;
+
+/***/ }),
+
 /***/ "./app/components/Landing.js":
 /*!***********************************!*\
   !*** ./app/components/Landing.js ***!
@@ -1139,6 +1257,10 @@ var _IndivNews = __webpack_require__(/*! ./IndivNews */ "./app/components/IndivN
 
 var _IndivNews2 = _interopRequireDefault(_IndivNews);
 
+var _IndivTrans = __webpack_require__(/*! ./IndivTrans */ "./app/components/IndivTrans.js");
+
+var _IndivTrans2 = _interopRequireDefault(_IndivTrans);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
@@ -1174,7 +1296,8 @@ var App = function App() {
     _react2.default.createElement(_reactRouterDom.Route, { path: '/indiv', component: _IndivNav2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/perf', component: _IndivPerf2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/finan', component: _IndivFin2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/news', component: _IndivNews2.default })
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/news', component: _IndivNews2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/trans', component: _IndivTrans2.default })
   );
 };
 

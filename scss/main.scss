@@ -9,16 +9,18 @@
 @import "layout/indiv-fin";
 @import "layout/indiv-perf";
 @import "layout/indiv-news";
+@import "layout/indiv-trans";
 
 // globals
 
 html {
+
     font-size: 62.5%;
     height: 100%;
 }
 
-
 body {
+
     height: 100%;
     margin: 0;
     background-color: white;

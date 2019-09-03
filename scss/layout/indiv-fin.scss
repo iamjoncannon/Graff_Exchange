@@ -7,6 +7,14 @@
     @include cell(){
 
         max-height: 75vh !important;
+        width: 95%;
+        margin: auto;   
+    }
+
+    @include tab(){
+
+        width: 90%;
+        margin: auto;
     }
 
     @include desk(){

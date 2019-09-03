@@ -380,7 +380,13 @@ footer {
   color: black; }
   @media only screen and (max-device-width: 600px) {
     .indiv-fin {
-      max-height: 75vh !important; } }
+      max-height: 75vh !important;
+      width: 95%;
+      margin: auto; } }
+  @media only screen and (min-device-width: 601px) {
+    .indiv-fin {
+      width: 90%;
+      margin: auto; } }
   @media only screen and (min-device-width: 1100px) {
     .indiv-fin {
       max-height: 100vh;
@@ -586,6 +592,36 @@ footer {
       font-size: 2vh; }
     .news-box > div span:nth-of-type(3) {
       font-size: 3vh; }
+
+.indiv-trans {
+  color: black;
+  font-size: 2.5vh; }
+  @media only screen and (min-device-width: 1100px) {
+    .indiv-trans {
+      width: 75%;
+      margin: auto; } }
+  .indiv-trans > div:first-child {
+    position: sticky;
+    top: -1vh;
+    background-color: white;
+    text-align: center; }
+    .indiv-trans > div:first-child span {
+      display: inline-block;
+      border-bottom: solid grey 4px;
+      width: 21vw; }
+      @media only screen and (min-device-width: 1100px) {
+        .indiv-trans > div:first-child span {
+          width: 10vw; } }
+  .indiv-trans > div:nth-child(2) {
+    text-align: center; }
+    .indiv-trans > div:nth-child(2) span {
+      font-size: 2vh;
+      display: inline-block;
+      border-bottom: solid grey 1px;
+      width: 21vw; }
+      @media only screen and (min-device-width: 1100px) {
+        .indiv-trans > div:nth-child(2) span {
+          width: 10vw; } }
 
 html {
   font-size: 62.5%;

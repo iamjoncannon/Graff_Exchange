@@ -1,0 +1,50 @@
+
+.indiv-trans {
+
+    color: black;
+    font-size: 2.5vh;
+
+    @include desk(){
+
+        width: 75%;
+        margin: auto;
+    }
+
+    > div:first-child{
+
+        position: sticky;
+        top: -1vh;
+        background-color: white;
+
+        text-align: center;
+
+        span{
+
+            display:inline-block;
+            border-bottom: solid grey 4px;
+            width: 21vw;
+
+            @include desk(){
+
+                width: 10vw;
+            }
+        }
+    }
+
+    > div:nth-child(2){
+
+        text-align: center;
+
+        span{
+            font-size: 2vh;
+            display:inline-block;
+            border-bottom: solid grey 1px;
+            width: 21vw;
+
+            @include desk(){
+
+                width: 10vw;
+            }
+        }
+    }
+}

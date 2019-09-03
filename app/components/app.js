@@ -7,6 +7,7 @@ import IndivNav from './IndivNav'
 import IndivPerf from './IndivPerf'
 import IndivFin from './IndivFin'
 import IndivNews from './IndivNews'
+import IndivTrans from './IndivTrans'
 
 /*
 
@@ -45,16 +46,15 @@ const App = () => {
         <Route exact path="/indiv/perf" component={IndivPerf} />
         <Route exact path="/indiv/finan" component={IndivFin} />
         <Route exact path="/indiv/news" component={IndivNews} />
+        <Route exact path="/indiv/trans" component={IndivTrans} />
          
         {/*
-        <Route exact path="/indiv/trans" component={Trans} />
 
+        <Route exact path="/indiv/trans" component={Trans} />
         <Route path="/all" component={NavBar} />
         <Route path="/all" component={PortNav} />
         <Route exact path="/all" component={WatchList} />
         <Route exact path="/all/trans" component={Trans} />
-
-        
 
          */}
 
