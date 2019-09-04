@@ -312,49 +312,53 @@ var AllWatchList = function (_React$Component) {
             null,
             'Portfolio'
           ),
-          dummyData.map(function (item, i) {
+          _react2.default.createElement(
+            'div',
+            null,
+            dummyData.map(function (item, i) {
 
-            return _react2.default.createElement(
-              'div',
-              { className: 'watchlist-item-container' },
-              _this2.state.edit && _react2.default.createElement('i', {
-                className: 'fas fa-minus fa-' + ((0, _utils.isDesktop)() ? "2" : "7") + 'x'
-              }),
-              _react2.default.createElement(
+              return _react2.default.createElement(
                 'div',
-                { className: 'watchlist-item' },
+                { className: 'watchlist-item-container' },
+                _this2.state.edit && _react2.default.createElement('i', {
+                  className: 'fas fa-minus fa-' + ((0, _utils.isDesktop)() ? "2" : "7") + 'x'
+                }),
                 _react2.default.createElement(
                   'div',
-                  null,
+                  { className: 'watchlist-item' },
                   _react2.default.createElement(
-                    'span',
+                    'div',
                     null,
-                    item[0]
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      item[0]
+                    ),
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      item[1],
+                      ' '
+                    )
                   ),
                   _react2.default.createElement(
-                    'span',
+                    'div',
                     null,
-                    item[1],
-                    ' '
-                  )
-                ),
-                _react2.default.createElement(
-                  'div',
-                  null,
-                  _react2.default.createElement(
-                    'span',
-                    null,
-                    item[2]
-                  ),
-                  _react2.default.createElement(
-                    'span',
-                    null,
-                    item[3]
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      item[2]
+                    ),
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      item[3]
+                    )
                   )
                 )
-              )
-            );
-          })
+              );
+            })
+          )
         ),
         isModalShowing && _react2.default.createElement(
           'div',

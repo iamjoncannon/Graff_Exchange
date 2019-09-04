@@ -21,6 +21,6 @@ export default function TradeBox (props){
         </button>
 
       </div>
-</div>
+    </div>
   );
 };

@@ -39,7 +39,7 @@ export default class AllWatchList extends React.Component {
 
  
       return (
-        
+
         <div>
 
         <div className="all-watchlist">
@@ -59,44 +59,49 @@ export default class AllWatchList extends React.Component {
           </div>
 
           <span>Portfolio</span>
+          
+          <div>
 
-          {
-            dummyData.map((item, i)=>{
+            {
+              dummyData.map((item, i)=>{
 
-              return(
+                return(
 
-              <div className="watchlist-item-container">
+                <div className="watchlist-item-container">
 
-                  { this.state.edit && 
+                    { this.state.edit && 
+                      
+                      <i 
+                        className={`fas fa-minus fa-${isDesktop() ? "2" : "7"}x`} 
+                      />
                     
-                    <i 
-                      className={`fas fa-minus fa-${isDesktop() ? "2" : "7"}x`} 
-                    />
-                  
-                  }
+                    }
 
-                <div className="watchlist-item">
+                  <div className="watchlist-item">
 
-                  <div>
+                    <div>
 
-                    <span>{item[0]}</span>
-                    <span>{item[1]} </span>
-                    
-                  </div>
+                      <span>{item[0]}</span>
+                      <span>{item[1]} </span>
+                      
+                    </div>
 
-                  <div>
-              
-                    <span>{item[2]}</span>
-                    <span>{item[3]}</span>
+                    <div>
+                
+                      <span>{item[2]}</span>
+                      <span>{item[3]}</span>
+                    </div>
+
                   </div>
 
                 </div>
 
-              </div>
+                )
+              })
+            }
+          </div>
 
-              )
-            })
-          }
+
         </div>
 
           {

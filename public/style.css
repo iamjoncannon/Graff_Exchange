@@ -662,15 +662,12 @@ footer {
   flex-direction: column;
   align-items: center;
   overflow: scroll; }
-  @media only screen and (max-device-width: 600px) {
-    .all-watchlist {
-      max-height: 84vh; } }
   .all-watchlist > span {
     color: black;
     font-size: 3vh;
     font-family: "Exo 2", sans-serif;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 100;
     margin-top: 4vh;
     margin-bottom: 4vh; }
   .all-watchlist i {
@@ -683,6 +680,10 @@ footer {
     position: fixed;
     right: 2vh;
     top: 2vh; }
+  @media only screen and (max-device-width: 600px) {
+    .all-watchlist > div:nth-child(3) {
+      max-height: 70vh;
+      overflow: scroll; } }
   .all-watchlist .fa-minus {
     color: green;
     display: inline-block;
