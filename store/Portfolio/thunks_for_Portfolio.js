@@ -7,8 +7,6 @@ export const hydratePortfolioThunk = (token) => async dispatch => {
   let portfolio
   let transactionHistory
 
-  console.log(token)
-
   try {
 
     Promise.all( // allows us to run api calls in parallel rather than serially
@@ -68,39 +66,48 @@ export const hydratePortfolioThunk = (token) => async dispatch => {
 
 export const makeTradeThunk = () => dispatch => {
  
-  return fetch('/maketransaction')
-      .then((resp) => resp.json()) 
-      .then(function( {data} ) {
- 
-          dispatch(actions.makeTrade(data))
-  });
+
+  
 };
 
 export const getOnePriceThunk = () => dispatch => {
  
-  return fetch('/illfigureitout')
-      .then((resp) => resp.json()) 
-      .then(function( {data} ) {
- 
-          dispatch(actions.getOnePrice(data))
-  });
+
+  
 };
 
-export const getOpeningPriceThunk = () => dispatch => {
- 
-  return fetch('/ohlc/')
-      .then((resp) => resp.json()) 
-      .then(function( {data} ) {
- 
-          dispatch(actions.getOpeningPrice(data))
-  });
-};
+async function getOpeningPriceThunk (symbol, token) {
+  
+  const url = urlPrefix + '/ohlc/' + symbol
+
+  let returned_data  
+
+  try {
+
+    returned_data = await axios.post(url, {}, makeHeader(token))
+
+  }
+  catch(error){
+    console.log(error)
+  }
+
+  // returned from redis cache
+  if(typeof returned_data.data === "string"){
+
+    returned_data = JSON.parse(returned_data.data)
+
+  }
+  else{
+    returned_data = returned_data.data
+  }
+  
+  return returned_data
+}
 
 export default {
 	hydratePortfolioThunk,
 	makeTradeThunk,
 	getOnePriceThunk,
-	getOpeningPriceThunk,
 }
 
 

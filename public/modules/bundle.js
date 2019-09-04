@@ -50917,7 +50917,7 @@ function Portfolio_reducer (state = initialState, action) {
 
     case _action_constants_for_PORTFOLIO__WEBPACK_IMPORTED_MODULE_0__["default"].HYDRATEPORTFOLIO: {
 
-      const {portfolio, transactionHistory} = action.payload
+      const { portfolio, transactionHistory } = action.payload
 
       return { portfolio, transactionHistory }
     }
@@ -50955,7 +50955,7 @@ function Portfolio_reducer (state = initialState, action) {
 /*!*************************************************!*\
   !*** ./store/Portfolio/thunks_for_Portfolio.js ***!
   \*************************************************/
-/*! exports provided: hydratePortfolioThunk, makeTradeThunk, getOnePriceThunk, getOpeningPriceThunk, default */
+/*! exports provided: hydratePortfolioThunk, makeTradeThunk, getOnePriceThunk, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50963,7 +50963,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hydratePortfolioThunk", function() { return hydratePortfolioThunk; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "makeTradeThunk", function() { return makeTradeThunk; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOnePriceThunk", function() { return getOnePriceThunk; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOpeningPriceThunk", function() { return getOpeningPriceThunk; });
 /* harmony import */ var _actions_for_Portfolio__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actions_for_Portfolio */ "./store/Portfolio/actions_for_Portfolio.js");
 /* harmony import */ var _secrets__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../secrets */ "./secrets.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -50976,8 +50975,6 @@ const hydratePortfolioThunk = (token) => async dispatch => {
  
   let portfolio
   let transactionHistory
-
-  console.log(token)
 
   try {
 
@@ -51038,39 +51035,48 @@ const hydratePortfolioThunk = (token) => async dispatch => {
 
 const makeTradeThunk = () => dispatch => {
  
-  return fetch('/maketransaction')
-      .then((resp) => resp.json()) 
-      .then(function( {data} ) {
- 
-          dispatch(_actions_for_Portfolio__WEBPACK_IMPORTED_MODULE_0__["default"].makeTrade(data))
-  });
+
+  
 };
 
 const getOnePriceThunk = () => dispatch => {
  
-  return fetch('/illfigureitout')
-      .then((resp) => resp.json()) 
-      .then(function( {data} ) {
- 
-          dispatch(_actions_for_Portfolio__WEBPACK_IMPORTED_MODULE_0__["default"].getOnePrice(data))
-  });
+
+  
 };
 
-const getOpeningPriceThunk = () => dispatch => {
- 
-  return fetch('/ohlc/')
-      .then((resp) => resp.json()) 
-      .then(function( {data} ) {
- 
-          dispatch(_actions_for_Portfolio__WEBPACK_IMPORTED_MODULE_0__["default"].getOpeningPrice(data))
-  });
-};
+async function getOpeningPriceThunk (symbol, token) {
+  
+  const url = _secrets__WEBPACK_IMPORTED_MODULE_1__["urlPrefix"] + '/ohlc/' + symbol
+
+  let returned_data  
+
+  try {
+
+    returned_data = await axios__WEBPACK_IMPORTED_MODULE_2___default.a.post(url, {}, makeHeader(token))
+
+  }
+  catch(error){
+    console.log(error)
+  }
+
+  // returned from redis cache
+  if(typeof returned_data.data === "string"){
+
+    returned_data = JSON.parse(returned_data.data)
+
+  }
+  else{
+    returned_data = returned_data.data
+  }
+  
+  return returned_data
+}
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	hydratePortfolioThunk,
 	makeTradeThunk,
 	getOnePriceThunk,
-	getOpeningPriceThunk,
 });
 
 
