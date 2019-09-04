@@ -217,6 +217,139 @@ exports.default = AllNav;
 
 /***/ }),
 
+/***/ "./app/components/AllTrans.js":
+/*!************************************!*\
+  !*** ./app/components/AllTrans.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var dummyData = [["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"]];
+
+var AllTrans = function (_React$Component) {
+  _inherits(AllTrans, _React$Component);
+
+  function AllTrans(props) {
+    _classCallCheck(this, AllTrans);
+
+    var _this = _possibleConstructorReturn(this, (AllTrans.__proto__ || Object.getPrototypeOf(AllTrans)).call(this, props));
+
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(AllTrans, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
+    key: "render",
+    value: function render() {
+
+      return _react2.default.createElement(
+        "div",
+        { className: "all-trans" },
+        _react2.default.createElement(
+          "span",
+          null,
+          "Transaction History"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          _react2.default.createElement(
+            "span",
+            null,
+            "Type"
+          ),
+          _react2.default.createElement(
+            "span",
+            null,
+            "Symbol"
+          ),
+          _react2.default.createElement(
+            "span",
+            null,
+            "Quantity"
+          ),
+          _react2.default.createElement(
+            "span",
+            null,
+            "Price"
+          ),
+          _react2.default.createElement(
+            "span",
+            null,
+            "Date"
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          dummyData.map(function (item, i) {
+            return _react2.default.createElement(
+              "div",
+              null,
+              _react2.default.createElement(
+                "span",
+                null,
+                item[0]
+              ),
+              _react2.default.createElement(
+                "span",
+                null,
+                item[1],
+                " "
+              ),
+              _react2.default.createElement(
+                "span",
+                null,
+                item[2]
+              ),
+              _react2.default.createElement(
+                "span",
+                null,
+                item[3]
+              ),
+              _react2.default.createElement(
+                "span",
+                null,
+                item[4]
+              )
+            );
+          })
+        )
+      );
+    }
+  }]);
+
+  return AllTrans;
+}(_react2.default.Component);
+
+exports.default = AllTrans;
+
+/***/ }),
+
 /***/ "./app/components/AllWatchlist.js":
 /*!****************************************!*\
   !*** ./app/components/AllWatchlist.js ***!
@@ -1576,6 +1709,10 @@ var _AllWatchlist = __webpack_require__(/*! ./AllWatchlist */ "./app/components/
 
 var _AllWatchlist2 = _interopRequireDefault(_AllWatchlist);
 
+var _AllTrans = __webpack_require__(/*! ./AllTrans */ "./app/components/AllTrans.js");
+
+var _AllTrans2 = _interopRequireDefault(_AllTrans);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
@@ -1615,7 +1752,8 @@ var App = function App() {
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/trans', component: _IndivTrans2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { path: '/all', component: _MainNav2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { path: '/all', component: _AllNav2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/all/watchlist', component: _AllWatchlist2.default })
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/all/watchlist', component: _AllWatchlist2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/all/transactions', component: _AllTrans2.default })
   );
 };
 

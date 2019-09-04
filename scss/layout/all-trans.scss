@@ -1,0 +1,75 @@
+
+.all-trans {
+
+    color: black;
+    text-align: center;
+
+    @include desk(){
+
+        width: 75%;
+        margin: auto;
+    }
+
+    > span {
+
+        display: block;
+        color: black;
+        font-size: 3vh;
+        font-family: "Exo 2", sans-serif;
+        text-transform: uppercase;
+        font-weight: 100;
+        margin-top: 4vh;
+        margin-bottom: 4vh;
+
+    }
+
+    // container for header
+
+    > div:nth-of-type(1){
+
+        position: sticky;
+        top: -1vh;
+        background-color: white;
+
+        text-align: center;
+
+        span{
+
+            display:inline-block;
+            border-bottom: solid grey 4px;
+            width: 19vw;
+            font-size: 2vh;
+
+            @include desk(){
+
+                width: 10vw;
+            }
+        }
+    }
+
+    // container for rows
+
+    > div:nth-of-type(2){
+
+        text-align: center;
+        margin-top: 2vh;
+
+        @include cell(){
+
+            max-height: 67vh;
+            overflow: scroll;
+        }
+
+        span{
+            font-size: 1.8vh;
+            display:inline-block;
+            border-bottom: solid grey 1px;
+            width: 19vw;
+
+            @include desk(){
+
+                width: 10vw;
+            }
+        }
+    }
+}

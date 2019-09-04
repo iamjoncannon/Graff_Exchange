@@ -11,6 +11,7 @@ import IndivTrans from './IndivTrans'
 
 import AllNav from './AllNav'
 import AllWatchlist from './AllWatchlist'
+import AllTrans from './AllTrans'
 
 /*
 
@@ -56,15 +57,7 @@ const App = () => {
         <Route path="/all" component={AllNav} />
 
         <Route path="/all/watchlist" component={AllWatchlist} />
-
-        {/*
-
-        <Route path="/all" component={NavBar} />
-        <Route path="/all" component={PortNav} />
-        <Route exact path="/all" component={WatchList} />
-        <Route exact path="/all/trans" component={Trans} />
-
-         */}
+        <Route path="/all/transactions" component={AllTrans} />
 
     </div>
   );
