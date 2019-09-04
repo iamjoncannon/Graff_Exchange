@@ -757,6 +757,9 @@ footer {
     font-weight: 100;
     margin-top: 4vh;
     margin-bottom: 4vh; }
+    @media only screen and (min-device-width: 601px) {
+      .all-trans > span {
+        margin-bottom: 8vh; } }
   .all-trans > div:nth-of-type(1) {
     position: sticky;
     top: -1vh;
@@ -771,10 +774,15 @@ footer {
         .all-trans > div:nth-of-type(1) span {
           width: 10vw; } }
   .all-trans > div:nth-of-type(2) {
-    text-align: center;
-    margin-top: 2vh; }
+    text-align: center; }
     @media only screen and (max-device-width: 600px) {
       .all-trans > div:nth-of-type(2) {
+        margin-top: 2vh;
+        max-height: 67vh;
+        overflow: scroll; } }
+    @media only screen and (min-device-width: 601px) {
+      .all-trans > div:nth-of-type(2) {
+        margin-top: 2vh;
         max-height: 67vh;
         overflow: scroll; } }
     .all-trans > div:nth-of-type(2) span {
