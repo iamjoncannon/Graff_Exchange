@@ -1,5 +1,5 @@
 import React from 'react';
-import DataNav from './DataNav'
+import DataNav from '../DataNav'
 
 const dummyData = {
     thing : 'value',

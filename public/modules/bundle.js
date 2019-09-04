@@ -86,437 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./app/components/AddSymbolBox.js":
-/*!****************************************!*\
-  !*** ./app/components/AddSymbolBox.js ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = TradeBox;
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function TradeBox(props) {
-
-  return _react2.default.createElement(
-    "div",
-    { className: "trade-box symbol-box" },
-    _react2.default.createElement(
-      "span",
-      null,
-      "Symbol"
-    ),
-    _react2.default.createElement("input", {
-      type: "text",
-      min: "1",
-      max: "5"
-    }),
-    _react2.default.createElement(
-      "div",
-      null,
-      _react2.default.createElement(
-        "button",
-        { onClick: props.exit },
-        "Add"
-      )
-    )
-  );
-};
-
-/***/ }),
-
-/***/ "./app/components/AllNav.js":
-/*!**********************************!*\
-  !*** ./app/components/AllNav.js ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _DataNav = __webpack_require__(/*! ./DataNav */ "./app/components/DataNav.js");
-
-var _DataNav2 = _interopRequireDefault(_DataNav);
-
-var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var AllNav = function (_React$Component) {
-  _inherits(AllNav, _React$Component);
-
-  function AllNav(props) {
-    _classCallCheck(this, AllNav);
-
-    return _possibleConstructorReturn(this, (AllNav.__proto__ || Object.getPrototypeOf(AllNav)).call(this, props));
-  }
-
-  _createClass(AllNav, [{
-    key: 'render',
-    value: function render() {
-      var pathname = this.props.location.pathname;
-
-
-      return _react2.default.createElement(
-        'div',
-        { className: 'all-nav' },
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/all/watchlist' },
-          _react2.default.createElement(
-            'span',
-            { className: pathname.includes("watchlist") ? "selected" : undefined },
-            'Portfolio'
-          )
-        ),
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/all/transactions' },
-          _react2.default.createElement(
-            'span',
-            { className: pathname.includes("transactions") ? "selected" : undefined },
-            'Transactions'
-          )
-        )
-      );
-    }
-  }]);
-
-  return AllNav;
-}(_react2.default.Component);
-
-exports.default = AllNav;
-
-/***/ }),
-
-/***/ "./app/components/AllTrans.js":
-/*!************************************!*\
-  !*** ./app/components/AllTrans.js ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var dummyData = [["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"]];
-
-var AllTrans = function (_React$Component) {
-  _inherits(AllTrans, _React$Component);
-
-  function AllTrans(props) {
-    _classCallCheck(this, AllTrans);
-
-    var _this = _possibleConstructorReturn(this, (AllTrans.__proto__ || Object.getPrototypeOf(AllTrans)).call(this, props));
-
-    _this.state = {};
-    return _this;
-  }
-
-  _createClass(AllTrans, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {}
-  }, {
-    key: "render",
-    value: function render() {
-
-      return _react2.default.createElement(
-        "div",
-        { className: "all-trans" },
-        _react2.default.createElement(
-          "span",
-          null,
-          "Transaction History"
-        ),
-        _react2.default.createElement(
-          "div",
-          null,
-          _react2.default.createElement(
-            "span",
-            null,
-            "Type"
-          ),
-          _react2.default.createElement(
-            "span",
-            null,
-            "Symbol"
-          ),
-          _react2.default.createElement(
-            "span",
-            null,
-            "Quantity"
-          ),
-          _react2.default.createElement(
-            "span",
-            null,
-            "Price"
-          ),
-          _react2.default.createElement(
-            "span",
-            null,
-            "Date"
-          )
-        ),
-        _react2.default.createElement(
-          "div",
-          null,
-          dummyData.map(function (item, i) {
-            return _react2.default.createElement(
-              "div",
-              null,
-              _react2.default.createElement(
-                "span",
-                null,
-                item[0]
-              ),
-              _react2.default.createElement(
-                "span",
-                null,
-                item[1],
-                " "
-              ),
-              _react2.default.createElement(
-                "span",
-                null,
-                item[2]
-              ),
-              _react2.default.createElement(
-                "span",
-                null,
-                item[3]
-              ),
-              _react2.default.createElement(
-                "span",
-                null,
-                item[4]
-              )
-            );
-          })
-        )
-      );
-    }
-  }]);
-
-  return AllTrans;
-}(_react2.default.Component);
-
-exports.default = AllTrans;
-
-/***/ }),
-
-/***/ "./app/components/AllWatchlist.js":
-/*!****************************************!*\
-  !*** ./app/components/AllWatchlist.js ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _utils = __webpack_require__(/*! ./utils */ "./app/components/utils.js");
-
-var _AddSymbolBox = __webpack_require__(/*! ./AddSymbolBox */ "./app/components/AddSymbolBox.js");
-
-var _AddSymbolBox2 = _interopRequireDefault(_AddSymbolBox);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var dummyData = [["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin4", "BTC", "4878", "2.54"], ["Bitcoinr", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"]];
-
-var AllWatchList = function (_React$Component) {
-  _inherits(AllWatchList, _React$Component);
-
-  function AllWatchList(props) {
-    _classCallCheck(this, AllWatchList);
-
-    var _this = _possibleConstructorReturn(this, (AllWatchList.__proto__ || Object.getPrototypeOf(AllWatchList)).call(this, props));
-
-    _this.closeModal = function () {
-
-      _this.setState({ isModalShowing: false });
-    };
-
-    _this.state = {
-
-      isModalShowing: false,
-      edit: false
-    };
-
-    return _this;
-  }
-
-  _createClass(AllWatchList, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _state = this.state,
-          isModalShowing = _state.isModalShowing,
-          edit = _state.edit;
-
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'div',
-          { className: 'all-watchlist' },
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement('i', {
-              className: 'fas fa-plus fa-' + ((0, _utils.isDesktop)() ? "2" : "7") + 'x',
-              onClick: function onClick() {
-                return _this2.setState({ edit: false, isModalShowing: true });
-              }
-            }),
-            _react2.default.createElement('i', {
-              className: 'fas fa-edit fa-' + ((0, _utils.isDesktop)() ? "2" : "7") + 'x',
-              onClick: function onClick() {
-                return _this2.setState({ edit: !edit, isModalShowing: false });
-              }
-            })
-          ),
-          _react2.default.createElement(
-            'span',
-            null,
-            'Portfolio'
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            dummyData.map(function (item, i) {
-
-              return _react2.default.createElement(
-                'div',
-                { className: 'watchlist-item-container' },
-                _this2.state.edit && _react2.default.createElement('i', {
-                  className: 'fas fa-minus fa-' + ((0, _utils.isDesktop)() ? "2" : "7") + 'x'
-                }),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'watchlist-item' },
-                  _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                      'span',
-                      null,
-                      item[0]
-                    ),
-                    _react2.default.createElement(
-                      'span',
-                      null,
-                      item[1],
-                      ' '
-                    )
-                  ),
-                  _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                      'span',
-                      null,
-                      item[2]
-                    ),
-                    _react2.default.createElement(
-                      'span',
-                      null,
-                      item[3]
-                    )
-                  )
-                )
-              );
-            })
-          )
-        ),
-        isModalShowing && _react2.default.createElement(
-          'div',
-          { className: 'modal-container', onClick: function onClick() {
-              return _this2.setState({ isModalShowing: false });
-            } },
-          _react2.default.createElement(
-            'div',
-            { onClick: function onClick(e) {
-                return e.stopPropagation();
-              } },
-            _react2.default.createElement(_AddSymbolBox2.default, null)
-          )
-        )
-      );
-    }
-  }]);
-
-  return AllWatchList;
-}(_react2.default.Component);
-
-exports.default = AllWatchList;
-
-/***/ }),
-
 /***/ "./app/components/DataNav.js":
 /*!***********************************!*\
   !*** ./app/components/DataNav.js ***!
@@ -601,696 +170,6 @@ var Footer = function Footer(props) {
 };
 
 exports.default = Footer;
-
-/***/ }),
-
-/***/ "./app/components/IndivFin.js":
-/*!************************************!*\
-  !*** ./app/components/IndivFin.js ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _dummyData;
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _DataNav = __webpack_require__(/*! ./DataNav */ "./app/components/DataNav.js");
-
-var _DataNav2 = _interopRequireDefault(_DataNav);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var dummyData = (_dummyData = {
-  thing: 'value',
-  anotherThing: 'another value',
-  thing2: 'value',
-  anotherThing2: 'another value',
-  thing3: 'value',
-  anotherThing3: 'another value',
-  thing4: 'value',
-  anotherThing4: 'another value',
-  thing5: 'value',
-  anotherThing5: 'another value',
-  thing6: 'value',
-  anotherThing6: 'another value',
-  thing7: 'value',
-  anotherThing7: 'another value',
-  thing8: 'value',
-  anotherThing8: 'another value',
-  athing: 'value',
-  aanotherThing: 'another value',
-  athing2: 'value',
-  aanotherThing2: 'another value',
-  athing3: 'value',
-  aanotherThing3: 'another value',
-  athing4: 'value'
-}, _defineProperty(_dummyData, 'anotherThing4', 'another value'), _defineProperty(_dummyData, 'athing5', 'value'), _defineProperty(_dummyData, 'aanotherThing5', 'another value'), _defineProperty(_dummyData, 'athing6', 'value'), _defineProperty(_dummyData, 'aanotherThing6', 'another value'), _defineProperty(_dummyData, 'athing7', 'value'), _defineProperty(_dummyData, 'aanotherThing7', 'another value'), _defineProperty(_dummyData, 'athing8', 'value'), _defineProperty(_dummyData, 'aanotherThing8', 'another value'), _dummyData);
-
-var IndivFin = function (_React$Component) {
-  _inherits(IndivFin, _React$Component);
-
-  function IndivFin(props) {
-    _classCallCheck(this, IndivFin);
-
-    var _this = _possibleConstructorReturn(this, (IndivFin.__proto__ || Object.getPrototypeOf(IndivFin)).call(this, props));
-
-    _this.dataSwitch = function (newDisplay) {
-      window.scrollTo(0, 0);
-
-      _this.setState({
-
-        selectedDataNavItem: newDisplay
-      });
-    };
-
-    _this.state = {
-
-      selectedDataNavItem: "Q2 2019"
-    };
-    return _this;
-  }
-
-  _createClass(IndivFin, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {}
-  }, {
-    key: 'render',
-    value: function render() {
-
-      window.scrollTo(0, 0);
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'div',
-          { className: 'indiv-fin indiv-container' },
-          _react2.default.createElement(
-            'span',
-            null,
-            this.state.selectedDataNavItem
-          ),
-          Object.entries(dummyData).map(function (item) {
-
-            return _react2.default.createElement(
-              'div',
-              null,
-              _react2.default.createElement(
-                'span',
-                null,
-                item[0]
-              ),
-              _react2.default.createElement(
-                'span',
-                null,
-                item[1]
-              )
-            );
-          })
-        ),
-        _react2.default.createElement(_DataNav2.default, {
-          data: ["Q2 2019", "Q1 2019", "Q4 2018", "Q3 2018"],
-          selectedDataNavItem: this.state.selectedDataNavItem,
-          switchItem: this.dataSwitch
-        })
-      );
-    }
-  }]);
-
-  return IndivFin;
-}(_react2.default.Component);
-
-exports.default = IndivFin;
-
-/***/ }),
-
-/***/ "./app/components/IndivNav.js":
-/*!************************************!*\
-  !*** ./app/components/IndivNav.js ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _utils = __webpack_require__(/*! ./utils */ "./app/components/utils.js");
-
-var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-
-var _IndivSelector = __webpack_require__(/*! ./IndivSelector */ "./app/components/IndivSelector.js");
-
-var _IndivSelector2 = _interopRequireDefault(_IndivSelector);
-
-var _TradeBox = __webpack_require__(/*! ./TradeBox */ "./app/components/TradeBox.js");
-
-var _TradeBox2 = _interopRequireDefault(_TradeBox);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var IndivNav = function (_React$Component) {
-  _inherits(IndivNav, _React$Component);
-
-  function IndivNav(props) {
-    _classCallCheck(this, IndivNav);
-
-    var _this = _possibleConstructorReturn(this, (IndivNav.__proto__ || Object.getPrototypeOf(IndivNav)).call(this, props));
-
-    _this.closeModal = function () {
-
-      _this.setState({ isModalShowing: false });
-    };
-
-    _this.state = {
-
-      isModalShowing: false,
-      whichModal: null // options || tradeBox
-    };
-    return _this;
-  }
-
-  _createClass(IndivNav, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _state = this.state,
-          isModalShowing = _state.isModalShowing,
-          whichModal = _state.whichModal;
-      var pathname = this.props.location.pathname;
-
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'div',
-          { className: 'individual-nav' },
-          (0, _utils.isCell)() ? _react2.default.createElement('i', { className: 'fas fa-bars fa-7x',
-            onClick: function onClick() {
-              return _this2.setState({ isModalShowing: true, whichModal: 'selector' });
-            }
-          }) : _react2.default.createElement('div', { style: { width: (0, _utils.isDesktop)() ? "3.5vw" : "7vw" } }),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'span',
-              null,
-              'AAPL'
-            ),
-            !(0, _utils.isDesktop)() && _react2.default.createElement('i', { className: 'fas fa-angle-down fa-7x' })
-          ),
-          _react2.default.createElement(
-            'span',
-            {
-              onClick: function onClick() {
-                return _this2.setState({ isModalShowing: true, whichModal: 'trade-box' });
-              }
-            },
-            'Trade'
-          )
-        ),
-        !(0, _utils.isCell)() && _react2.default.createElement(
-          'div',
-          { className: 'selector' },
-          _react2.default.createElement(_IndivSelector2.default, {
-            pathname: pathname,
-            exit: function exit() {}
-          })
-        ),
-        isModalShowing && _react2.default.createElement(
-          'div',
-          { className: 'modal-container', onClick: function onClick() {
-              return _this2.setState({ isModalShowing: false });
-            } },
-          _react2.default.createElement(
-            'div',
-            { onClick: function onClick(e) {
-                return e.stopPropagation();
-              }, className: whichModal },
-            whichModal === 'selector' ? _react2.default.createElement(_IndivSelector2.default, {
-              pathname: pathname,
-              exit: this.closeModal
-            }) : _react2.default.createElement(_TradeBox2.default, {
-              exit: this.closeModal
-            })
-          )
-        )
-      );
-    }
-  }]);
-
-  return IndivNav;
-}(_react2.default.Component);
-
-exports.default = IndivNav;
-
-/***/ }),
-
-/***/ "./app/components/IndivNews.js":
-/*!*************************************!*\
-  !*** ./app/components/IndivNews.js ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = IndivNews;
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _utils = __webpack_require__(/*! ./utils */ "./app/components/utils.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function IndivNews(props) {
-
-    var news = [{ title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }];
-
-    return _react2.default.createElement(
-        'div',
-        { className: 'indiv-container' },
-        news.map(function (newsItem, i) {
-
-            return _react2.default.createElement(
-                'div',
-                { className: 'news-box' },
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'span',
-                        null,
-                        _react2.default.createElement(
-                            'a',
-                            { href: newsItem.news_url, target: '_blank' },
-                            newsItem.title
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'span',
-                        null,
-                        newsItem.date
-                    ),
-                    _react2.default.createElement(
-                        'span',
-                        null,
-                        newsItem.text
-                    )
-                ),
-                _react2.default.createElement('img', {
-                    src: newsItem.image_url
-                })
-            );
-        })
-    );
-};
-
-/***/ }),
-
-/***/ "./app/components/IndivPerf.js":
-/*!*************************************!*\
-  !*** ./app/components/IndivPerf.js ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _DataNav = __webpack_require__(/*! ./DataNav */ "./app/components/DataNav.js");
-
-var _DataNav2 = _interopRequireDefault(_DataNav);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var IndivPerf = function (_React$Component) {
-  _inherits(IndivPerf, _React$Component);
-
-  function IndivPerf(props) {
-    _classCallCheck(this, IndivPerf);
-
-    var _this = _possibleConstructorReturn(this, (IndivPerf.__proto__ || Object.getPrototypeOf(IndivPerf)).call(this, props));
-
-    _this.dataSwitch = function (newDisplay) {
-
-      _this.setState({
-
-        selectedDataNavItem: newDisplay
-      });
-    };
-
-    _this.state = {
-
-      selectedDataNavItem: "Day"
-    };
-    return _this;
-  }
-
-  _createClass(IndivPerf, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {}
-  }, {
-    key: 'render',
-    value: function render() {
-      var selectedDataNavItem = this.state.selectedDataNavItem;
-
-
-      return _react2.default.createElement(
-        'div',
-        { className: 'indiv-perf' },
-        _react2.default.createElement(
-          'div',
-          { className: 'ticker-box' },
-          _react2.default.createElement(
-            'span',
-            null,
-            '$ 231.79'
-          ),
-          _react2.default.createElement(
-            'span',
-            null,
-            '+17,39%'
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'first-datapoints' },
-          [["Open", "$ 232.41"], ["24H  High", "$ 234.00"], ["24H Low", "$233.85"]].map(function (item) {
-
-            return _react2.default.createElement(
-              'div',
-              null,
-              _react2.default.createElement(
-                'span',
-                null,
-                item[0]
-              ),
-              _react2.default.createElement(
-                'span',
-                null,
-                item[1]
-              )
-            );
-          })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'second-datapoints' },
-          [["Open", "$ 232.41"], ["24H  High", "$ 234.00"], ["24H Low", "$233.85"]].map(function (item) {
-
-            return _react2.default.createElement(
-              'div',
-              null,
-              _react2.default.createElement(
-                'span',
-                null,
-                item[0]
-              ),
-              _react2.default.createElement(
-                'span',
-                null,
-                item[1]
-              )
-            );
-          })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'chart-container' },
-          _react2.default.createElement(
-            'span',
-            null,
-            selectedDataNavItem
-          )
-        ),
-        _react2.default.createElement(_DataNav2.default, {
-          data: ["Day", "Week", "Month", "Year"],
-          selectedDataNavItem: selectedDataNavItem,
-          switchItem: this.dataSwitch
-        })
-      );
-    }
-  }]);
-
-  return IndivPerf;
-}(_react2.default.Component);
-
-exports.default = IndivPerf;
-
-/***/ }),
-
-/***/ "./app/components/IndivSelector.js":
-/*!*****************************************!*\
-  !*** ./app/components/IndivSelector.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = IndivSelector;
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function IndivSelector(props) {
-  var pathname = props.pathname;
-
-
-  function isSelectedSelector(selector) {
-
-    return pathname.includes(selector) ? "selected" : undefined;
-  }
-
-  return _react2.default.createElement(
-    'div',
-    { onClick: props.exit },
-    _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: '/indiv/perf' },
-      _react2.default.createElement(
-        'span',
-        { className: isSelectedSelector("perf") },
-        'Performance'
-      )
-    ),
-    _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: '/indiv/finan' },
-      _react2.default.createElement(
-        'span',
-        { className: isSelectedSelector("finan") },
-        'Financials'
-      )
-    ),
-    _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: '/indiv/news' },
-      _react2.default.createElement(
-        'span',
-        { className: isSelectedSelector("news") },
-        'News'
-      )
-    ),
-    _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: '/indiv/trans' },
-      _react2.default.createElement(
-        'span',
-        { className: isSelectedSelector("trans") },
-        'Transactions'
-      )
-    )
-  );
-};
-
-/***/ }),
-
-/***/ "./app/components/IndivTrans.js":
-/*!**************************************!*\
-  !*** ./app/components/IndivTrans.js ***!
-  \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var dummyData = [["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"]];
-
-var IndivTrans = function (_React$Component) {
-  _inherits(IndivTrans, _React$Component);
-
-  function IndivTrans(props) {
-    _classCallCheck(this, IndivTrans);
-
-    var _this = _possibleConstructorReturn(this, (IndivTrans.__proto__ || Object.getPrototypeOf(IndivTrans)).call(this, props));
-
-    _this.state = {};
-    return _this;
-  }
-
-  _createClass(IndivTrans, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {}
-  }, {
-    key: "render",
-    value: function render() {
-
-      return _react2.default.createElement(
-        "div",
-        { className: "indiv-trans indiv-container" },
-        _react2.default.createElement(
-          "div",
-          null,
-          _react2.default.createElement(
-            "span",
-            null,
-            "Type"
-          ),
-          _react2.default.createElement(
-            "span",
-            null,
-            "Quantity"
-          ),
-          _react2.default.createElement(
-            "span",
-            null,
-            "Price"
-          ),
-          _react2.default.createElement(
-            "span",
-            null,
-            "Date"
-          )
-        ),
-        _react2.default.createElement(
-          "div",
-          null,
-          dummyData.map(function (item, i) {
-            return _react2.default.createElement(
-              "div",
-              null,
-              _react2.default.createElement(
-                "span",
-                null,
-                item[0]
-              ),
-              _react2.default.createElement(
-                "span",
-                null,
-                item[1],
-                " "
-              ),
-              _react2.default.createElement(
-                "span",
-                null,
-                item[2]
-              ),
-              _react2.default.createElement(
-                "span",
-                null,
-                item[3]
-              )
-            );
-          })
-        )
-      );
-    }
-  }]);
-
-  return IndivTrans;
-}(_react2.default.Component);
-
-exports.default = IndivTrans;
 
 /***/ }),
 
@@ -1594,10 +473,812 @@ function MainNav(props) {
 
 /***/ }),
 
-/***/ "./app/components/TradeBox.js":
-/*!************************************!*\
-  !*** ./app/components/TradeBox.js ***!
-  \************************************/
+/***/ "./app/components/app.js":
+/*!*******************************!*\
+  !*** ./app/components/app.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+var _Landing = __webpack_require__(/*! ./Landing */ "./app/components/Landing.js");
+
+var _Landing2 = _interopRequireDefault(_Landing);
+
+var _Footer = __webpack_require__(/*! ./Footer */ "./app/components/Footer.js");
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+var _MainNav = __webpack_require__(/*! ./MainNav */ "./app/components/MainNav.js");
+
+var _MainNav2 = _interopRequireDefault(_MainNav);
+
+var _IndivNav = __webpack_require__(/*! ./indiv/IndivNav */ "./app/components/indiv/IndivNav.js");
+
+var _IndivNav2 = _interopRequireDefault(_IndivNav);
+
+var _IndivPerf = __webpack_require__(/*! ./indiv/IndivPerf */ "./app/components/indiv/IndivPerf.js");
+
+var _IndivPerf2 = _interopRequireDefault(_IndivPerf);
+
+var _IndivFin = __webpack_require__(/*! ./indiv/IndivFin */ "./app/components/indiv/IndivFin.js");
+
+var _IndivFin2 = _interopRequireDefault(_IndivFin);
+
+var _IndivNews = __webpack_require__(/*! ./indiv/IndivNews */ "./app/components/indiv/IndivNews.js");
+
+var _IndivNews2 = _interopRequireDefault(_IndivNews);
+
+var _IndivTrans = __webpack_require__(/*! ./indiv/IndivTrans */ "./app/components/indiv/IndivTrans.js");
+
+var _IndivTrans2 = _interopRequireDefault(_IndivTrans);
+
+var _AllNav = __webpack_require__(/*! ./portfolio/AllNav */ "./app/components/portfolio/AllNav.js");
+
+var _AllNav2 = _interopRequireDefault(_AllNav);
+
+var _AllWatchlist = __webpack_require__(/*! ./portfolio/AllWatchlist */ "./app/components/portfolio/AllWatchlist.js");
+
+var _AllWatchlist2 = _interopRequireDefault(_AllWatchlist);
+
+var _AllTrans = __webpack_require__(/*! ./portfolio/AllTrans */ "./app/components/portfolio/AllTrans.js");
+
+var _AllTrans2 = _interopRequireDefault(_AllTrans);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*
+
+Use RR instead of a nav state slice to manage navigation
+
+* NavBar renders with every path 
+  - NavBar alters selection appearance based on RR props
+
+* Individual 
+  - IndivNav component includes subnav bars and the trade modal
+    - SubNav alters selection appearance based on RR props
+  - Performance, Financials, News, Trans are subpages that render
+    below the navs, or, the navs use absolute/fixed positioning
+    and render order doesn't matter (?) we'll see 
+
+* Portfolio
+  - /all path renders the nav and WatchList
+  - /all/trans renders nav with the trans component
+
+The trans component seems like its the same for both, can use RR 
+props to hydrate component properly if all goes well
+
+*/
+
+var App = function App() {
+  return _react2.default.createElement(
+    'div',
+    { className: 'app-container' },
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Landing2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Footer2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/indiv', component: _MainNav2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/indiv', component: _IndivNav2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/perf', component: _IndivPerf2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/finan', component: _IndivFin2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/news', component: _IndivNews2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/trans', component: _IndivTrans2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/all', component: _MainNav2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/all', component: _AllNav2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/all/watchlist', component: _AllWatchlist2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/all/transactions', component: _AllTrans2.default })
+  );
+};
+
+exports.default = (0, _reactRouterDom.withRouter)(App);
+
+/***/ }),
+
+/***/ "./app/components/indiv/IndivFin.js":
+/*!******************************************!*\
+  !*** ./app/components/indiv/IndivFin.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _dummyData;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _DataNav = __webpack_require__(/*! ../DataNav */ "./app/components/DataNav.js");
+
+var _DataNav2 = _interopRequireDefault(_DataNav);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var dummyData = (_dummyData = {
+  thing: 'value',
+  anotherThing: 'another value',
+  thing2: 'value',
+  anotherThing2: 'another value',
+  thing3: 'value',
+  anotherThing3: 'another value',
+  thing4: 'value',
+  anotherThing4: 'another value',
+  thing5: 'value',
+  anotherThing5: 'another value',
+  thing6: 'value',
+  anotherThing6: 'another value',
+  thing7: 'value',
+  anotherThing7: 'another value',
+  thing8: 'value',
+  anotherThing8: 'another value',
+  athing: 'value',
+  aanotherThing: 'another value',
+  athing2: 'value',
+  aanotherThing2: 'another value',
+  athing3: 'value',
+  aanotherThing3: 'another value',
+  athing4: 'value'
+}, _defineProperty(_dummyData, 'anotherThing4', 'another value'), _defineProperty(_dummyData, 'athing5', 'value'), _defineProperty(_dummyData, 'aanotherThing5', 'another value'), _defineProperty(_dummyData, 'athing6', 'value'), _defineProperty(_dummyData, 'aanotherThing6', 'another value'), _defineProperty(_dummyData, 'athing7', 'value'), _defineProperty(_dummyData, 'aanotherThing7', 'another value'), _defineProperty(_dummyData, 'athing8', 'value'), _defineProperty(_dummyData, 'aanotherThing8', 'another value'), _dummyData);
+
+var IndivFin = function (_React$Component) {
+  _inherits(IndivFin, _React$Component);
+
+  function IndivFin(props) {
+    _classCallCheck(this, IndivFin);
+
+    var _this = _possibleConstructorReturn(this, (IndivFin.__proto__ || Object.getPrototypeOf(IndivFin)).call(this, props));
+
+    _this.dataSwitch = function (newDisplay) {
+      window.scrollTo(0, 0);
+
+      _this.setState({
+
+        selectedDataNavItem: newDisplay
+      });
+    };
+
+    _this.state = {
+
+      selectedDataNavItem: "Q2 2019"
+    };
+    return _this;
+  }
+
+  _createClass(IndivFin, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {}
+  }, {
+    key: 'render',
+    value: function render() {
+
+      window.scrollTo(0, 0);
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: 'indiv-fin indiv-container' },
+          _react2.default.createElement(
+            'span',
+            null,
+            this.state.selectedDataNavItem
+          ),
+          Object.entries(dummyData).map(function (item) {
+
+            return _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'span',
+                null,
+                item[0]
+              ),
+              _react2.default.createElement(
+                'span',
+                null,
+                item[1]
+              )
+            );
+          })
+        ),
+        _react2.default.createElement(_DataNav2.default, {
+          data: ["Q2 2019", "Q1 2019", "Q4 2018", "Q3 2018"],
+          selectedDataNavItem: this.state.selectedDataNavItem,
+          switchItem: this.dataSwitch
+        })
+      );
+    }
+  }]);
+
+  return IndivFin;
+}(_react2.default.Component);
+
+exports.default = IndivFin;
+
+/***/ }),
+
+/***/ "./app/components/indiv/IndivNav.js":
+/*!******************************************!*\
+  !*** ./app/components/indiv/IndivNav.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utils = __webpack_require__(/*! ../utils */ "./app/components/utils.js");
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+var _IndivSelector = __webpack_require__(/*! ./IndivSelector */ "./app/components/indiv/IndivSelector.js");
+
+var _IndivSelector2 = _interopRequireDefault(_IndivSelector);
+
+var _TradeBox = __webpack_require__(/*! ./TradeBox */ "./app/components/indiv/TradeBox.js");
+
+var _TradeBox2 = _interopRequireDefault(_TradeBox);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var IndivNav = function (_React$Component) {
+  _inherits(IndivNav, _React$Component);
+
+  function IndivNav(props) {
+    _classCallCheck(this, IndivNav);
+
+    var _this = _possibleConstructorReturn(this, (IndivNav.__proto__ || Object.getPrototypeOf(IndivNav)).call(this, props));
+
+    _this.closeModal = function () {
+
+      _this.setState({ isModalShowing: false });
+    };
+
+    _this.state = {
+
+      isModalShowing: false,
+      whichModal: null // options || tradeBox
+    };
+    return _this;
+  }
+
+  _createClass(IndivNav, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _state = this.state,
+          isModalShowing = _state.isModalShowing,
+          whichModal = _state.whichModal;
+      var pathname = this.props.location.pathname;
+
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: 'individual-nav' },
+          (0, _utils.isCell)() ? _react2.default.createElement('i', { className: 'fas fa-bars fa-7x',
+            onClick: function onClick() {
+              return _this2.setState({ isModalShowing: true, whichModal: 'selector' });
+            }
+          }) : _react2.default.createElement('div', { style: { width: (0, _utils.isDesktop)() ? "3.5vw" : "7vw" } }),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'span',
+              null,
+              'AAPL'
+            ),
+            !(0, _utils.isDesktop)() && _react2.default.createElement('i', { className: 'fas fa-angle-down fa-7x' })
+          ),
+          _react2.default.createElement(
+            'span',
+            {
+              onClick: function onClick() {
+                return _this2.setState({ isModalShowing: true, whichModal: 'trade-box' });
+              }
+            },
+            'Trade'
+          )
+        ),
+        !(0, _utils.isCell)() && _react2.default.createElement(
+          'div',
+          { className: 'selector' },
+          _react2.default.createElement(_IndivSelector2.default, {
+            pathname: pathname,
+            exit: function exit() {}
+          })
+        ),
+        isModalShowing && _react2.default.createElement(
+          'div',
+          { className: 'modal-container', onClick: function onClick() {
+              return _this2.setState({ isModalShowing: false });
+            } },
+          _react2.default.createElement(
+            'div',
+            { onClick: function onClick(e) {
+                return e.stopPropagation();
+              }, className: whichModal },
+            whichModal === 'selector' ? _react2.default.createElement(_IndivSelector2.default, {
+              pathname: pathname,
+              exit: this.closeModal
+            }) : _react2.default.createElement(_TradeBox2.default, {
+              exit: this.closeModal
+            })
+          )
+        )
+      );
+    }
+  }]);
+
+  return IndivNav;
+}(_react2.default.Component);
+
+exports.default = IndivNav;
+
+/***/ }),
+
+/***/ "./app/components/indiv/IndivNews.js":
+/*!*******************************************!*\
+  !*** ./app/components/indiv/IndivNews.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = IndivNews;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utils = __webpack_require__(/*! ../utils */ "./app/components/utils.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function IndivNews(props) {
+
+    var news = [{ title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }, { title: "blankity blank", date: "1/1/2019", text: "yada yada", image_url: _utils.logoUrl }];
+
+    return _react2.default.createElement(
+        'div',
+        { className: 'indiv-container' },
+        news.map(function (newsItem, i) {
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'news-box' },
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'span',
+                        null,
+                        _react2.default.createElement(
+                            'a',
+                            { href: newsItem.news_url, target: '_blank' },
+                            newsItem.title
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'span',
+                        null,
+                        newsItem.date
+                    ),
+                    _react2.default.createElement(
+                        'span',
+                        null,
+                        newsItem.text
+                    )
+                ),
+                _react2.default.createElement('img', {
+                    src: newsItem.image_url
+                })
+            );
+        })
+    );
+};
+
+/***/ }),
+
+/***/ "./app/components/indiv/IndivPerf.js":
+/*!*******************************************!*\
+  !*** ./app/components/indiv/IndivPerf.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _DataNav = __webpack_require__(/*! ../DataNav */ "./app/components/DataNav.js");
+
+var _DataNav2 = _interopRequireDefault(_DataNav);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var IndivPerf = function (_React$Component) {
+  _inherits(IndivPerf, _React$Component);
+
+  function IndivPerf(props) {
+    _classCallCheck(this, IndivPerf);
+
+    var _this = _possibleConstructorReturn(this, (IndivPerf.__proto__ || Object.getPrototypeOf(IndivPerf)).call(this, props));
+
+    _this.dataSwitch = function (newDisplay) {
+
+      _this.setState({
+
+        selectedDataNavItem: newDisplay
+      });
+    };
+
+    _this.state = {
+
+      selectedDataNavItem: "Day"
+    };
+    return _this;
+  }
+
+  _createClass(IndivPerf, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {}
+  }, {
+    key: 'render',
+    value: function render() {
+      var selectedDataNavItem = this.state.selectedDataNavItem;
+
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'indiv-perf' },
+        _react2.default.createElement(
+          'div',
+          { className: 'ticker-box' },
+          _react2.default.createElement(
+            'span',
+            null,
+            '$ 231.79'
+          ),
+          _react2.default.createElement(
+            'span',
+            null,
+            '+17,39%'
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'first-datapoints' },
+          [["Open", "$ 232.41"], ["24H  High", "$ 234.00"], ["24H Low", "$233.85"]].map(function (item) {
+
+            return _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'span',
+                null,
+                item[0]
+              ),
+              _react2.default.createElement(
+                'span',
+                null,
+                item[1]
+              )
+            );
+          })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'second-datapoints' },
+          [["Open", "$ 232.41"], ["24H  High", "$ 234.00"], ["24H Low", "$233.85"]].map(function (item) {
+
+            return _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'span',
+                null,
+                item[0]
+              ),
+              _react2.default.createElement(
+                'span',
+                null,
+                item[1]
+              )
+            );
+          })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'chart-container' },
+          _react2.default.createElement(
+            'span',
+            null,
+            selectedDataNavItem
+          )
+        ),
+        _react2.default.createElement(_DataNav2.default, {
+          data: ["Day", "Week", "Month", "Year"],
+          selectedDataNavItem: selectedDataNavItem,
+          switchItem: this.dataSwitch
+        })
+      );
+    }
+  }]);
+
+  return IndivPerf;
+}(_react2.default.Component);
+
+exports.default = IndivPerf;
+
+/***/ }),
+
+/***/ "./app/components/indiv/IndivSelector.js":
+/*!***********************************************!*\
+  !*** ./app/components/indiv/IndivSelector.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = IndivSelector;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function IndivSelector(props) {
+  var pathname = props.pathname;
+
+
+  function isSelectedSelector(selector) {
+
+    return pathname.includes(selector) ? "selected" : undefined;
+  }
+
+  return _react2.default.createElement(
+    'div',
+    { onClick: props.exit },
+    _react2.default.createElement(
+      _reactRouterDom.Link,
+      { to: '/indiv/perf' },
+      _react2.default.createElement(
+        'span',
+        { className: isSelectedSelector("perf") },
+        'Performance'
+      )
+    ),
+    _react2.default.createElement(
+      _reactRouterDom.Link,
+      { to: '/indiv/finan' },
+      _react2.default.createElement(
+        'span',
+        { className: isSelectedSelector("finan") },
+        'Financials'
+      )
+    ),
+    _react2.default.createElement(
+      _reactRouterDom.Link,
+      { to: '/indiv/news' },
+      _react2.default.createElement(
+        'span',
+        { className: isSelectedSelector("news") },
+        'News'
+      )
+    ),
+    _react2.default.createElement(
+      _reactRouterDom.Link,
+      { to: '/indiv/trans' },
+      _react2.default.createElement(
+        'span',
+        { className: isSelectedSelector("trans") },
+        'Transactions'
+      )
+    )
+  );
+};
+
+/***/ }),
+
+/***/ "./app/components/indiv/IndivTrans.js":
+/*!********************************************!*\
+  !*** ./app/components/indiv/IndivTrans.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var dummyData = [["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"], ["Buy", "4", "1152", "2019-07-16"]];
+
+var IndivTrans = function (_React$Component) {
+  _inherits(IndivTrans, _React$Component);
+
+  function IndivTrans(props) {
+    _classCallCheck(this, IndivTrans);
+
+    var _this = _possibleConstructorReturn(this, (IndivTrans.__proto__ || Object.getPrototypeOf(IndivTrans)).call(this, props));
+
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(IndivTrans, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
+    key: "render",
+    value: function render() {
+
+      return _react2.default.createElement(
+        "div",
+        { className: "indiv-trans indiv-container" },
+        _react2.default.createElement(
+          "div",
+          null,
+          _react2.default.createElement(
+            "span",
+            null,
+            "Type"
+          ),
+          _react2.default.createElement(
+            "span",
+            null,
+            "Quantity"
+          ),
+          _react2.default.createElement(
+            "span",
+            null,
+            "Price"
+          ),
+          _react2.default.createElement(
+            "span",
+            null,
+            "Date"
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          dummyData.map(function (item, i) {
+            return _react2.default.createElement(
+              "div",
+              null,
+              _react2.default.createElement(
+                "span",
+                null,
+                item[0]
+              ),
+              _react2.default.createElement(
+                "span",
+                null,
+                item[1],
+                " "
+              ),
+              _react2.default.createElement(
+                "span",
+                null,
+                item[2]
+              ),
+              _react2.default.createElement(
+                "span",
+                null,
+                item[3]
+              )
+            );
+          })
+        )
+      );
+    }
+  }]);
+
+  return IndivTrans;
+}(_react2.default.Component);
+
+exports.default = IndivTrans;
+
+/***/ }),
+
+/***/ "./app/components/indiv/TradeBox.js":
+/*!******************************************!*\
+  !*** ./app/components/indiv/TradeBox.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1649,10 +1330,60 @@ function TradeBox(props) {
 
 /***/ }),
 
-/***/ "./app/components/app.js":
-/*!*******************************!*\
-  !*** ./app/components/app.js ***!
-  \*******************************/
+/***/ "./app/components/portfolio/AddSymbolBox.js":
+/*!**************************************************!*\
+  !*** ./app/components/portfolio/AddSymbolBox.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = TradeBox;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function TradeBox(props) {
+
+  return _react2.default.createElement(
+    "div",
+    { className: "trade-box symbol-box" },
+    _react2.default.createElement(
+      "span",
+      null,
+      "Symbol"
+    ),
+    _react2.default.createElement("input", {
+      type: "text",
+      min: "1",
+      max: "5"
+    }),
+    _react2.default.createElement(
+      "div",
+      null,
+      _react2.default.createElement(
+        "button",
+        { onClick: props.exit },
+        "Add"
+      )
+    )
+  );
+};
+
+/***/ }),
+
+/***/ "./app/components/portfolio/AllNav.js":
+/*!********************************************!*\
+  !*** ./app/components/portfolio/AllNav.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1663,101 +1394,370 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _DataNav = __webpack_require__(/*! ../DataNav */ "./app/components/DataNav.js");
+
+var _DataNav2 = _interopRequireDefault(_DataNav);
+
 var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-
-var _Landing = __webpack_require__(/*! ./Landing */ "./app/components/Landing.js");
-
-var _Landing2 = _interopRequireDefault(_Landing);
-
-var _Footer = __webpack_require__(/*! ./Footer */ "./app/components/Footer.js");
-
-var _Footer2 = _interopRequireDefault(_Footer);
-
-var _MainNav = __webpack_require__(/*! ./MainNav */ "./app/components/MainNav.js");
-
-var _MainNav2 = _interopRequireDefault(_MainNav);
-
-var _IndivNav = __webpack_require__(/*! ./IndivNav */ "./app/components/IndivNav.js");
-
-var _IndivNav2 = _interopRequireDefault(_IndivNav);
-
-var _IndivPerf = __webpack_require__(/*! ./IndivPerf */ "./app/components/IndivPerf.js");
-
-var _IndivPerf2 = _interopRequireDefault(_IndivPerf);
-
-var _IndivFin = __webpack_require__(/*! ./IndivFin */ "./app/components/IndivFin.js");
-
-var _IndivFin2 = _interopRequireDefault(_IndivFin);
-
-var _IndivNews = __webpack_require__(/*! ./IndivNews */ "./app/components/IndivNews.js");
-
-var _IndivNews2 = _interopRequireDefault(_IndivNews);
-
-var _IndivTrans = __webpack_require__(/*! ./IndivTrans */ "./app/components/IndivTrans.js");
-
-var _IndivTrans2 = _interopRequireDefault(_IndivTrans);
-
-var _AllNav = __webpack_require__(/*! ./AllNav */ "./app/components/AllNav.js");
-
-var _AllNav2 = _interopRequireDefault(_AllNav);
-
-var _AllWatchlist = __webpack_require__(/*! ./AllWatchlist */ "./app/components/AllWatchlist.js");
-
-var _AllWatchlist2 = _interopRequireDefault(_AllWatchlist);
-
-var _AllTrans = __webpack_require__(/*! ./AllTrans */ "./app/components/AllTrans.js");
-
-var _AllTrans2 = _interopRequireDefault(_AllTrans);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/*
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-Use RR instead of a nav state slice to manage navigation
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-* NavBar renders with every path 
-  - NavBar alters selection appearance based on RR props
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-* Individual 
-  - IndivNav component includes subnav bars and the trade modal
-    - SubNav alters selection appearance based on RR props
-  - Performance, Financials, News, Trans are subpages that render
-    below the navs, or, the navs use absolute/fixed positioning
-    and render order doesn't matter (?) we'll see 
+var AllNav = function (_React$Component) {
+  _inherits(AllNav, _React$Component);
 
-* Portfolio
-  - /all path renders the nav and WatchList
-  - /all/trans renders nav with the trans component
+  function AllNav(props) {
+    _classCallCheck(this, AllNav);
 
-The trans component seems like its the same for both, can use RR 
-props to hydrate component properly if all goes well
+    return _possibleConstructorReturn(this, (AllNav.__proto__ || Object.getPrototypeOf(AllNav)).call(this, props));
+  }
 
-*/
+  _createClass(AllNav, [{
+    key: 'render',
+    value: function render() {
+      var pathname = this.props.location.pathname;
 
-var App = function App() {
-  return _react2.default.createElement(
-    'div',
-    { className: 'app-container' },
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Landing2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Footer2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/indiv', component: _MainNav2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/indiv', component: _IndivNav2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/perf', component: _IndivPerf2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/finan', component: _IndivFin2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/news', component: _IndivNews2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/trans', component: _IndivTrans2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/all', component: _MainNav2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/all', component: _AllNav2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/all/watchlist', component: _AllWatchlist2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/all/transactions', component: _AllTrans2.default })
-  );
-};
 
-exports.default = (0, _reactRouterDom.withRouter)(App);
+      return _react2.default.createElement(
+        'div',
+        { className: 'all-nav' },
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/all/watchlist' },
+          _react2.default.createElement(
+            'span',
+            { className: pathname.includes("watchlist") ? "selected" : undefined },
+            'Portfolio'
+          )
+        ),
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/all/transactions' },
+          _react2.default.createElement(
+            'span',
+            { className: pathname.includes("transactions") ? "selected" : undefined },
+            'Transactions'
+          )
+        )
+      );
+    }
+  }]);
+
+  return AllNav;
+}(_react2.default.Component);
+
+exports.default = AllNav;
+
+/***/ }),
+
+/***/ "./app/components/portfolio/AllTrans.js":
+/*!**********************************************!*\
+  !*** ./app/components/portfolio/AllTrans.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var dummyData = [["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"]];
+
+var AllTrans = function (_React$Component) {
+  _inherits(AllTrans, _React$Component);
+
+  function AllTrans(props) {
+    _classCallCheck(this, AllTrans);
+
+    var _this = _possibleConstructorReturn(this, (AllTrans.__proto__ || Object.getPrototypeOf(AllTrans)).call(this, props));
+
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(AllTrans, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
+    key: "render",
+    value: function render() {
+
+      return _react2.default.createElement(
+        "div",
+        { className: "all-trans" },
+        _react2.default.createElement(
+          "span",
+          null,
+          "Transaction History"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          _react2.default.createElement(
+            "span",
+            null,
+            "Type"
+          ),
+          _react2.default.createElement(
+            "span",
+            null,
+            "Symbol"
+          ),
+          _react2.default.createElement(
+            "span",
+            null,
+            "Quantity"
+          ),
+          _react2.default.createElement(
+            "span",
+            null,
+            "Price"
+          ),
+          _react2.default.createElement(
+            "span",
+            null,
+            "Date"
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          dummyData.map(function (item, i) {
+            return _react2.default.createElement(
+              "div",
+              null,
+              _react2.default.createElement(
+                "span",
+                null,
+                item[0]
+              ),
+              _react2.default.createElement(
+                "span",
+                null,
+                item[1],
+                " "
+              ),
+              _react2.default.createElement(
+                "span",
+                null,
+                item[2]
+              ),
+              _react2.default.createElement(
+                "span",
+                null,
+                item[3]
+              ),
+              _react2.default.createElement(
+                "span",
+                null,
+                item[4]
+              )
+            );
+          })
+        )
+      );
+    }
+  }]);
+
+  return AllTrans;
+}(_react2.default.Component);
+
+exports.default = AllTrans;
+
+/***/ }),
+
+/***/ "./app/components/portfolio/AllWatchlist.js":
+/*!**************************************************!*\
+  !*** ./app/components/portfolio/AllWatchlist.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utils = __webpack_require__(/*! ../utils */ "./app/components/utils.js");
+
+var _AddSymbolBox = __webpack_require__(/*! ./AddSymbolBox */ "./app/components/portfolio/AddSymbolBox.js");
+
+var _AddSymbolBox2 = _interopRequireDefault(_AddSymbolBox);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var dummyData = [["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin4", "BTC", "4878", "2.54"], ["Bitcoinr", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"]];
+
+var AllWatchList = function (_React$Component) {
+  _inherits(AllWatchList, _React$Component);
+
+  function AllWatchList(props) {
+    _classCallCheck(this, AllWatchList);
+
+    var _this = _possibleConstructorReturn(this, (AllWatchList.__proto__ || Object.getPrototypeOf(AllWatchList)).call(this, props));
+
+    _this.closeModal = function () {
+
+      _this.setState({ isModalShowing: false });
+    };
+
+    _this.state = {
+
+      isModalShowing: false,
+      edit: false
+    };
+
+    return _this;
+  }
+
+  _createClass(AllWatchList, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _state = this.state,
+          isModalShowing = _state.isModalShowing,
+          edit = _state.edit;
+
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: 'all-watchlist' },
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement('i', {
+              className: 'fas fa-plus fa-' + ((0, _utils.isDesktop)() ? "2" : "7") + 'x',
+              onClick: function onClick() {
+                return _this2.setState({ edit: false, isModalShowing: true });
+              }
+            }),
+            _react2.default.createElement('i', {
+              className: 'fas fa-edit fa-' + ((0, _utils.isDesktop)() ? "2" : "7") + 'x',
+              onClick: function onClick() {
+                return _this2.setState({ edit: !edit, isModalShowing: false });
+              }
+            })
+          ),
+          _react2.default.createElement(
+            'span',
+            null,
+            'Portfolio'
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            dummyData.map(function (item, i) {
+
+              return _react2.default.createElement(
+                'div',
+                { className: 'watchlist-item-container' },
+                _this2.state.edit && _react2.default.createElement('i', {
+                  className: 'fas fa-minus fa-' + ((0, _utils.isDesktop)() ? "2" : "7") + 'x'
+                }),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'watchlist-item' },
+                  _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      item[0]
+                    ),
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      item[1],
+                      ' '
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      item[2]
+                    ),
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      item[3]
+                    )
+                  )
+                )
+              );
+            })
+          )
+        ),
+        isModalShowing && _react2.default.createElement(
+          'div',
+          { className: 'modal-container', onClick: function onClick() {
+              return _this2.setState({ isModalShowing: false });
+            } },
+          _react2.default.createElement(
+            'div',
+            { onClick: function onClick(e) {
+                return e.stopPropagation();
+              } },
+            _react2.default.createElement(_AddSymbolBox2.default, null)
+          )
+        )
+      );
+    }
+  }]);
+
+  return AllWatchList;
+}(_react2.default.Component);
+
+exports.default = AllWatchList;
 
 /***/ }),
 

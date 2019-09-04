@@ -1,5 +1,5 @@
 import React from 'react';
-import { logoUrl } from './utils'
+import { logoUrl } from '../utils'
 
 export default function IndivNews (props){
 
