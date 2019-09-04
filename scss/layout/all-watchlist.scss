@@ -36,6 +36,12 @@
         position: fixed;
         right: 2vh;
         top: 2vh;
+
+        @include desk(){
+
+            right: 38vh;
+            top: 13vh;
+        }
     }
 
     // the entire list 
@@ -46,6 +52,15 @@
 
             max-height: 70vh;
             overflow: scroll;
+        }
+
+
+        @include tab(){
+
+            max-height: 70vh;
+            overflow: scroll;
+
+            margin-top: 5vh;
         }
     }
 
@@ -118,6 +133,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    @include desk(){
+
+        
+    }
 
     div {
         height: 10vh !important;

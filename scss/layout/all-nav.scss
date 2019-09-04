@@ -14,7 +14,16 @@
     @include tab(){
 
         position: absolute;
-        bottom: 10vh;
+        bottom: initial;
+        top: 11vh;
+        width: 100vw;
+    }
+
+    @include desk(){
+
+        position: absolute;
+        bottom: initial;
+        top: 20vh;
         width: 100vw;
     }
     
