@@ -244,7 +244,7 @@ var Landing = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
 
-      this.props.handleLogin(this.state.email, this.state.password);
+      // this.props.handleLogin(this.state.email, this.state.password)
     }
   }, {
     key: 'componentWillUnmount',
@@ -481,6 +481,8 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
 var _utils = __webpack_require__(/*! ./utils */ "./app/components/utils.js");
 
 var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
@@ -488,6 +490,8 @@ var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_module
 var _Socket = __webpack_require__(/*! ./Socket */ "./app/components/Socket.js");
 
 var _Socket2 = _interopRequireDefault(_Socket);
+
+var _thunks_for_Portfolio = __webpack_require__(/*! ../../store/Portfolio/thunks_for_Portfolio.js */ "./store/Portfolio/thunks_for_Portfolio.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -514,13 +518,12 @@ var MainNav = function (_React$Component) {
 
   _createClass(MainNav, [{
     key: 'componentDidMount',
-    value: function componentDidMount() {}
-  }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate() {}
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {}
+    value: function componentDidMount() {
+
+      console.log(this.props);
+
+      this.props.hydratePortfolio(this.props.token);
+    }
   }, {
     key: 'render',
     value: function render() {
@@ -572,8 +575,28 @@ var MainNav = function (_React$Component) {
   return MainNav;
 }(_react2.default.Component);
 
-exports.default = MainNav;
 ;
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var User_state = _ref.User_state,
+      Nav_state = _ref.Nav_state;
+
+
+  return {
+    token: User_state.token
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+
+    hydratePortfolio: function hydratePortfolio(token) {
+      return dispatch((0, _thunks_for_Portfolio.hydratePortfolioThunk)(token));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(MainNav);
 
 /***/ }),
 
@@ -663,25 +686,22 @@ var Socket = function (_React$Component) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-
-                console.log(this.state);
-
                 currentPortfolio = Object.keys(this.props.portfolio).length;
                 portfolioChanged = currentPortfolio !== this.state.portfolioSize;
 
                 if (!portfolioChanged) {
-                  _context.next = 7;
+                  _context.next = 6;
                   break;
                 }
 
-                _context.next = 6;
+                _context.next = 5;
                 return this.state.socket.close();
 
-              case 6:
+              case 5:
 
                 this.connectToSocket();
 
-              case 7:
+              case 6:
               case 'end':
                 return _context.stop();
             }
@@ -801,22 +821,35 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var App = function App(props) {
 
-  return _react2.default.createElement(
-    'div',
-    { className: 'app-container' },
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Landing2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Footer2.default }),
-    !props.isLoggedIn && _react2.default.createElement(_reactRouterDom.Redirect, { to: '/' }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _MainNav2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/indiv', component: _IndivNav2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/perf', component: _IndivPerf2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/finan', component: _IndivFin2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/news', component: _IndivNews2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/trans', component: _IndivTrans2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/all', component: _AllNav2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/all/watchlist', component: _AllWatchlist2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/all/transactions', component: _AllTrans2.default })
-  );
+  // login route
+
+  if (props.location.pathname === "/") {
+
+    return _react2.default.createElement(
+      'div',
+      { className: 'app-container' },
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Landing2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Footer2.default })
+    );
+  } else {
+
+    // logged in route
+
+    return _react2.default.createElement(
+      'div',
+      { className: 'app-container' },
+      !props.isLoggedIn && _react2.default.createElement(_reactRouterDom.Redirect, { to: '/' }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _MainNav2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/indiv', component: _IndivNav2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/perf', component: _IndivPerf2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/finan', component: _IndivFin2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/news', component: _IndivNews2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/indiv/trans', component: _IndivTrans2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/all', component: _AllNav2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/all/watchlist', component: _AllWatchlist2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/all/transactions', component: _AllTrans2.default })
+    );
+  }
 };
 
 var mapStateToProps = function mapStateToProps(_ref) {
@@ -50884,7 +50917,9 @@ function Portfolio_reducer (state = initialState, action) {
 
     case _action_constants_for_PORTFOLIO__WEBPACK_IMPORTED_MODULE_0__["default"].HYDRATEPORTFOLIO: {
 
-      return { ...state }
+      const {portfolio, transactionHistory} = action.payload
+
+      return { portfolio, transactionHistory }
     }
     
     case _action_constants_for_PORTFOLIO__WEBPACK_IMPORTED_MODULE_0__["default"].MAKETRADE: {
@@ -50912,6 +50947,136 @@ function Portfolio_reducer (state = initialState, action) {
     default:
       return state
   }
+}
+
+/***/ }),
+
+/***/ "./store/Portfolio/thunks_for_Portfolio.js":
+/*!*************************************************!*\
+  !*** ./store/Portfolio/thunks_for_Portfolio.js ***!
+  \*************************************************/
+/*! exports provided: hydratePortfolioThunk, makeTradeThunk, getOnePriceThunk, getOpeningPriceThunk, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hydratePortfolioThunk", function() { return hydratePortfolioThunk; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "makeTradeThunk", function() { return makeTradeThunk; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOnePriceThunk", function() { return getOnePriceThunk; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOpeningPriceThunk", function() { return getOpeningPriceThunk; });
+/* harmony import */ var _actions_for_Portfolio__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actions_for_Portfolio */ "./store/Portfolio/actions_for_Portfolio.js");
+/* harmony import */ var _secrets__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../secrets */ "./secrets.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+const hydratePortfolioThunk = (token) => async dispatch => {
+ 
+  let portfolio
+  let transactionHistory
+
+  console.log(token)
+
+  try {
+
+    Promise.all( // allows us to run api calls in parallel rather than serially
+      [ 
+        ( portfolio = await axios__WEBPACK_IMPORTED_MODULE_2___default.a.post( _secrets__WEBPACK_IMPORTED_MODULE_1__["urlPrefix"] + '/getportfolio', {}, makeHeader(token)) ),
+        ( transactionHistory = await axios__WEBPACK_IMPORTED_MODULE_2___default.a.post(_secrets__WEBPACK_IMPORTED_MODULE_1__["urlPrefix"] + '/getallTransactions', {}, makeHeader(token)) )
+      ]
+    )
+  }
+  catch(error){
+
+    console.log(error)
+  }
+  
+  portfolio = JSON.parse(portfolio.data)
+  
+  // initialize each portfolio with an empty data object
+  // so this doesn't throw an error later
+
+  for(let stock in portfolio){
+    
+    portfolio[stock].data = {}
+  }
+  
+  // update the store with what we have now, so it can
+  // start updating the table- this will cause the view
+  // to update gradually rather than waiting for all the data
+  // to return from the api 
+
+  dispatch(_actions_for_Portfolio__WEBPACK_IMPORTED_MODULE_0__["default"].hydratePortfolio( { portfolio : {...portfolio}, 
+                                       transactionHistory: {...JSON.parse(transactionHistory.data)},                 
+                                     } ))
+  
+  // we have the initial portfolio, now we need to add current data
+  // from an external API using an endpoint from the Gopher API
+
+  if(portfolio && transactionHistory.data){
+
+    for(let stock in portfolio){
+                                        // hoisted below
+        portfolio[stock].data = await getOpeningPriceThunk(stock, token)
+
+    }
+
+    dispatch(_actions_for_Portfolio__WEBPACK_IMPORTED_MODULE_0__["default"].hydratePortfolio( { portfolio : {...portfolio}, 
+                                         transactionHistory: {...JSON.parse(transactionHistory.data)},                 
+                                        } ))
+  }
+  else{
+
+    // registration user story:
+    // callback({}, {1:{Symbol: "", Quantity: "", Date: ""}})
+  }
+  
+};
+
+
+const makeTradeThunk = () => dispatch => {
+ 
+  return fetch('/maketransaction')
+      .then((resp) => resp.json()) 
+      .then(function( {data} ) {
+ 
+          dispatch(_actions_for_Portfolio__WEBPACK_IMPORTED_MODULE_0__["default"].makeTrade(data))
+  });
+};
+
+const getOnePriceThunk = () => dispatch => {
+ 
+  return fetch('/illfigureitout')
+      .then((resp) => resp.json()) 
+      .then(function( {data} ) {
+ 
+          dispatch(_actions_for_Portfolio__WEBPACK_IMPORTED_MODULE_0__["default"].getOnePrice(data))
+  });
+};
+
+const getOpeningPriceThunk = () => dispatch => {
+ 
+  return fetch('/ohlc/')
+      .then((resp) => resp.json()) 
+      .then(function( {data} ) {
+ 
+          dispatch(_actions_for_Portfolio__WEBPACK_IMPORTED_MODULE_0__["default"].getOpeningPrice(data))
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	hydratePortfolioThunk,
+	makeTradeThunk,
+	getOnePriceThunk,
+	getOpeningPriceThunk,
+});
+
+
+function makeHeader(token){
+  
+  return { headers: {"Authorization": 'Bearer ' + token}}
 }
 
 /***/ }),

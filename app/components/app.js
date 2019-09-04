@@ -18,34 +18,47 @@ import AllTrans from './portfolio/AllTrans'
 
 const App = (props) => {
 
-  return (
 
-    <div className="app-container">
+  // login route
+
+  if(props.location.pathname === "/"){
+
+    return (
+
+      <div className="app-container">
   
         <Route exact path="/" component={Landing} />
         <Route exact path="/" component={Footer} />
 
-        { !props.isLoggedIn && <Redirect to="/" /> }
-        
-        <Route path="/" component={MainNav} />
+      </div>
 
-        <Route path="/indiv" component={IndivNav} />
+    )
+  }
+  else{
+ 
+    // logged in route
 
-        <Route exact path="/indiv/perf" component={IndivPerf} />
-        <Route exact path="/indiv/finan" component={IndivFin} />
-        <Route exact path="/indiv/news" component={IndivNews} />
-        <Route exact path="/indiv/trans" component={IndivTrans} />
-         
+    return (
+      
+        <div className="app-container">
+    
+          { !props.isLoggedIn && <Redirect to="/" /> }
+          
+          <Route path="/" component={MainNav} />
 
-        {/* <Route path="/all" component={MainNav} /> */}
+          <Route path="/indiv" component={IndivNav} />
+          <Route exact path="/indiv/perf" component={IndivPerf} />
+          <Route exact path="/indiv/finan" component={IndivFin} />
+          <Route exact path="/indiv/news" component={IndivNews} />
+          <Route exact path="/indiv/trans" component={IndivTrans} />
+          
+          <Route path="/all" component={AllNav} />
+          <Route exact path="/all/watchlist" component={AllWatchlist} />
+          <Route exact path="/all/transactions" component={AllTrans} />
 
-        <Route path="/all" component={AllNav} />
-
-        <Route path="/all/watchlist" component={AllWatchlist} />
-        <Route path="/all/transactions" component={AllTrans} />
-
-    </div>
-  );
+      </div>
+    )
+  }
 };
 
 const mapStateToProps = ({ User_state }) => {
@@ -53,6 +66,7 @@ const mapStateToProps = ({ User_state }) => {
       isLoggedIn : User_state.isLoggedIn
   };
 };
+
 
 // vvv wrapper hell vvv
 

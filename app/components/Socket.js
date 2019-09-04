@@ -38,8 +38,6 @@ class Socket extends React.Component {
 
   async componentDidUpdate(){
 
-    console.log(this.state)
-
     let currentPortfolio = Object.keys(this.props.portfolio).length
 
     let portfolioChanged = currentPortfolio !== this.state.portfolioSize

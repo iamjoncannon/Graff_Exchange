@@ -12,7 +12,9 @@ export default function Portfolio_reducer (state = initialState, action) {
 
     case actions.HYDRATEPORTFOLIO: {
 
-      return { ...state }
+      const {portfolio, transactionHistory} = action.payload
+
+      return { portfolio, transactionHistory }
     }
     
     case actions.MAKETRADE: {
