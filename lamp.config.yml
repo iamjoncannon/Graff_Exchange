@@ -1,0 +1,56 @@
+
+# This is a sample of a lamp.config.yml configuration.
+# Please visit https://redux-genie.herokuapp.com/ for a guided tutorial for creating your own YML configuration file.
+
+Structure: Ducks # Ducks || Rails
+
+Models:
+  - User:
+
+    CRUD: false
+  
+    Slice:
+      - FirstName: string
+      - LastName: string
+      - email: string
+      - token: string
+      - isLoggedIn: boolean
+
+    Actions: 
+      - login
+      - register
+
+    Thunks:
+      - loginThunk:
+          - /login
+          - login
+      - registerThunk:
+          - /signup
+          - login
+
+  - Portfolio:
+
+    CRUD: false
+  
+    Slice:
+      - Holdings: string
+
+    Actions: 
+      - hydratePortfolio
+      - makeTrade
+      - getOnePrice
+      - getOpeningPrice
+
+    Thunks:
+      - hydratePortfolioThunk:
+          - /getportfolio
+          - hydratePortfolio
+      - makeTradeThunk:
+          - /maketransaction
+          - makeTrade
+      - getOnePriceThunk:
+          - /illfigureitout
+          - getOnePrice
+      - getOpeningPriceThunk:
+          - /ohlc/
+          - getOpeningPrice
