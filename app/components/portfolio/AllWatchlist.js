@@ -1,5 +1,5 @@
 import React from 'react';
-import {isDesktop} from './utils'
+import {isDesktop} from '../utils'
 import AddSymbolBox from "./AddSymbolBox"
 
 const dummyData = [

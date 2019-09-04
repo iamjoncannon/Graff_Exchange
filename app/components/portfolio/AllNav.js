@@ -1,5 +1,5 @@
 import React from 'react';
-import DataNav from './DataNav'
+import DataNav from '../DataNav'
 import { Link } from 'react-router-dom'
 
 export default class AllNav extends React.Component {

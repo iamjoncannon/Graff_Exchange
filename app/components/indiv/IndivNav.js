@@ -1,5 +1,5 @@
 import React from 'react';
-import { isDesktop, isCell, isTab } from './utils'
+import { isDesktop, isCell, isTab } from '../utils'
 import { Link } from 'react-router-dom'
 import IndivSelector from './IndivSelector'
 import TradeBox from './TradeBox'

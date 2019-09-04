@@ -3,15 +3,16 @@ import { Route, withRouter } from 'react-router-dom'
 import Landing from './Landing'
 import Footer from './Footer'
 import MainNav from './MainNav'
-import IndivNav from './IndivNav'
-import IndivPerf from './IndivPerf'
-import IndivFin from './IndivFin'
-import IndivNews from './IndivNews'
-import IndivTrans from './IndivTrans'
 
-import AllNav from './AllNav'
-import AllWatchlist from './AllWatchlist'
-import AllTrans from './AllTrans'
+import IndivNav from './indiv/IndivNav'
+import IndivPerf from './indiv/IndivPerf'
+import IndivFin from './indiv/IndivFin'
+import IndivNews from './indiv/IndivNews'
+import IndivTrans from './indiv/IndivTrans'
+
+import AllNav from './portfolio/AllNav'
+import AllWatchlist from './portfolio/AllWatchlist'
+import AllTrans from './portfolio/AllTrans'
 
 /*
 
