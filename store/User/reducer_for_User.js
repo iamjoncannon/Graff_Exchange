@@ -1,15 +1,11 @@
 import actions from "./action_constants_for_USER"
 
 const initialState = {
-  UserList : [],
-  isLoading: false,
-  SingleUser: {
-    FirstName: '', 
-      LastName: '', 
-      email: '', 
-      token: '', 
-      isLoggedIn: true,
-  }
+  balance: '',
+  name: '',
+  email: '', 
+  token: "", // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6I…VyIn0.rIS_sv4nDsPc8RfiQ2XFCwaAA4Gv-gGty2e5s6FDQtU",
+  isLoggedIn: false,
 }
 
 export default function User_reducer (state = initialState, action) {
@@ -18,12 +14,17 @@ export default function User_reducer (state = initialState, action) {
 
     case actions.LOGIN: {
 
-      return { ...state }
+      return {...action.payload, isLoggedIn: true } 
     }
     
     case actions.REGISTER: {
 
       return { ...state }
+    }
+    
+    case actions.LOGOUT: {
+
+      return { isLoggedIn: false }
     }
     
     default:

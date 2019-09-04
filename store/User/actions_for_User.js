@@ -14,7 +14,15 @@ const register = (payload) => {
       	}
       }
 
+const logout = (payload) => {
+      	return {
+      		type: actions.LOGOUT,
+      		payload
+      	}
+      }
+
 export default {
 	login,
 	register,
+	logout,
 }

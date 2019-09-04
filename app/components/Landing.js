@@ -1,17 +1,39 @@
 import React from 'react';
 import { logoUrl } from './utils'
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { loginThunk } from "../../store/User/thunks_for_User.js";
 
-export default class Landing extends React.Component {
+class Landing extends React.Component {
  
-  constructor(props) {
-    super(props);
-    this.state = {
-      mode : 'sign-in'
-    }
+  constructor(props){
+
+      super(props)
+      
+      this.state = {
+          mode : 'sign-in',
+          email : "webster@ross.com",
+          password : "password"
+      }
   }
 
   componentDidMount(){
+      // this.props.handleLogin(this.state.email, this.state.password)
+  }
 
+  handleChange = (evt) => {
+
+      this.setState({
+          [evt.target.name]:evt.target.value
+      })
+  }
+
+  handleSubmit = () => {
+
+      if(this.state.mode === "sign-in"){
+
+        this.props.handleLogin(this.state.email, this.state.password)
+      }
   }
 
   render() {
@@ -19,42 +41,80 @@ export default class Landing extends React.Component {
     const isDesktop = window.innerWidth > 1100;
 
     const { mode } = this.state
-
-    document.body.style.backgroundColor = "#F9FAFB" 
     
     // the background needs to be cream for the desktop to seem inset
     // ...but only for this page
 
-    return (
+    document.body.style.backgroundColor = "#F9FAFB" 
+    
+    if(this.props.isLoggedIn){
+        
+        return (
+            <Redirect to="/all/watchlist" />
+        )
+    }
+    else {
 
-      <div className={ isDesktop && mode === "sign-up" ? "landing landing-rev" : "landing"} >
+      return (
 
-        <div className="header">
+        <div className={ isDesktop && mode === "sign-up" ? "landing landing-rev" : "landing"} >
 
-            <span className="title">
-              Gopher Exchange
-            </span>
+          <div className="header">
 
-            <span className="blurb">
+              <span className="title">
+                Gopher Exchange
+              </span>
 
-            Gopher Exchange, a real-time stock portfolio dashboard powered by React, Redux, Socket.io, Sass, Golang, Redis, and PostgreSQL.
-            </span>
-            
-            <img src={logoUrl} />
+              <span className="blurb">
 
-            {!isDesktop &&
+              Gopher Exchange, a real-time stock portfolio dashboard powered by React, Redux, Socket.io, Sass, Golang, Redis, and PostgreSQL.
+              </span>
+              
+              <img src={logoUrl} />
+
+              {!isDesktop &&
+
+                <div className="sign-btns">
+
+                  <span 
+                    className={ mode === "sign-up" && "unselected"}
+                    onClick={()=>this.setState({mode: "sign-in"})}
+                  >             
+                      Sign In
+                    </span>
+
+                  <span 
+                    className={ mode === "sign-in" && !isDesktop && "unselected"}
+                    onClick={()=>this.setState({mode: "sign-up"})}
+                  >
+                    Sign Up
+                  </span>
+
+                </div>
+              }
+
+              {isDesktop && mode === "sign-up" && 
+
+                  <div className="sign-btns">
+                    
+                      <span > Already have an account? </span> 
+
+                    
+                      <span 
+                        onClick={()=>this.setState({mode: "sign-in"})}
+                      >             
+                          Sign In
+                      </span> 
+                  </div>
+            }
+
+            { isDesktop && mode == "sign-in" && 
 
               <div className="sign-btns">
 
-                <span 
-                  className={ mode === "sign-up" && "unselected"}
-                  onClick={()=>this.setState({mode: "sign-in"})}
-                >             
-                    Sign In
-                  </span>
+                <span>Don't have an account? </span> 
 
                 <span 
-                  className={ mode === "sign-in" && !isDesktop && "unselected"}
                   onClick={()=>this.setState({mode: "sign-up"})}
                 >
                   Sign Up
@@ -63,110 +123,104 @@ export default class Landing extends React.Component {
               </div>
             }
 
-            {isDesktop && mode === "sign-up" && 
+          </div>
 
-                <div className="sign-btns">
-                  
-                    <span > Already have an account? </span> 
+          <div className="form">
 
-                   
-                    <span 
-                      onClick={()=>this.setState({mode: "sign-in"})}
-                    >             
-                        Sign In
-                    </span> 
-                </div>
-          }
+            {
+              mode === "sign-up" &&
 
-          { isDesktop && mode == "sign-in" && 
+              <div>
 
-            <div className="sign-btns">
+                <span>First Name</span>
 
-              <span>Don't have an account? </span> 
+                <input 
+                  type="text"
+                />
 
-              <span 
-                onClick={()=>this.setState({mode: "sign-up"})}
-              >
-                Sign Up
-              </span>
+              </div>
+            }
+            
+            {
+              mode === "sign-up" &&
 
-            </div>
-          }
+              <div>
 
-        </div>
+                <span>Last Name</span>
 
-        <div className="form">
+                <input 
+                  type="text"
+                />
 
-          {
-            mode === "sign-up" &&
+              </div>         
+            }
 
             <div>
 
-              <span>First Name</span>
+              <span>Email</span>
+
+              <input
+                type="text"
+                name="email"
+                value={this.state.email}
+                onChange={this.handleChange} 
+              />
+            </div>
+
+            <div>
+
+              <span>Password</span>
 
               <input 
-                type="text"
+                onChange={this.handleChange}
+                type="password"
+                name="password"
+                value={this.state.password}
               />
+            </div>
 
+          {
+
+            mode === "sign-up" && 
+
+            <div>
+
+              <span>Confirm Password</span>
+
+              <input 
+                
+                type="password"
+              />
             </div>
           }
+
+          <button
+            onClick={ this.handleSubmit }
+          >
+              {mode === 'sign-in' ? "Sign In" : "Sign Up"}
+          </button>
+
+          {mode === "sign-in" && <span>Sign into Demo Account</span> }
           
-          {
-            mode === "sign-up" &&
-
-            <div>
-
-              <span>Last Name</span>
-
-              <input 
-                type="text"
-              />
-
-            </div>         
-          }
-
-          <div>
-
-            <span>Email</span>
-
-            <input 
-              type="text"
-            />
-          </div>
-
-          <div>
-
-            <span>Password</span>
-
-            <input 
-              
-              type="password"
-            />
-          </div>
-
-        {
-
-          mode === "sign-up" && 
-
-          <div>
-
-            <span>Confirm Password</span>
-
-            <input 
-              
-              type="password"
-            />
-          </div>
-        }
-
-        <button>
-            {mode === 'sign-in' ? "Sign In" : "Sign Up"}
-        </button>
-
-        {mode === "sign-in" && <span>Sign into Demo Account</span> }
-        
-        </div>      
-      </div>
-    );
+          </div>      
+        </div>
+      );
+  }
   }
 }
+
+const mapStateToProps = ({ User_state }) => {
+  return {
+      isLoggedIn : User_state.isLoggedIn
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+
+    handleLogin: (email, password) => dispatch(loginThunk(email, password)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Landing);
