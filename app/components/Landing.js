@@ -18,7 +18,13 @@ class Landing extends React.Component {
   }
 
   componentDidMount(){
-      // this.props.handleLogin(this.state.email, this.state.password)
+    
+      this.props.handleLogin(this.state.email, this.state.password)
+  }
+
+  componentWillUnmount(){
+
+    document.body.style.backgroundColor = 'white' 
   }
 
   handleChange = (evt) => {

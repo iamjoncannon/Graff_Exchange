@@ -28,9 +28,17 @@ const getOpeningPrice = (payload) => {
       	}
       }
 
+const handleSocketMessage = (payload) => {
+      	return {
+      		type: actions.HANDLESOCKETMESSAGE,
+      		payload
+      	}
+      }
+
 export default {
 	hydratePortfolio,
 	makeTrade,
 	getOnePrice,
 	getOpeningPrice,
+	handleSocketMessage,
 }

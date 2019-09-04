@@ -53,7 +53,8 @@
 				"hydratePortfolio",
 				"makeTrade",
 				"getOnePrice",
-				"getOpeningPrice"
+				"getOpeningPrice",
+				"handleSocketMessage"
 			],
 			"Thunks": [
 				{

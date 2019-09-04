@@ -1,11 +1,9 @@
 import actions from "./action_constants_for_PORTFOLIO"
 
 const initialState = {
-  PortfolioList : [],
-  isLoading: false,
-  SinglePortfolio: {
-    Holdings: '',
-  }
+  
+  portfolio: {},
+  transactionHistory: {}
 }
 
 export default function Portfolio_reducer (state = initialState, action) {
@@ -30,6 +28,13 @@ export default function Portfolio_reducer (state = initialState, action) {
     case actions.GETOPENINGPRICE: {
 
       return { ...state }
+    }
+    
+    case actions.HYDRATEPORTFOLIO: {
+
+      const {portfolio, transactionHistory} = action.payload
+
+      return { portfolio, transactionHistory }
     }
     
     default:

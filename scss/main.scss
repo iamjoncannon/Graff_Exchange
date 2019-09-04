@@ -75,3 +75,9 @@ button {
         margin-top: 3vh;
     }
 }
+
+.loading-dots {
+    height: auto;
+    width: auto;
+    @include loading_dots()
+}
