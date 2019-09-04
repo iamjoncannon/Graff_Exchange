@@ -23,7 +23,9 @@ export default class AllWatchList extends React.Component {
     this.state = {
 
         isModalShowing : false,
+        edit: false
     }
+
    }
 
     closeModal = () => {
@@ -33,21 +35,26 @@ export default class AllWatchList extends React.Component {
   
     render() {
 
-      const {isModalShowing, whichModal} = this.state
+      const {isModalShowing, edit} = this.state
 
  
       return (
+        
         <div>
 
         <div className="all-watchlist">
         
           <div>
+
             <i 
               className={`fas fa-plus fa-${isDesktop() ? "2" : "7"}x`} 
-              onClick={()=>this.setState({isModalShowing: true})}
+              onClick={()=>this.setState({edit: false, isModalShowing: true})}
             />
           
-            <i className={`fas fa-edit fa-${isDesktop() ? "2" : "7"}x`} />
+            <i 
+              className={`fas fa-edit fa-${isDesktop() ? "2" : "7"}x`} 
+              onClick={()=>this.setState({edit: !edit, isModalShowing: false})}            
+            />
           
           </div>
 
@@ -58,7 +65,18 @@ export default class AllWatchList extends React.Component {
 
               return(
 
-                <div>
+              <div className="watchlist-item-container">
+
+                  { this.state.edit && 
+                    
+                    <i 
+                      className={`fas fa-minus fa-${isDesktop() ? "2" : "7"}x`} 
+                    />
+                  
+                  }
+
+                <div className="watchlist-item">
+
                   <div>
 
                     <span>{item[0]}</span>
@@ -71,7 +89,11 @@ export default class AllWatchList extends React.Component {
                     <span>{item[2]}</span>
                     <span>{item[3]}</span>
                   </div>
+
                 </div>
+
+              </div>
+
               )
             })
           }
@@ -85,10 +107,7 @@ export default class AllWatchList extends React.Component {
               <div onClick={ (e)=> e.stopPropagation()} >
                 
                     <AddSymbolBox />
-                  
-
               </div>
-
             </div>
           }
 

@@ -677,28 +677,37 @@ footer {
     color: black;
     font-size: 3.5vh;
     background-color: white; }
-    .all-watchlist i:nth-of-type(1) {
-      margin-right: 4vh; }
+  .all-watchlist .fa-plus {
+    margin-right: 4vh; }
   .all-watchlist > div:first-child {
     position: fixed;
     right: 2vh;
     top: 2vh; }
-  .all-watchlist > div:not(:first-child) {
+  .all-watchlist .fa-minus {
+    color: green;
+    display: inline-block;
+    margin-bottom: 2vh; }
+  .all-watchlist .watchlist-item-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 85vw; }
+  .all-watchlist .watchlist-item {
     border-bottom: solid black 1px;
     width: 60vw;
     height: 6vh;
     margin-bottom: 3vh;
     display: flex;
     justify-content: space-between; }
-    .all-watchlist > div:not(:first-child) span {
+    .all-watchlist .watchlist-item span {
       font-size: 2vh; }
-    .all-watchlist > div:not(:first-child) div:first-child {
+    .all-watchlist .watchlist-item div:first-child {
       color: green; }
-      .all-watchlist > div:not(:first-child) div:first-child span:last-child {
+      .all-watchlist .watchlist-item div:first-child span:last-child {
         display: block; }
-    .all-watchlist > div:not(:first-child) div:nth-child(2) {
+    .all-watchlist .watchlist-item div:nth-child(2) {
       color: orange; }
-      .all-watchlist > div:not(:first-child) div:nth-child(2) span:last-child {
+      .all-watchlist .watchlist-item div:nth-child(2) span:last-child {
         display: block; }
 
 .symbol-box {

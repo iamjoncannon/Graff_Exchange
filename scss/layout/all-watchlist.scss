@@ -26,11 +26,14 @@
         font-size: 3.5vh;
         background-color: white;
 
-        &:nth-of-type(1){
-
-            margin-right: 4vh;
-        }
     }
+    
+    .fa-plus {
+
+        margin-right: 4vh;
+    }
+
+    // nav buttons
 
     > div:first-child {
         position: fixed;
@@ -38,7 +41,26 @@
         top: 2vh;
     }
 
-    > div:not(:first-child){
+    .fa-minus{
+
+        color: green;
+        display: inline-block;
+        margin-bottom: 2vh;
+
+    }
+
+    // portfolio items 
+
+    .watchlist-item-container{
+
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 85vw;
+
+    }
+
+    .watchlist-item{
         
         border-bottom: solid black 1px;
         width: 60vw;

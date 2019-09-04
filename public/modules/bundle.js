@@ -268,8 +268,10 @@ var AllWatchList = function (_React$Component) {
 
     _this.state = {
 
-      isModalShowing: false
+      isModalShowing: false,
+      edit: false
     };
+
     return _this;
   }
 
@@ -280,7 +282,7 @@ var AllWatchList = function (_React$Component) {
 
       var _state = this.state,
           isModalShowing = _state.isModalShowing,
-          whichModal = _state.whichModal;
+          edit = _state.edit;
 
 
       return _react2.default.createElement(
@@ -295,10 +297,15 @@ var AllWatchList = function (_React$Component) {
             _react2.default.createElement('i', {
               className: 'fas fa-plus fa-' + ((0, _utils.isDesktop)() ? "2" : "7") + 'x',
               onClick: function onClick() {
-                return _this2.setState({ isModalShowing: true });
+                return _this2.setState({ edit: false, isModalShowing: true });
               }
             }),
-            _react2.default.createElement('i', { className: 'fas fa-edit fa-' + ((0, _utils.isDesktop)() ? "2" : "7") + 'x' })
+            _react2.default.createElement('i', {
+              className: 'fas fa-edit fa-' + ((0, _utils.isDesktop)() ? "2" : "7") + 'x',
+              onClick: function onClick() {
+                return _this2.setState({ edit: !edit, isModalShowing: false });
+              }
+            })
           ),
           _react2.default.createElement(
             'span',
@@ -309,34 +316,41 @@ var AllWatchList = function (_React$Component) {
 
             return _react2.default.createElement(
               'div',
-              null,
+              { className: 'watchlist-item-container' },
+              _this2.state.edit && _react2.default.createElement('i', {
+                className: 'fas fa-minus fa-' + ((0, _utils.isDesktop)() ? "2" : "7") + 'x'
+              }),
               _react2.default.createElement(
                 'div',
-                null,
+                { className: 'watchlist-item' },
                 _react2.default.createElement(
-                  'span',
+                  'div',
                   null,
-                  item[0]
+                  _react2.default.createElement(
+                    'span',
+                    null,
+                    item[0]
+                  ),
+                  _react2.default.createElement(
+                    'span',
+                    null,
+                    item[1],
+                    ' '
+                  )
                 ),
                 _react2.default.createElement(
-                  'span',
+                  'div',
                   null,
-                  item[1],
-                  ' '
-                )
-              ),
-              _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                  'span',
-                  null,
-                  item[2]
-                ),
-                _react2.default.createElement(
-                  'span',
-                  null,
-                  item[3]
+                  _react2.default.createElement(
+                    'span',
+                    null,
+                    item[2]
+                  ),
+                  _react2.default.createElement(
+                    'span',
+                    null,
+                    item[3]
+                  )
                 )
               )
             );
