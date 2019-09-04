@@ -77,7 +77,7 @@ button {
     }
 
     @include desk(){
-
+        max-height: 73vh;
         margin-top: 3vh;
     }
 }
