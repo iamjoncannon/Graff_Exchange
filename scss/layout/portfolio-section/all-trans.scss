@@ -42,13 +42,18 @@
 
             display:inline-block;
             border-bottom: solid grey 4px;
-            width: 19vw;
+            width: 16vw;
             font-size: 2vh;
 
             @include desk(){
 
                 width: 10vw;
             }
+        }
+
+        span:nth-of-type(4){
+       
+            font-size: 1.85vh;
         }
     }
 
@@ -61,7 +66,7 @@
         @include cell(){
             
             margin-top: 2vh;
-            max-height: 67vh;
+            max-height: 62vh;
             overflow: scroll;
         }
 
@@ -76,12 +81,16 @@
             font-size: 1.8vh;
             display:inline-block;
             border-bottom: solid grey 1px;
-            width: 19vw;
+            width: 16vw;
 
             @include desk(){
 
                 width: 10vw;
             }
+        }
+
+        span:nth-of-type(5){
+            font-size: 1.5vh;
         }
     }
 }

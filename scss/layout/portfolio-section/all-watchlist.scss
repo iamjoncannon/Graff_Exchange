@@ -66,10 +66,9 @@
 
     .fa-minus{
 
-        color: green;
         display: inline-block;
         margin-bottom: 2vh;
-
+        font-size: 2vh;
     }
 
     // portfolio items 
@@ -85,7 +84,7 @@
     .watchlist-item{
         
         border-bottom: solid black 1px;
-        width: 60vw;
+        width: 70vw;
         height: 6vh;
         margin-bottom: 3vh;
 
@@ -98,11 +97,21 @@
         }
 
         div:first-child{
-
-            color: green;
             
             span:first-child{
                 
+            }
+
+            // company name
+            span:nth-of-type(2){
+
+                color: black;
+                font-size: 2.25vw;
+                max-width: 35vw;
+                display: inline-block;
+                white-space: nowrap;
+                overflow: hidden;
+                margin-left: 1vh;
             }
 
             span:last-child{
@@ -112,7 +121,7 @@
 
         div:nth-child(2){
 
-            color: orange;
+            color: black;
 
             span:first-child{
 
@@ -127,8 +136,6 @@
 }
 
 .symbol-box {
-
-    background-color: green;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -6,9 +6,9 @@
 @import "layout/data-nav";
 @import "layout/modal-container";
 
-@import "portfolio-section/index";
+@import "layout/indiv-section/index";
 
-@import "portfolio-section/index";
+@import "layout/portfolio-section/index";
 
 // globals
 
@@ -74,10 +74,4 @@ button {
         max-height: 73vh;
         margin-top: 3vh;
     }
-}
-
-.loading-dots {
-    height: auto;
-    width: auto;
-    @include loading_dots()
 }

@@ -98,6 +98,7 @@ async function getOpeningPriceThunk (symbol, token) {
 
   }
   else{
+    
     returned_data = returned_data.data
   }
   

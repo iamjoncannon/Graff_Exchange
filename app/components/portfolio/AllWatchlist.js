@@ -1,21 +1,9 @@
 import React from 'react';
-import {isDesktop} from '../utils'
+import { connect } from "react-redux";
+import { isDesktop } from '../utils'
 import AddSymbolBox from "./AddSymbolBox"
 
-const dummyData = [
-  ["Bitcoin", "BTC", "4878", "2.54"],
-  ["Bitcoin4", "BTC", "4878", "2.54"],
-  ["Bitcoinr", "BTC", "4878", "2.54"],
-  ["Bitcoin", "BTC", "4878", "2.54"],
-  ["Bitcoin", "BTC", "4878", "2.54"],
-  ["Bitcoin", "BTC", "4878", "2.54"],
-  ["Bitcoin", "BTC", "4878", "2.54"],
-  ["Bitcoin", "BTC", "4878", "2.54"],
-  ["Bitcoin", "BTC", "4878", "2.54"],
-  ["Bitcoin", "BTC", "4878", "2.54"],
-]
-
-export default class AllWatchList extends React.Component {
+class AllWatchList extends React.Component {
  
   constructor(props) {
     super(props);
@@ -35,9 +23,9 @@ export default class AllWatchList extends React.Component {
   
     render() {
 
-      const {isModalShowing, edit} = this.state
-
- 
+      const { isModalShowing, edit } = this.state
+      const { portfolio } = this.props
+  
       return (
 
         <div>
@@ -62,8 +50,13 @@ export default class AllWatchList extends React.Component {
           
           <div>
 
-            {
-              dummyData.map((item, i)=>{
+            { portfolio && 
+
+              Object.entries(portfolio).map((item, i)=>{
+
+                const { data } = item[1]
+
+                const color = data.latestPrice < item[1].price ? "green" : "red";
 
                 return(
 
@@ -81,15 +74,17 @@ export default class AllWatchList extends React.Component {
 
                     <div>
 
-                      <span>{item[0]}</span>
-                      <span>{item[1]} </span>
+                      <span style={{ color : color }}> {item[1].symbol}</span>
+                      <span> {data.companyName}</span>
+
+                      <span style={{ color : color }}> {item[1].price} </span>
                       
                     </div>
 
                     <div>
                 
-                      <span>{item[2]}</span>
-                      <span>{item[3]}</span>
+                      <span>{data.change}</span>
+                      <span>{data.changePercent}%</span>
                     </div>
 
                   </div>
@@ -120,3 +115,15 @@ export default class AllWatchList extends React.Component {
       );
     };
 }
+
+
+const mapStateToProps = ({ Portfolio_state }) => {
+  return {
+    portfolio : Portfolio_state.portfolio
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(AllWatchList);

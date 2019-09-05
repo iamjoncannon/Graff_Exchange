@@ -38,6 +38,17 @@ export default function Portfolio_reducer (state = initialState, action) {
 
       return { portfolio, transactionHistory }
     }
+
+    case actions.HANDLESOCKETMESSAGE: {
+
+      const stock = action.payload
+
+      let updatedPortfolio = {...state.portfolio } 
+
+      updatedPortfolio[stock.symbol]["price"] = stock.price
+
+      return { ...state, portfolio: updatedPortfolio }
+    }
     
     default:
       return state

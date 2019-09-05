@@ -1764,6 +1764,8 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1771,8 +1773,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var dummyData = [["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"], ["Buy", "GOOGL", "4", "1152", "2019-07-16"]];
 
 var AllTrans = function (_React$Component) {
   _inherits(AllTrans, _React$Component);
@@ -1822,7 +1822,7 @@ var AllTrans = function (_React$Component) {
           _react2.default.createElement(
             "span",
             null,
-            "Price"
+            "@Buy"
           ),
           _react2.default.createElement(
             "span",
@@ -1833,35 +1833,40 @@ var AllTrans = function (_React$Component) {
         _react2.default.createElement(
           "div",
           null,
-          dummyData.map(function (item, i) {
+          Object.entries(this.props.transactionHistory).map(function (item, i) {
+
+            var date = item[1].Date;
+            date = date.slice(0, date.indexOf("T"));
+
             return _react2.default.createElement(
               "div",
               null,
               _react2.default.createElement(
                 "span",
                 null,
-                item[0]
+                item[1].Type
               ),
               _react2.default.createElement(
                 "span",
                 null,
-                item[1],
+                item[1].Symbol,
                 " "
               ),
               _react2.default.createElement(
                 "span",
                 null,
-                item[2]
+                item[1].Quantity
               ),
               _react2.default.createElement(
                 "span",
                 null,
-                item[3]
+                "$",
+                item[1].Price
               ),
               _react2.default.createElement(
                 "span",
                 null,
-                item[4]
+                date
               )
             );
           })
@@ -1873,7 +1878,16 @@ var AllTrans = function (_React$Component) {
   return AllTrans;
 }(_react2.default.Component);
 
-exports.default = AllTrans;
+var mapStateToProps = function mapStateToProps(_ref) {
+  var Portfolio_state = _ref.Portfolio_state;
+
+
+  return {
+    transactionHistory: Portfolio_state.transactionHistory
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, null)(AllTrans);
 
 /***/ }),
 
@@ -1897,6 +1911,8 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
 var _utils = __webpack_require__(/*! ../utils */ "./app/components/utils.js");
 
 var _AddSymbolBox = __webpack_require__(/*! ./AddSymbolBox */ "./app/components/portfolio/AddSymbolBox.js");
@@ -1910,8 +1926,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var dummyData = [["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin4", "BTC", "4878", "2.54"], ["Bitcoinr", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"], ["Bitcoin", "BTC", "4878", "2.54"]];
 
 var AllWatchList = function (_React$Component) {
   _inherits(AllWatchList, _React$Component);
@@ -1943,6 +1957,7 @@ var AllWatchList = function (_React$Component) {
       var _state = this.state,
           isModalShowing = _state.isModalShowing,
           edit = _state.edit;
+      var portfolio = this.props.portfolio;
 
 
       return _react2.default.createElement(
@@ -1975,7 +1990,11 @@ var AllWatchList = function (_React$Component) {
           _react2.default.createElement(
             'div',
             null,
-            dummyData.map(function (item, i) {
+            portfolio && Object.entries(portfolio).map(function (item, i) {
+              var data = item[1].data;
+
+
+              var color = data.latestPrice < item[1].price ? "green" : "red";
 
               return _react2.default.createElement(
                 'div',
@@ -1991,13 +2010,21 @@ var AllWatchList = function (_React$Component) {
                     null,
                     _react2.default.createElement(
                       'span',
-                      null,
-                      item[0]
+                      { style: { color: color } },
+                      ' ',
+                      item[1].symbol
                     ),
                     _react2.default.createElement(
                       'span',
                       null,
-                      item[1],
+                      ' ',
+                      data.companyName
+                    ),
+                    _react2.default.createElement(
+                      'span',
+                      { style: { color: color } },
+                      ' ',
+                      item[1].price,
                       ' '
                     )
                   ),
@@ -2007,12 +2034,13 @@ var AllWatchList = function (_React$Component) {
                     _react2.default.createElement(
                       'span',
                       null,
-                      item[2]
+                      data.change
                     ),
                     _react2.default.createElement(
                       'span',
                       null,
-                      item[3]
+                      data.changePercent,
+                      '%'
                     )
                   )
                 )
@@ -2040,7 +2068,15 @@ var AllWatchList = function (_React$Component) {
   return AllWatchList;
 }(_react2.default.Component);
 
-exports.default = AllWatchList;
+var mapStateToProps = function mapStateToProps(_ref) {
+  var Portfolio_state = _ref.Portfolio_state;
+
+  return {
+    portfolio: Portfolio_state.portfolio
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, null)(AllWatchList);
 
 /***/ }),
 
@@ -50943,6 +50979,17 @@ function Portfolio_reducer (state = initialState, action) {
 
       return { portfolio, transactionHistory }
     }
+
+    case _action_constants_for_PORTFOLIO__WEBPACK_IMPORTED_MODULE_0__["default"].HANDLESOCKETMESSAGE: {
+
+      const stock = action.payload
+
+      let updatedPortfolio = {...state.portfolio } 
+
+      updatedPortfolio[stock.symbol]["price"] = stock.price
+
+      return { ...state, portfolio: updatedPortfolio }
+    }
     
     default:
       return state
@@ -51067,6 +51114,7 @@ async function getOpeningPriceThunk (symbol, token) {
 
   }
   else{
+    
     returned_data = returned_data.data
   }
   

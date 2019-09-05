@@ -1,8 +1,11 @@
 'use strict'
 
 const express = require('express')
+const cors = require('cors')
 const path = require('path')
 const app = express()
+
+app.use(cors());
 
 // body parsing middleware
 app.use(express.json())

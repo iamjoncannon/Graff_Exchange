@@ -1,45 +1,7 @@
 import React from 'react';
+import { connect } from "react-redux";
 
-const dummyData = [
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-  ["Buy", "GOOGL", "4", "1152", "2019-07-16"],
-]
-
-
-export default class AllTrans extends React.Component {
+class AllTrans extends React.Component {
  
   constructor(props) {
     super(props);
@@ -64,7 +26,7 @@ export default class AllTrans extends React.Component {
           <span>Type</span>
           <span>Symbol</span>
           <span>Quantity</span>
-          <span>Price</span>
+          <span>@Buy</span>
           <span>Date</span>
 
         </div>
@@ -72,21 +34,38 @@ export default class AllTrans extends React.Component {
         <div>
 
           {
-            dummyData.map((item, i)=>{
+            Object.entries(this.props.transactionHistory).map((item, i)=>{
+              
+              let date = item[1].Date 
+              date = date.slice(0,date.indexOf("T"))
+
               return(
 
                 <div>
-                  <span>{item[0]}</span>
-                  <span>{item[1]} </span>
-                  <span>{item[2]}</span>
-                  <span>{item[3]}</span>
-                  <span>{item[4]}</span>
+                  <span>{item[1].Type}</span>
+                  <span>{item[1].Symbol} </span>
+                  <span>{item[1].Quantity}</span>
+                  <span>${item[1].Price}</span>
+                  <span>{date}</span>
                 </div>
               )
             })
           }
+
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = ({ Portfolio_state }) => {
+
+  return {
+    transactionHistory : Portfolio_state.transactionHistory
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(AllTrans);
