@@ -21,16 +21,12 @@ class MainNav extends React.Component {
 
   componentDidMount(){
 
-    console.log(this.props)
-
     this.props.hydratePortfolio(this.props.token)
   }
 
   render(){
 
     const { pathname } = this.props.location;
-
-    console.log( "here's path in main nav", pathname )
 
     return (
 

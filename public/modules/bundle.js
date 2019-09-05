@@ -520,8 +520,6 @@ var MainNav = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
 
-      console.log(this.props);
-
       this.props.hydratePortfolio(this.props.token);
     }
   }, {
@@ -529,8 +527,6 @@ var MainNav = function (_React$Component) {
     value: function render() {
       var pathname = this.props.location.pathname;
 
-
-      console.log("here's path in main nav", pathname);
 
       return _react2.default.createElement(
         'div',
@@ -1030,9 +1026,11 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _utils = __webpack_require__(/*! ../utils */ "./app/components/utils.js");
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
 var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+var _utils = __webpack_require__(/*! ../utils */ "./app/components/utils.js");
 
 var _IndivSelector = __webpack_require__(/*! ./IndivSelector */ "./app/components/indiv/IndivSelector.js");
 
@@ -1080,7 +1078,10 @@ var IndivNav = function (_React$Component) {
           isModalShowing = _state.isModalShowing,
           whichModal = _state.whichModal;
       var pathname = this.props.location.pathname;
+      var selectedPortfolioItem = this.props.selectedPortfolioItem;
 
+
+      console.log(selectedPortfolioItem);
 
       return _react2.default.createElement(
         'div',
@@ -1099,7 +1100,7 @@ var IndivNav = function (_React$Component) {
             _react2.default.createElement(
               'span',
               null,
-              'AAPL'
+              selectedPortfolioItem && selectedPortfolioItem.symbol
             ),
             !(0, _utils.isDesktop)() && _react2.default.createElement('i', { className: 'fas fa-angle-down fa-7x' })
           ),
@@ -1146,7 +1147,15 @@ var IndivNav = function (_React$Component) {
   return IndivNav;
 }(_react2.default.Component);
 
-exports.default = IndivNav;
+var mapStateToProps = function mapStateToProps(_ref) {
+  var Portfolio_state = _ref.Portfolio_state;
+
+  return {
+    selectedPortfolioItem: Portfolio_state.selectedPortfolioItem
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, null)(IndivNav);
 
 /***/ }),
 
@@ -1238,6 +1247,8 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
 var _DataNav = __webpack_require__(/*! ../DataNav */ "./app/components/DataNav.js");
 
 var _DataNav2 = _interopRequireDefault(_DataNav);
@@ -1280,6 +1291,7 @@ var IndivPerf = function (_React$Component) {
     key: 'render',
     value: function render() {
       var selectedDataNavItem = this.state.selectedDataNavItem;
+      var selectedPortfolioItem = this.props.selectedPortfolioItem;
 
 
       return _react2.default.createElement(
@@ -1291,18 +1303,20 @@ var IndivPerf = function (_React$Component) {
           _react2.default.createElement(
             'span',
             null,
-            '$ 231.79'
+            '$ ',
+            selectedPortfolioItem && selectedPortfolioItem.price
           ),
           _react2.default.createElement(
             'span',
             null,
-            '+17,39%'
+            selectedPortfolioItem && selectedPortfolioItem.data.changePercent,
+            '%'
           )
         ),
         _react2.default.createElement(
           'div',
           { className: 'first-datapoints' },
-          [["Open", "$ 232.41"], ["24H  High", "$ 234.00"], ["24H Low", "$233.85"]].map(function (item) {
+          [["Open", '$' + selectedPortfolioItem.data.open], ["Close", '$' + selectedPortfolioItem.data.close], ["Change", '' + selectedPortfolioItem.data.change]].map(function (item) {
 
             return _react2.default.createElement(
               'div',
@@ -1323,7 +1337,7 @@ var IndivPerf = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'second-datapoints' },
-          [["Open", "$ 232.41"], ["24H  High", "$ 234.00"], ["24H Low", "$233.85"]].map(function (item) {
+          [["High", '$' + selectedPortfolioItem.data.high], ["Low", '$' + selectedPortfolioItem.data.low], ["Volume", '' + selectedPortfolioItem.data.volume]].map(function (item) {
 
             return _react2.default.createElement(
               'div',
@@ -1362,7 +1376,15 @@ var IndivPerf = function (_React$Component) {
   return IndivPerf;
 }(_react2.default.Component);
 
-exports.default = IndivPerf;
+var mapStateToProps = function mapStateToProps(_ref) {
+  var Portfolio_state = _ref.Portfolio_state;
+
+  return {
+    selectedPortfolioItem: Portfolio_state.selectedPortfolioItem
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, null)(IndivPerf);
 
 /***/ }),
 
@@ -50944,7 +50966,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const initialState = {
-  
+  selectedPortfolioItem: null,
   portfolio: {},
   transactionHistory: {}
 }
@@ -50956,8 +50978,10 @@ function Portfolio_reducer (state = initialState, action) {
     case _action_constants_for_PORTFOLIO__WEBPACK_IMPORTED_MODULE_0__["default"].HYDRATEPORTFOLIO: {
 
       const { portfolio, transactionHistory } = action.payload
+      
+      let selectedPortfolioItem = !state.selectedPortfolioItem ? portfolio[Object.keys(portfolio)[0]] : selectedPortfolioItem ;
 
-      return { portfolio, transactionHistory }
+      return { portfolio, transactionHistory, selectedPortfolioItem }
     }
     
     case _action_constants_for_PORTFOLIO__WEBPACK_IMPORTED_MODULE_0__["default"].MAKETRADE: {
@@ -50975,13 +50999,6 @@ function Portfolio_reducer (state = initialState, action) {
       return { ...state }
     }
     
-    case _action_constants_for_PORTFOLIO__WEBPACK_IMPORTED_MODULE_0__["default"].HYDRATEPORTFOLIO: {
-
-      const {portfolio, transactionHistory} = action.payload
-
-      return { portfolio, transactionHistory }
-    }
-
     case _action_constants_for_PORTFOLIO__WEBPACK_IMPORTED_MODULE_0__["default"].HANDLESOCKETMESSAGE: {
 
       const stock = action.payload

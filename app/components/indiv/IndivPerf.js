@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from "react-redux";
+
 import DataNav from '../DataNav'
 
-export default class IndivPerf extends React.Component {
+class IndivPerf extends React.Component {
  
   constructor(props) {
     super(props);
@@ -27,16 +29,20 @@ export default class IndivPerf extends React.Component {
 
     const { selectedDataNavItem } = this.state
 
+    const { selectedPortfolioItem } = this.props 
+
     return (
       <div className="indiv-perf">
         <div className="ticker-box">
 
           <span>
-            $ 231.79
+            $ {selectedPortfolioItem && selectedPortfolioItem.price}
           </span>
 
           <span>
-            +17,39%
+
+            {selectedPortfolioItem && selectedPortfolioItem.data.changePercent}%
+        
           </span>
 
         </div>
@@ -44,9 +50,9 @@ export default class IndivPerf extends React.Component {
         <div className="first-datapoints">
 
               {
-                [["Open", "$ 232.41"],
-                  ["24H  High","$ 234.00"],
-                  ["24H Low", "$233.85"]].map(item=>{
+                [["Open", `$${selectedPortfolioItem.data.open}`],
+                  ["Close", `$${selectedPortfolioItem.data.close}`],
+                  ["Change", `${selectedPortfolioItem.data.change}`]].map(item=>{
 
                   return(
 
@@ -66,9 +72,10 @@ export default class IndivPerf extends React.Component {
         <div className="second-datapoints">
           
               {
-                [["Open", "$ 232.41"],
-                  ["24H  High","$ 234.00"],
-                  ["24H Low", "$233.85"]].map(item=>{
+                [["High", `$${selectedPortfolioItem.data.high}`],
+                 ["Low", `$${selectedPortfolioItem.data.low}`],
+                 ["Volume", `${selectedPortfolioItem.data.volume}`],
+                   ].map(item=>{
 
                   return(
 
@@ -104,3 +111,14 @@ export default class IndivPerf extends React.Component {
     );
   }
 }
+
+const mapStateToProps = ({ Portfolio_state }) => {
+  return {
+    selectedPortfolioItem: Portfolio_state.selectedPortfolioItem
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(IndivPerf);

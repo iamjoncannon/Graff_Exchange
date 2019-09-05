@@ -317,7 +317,7 @@ footer {
   .individual-nav a {
     text-decoration: none; }
   .individual-nav span {
-    font-size: 2vh;
+    font-size: 3vh;
     font-family: "Exo 2", sans-serif;
     color: #34A9FF; }
     @media only screen and (min-device-width: 601px) {
@@ -332,13 +332,16 @@ footer {
   .individual-nav div:nth-child(2) {
     display: flex;
     justify-content: center;
-    align-items: center; }
+    align-items: center;
+    position: relative; }
     @media only screen and (max-device-width: 600px) {
       .individual-nav div:nth-child(2) {
-        flex-grow: .5; } }
+        flex-grow: .5;
+        left: 2.5vh; } }
     @media only screen and (min-device-width: 601px) {
       .individual-nav div:nth-child(2) {
-        flex-grow: initial; } }
+        flex-grow: initial;
+        left: 2vh; } }
   .individual-nav div > i {
     color: #34A9FF;
     position: relative;
@@ -665,7 +668,7 @@ footer {
     border-top: solid #34A9FF 4px; }
   .all-nav span {
     border-top: solid grey 4px;
-    font-size: 3vh;
+    font-size: 2vh;
     color: grey; }
 
 .all-watchlist {

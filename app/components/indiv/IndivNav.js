@@ -1,10 +1,11 @@
 import React from 'react';
-import { isDesktop, isCell, isTab } from '../utils'
+import { connect } from "react-redux";
 import { Link } from 'react-router-dom'
+import { isDesktop, isCell, isTab } from '../utils'
 import IndivSelector from './IndivSelector'
 import TradeBox from './TradeBox'
 
-export default class IndivNav extends React.Component {
+class IndivNav extends React.Component {
  
   constructor(props) {
     super(props);
@@ -15,7 +16,7 @@ export default class IndivNav extends React.Component {
         whichModal : null // options || tradeBox
     }
   }
-  
+
   closeModal = () => {
 
     this.setState({ isModalShowing : false })
@@ -26,6 +27,9 @@ export default class IndivNav extends React.Component {
     const {isModalShowing, whichModal} = this.state
 
     const { pathname } = this.props.location
+    const {selectedPortfolioItem} = this.props
+
+    console.log(selectedPortfolioItem)
 
     return (
 
@@ -45,7 +49,7 @@ export default class IndivNav extends React.Component {
 
         <div>
   
-          <span>AAPL</span> 
+          <span>{selectedPortfolioItem && selectedPortfolioItem.symbol}</span> 
   
           
           { !isDesktop() && 
@@ -105,3 +109,14 @@ export default class IndivNav extends React.Component {
     );
   }
 }
+
+const mapStateToProps = ({ Portfolio_state }) => {
+  return {
+    selectedPortfolioItem: Portfolio_state.selectedPortfolioItem
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(IndivNav);
