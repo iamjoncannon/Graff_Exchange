@@ -79,6 +79,11 @@
         align-items: center;
         justify-content: space-evenly;
         width: 85vw;
+
+        @include desk(){
+
+            width: 50vw;
+        }
     }
 
     .watchlist-item{
@@ -91,9 +96,20 @@
         display: flex;
         justify-content: space-between;
 
+        @include desk(){
+
+            width: 44vw;
+            height: 9vh;
+        }
+
         span {
 
             font-size: 2vh;
+
+            @include desk(){
+
+                font-size: 3vh;
+            }
         }
 
         div:first-child{
@@ -112,6 +128,10 @@
                 white-space: nowrap;
                 overflow: hidden;
                 margin-left: 1vh;
+
+                @include desk(){
+                    font-size: initial
+                }
             }
 
             span:last-child{

@@ -77,7 +77,7 @@ class AllWatchList extends React.Component {
                       <span style={{ color : color }}> {item[1].symbol}</span>
                       <span> {data.companyName}</span>
 
-                      <span style={{ color : color }}> {item[1].price} </span>
+                      <span style={{ color : color }}> ${item[1].price} </span>
                       
                     </div>
 

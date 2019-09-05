@@ -28,7 +28,9 @@ class MainNav extends React.Component {
 
   render(){
 
-    const { path } = this.props.match;
+    const { pathname } = this.props.location;
+
+    console.log( "here's path in main nav", pathname )
 
     return (
 
@@ -49,14 +51,16 @@ class MainNav extends React.Component {
           
           <Link to="/indiv/perf">
 
-            <i className={`fas fa-chart-bar fa-${isDesktop ? "2" : "7"}x ${path === "/indiv" ? "selected" : ""}`} />
+            <i className={`fas fa-chart-bar fa-${isDesktop ? "2" : "7"}x ${ pathname.includes("/indiv") ? "selected" : ""}`} />
+          
           </Link>
 
           <img src={logoUrl} />
           
           <Link to="/all/watchlist">
 
-            <i className={`fas fa-home fa-${isDesktop ? "2" : "7"}x ${path === "/all" ? "selected" : ""}`} />
+            <i className={`fas fa-home fa-${isDesktop ? "2" : "7"}x ${ pathname.includes("/all") ? "selected" : ""}`} />
+        
           </Link>
         
         </div>

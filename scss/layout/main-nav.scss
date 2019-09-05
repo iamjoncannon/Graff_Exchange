@@ -24,7 +24,6 @@
             margin-top: 2vh;
             margin-bottom: 2vh;
             color: grey;
-
             font-size: 4vh;
         }
     }
@@ -43,13 +42,15 @@
             margin-top: 2vh;
             margin-bottom: 2vh;
             color: grey;
+
+            font-size: 3vh;
         }
     }
 
     @include desk(){
 
         position: static;
-        height: 4vh;
+        height: 5vh;
         bottom: initial;
         
         img {
@@ -62,6 +63,7 @@
             margin-top: 2vh;
             margin-bottom: 2vh;
             color: grey;
+            font-size: 5vh;
         }
     }
 

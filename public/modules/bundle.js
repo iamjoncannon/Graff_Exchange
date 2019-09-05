@@ -527,8 +527,10 @@ var MainNav = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var path = this.props.match.path;
+      var pathname = this.props.location.pathname;
 
+
+      console.log("here's path in main nav", pathname);
 
       return _react2.default.createElement(
         'div',
@@ -559,13 +561,13 @@ var MainNav = function (_React$Component) {
           _react2.default.createElement(
             _reactRouterDom.Link,
             { to: '/indiv/perf' },
-            _react2.default.createElement('i', { className: 'fas fa-chart-bar fa-' + (_utils.isDesktop ? "2" : "7") + 'x ' + (path === "/indiv" ? "selected" : "") })
+            _react2.default.createElement('i', { className: 'fas fa-chart-bar fa-' + (_utils.isDesktop ? "2" : "7") + 'x ' + (pathname.includes("/indiv") ? "selected" : "") })
           ),
           _react2.default.createElement('img', { src: _utils.logoUrl }),
           _react2.default.createElement(
             _reactRouterDom.Link,
             { to: '/all/watchlist' },
-            _react2.default.createElement('i', { className: 'fas fa-home fa-' + (_utils.isDesktop ? "2" : "7") + 'x ' + (path === "/all" ? "selected" : "") })
+            _react2.default.createElement('i', { className: 'fas fa-home fa-' + (_utils.isDesktop ? "2" : "7") + 'x ' + (pathname.includes("/all") ? "selected" : "") })
           )
         )
       );
@@ -2023,7 +2025,7 @@ var AllWatchList = function (_React$Component) {
                     _react2.default.createElement(
                       'span',
                       { style: { color: color } },
-                      ' ',
+                      ' $',
                       item[1].price,
                       ' '
                     )

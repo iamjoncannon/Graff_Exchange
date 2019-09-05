@@ -221,11 +221,12 @@ footer {
       .all-screens i {
         margin-top: 2vh;
         margin-bottom: 2vh;
-        color: grey; } }
+        color: grey;
+        font-size: 3vh; } }
   @media only screen and (min-device-width: 1100px) {
     .all-screens {
       position: static;
-      height: 4vh;
+      height: 5vh;
       bottom: initial; }
       .all-screens img {
         height: 6vh;
@@ -233,7 +234,8 @@ footer {
       .all-screens i {
         margin-top: 2vh;
         margin-bottom: 2vh;
-        color: grey; } }
+        color: grey;
+        font-size: 5vh; } }
 
 @media only screen and (min-device-width: 1100px) {
   .desk-nav {
@@ -711,6 +713,9 @@ footer {
     align-items: center;
     justify-content: space-evenly;
     width: 85vw; }
+    @media only screen and (min-device-width: 1100px) {
+      .all-watchlist .watchlist-item-container {
+        width: 50vw; } }
   .all-watchlist .watchlist-item {
     border-bottom: solid black 1px;
     width: 70vw;
@@ -718,8 +723,15 @@ footer {
     margin-bottom: 3vh;
     display: flex;
     justify-content: space-between; }
+    @media only screen and (min-device-width: 1100px) {
+      .all-watchlist .watchlist-item {
+        width: 44vw;
+        height: 9vh; } }
     .all-watchlist .watchlist-item span {
       font-size: 2vh; }
+      @media only screen and (min-device-width: 1100px) {
+        .all-watchlist .watchlist-item span {
+          font-size: 3vh; } }
     .all-watchlist .watchlist-item div:first-child span:nth-of-type(2) {
       color: black;
       font-size: 2.25vw;
@@ -728,6 +740,9 @@ footer {
       white-space: nowrap;
       overflow: hidden;
       margin-left: 1vh; }
+      @media only screen and (min-device-width: 1100px) {
+        .all-watchlist .watchlist-item div:first-child span:nth-of-type(2) {
+          font-size: initial; } }
     .all-watchlist .watchlist-item div:first-child span:last-child {
       display: block; }
     .all-watchlist .watchlist-item div:nth-child(2) {
@@ -779,9 +794,8 @@ footer {
       font-size: 2vh; }
       @media only screen and (min-device-width: 1100px) {
         .all-trans > div:nth-of-type(1) span {
+          font-size: 3vh;
           width: 10vw; } }
-    .all-trans > div:nth-of-type(1) span:nth-of-type(4) {
-      font-size: 1.85vh; }
   .all-trans > div:nth-of-type(2) {
     text-align: center; }
     @media only screen and (max-device-width: 600px) {
@@ -801,9 +815,14 @@ footer {
       width: 16vw; }
       @media only screen and (min-device-width: 1100px) {
         .all-trans > div:nth-of-type(2) span {
-          width: 10vw; } }
+          width: 10vw;
+          font-size: 3vh; } }
     .all-trans > div:nth-of-type(2) span:nth-of-type(5) {
       font-size: 1.5vh; }
+      @media only screen and (min-device-width: 1100px) {
+        .all-trans > div:nth-of-type(2) span:nth-of-type(5) {
+          width: 10vw;
+          font-size: 3vh; } }
 
 html {
   font-size: 62.5%;
