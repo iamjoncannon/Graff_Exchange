@@ -54,7 +54,10 @@
 				"makeTrade",
 				"getOnePrice",
 				"getOpeningPrice",
-				"handleSocketMessage"
+				"handleSocketMessage",
+				"handleNews",
+				"handleFinancials",
+				"handleHistoricalPrice"
 			],
 			"Thunks": [
 				{

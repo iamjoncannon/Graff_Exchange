@@ -45,6 +45,38 @@ export default function Portfolio_reducer (state = initialState, action) {
       return { ...state, portfolio: updatedPortfolio }
     }
     
+    case actions.HANDLENEWS: {
+
+      const {symbol, data } = action.payload
+      let updatedPortfolio = { ...state.portfolio}
+
+      updatedPortfolio[symbol]["news"] = data.data;
+  
+      return { ...state, portfolio: updatedPortfolio }
+    }
+    
+    case actions.HANDLEFINANCIALS: {
+
+      const {symbol, financials } = action.payload
+
+      let updatedPortfolio = { ...state.portfolio}
+
+      updatedPortfolio[symbol]["financials"] = financials[0];
+  
+      return { ...state, portfolio: updatedPortfolio }
+    }
+    
+    case actions.HANDLEHISTORICALPRICE: {
+
+      const {symbol, historical } = action.payload
+      
+      let updatedPortfolio = { ...state.portfolio}
+
+      updatedPortfolio[symbol]["historical"] = historical;
+  
+      return { ...state, portfolio: updatedPortfolio }
+    }
+    
     default:
       return state
   }

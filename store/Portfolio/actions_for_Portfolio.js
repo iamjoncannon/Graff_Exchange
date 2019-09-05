@@ -35,10 +35,34 @@ const handleSocketMessage = (payload) => {
       	}
       }
 
+const handleNews = (payload) => {
+      	return {
+      		type: actions.HANDLENEWS,
+      		payload
+      	}
+      }
+
+const handleFinancials = (payload) => {
+      	return {
+      		type: actions.HANDLEFINANCIALS,
+      		payload
+      	}
+      }
+
+const handleHistoricalPrice = (payload) => {
+      	return {
+      		type: actions.HANDLEHISTORICALPRICE,
+      		payload
+      	}
+      }
+
 export default {
 	hydratePortfolio,
 	makeTrade,
 	getOnePrice,
 	getOpeningPrice,
 	handleSocketMessage,
+	handleNews,
+	handleFinancials,
+	handleHistoricalPrice,
 }
