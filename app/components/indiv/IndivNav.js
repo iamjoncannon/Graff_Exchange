@@ -104,7 +104,7 @@ class IndivNav extends React.Component {
       {
         !isCell() &&
         
-        <div className="selector">
+        <div className="page-selector">
         
           <IndivSelector 
             pathname={pathname} 

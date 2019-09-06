@@ -36,9 +36,9 @@ class IndivTrans extends React.Component {
             Object.entries(transactionHistory)
               .filter(item =>{
 
-                console.log(item[1].Symbol, selectedPortfolioItem.symbol)
+                console.log(item[1].Symbol === selectedPortfolioItem.symbol)
                 
-                item[1].Symbol === selectedPortfolioItem.symbol
+                return item[1].Symbol === selectedPortfolioItem.symbol
               })
               .map((item, i)=>{
 
