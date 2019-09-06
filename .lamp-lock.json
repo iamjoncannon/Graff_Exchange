@@ -57,7 +57,8 @@
 				"handleSocketMessage",
 				"handleNews",
 				"handleFinancials",
-				"handleHistoricalPrice"
+				"handleHistoricalPrice",
+				"handleSymbolSelect"
 			],
 			"Thunks": [
 				{

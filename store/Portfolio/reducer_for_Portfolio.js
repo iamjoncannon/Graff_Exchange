@@ -73,8 +73,15 @@ export default function Portfolio_reducer (state = initialState, action) {
       let updatedPortfolio = { ...state.portfolio}
 
       updatedPortfolio[symbol]["historical"] = historical;
+
+      console.log("GOT HISTORICAL PRICE")
   
       return { ...state, portfolio: updatedPortfolio }
+    }
+    
+    case actions.HANDLESYMBOLSELECT: {
+
+      return { ...state }
     }
     
     default:

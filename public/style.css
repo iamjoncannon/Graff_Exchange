@@ -488,10 +488,10 @@ footer {
         .indiv-perf .ticker-box span:first-child {
           position: static; } }
     .indiv-perf .ticker-box span:nth-of-type(2) {
-      color: green;
+      color: black;
       position: relative;
       font-size: 2vh;
-      right: 3vh;
+      right: -1vh;
       top: 8vh;
       font-weight: 100; }
       @media only screen and (min-device-width: 1100px) {
@@ -545,15 +545,27 @@ footer {
       font-size: 2vh;
       display: block; }
   .indiv-perf .chart-container {
-    border: solid black 5px;
     height: 40vh;
     position: relative;
-    font-size: 5vh;
-    text-align: center; }
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vh; }
+    .indiv-perf .chart-container span:first-child {
+      font-size: 2vh !important; }
+    @media only screen and (max-device-width: 600px) {
+      .indiv-perf .chart-container {
+        top: 22vh;
+        font-size: 0vh; } }
     @media only screen and (min-device-width: 1100px) {
       .indiv-perf .chart-container {
         width: 75vw;
         margin-bottom: 2vh; } }
+    .indiv-perf .chart-container .chart {
+      width: 80%;
+      height: 80%; }
   .indiv-perf .data-nav {
     font-family: "Exo 2", sans-serif;
     font-weight: 500;

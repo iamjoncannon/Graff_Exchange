@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-
+import PerformanceChart from './PerformanceChart'
 import DataNav from '../DataNav'
 
 class IndivPerf extends React.Component {
@@ -9,7 +9,7 @@ class IndivPerf extends React.Component {
     super(props);
     this.state = {
 
-      selectedDataNavItem : "Day",
+      selectedDataNavItem : "Week",
     }
   }
 
@@ -31,6 +31,24 @@ class IndivPerf extends React.Component {
 
     const { selectedPortfolioItem } = this.props 
 
+    function formatChange(input){
+
+      return (input * 100).toFixed(2)
+    }
+
+    function chartPeriod(period){
+
+      switch(period){
+
+        case "Week": 
+          return 5
+        case "Month":
+          return 30
+        case "Year":
+          return 365
+      }
+    }
+
     return (
       <div className="indiv-perf">
         <div className="ticker-box">
@@ -41,67 +59,72 @@ class IndivPerf extends React.Component {
 
           <span>
 
-            {selectedPortfolioItem && selectedPortfolioItem.data.changePercent}%
+            {selectedPortfolioItem && formatChange(selectedPortfolioItem.data.changePercent)}%
         
           </span>
 
         </div>
 
-        <div className="first-datapoints">
+      {/* { selectedPortfolioItem && selectedPortfolioItem.data.open &&
+          <div className="first-datapoints">
 
-              {
-                [["Open", `$${selectedPortfolioItem.data.open}`],
-                  ["Close", `$${selectedPortfolioItem.data.close}`],
-                  ["Change", `${selectedPortfolioItem.data.change}`]].map(item=>{
+                  {[["Open", `$${selectedPortfolioItem.data.open}`],
+                    ["Close", `$${selectedPortfolioItem.data.close}`],
+                    ["Change", `${formatChange(selectedPortfolioItem.data.change)}`]].map(item=>{
 
-                  return(
+                    return(
 
-                    <div>
-                      <span>
-                        {item[0]}
-                      </span>
-                      <span>
-                        {item[1]}
-                      </span>
-                    </div>
-                  )
-                })
-              }
-        </div>
+                      <div>
+                        <span>
+                          {item[0]}
+                        </span>
+                        <span>
+                          {item[1]}
+                        </span>
+                      </div>
+                    )
+                  })}
+          </div>
+        }
 
-        <div className="second-datapoints">
-          
-              {
-                [["High", `$${selectedPortfolioItem.data.high}`],
-                 ["Low", `$${selectedPortfolioItem.data.low}`],
-                 ["Volume", `${selectedPortfolioItem.data.volume}`],
-                   ].map(item=>{
+        { selectedPortfolioItem && selectedPortfolioItem.data.high &&
+          <div className="second-datapoints">
+            
+                  {[["High", `$${selectedPortfolioItem.data.high}`],
+                  ["Low", `$${selectedPortfolioItem.data.low}`],
+                  ["Volume", `${selectedPortfolioItem.data.volume}`],
+                    ].map(item=>{
 
-                  return(
+                    return(
 
-                    <div>
-                      <span>
-                        {item[0]}
-                      </span>
-                      <span>
-                        {item[1]}
-                      </span>
-                    </div>
-                  )
-                })
-              }
+                      <div>
+                        <span>
+                          {item[0]}
+                        </span>
+                        <span>
+                          {item[1]}
+                        </span>
+                      </div>
+                    )
+                  })}
 
-        </div>
+          </div>
+        } */}
 
         <div className="chart-container">
 
           <span> 
-          {selectedDataNavItem}
+
+            {selectedDataNavItem}
+          
           </span>
+
+          <PerformanceChart period={chartPeriod(selectedDataNavItem)} />
+
         </div>
 
         <DataNav 
-          data={["Day", "Week", "Month", "Year"]} 
+          data={["Week", "Month", "Year"]} 
           selectedDataNavItem={selectedDataNavItem}
           switchItem={this.dataSwitch}
         />

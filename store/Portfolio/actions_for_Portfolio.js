@@ -56,6 +56,13 @@ const handleHistoricalPrice = (payload) => {
       	}
       }
 
+const handleSymbolSelect = (payload) => {
+      	return {
+      		type: actions.HANDLESYMBOLSELECT,
+      		payload
+      	}
+      }
+
 export default {
 	hydratePortfolio,
 	makeTrade,
@@ -65,4 +72,5 @@ export default {
 	handleNews,
 	handleFinancials,
 	handleHistoricalPrice,
+	handleSymbolSelect,
 }

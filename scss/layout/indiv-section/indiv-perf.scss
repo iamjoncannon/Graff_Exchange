@@ -32,10 +32,10 @@
         }
 
         span:nth-of-type(2){
-            color: green;
+            color: black;
             position: relative;
             font-size: 2vh;
-            right: 3vh;
+            right: -1vh;
             top: 8vh;
             font-weight: 100;
 
@@ -107,16 +107,36 @@
 
     .chart-container {
 
-        border: solid black 5px;
         height: 40vh;
         position: relative;
-        font-size: 5vh;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 2vh;
+
+        span:first-child{
+            font-size: 2vh !important;
+
+        }
+
+        @include cell(){
+            top: 22vh;
+
+            font-size: 0vh;
+        }
 
         @include desk(){
 
             width: 75vw;
             margin-bottom: 2vh;
+        }
+
+        .chart {
+
+            width: 80%; 
+            height: 80%;
         }
     }
 

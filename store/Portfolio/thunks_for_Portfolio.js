@@ -64,6 +64,65 @@ export const hydratePortfolioThunk = (token) => async dispatch => {
 };
 
 
+// this may not be orthodox OOP, but we can have the 
+// thunk manage whether to update the single page data 
+// by testing whether the various data sources have been 
+// retrieved yet- the function will be called every time
+// the page changes, but the thunk won't make an ajax call
+// unless it needs to
+
+export const hydrateSinglePortfolioPage = (token, selectedPortfolioItem) => async dispatch => {
+
+  let {symbol} = selectedPortfolioItem
+
+  // data for the news section
+
+  if(!selectedPortfolioItem["news"]){
+
+    // console.log("calling news api for", symbol)
+
+    const newsUrl = `https://stocknewsapi.com/api/v1?tickers=${symbol}&items=30&token=pzxhc4yhkhonwmopm8ip6l8bvfspwjtpzxpr4pkp`
+    
+    axios.get(newsUrl).then( ({ data }) => {
+    
+      dispatch(actions.handleNews({ symbol, data }))
+    })
+  }
+  else{
+    // console.log("not calling news api for", symbol)
+  }
+
+  
+  // these can go into local storage since they're not time sensitive
+
+
+  // data for the quarterly financial statements
+
+  const quarterlyfinancialsURL = `https://api.financialmodelingprep.com/api/v3/financials/income-statement/${symbol}?period=quarter`
+
+  axios.get(quarterlyfinancialsURL).then( ({ data }) => {
+      
+    let { financials } = data 
+   
+    dispatch(actions.handleFinancials({ symbol, financials }))
+  })
+
+  // data for the time series chart
+  
+  const timeSeriesData = `https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?timeseries=365`
+
+  axios.get(timeSeriesData).then( ({ data }) => {
+
+    const { historical } = data
+
+    dispatch(actions.handleHistoricalPrice({ symbol, historical }))
+  })
+}
+
+
+
+
+
 export const makeTradeThunk = () => dispatch => {
  
 

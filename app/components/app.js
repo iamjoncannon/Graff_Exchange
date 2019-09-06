@@ -36,28 +36,39 @@ const App = (props) => {
   }
   else{
  
-    // logged in route
+    // trying to hit logged in route 
+    // but not logged in 
 
-    return (
+    if(!props.isLoggedIn){
       
-        <div className="app-container">
-    
-          { !props.isLoggedIn && <Redirect to="/" /> }
+      return(
+        
+        <Redirect to="/" />
+      ) 
+    }
+    else{
+      
+      // logged in routes
+      
+        return (
           
-          <Route path="/" component={MainNav} />
+          <div className="app-container">
+                  
+            <Route path="/" component={MainNav} />
 
-          <Route path="/indiv" component={IndivNav} />
-          <Route exact path="/indiv/perf" component={IndivPerf} />
-          <Route exact path="/indiv/finan" component={IndivFin} />
-          <Route exact path="/indiv/news" component={IndivNews} />
-          <Route exact path="/indiv/trans" component={IndivTrans} />
-          
-          <Route path="/all" component={AllNav} />
-          <Route exact path="/all/watchlist" component={AllWatchlist} />
-          <Route exact path="/all/transactions" component={AllTrans} />
+            <Route path="/indiv" component={IndivNav} />
+            <Route exact path="/indiv/perf" component={IndivPerf} />
+            <Route exact path="/indiv/finan" component={IndivFin} />
+            <Route exact path="/indiv/news" component={IndivNews} />
+            <Route exact path="/indiv/trans" component={IndivTrans} />
+            
+            <Route path="/all" component={AllNav} />
+            <Route exact path="/all/watchlist" component={AllWatchlist} />
+            <Route exact path="/all/transactions" component={AllTrans} />
 
-      </div>
-    )
+        </div>
+      )
+    }
   }
 };
 

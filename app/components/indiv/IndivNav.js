@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom'
 import { isDesktop, isCell, isTab } from '../utils'
 import IndivSelector from './IndivSelector'
 import TradeBox from './TradeBox'
+import { hydrateSinglePortfolioPage } from "../../../store/Portfolio/thunks_for_Portfolio.js"
+
+// this component will manage hydrating data
+// for the individual stock section
 
 class IndivNav extends React.Component {
  
@@ -11,10 +15,39 @@ class IndivNav extends React.Component {
     super(props);
 
     this.state = {
-
+        whichItem: null,
         isModalShowing : false,
         whichModal : null // options || tradeBox
     }
+  }
+
+  componentDidMount(){
+        
+      this.setState({
+          whichItem : this.props.selectedPortfolioItem.symbol
+      })
+
+      this.updateData()
+  }
+
+  componentDidUpdate(){
+
+      if(this.props.selectedPortfolioItem.symbol !== this.state.whichItem){
+          
+          this.setState({
+              whichItem: this.props.selectedPortfolioItem.symbol
+          })
+
+          this.updateData()
+      }
+  }
+
+  updateData(){
+
+      const { selectedPortfolioItem, token } = this.props
+
+      this.props.hydrateSinglePortfolioPage(token, selectedPortfolioItem)
+
   }
 
   closeModal = () => {
@@ -28,8 +61,6 @@ class IndivNav extends React.Component {
 
     const { pathname } = this.props.location
     const {selectedPortfolioItem} = this.props
-
-    console.log(selectedPortfolioItem)
 
     return (
 
@@ -110,13 +141,18 @@ class IndivNav extends React.Component {
   }
 }
 
-const mapStateToProps = ({ Portfolio_state }) => {
+const mapStateToProps = ({ Portfolio_state, User_state }) => {
   return {
+    token: User_state.token,
     selectedPortfolioItem: Portfolio_state.selectedPortfolioItem
   };
 };
 
+const mapDispatchToProps = dispatch => ({
+  hydrateSinglePortfolioPage: (...args) => dispatch(hydrateSinglePortfolioPage(...args)),
+});
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(IndivNav);
