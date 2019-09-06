@@ -21,7 +21,13 @@ export default function Portfolio_reducer (state = initialState, action) {
     
     case actions.MAKETRADE: {
 
-      return { ...state }
+      let { symbol, trade } = action.payload
+
+      let updatedPortfolio = {...state.portfolio } 
+
+      updatedPortfolio[symbol]["quantity"] = trade[1]
+
+      return { ...state, portfolio: updatedPortfolio  }
     }
     
     case actions.GETONEPRICE: {
@@ -78,8 +84,6 @@ export default function Portfolio_reducer (state = initialState, action) {
     }
     
     case actions.HANDLESYMBOLSELECT: {
-
-      
 
       const nextSelect = state.portfolio[action.payload]
 

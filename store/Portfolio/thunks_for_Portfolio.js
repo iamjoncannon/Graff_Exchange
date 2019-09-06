@@ -123,20 +123,32 @@ export const hydrateSinglePortfolioPage = (token, selectedPortfolioItem) => asyn
   })
 }
 
+export const makeTradeThunk = (symbol, Quantity, Type, Price, token) => async dispatch => {
 
-
-
-
-export const makeTradeThunk = () => dispatch => {
+  /*
+    endpoint expects:
+     Symbol: '',
+     Quantity: '',
+     Type: 'Buy',
+     Price: ''
+  */
  
+    Quantity = Number(Quantity)
 
-  
-};
+    let trade 
 
-export const getOnePriceThunk = () => dispatch => {
- 
+    try{
 
-  
+      trade = await axios.post( urlPrefix + '/maketransaction', {Symbol: symbol, Quantity, Type, Price}, makeHeader(token)) 
+    }
+    catch(err){
+
+      console.log(err)
+    }
+
+    trade = trade.data
+
+    dispatch(actions.makeTrade({symbol, trade})) 
 };
 
 async function getOpeningPriceThunk (symbol, token) {
@@ -171,9 +183,7 @@ async function getOpeningPriceThunk (symbol, token) {
 export default {
 	hydratePortfolioThunk,
 	makeTradeThunk,
-	getOnePriceThunk,
 }
-
 
 function makeHeader(token){
   

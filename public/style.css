@@ -308,6 +308,15 @@ footer {
     .modal-container .trade-box > div > span {
       font-size: 5vh;
       color: #34A9FF; }
+    .modal-container .trade-box .trade-tooltip {
+      top: -7vh;
+      font-size: .8rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      width: 10vw;
+      border-radius: 10px;
+      left: 9vw;
+      padding: .5rem; }
   .modal-container .symbol-selector {
     margin-top: 10vh;
     background-color: white;

@@ -1,10 +1,11 @@
 import actions from "./action_constants_for_USER"
+import Portfolio_actions from "../Portfolio/action_constants_for_PORTFOLIO"
 
 const initialState = {
   balance: '',
   name: '',
   email: '', 
-  token: "", // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6I…VyIn0.rIS_sv4nDsPc8RfiQ2XFCwaAA4Gv-gGty2e5s6FDQtU",
+  token: "", 
   isLoggedIn: false,
 }
 
@@ -25,6 +26,11 @@ export default function User_reducer (state = initialState, action) {
     case actions.LOGOUT: {
 
       return { isLoggedIn: false }
+    }
+
+    case Portfolio_actions.MAKETRADE: {
+
+      return { ...state, Balance :  action.payload.trade[0] }
     }
     
     default:

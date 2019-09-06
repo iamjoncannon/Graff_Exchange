@@ -64,6 +64,18 @@
             color: $light-blue;
             
         }
+
+        .trade-tooltip {
+            top: -7vh;
+            font-size: .8rem;
+            background-color: rgba(0,0,0,.6);
+            color: white;
+            width: 10vw;
+            border-radius: 10px;
+            left: 9vw;
+            padding: .5rem;
+        } 
+        
     }
 
     .symbol-selector {
