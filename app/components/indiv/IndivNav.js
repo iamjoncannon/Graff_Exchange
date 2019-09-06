@@ -46,7 +46,7 @@ class IndivNav extends React.Component {
 
       const { selectedPortfolioItem, token } = this.props
 
-      this.props.hydrateSinglePortfolioPage(token, selectedPortfolioItem)
+      this.props.hydrateSinglePortfolioPage(token, selectedPortfolioItem, this.props.portfolio)
 
   }
 
@@ -74,7 +74,7 @@ class IndivNav extends React.Component {
              onClick={()=>this.setState({isModalShowing: true, whichModal: 'selector'})}
           />
           :
-          <div style={{width: isDesktop()? "3.5vw" : "7vw"}}></div>
+          <div style={{width: isDesktop()? "0vw" : "7vw"}}></div>
         
         }
 

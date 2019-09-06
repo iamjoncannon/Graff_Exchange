@@ -1,26 +1,18 @@
 import React from 'react';
 import { logoUrl } from '../utils'
+import { connect } from "react-redux";
 
-export default function IndivNews (props){
+function IndivNews (props){
 
-  const news  = [
-     {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
-     {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
-     {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
-     {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
-     {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
-     {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
-     {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
-     {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
-     {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
-     {title : "blankity blank", date : "1/1/2019", text: "yada yada", image_url: logoUrl }, 
-    ];
+    const {selectedPortfolioItem} = props
+
+    window.scrollTo(0, 0);
 
   return (
 
     <div className="indiv-container">
 
-      {news.map((newsItem, i) =>{
+      {selectedPortfolioItem && selectedPortfolioItem.news.map((newsItem, i) =>{
 
           return (
               <div className="news-box"> 
@@ -47,8 +39,6 @@ export default function IndivNews (props){
                   <img 
                       src={newsItem.image_url} 
                   />
-
-
               </div>
           )
       })
@@ -57,3 +47,14 @@ export default function IndivNews (props){
     </div>
   );
 };
+
+const mapStateToProps = ({ Portfolio_state }) => {
+    return {
+      selectedPortfolioItem: Portfolio_state.selectedPortfolioItem
+    };
+  };
+  
+  export default connect(
+    mapStateToProps,
+    null
+  )(IndivNews);

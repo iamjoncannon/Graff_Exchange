@@ -1,59 +1,7 @@
 import React from 'react';
+import { connect } from "react-redux";
 
-const dummyData = [
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-  ["Buy", "4", "1152", "2019-07-16"],
-]
-
-export default class IndivTrans extends React.Component {
+class IndivTrans extends React.Component {
  
   constructor(props) {
     super(props);
@@ -67,6 +15,8 @@ export default class IndivTrans extends React.Component {
   }
 
   render() {
+
+    const {transactionHistory, selectedPortfolioItem} = this.props
 
     return (
       <div className="indiv-trans indiv-container">
@@ -82,17 +32,28 @@ export default class IndivTrans extends React.Component {
 
         <div>
 
-          {
-            dummyData.map((item, i)=>{
-              return(
+          { transactionHistory &&
+            Object.entries(transactionHistory)
+              .filter(item =>{
 
-                <div>
-                  <span>{item[0]}</span>
-                  <span>{item[1]} </span>
-                  <span>{item[2]}</span>
-                  <span>{item[3]}</span>
-                </div>
-              )
+                console.log(item[1].Symbol, selectedPortfolioItem.symbol)
+                
+                item[1].Symbol === selectedPortfolioItem.symbol
+              })
+              .map((item, i)=>{
+
+                let date = item[1].Date 
+                date = date.slice(0,date.indexOf("T"))
+
+                return(
+
+                  <div>
+                    <span>{item[1].Type}</span>
+                    <span>{item[1].Quantity}</span>
+                    <span>${item[1].Price}</span>
+                    <span>{date}</span>
+                  </div>
+                )
             })
           }
         </div>
@@ -101,3 +62,16 @@ export default class IndivTrans extends React.Component {
   }
 }
 
+
+const mapStateToProps = ({ Portfolio_state }) => {
+
+  return {
+    transactionHistory : Portfolio_state.transactionHistory,
+    selectedPortfolioItem: Portfolio_state.selectedPortfolioItem
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(IndivTrans);
