@@ -45,7 +45,7 @@ class PerformanceChart extends React.Component {
         let data = this.props.selectedPortfolioItem.historical.slice(0, this.props.period)
 
         for(let each in data){
-            data[each].date = data[each].date.replace("2019-", "") 
+            data[each].date = data[each].date.replace("2019-", "").replace("2018-", "")
         }
 
         return (
@@ -55,7 +55,7 @@ class PerformanceChart extends React.Component {
                 margin={{top: 30, right: 30, left: 30, bottom: 5}}
             >
 
-                <XAxis dataKey="date"  />
+                <XAxis dataKey="date"  hide={true}/>
 
                 <YAxis domain={['auto', 'auto']} />
                 

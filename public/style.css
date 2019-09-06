@@ -557,8 +557,7 @@ footer {
       font-size: 2vh !important; }
     @media only screen and (max-device-width: 600px) {
       .indiv-perf .chart-container {
-        top: 22vh;
-        font-size: 0vh; } }
+        top: 22vh; } }
     @media only screen and (min-device-width: 1100px) {
       .indiv-perf .chart-container {
         width: 75vw;

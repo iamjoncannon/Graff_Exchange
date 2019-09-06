@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from "react-redux";
 import DataNav from '../DataNav'
 
 const dummyData = {
@@ -36,7 +37,7 @@ const dummyData = {
     aanotherThing8 : 'another value',
 }
 
-export default class IndivFin extends React.Component {
+class IndivFin extends React.Component {
  
   constructor(props) {
     super(props);
@@ -63,6 +64,8 @@ export default class IndivFin extends React.Component {
 
     window.scrollTo(0, 0);
 
+    const {selectedPortfolioItem} = this.props
+
     return (
 
       <div>
@@ -72,7 +75,7 @@ export default class IndivFin extends React.Component {
 
           <span>{this.state.selectedDataNavItem}</span>
 
-          {Object.entries(dummyData).map(item=>{
+          { selectedPortfolioItem && Object.entries(selectedPortfolioItem.financials).map(item=>{
             
             return(
 
@@ -101,3 +104,14 @@ export default class IndivFin extends React.Component {
     );
   }
 }
+
+const mapStateToProps = ({ Portfolio_state }) => {
+  return {
+    selectedPortfolioItem: Portfolio_state.selectedPortfolioItem
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(IndivFin);
