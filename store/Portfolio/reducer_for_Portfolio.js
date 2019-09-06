@@ -2,8 +2,8 @@ import actions from "./action_constants_for_PORTFOLIO"
 
 const initialState = {
   selectedPortfolioItem: null,
-  portfolio: {},
-  transactionHistory: {}
+  portfolio: { },
+  transactionHistory: { }
 }
 
 export default function Portfolio_reducer (state = initialState, action) {
@@ -73,15 +73,17 @@ export default function Portfolio_reducer (state = initialState, action) {
       let updatedPortfolio = { ...state.portfolio}
 
       updatedPortfolio[symbol]["historical"] = historical;
-
-      console.log("GOT HISTORICAL PRICE")
   
       return { ...state, portfolio: updatedPortfolio }
     }
     
     case actions.HANDLESYMBOLSELECT: {
 
-      return { ...state }
+      
+
+      const nextSelect = state.portfolio[action.payload]
+
+      return { ...state, selectedPortfolioItem : nextSelect }
     }
     
     default:

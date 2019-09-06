@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 function IndivNews (props){
 
-    const {selectedPortfolioItem} = props
+    const { news } = props
 
     window.scrollTo(0, 0);
 
@@ -12,7 +12,7 @@ function IndivNews (props){
 
     <div className="indiv-container">
 
-      {selectedPortfolioItem && selectedPortfolioItem.news.map((newsItem, i) =>{
+      { news && news.map((newsItem, i) =>{
 
           return (
               <div className="news-box"> 
@@ -42,7 +42,7 @@ function IndivNews (props){
               </div>
           )
       })
-
+    
       }
     </div>
   );
@@ -50,7 +50,7 @@ function IndivNews (props){
 
 const mapStateToProps = ({ Portfolio_state }) => {
     return {
-      selectedPortfolioItem: Portfolio_state.selectedPortfolioItem
+      news: Portfolio_state.selectedPortfolioItem.news
     };
   };
   

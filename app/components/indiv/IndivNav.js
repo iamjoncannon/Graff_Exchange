@@ -5,9 +5,12 @@ import { isDesktop, isCell, isTab } from '../utils'
 import IndivSelector from './IndivSelector'
 import TradeBox from './TradeBox'
 import { hydrateSinglePortfolioPage } from "../../../store/Portfolio/thunks_for_Portfolio.js"
+import actions  from '../../../store/Portfolio/actions_for_Portfolio.js'
 
-// this component will manage hydrating data
+// this component manages hydrating data
 // for the individual stock section
+// as well as the navigational logic of
+// that section
 
 class IndivNav extends React.Component {
  
@@ -57,10 +60,9 @@ class IndivNav extends React.Component {
 
   render() {
 
-    const {isModalShowing, whichModal} = this.state
-
+    const { isModalShowing, whichModal } = this.state
     const { pathname } = this.props.location
-    const {selectedPortfolioItem} = this.props
+    const { selectedPortfolioItem, portfolio, handleSymbolSelect } = this.props
 
     return (
 
@@ -71,14 +73,16 @@ class IndivNav extends React.Component {
         { isCell() ? 
        
           <i className="fas fa-bars fa-7x" 
-             onClick={()=>this.setState({isModalShowing: true, whichModal: 'selector'})}
+             onClick={()=>this.setState({isModalShowing: true, whichModal: 'page-selector'})}
           />
           :
           <div style={{width: isDesktop()? "0vw" : "7vw"}}></div>
         
         }
 
-        <div>
+        <div  
+          onClick={()=>this.setState({isModalShowing: true, whichModal: 'symbol-selector'})}
+        >
   
           <span>{selectedPortfolioItem && selectedPortfolioItem.symbol}</span> 
   
@@ -118,18 +122,41 @@ class IndivNav extends React.Component {
 
           <div onClick={ (e)=> e.stopPropagation() } className={whichModal}>
             
-              { whichModal === 'selector' ? 
+              { whichModal === 'page-selector' &&
 
                 <IndivSelector 
                   pathname={pathname} 
                   exit={this.closeModal}
                 />
+              }
 
-                : 
+              { whichModal === 'trade-box' && 
                 
                 <TradeBox  
                   exit={this.closeModal}
                 />
+              }
+
+              {
+                whichModal === 'symbol-selector' && portfolio &&
+
+                
+                
+                  <div onClick={(e)=> { 
+                      handleSymbolSelect(e.target.textContent)
+                      this.setState({isModalShowing: false})
+                    }} > 
+
+                    {Object.entries(portfolio).map((item)=>{
+
+                     
+
+                        return(
+                          <span>{item[0]}</span>
+                        )
+                    })}
+                  </div>
+                
               }
 
           </div>
@@ -144,12 +171,14 @@ class IndivNav extends React.Component {
 const mapStateToProps = ({ Portfolio_state, User_state }) => {
   return {
     token: User_state.token,
-    selectedPortfolioItem: Portfolio_state.selectedPortfolioItem
+    selectedPortfolioItem: Portfolio_state.selectedPortfolioItem,
+    portfolio: Portfolio_state.portfolio
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   hydrateSinglePortfolioPage: (...args) => dispatch(hydrateSinglePortfolioPage(...args)),
+  handleSymbolSelect: (symbol) => dispatch(actions.handleSymbolSelect(symbol)),
 });
 
 export default connect(

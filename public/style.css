@@ -308,6 +308,20 @@ footer {
     .modal-container .trade-box > div > span {
       font-size: 5vh;
       color: #34A9FF; }
+  .modal-container .symbol-selector {
+    margin-top: 10vh;
+    background-color: white;
+    width: 30vh;
+    cursor: pointer;
+    font-size: 5vh;
+    color: #34A9FF; }
+    .modal-container .symbol-selector > div {
+      max-height: 81vh;
+      overflow: scroll;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; }
 
 .individual-nav {
   display: flex;
@@ -349,18 +363,18 @@ footer {
     left: 1vh; }
 
 @media only screen and (max-device-width: 600px) {
-  .selector {
+  .page-selector {
     margin-top: 10vh;
     background-color: white;
     width: 40vh;
     height: 40vh; } }
 
 @media only screen and (min-device-width: 601px) {
-  .selector {
+  .page-selector {
     margin-bottom: 1vh; } }
 
 @media only screen and (max-device-width: 600px) {
-  .selector > div {
+  .page-selector > div {
     height: 100%;
     width: 100%;
     display: flex;
@@ -369,26 +383,26 @@ footer {
     align-items: center; } }
 
 @media only screen and (min-device-width: 601px) {
-  .selector > div {
+  .page-selector > div {
     display: flex;
     align-items: center;
     justify-content: space-evenly; } }
 
-.selector .selected {
+.page-selector .selected {
   border-bottom: solid #34A9FF 3px; }
 
-.selector span, .selector a {
+.page-selector span, .page-selector a {
   color: black;
   display: inline-block; }
   @media only screen and (max-device-width: 600px) {
-    .selector span, .selector a {
+    .page-selector span, .page-selector a {
       font-size: 4vh; } }
   @media only screen and (min-device-width: 601px) {
-    .selector span, .selector a {
+    .page-selector span, .page-selector a {
       text-align: center;
       font-size: 2vh; } }
   @media only screen and (max-device-width: 600px) {
-    .selector span:not(:last-child), .selector a:not(:last-child) {
+    .page-selector span:not(:last-child), .page-selector a:not(:last-child) {
       margin-bottom: 2.5vh; } }
 
 .indiv-fin {
@@ -435,7 +449,8 @@ footer {
   position: fixed;
   top: 85vh;
   width: 100vw;
-  font-size: 2vh; }
+  font-size: 2vh;
+  padding-top: 1vh; }
   @media only screen and (min-device-width: 601px) {
     .indiv-fin + .data-nav {
       top: 89vh; } }

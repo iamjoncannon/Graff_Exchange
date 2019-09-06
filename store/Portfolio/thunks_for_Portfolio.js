@@ -38,7 +38,11 @@ export const hydratePortfolioThunk = (token) => async dispatch => {
 
   dispatch(actions.hydratePortfolio( { portfolio : {...portfolio}, 
                                        transactionHistory: {...JSON.parse(transactionHistory.data)},                 
-                                     } ))
+                                       financials : null,
+                                       historical : null,
+                                       news : null
+                                      } 
+                                     ))
   
   // we have the initial portfolio, now we need to add current data
   // from an external API using an endpoint from the Gopher API

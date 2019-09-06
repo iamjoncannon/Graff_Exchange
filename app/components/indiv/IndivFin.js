@@ -2,41 +2,6 @@ import React from 'react';
 import { connect } from "react-redux";
 import DataNav from '../DataNav'
 
-const dummyData = {
-    thing : 'value',
-    anotherThing : 'another value',
-    thing2 : 'value',
-    anotherThing2 : 'another value',
-    thing3 : 'value',
-    anotherThing3 : 'another value',
-    thing4 : 'value',
-    anotherThing4 : 'another value',
-    thing5 : 'value',
-    anotherThing5 : 'another value',
-    thing6 : 'value',
-    anotherThing6 : 'another value',
-    thing7 : 'value',
-    anotherThing7 : 'another value',
-    thing8 : 'value',
-    anotherThing8 : 'another value',
-    athing : 'value',
-    aanotherThing : 'another value',
-    athing2 : 'value',
-    aanotherThing2 : 'another value',
-    athing3 : 'value',
-    aanotherThing3 : 'another value',
-    athing4 : 'value',
-    anotherThing4 : 'another value',
-    athing5 : 'value',
-    aanotherThing5 : 'another value',
-    athing6 : 'value',
-    aanotherThing6 : 'another value',
-    athing7 : 'value',
-    aanotherThing7 : 'another value',
-    athing8 : 'value',
-    aanotherThing8 : 'another value',
-}
-
 class IndivFin extends React.Component {
  
   constructor(props) {
@@ -63,8 +28,8 @@ class IndivFin extends React.Component {
   render() {
 
     window.scrollTo(0, 0);
-
-    const {selectedPortfolioItem} = this.props
+    
+    const {financials} = this.props
 
     return (
 
@@ -75,7 +40,7 @@ class IndivFin extends React.Component {
 
           <span>{this.state.selectedDataNavItem}</span>
 
-          { selectedPortfolioItem && Object.entries(selectedPortfolioItem.financials).map(item=>{
+          { financials && Object.entries(financials).map(item=>{
             
             return(
 
@@ -107,7 +72,7 @@ class IndivFin extends React.Component {
 
 const mapStateToProps = ({ Portfolio_state }) => {
   return {
-    selectedPortfolioItem: Portfolio_state.selectedPortfolioItem
+    financials: Portfolio_state.selectedPortfolioItem.financials
   };
 };
 
