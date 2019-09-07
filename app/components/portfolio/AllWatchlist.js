@@ -2,20 +2,27 @@ import React from 'react';
 import { connect } from "react-redux";
 import { isDesktop } from '../utils'
 import AddSymbolBox from "./AddSymbolBox"
-import { makeTradeThunk } from "../../../store/Portfolio/thunks_for_Portfolio.js"
 
 class AllWatchList extends React.Component {
  
   constructor(props) {
     super(props);
 
-    this.state = {
+      this.state = {
 
-        isModalShowing : false,
-        edit: false,
-        unwatch: []
-    }
+          isModalShowing : false,
+          edit: false,
+          hideList: []
+      }
 
+   }
+
+   componentDidMount(){
+
+      this.setState({
+
+        hideList: JSON.parse(localStorage.getItem('hideList'))
+      })
    }
 
     closeModal = () => {
@@ -25,15 +32,26 @@ class AllWatchList extends React.Component {
 
     handleEdit = (item) =>{
       
-      // in the future could make an option to liquidate the holding
-      // this.props.makeTradeThunk(symbol, quantity, "Sell", price, this.props.token)
+      const { hideList } = this.state
+      let { symbol } = item[1]
+      
+      let newHidelist 
 
-      // for now-- just going to unwatch it for this session- could 
-      // put this in local storage as well in the future
+      if(hideList.includes(symbol)){
+
+        newHidelist = hideList.filter(item => item !== symbol)
+      }
+      else{
+
+        newHidelist = [ ...this.state.hideList, item[1].symbol ]
+      }
+
+      localStorage.setItem('hideList', JSON.stringify(newHidelist))
+
       this.setState({
-        unwatch : [...this.state.unwatch, item[1].symbol]
-      })
 
+        hideList : newHidelist
+      })
     }
   
     render() {
@@ -50,7 +68,7 @@ class AllWatchList extends React.Component {
           <div>
 
             <i 
-              className={`fas fa-plus fa-${isDesktop() ? "2" : "7"}x`} 
+              className={`fas fa-plus fa-plus-edit fa-${isDesktop() ? "2" : "7"}x`} 
               onClick={()=>this.setState({edit: false, isModalShowing: true})}
             />
           
@@ -70,13 +88,22 @@ class AllWatchList extends React.Component {
               Object.entries(portfolio)
                 .filter((item)=>{
 
-                    return !this.state.unwatch.includes(item[1].symbol)
+                    if(this.state.edit){
+
+                      return true
+                    }
+                    else{
+
+                      return !this.state.hideList.includes(item[1].symbol)
+                    }
                 })
                 .map((item, i)=>{
 
-                  const { data } = item[1]
+                  const { data, symbol } = item[1]
 
                   const color = data.latestPrice < item[1].price ? "green" : "red";
+
+                  const { hideList } = this.state 
 
                   return(
 
@@ -86,13 +113,13 @@ class AllWatchList extends React.Component {
                         
 
                         <i 
-                          className={`fas fa-minus fa-${isDesktop() ? "2" : "7"}x`} 
+                          className={`fas fa-${ hideList.includes(symbol) ? "plus" : "minus"} fa-${isDesktop() ? "2" : "7"}x`} 
                           onClick={()=> this.handleEdit(item) }
                         />
                       
                       }
 
-                    <div className="watchlist-item">
+                    <div className="watchlist-item" style={{opacity: hideList.includes(symbol) ? ".5" : "1" }}>
 
                       <div>
 
@@ -134,7 +161,6 @@ class AllWatchList extends React.Component {
     };
 }
 
-
 const mapStateToProps = ({ User_state, Portfolio_state }) => {
 
   return {
@@ -143,12 +169,7 @@ const mapStateToProps = ({ User_state, Portfolio_state }) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  makeTradeThunk: (...args) => dispatch(makeTradeThunk(...args)),
-});
-
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(AllWatchList);

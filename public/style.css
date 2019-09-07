@@ -728,7 +728,9 @@ footer {
     color: black;
     font-size: 3.5vh;
     background-color: white; }
-  .all-watchlist .fa-plus {
+    .all-watchlist i:hover {
+      cursor: pointer; }
+  .all-watchlist .fa-plus-edit {
     margin-right: 4vh; }
   .all-watchlist > div:first-child {
     position: fixed;
@@ -747,6 +749,9 @@ footer {
       max-height: 70vh;
       overflow: scroll;
       margin-top: 5vh; } }
+  @media only screen and (min-device-width: 1100px) {
+    .all-watchlist > div:nth-child(3) {
+      margin-top: 2vh; } }
   .all-watchlist .fa-minus {
     display: inline-block;
     margin-bottom: 2vh;
@@ -756,6 +761,10 @@ footer {
     align-items: center;
     justify-content: space-evenly;
     width: 85vw; }
+    .all-watchlist .watchlist-item-container .fa-plus {
+      margin-right: 0vh;
+      font-size: 2vh;
+      margin-bottom: 1vh; }
     @media only screen and (min-device-width: 1100px) {
       .all-watchlist .watchlist-item-container {
         width: 50vw; } }
@@ -769,12 +778,13 @@ footer {
     @media only screen and (min-device-width: 1100px) {
       .all-watchlist .watchlist-item {
         width: 44vw;
-        height: 9vh; } }
+        height: 7vh;
+        margin-bottom: .5vh; } }
     .all-watchlist .watchlist-item span {
       font-size: 2vh; }
       @media only screen and (min-device-width: 1100px) {
         .all-watchlist .watchlist-item span {
-          font-size: 3vh; } }
+          font-size: 2vh; } }
     .all-watchlist .watchlist-item div:first-child span:nth-of-type(2) {
       color: black;
       font-size: 2.25vw;
@@ -785,7 +795,7 @@ footer {
       margin-left: 1vh; }
       @media only screen and (min-device-width: 1100px) {
         .all-watchlist .watchlist-item div:first-child span:nth-of-type(2) {
-          font-size: initial; } }
+          font-size: 1.5vh; } }
     .all-watchlist .watchlist-item div:first-child span:last-child {
       display: block; }
     .all-watchlist .watchlist-item div:nth-child(2) {
@@ -836,7 +846,7 @@ footer {
     text-align: center; }
     .all-trans > div:nth-of-type(1) span {
       display: inline-block;
-      border-bottom: solid grey 4px;
+      border-bottom: solid black 1px;
       width: 16vw;
       font-size: 2vh; }
       @media only screen and (min-device-width: 1100px) {
@@ -873,7 +883,7 @@ footer {
       @media only screen and (min-device-width: 1100px) {
         .all-trans > div:nth-of-type(2) span:nth-of-type(5) {
           width: 10vw;
-          font-size: 1.75vh; } }
+          font-size: 2vh; } }
 
 html {
   font-size: 62.5%;

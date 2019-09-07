@@ -28,9 +28,13 @@
         font-size: 3.5vh;
         background-color: white;
 
+        &:hover{
+            cursor: pointer;
+        }
+
     }
     
-    .fa-plus {
+    .fa-plus-edit {
 
         margin-right: 4vh;
     }
@@ -59,13 +63,15 @@
             overflow: scroll;
         }
 
-
         @include tab(){
 
             max-height: 70vh;
             overflow: scroll;
-
             margin-top: 5vh;
+        }
+
+        @include desk(){
+            margin-top: 2vh;
         }
     }
 
@@ -85,13 +91,19 @@
         justify-content: space-evenly;
         width: 85vw;
 
+        .fa-plus {
+            margin-right: 0vh;
+            font-size: 2vh;
+            margin-bottom: 1vh;
+        }
+
         @include desk(){
 
             width: 50vw;
         }
     }
 
-    .watchlist-item{
+    .watchlist-item {
         
         border-bottom: solid black 1px;
         width: 70vw;
@@ -104,7 +116,8 @@
         @include desk(){
 
             width: 44vw;
-            height: 9vh;
+            height: 7vh;
+            margin-bottom: .5vh;
         }
 
         span {
@@ -113,7 +126,7 @@
 
             @include desk(){
 
-                font-size: 3vh;
+                font-size: 2vh;
             }
         }
 
@@ -135,7 +148,7 @@
                 margin-left: 1vh;
 
                 @include desk(){
-                    font-size: initial
+                    font-size: 1.5vh;
                 }
             }
 

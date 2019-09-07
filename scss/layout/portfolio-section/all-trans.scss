@@ -46,7 +46,7 @@
         span{
 
             display:inline-block;
-            border-bottom: solid grey 4px;
+            border-bottom: solid black 1px;
             width: 16vw;
             font-size: 2vh;
 
@@ -101,7 +101,7 @@
             @include desk(){
 
                 width: 10vw;
-                font-size: 1.75vh;
+                font-size: 2vh;
             }
         }
     }
