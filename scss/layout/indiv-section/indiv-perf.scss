@@ -140,7 +140,6 @@
 
     .data-nav {
 
-        @include secondary-grey-text;
         text-transform: uppercase;
         display: flex;
         justify-content: space-evenly;
@@ -161,19 +160,16 @@
 
         span{
             cursor: pointer;
-            border-top: solid grey 2px;
 
-            @include desk(){
-
-                
+            @include desk(){                
                 &:not(:last-child){
-                    // margin-right: 10vh;
+
                 }
             }
         }
 
         .selected {
-            border-top: solid $light-blue 10px;
+            border-top: solid $light-blue 3px;
         }
     }
 }

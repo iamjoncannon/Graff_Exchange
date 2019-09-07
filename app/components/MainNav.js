@@ -45,20 +45,20 @@ class MainNav extends React.Component {
 
         <div className="all-screens">
           
+          <Link to="/all/watchlist">
+
+            <i className={`fas fa-home fa-${isDesktop ? "2" : "7"}x ${ pathname.includes("/all") ? "selected" : ""}`} />
+        
+          </Link>
+
+          <img src={logoUrl} />
+          
           <Link to="/indiv/perf">
 
             <i className={`fas fa-chart-bar fa-${isDesktop ? "2" : "7"}x ${ pathname.includes("/indiv") ? "selected" : ""}`} />
           
           </Link>
 
-          <img src={logoUrl} />
-          
-          <Link to="/all/watchlist">
-
-            <i className={`fas fa-home fa-${isDesktop ? "2" : "7"}x ${ pathname.includes("/all") ? "selected" : ""}`} />
-        
-          </Link>
-        
         </div>
 
       </div>

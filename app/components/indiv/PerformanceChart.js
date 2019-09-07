@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import {isDesktop} from '../utils'
 
 class PerformanceChart extends React.Component {
 
@@ -42,7 +43,9 @@ class PerformanceChart extends React.Component {
 
         const { width, height } = this.state.dimensions;
 
-        let data = this.props.selectedPortfolioItem.historical.slice(0, this.props.period)
+        const  {selectedPortfolioItem, period } = this.props
+
+        let data = selectedPortfolioItem.historical.slice(0, period)
 
         for(let each in data){
             data[each].date = data[each].date.replace("2019-", "").replace("2018-", "")
@@ -55,7 +58,7 @@ class PerformanceChart extends React.Component {
                 margin={{top: 30, right: 30, left: 30, bottom: 5}}
             >
 
-                <XAxis dataKey="date"  hide={true}/>
+                <XAxis dataKey="date"  hide={ !isDesktop() || period > 100 ? true : false}/>
 
                 <YAxis domain={['auto', 'auto']} />
                 

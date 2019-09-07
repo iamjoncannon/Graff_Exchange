@@ -23,7 +23,7 @@
 
         position: absolute;
         bottom: initial;
-        top: 20vh;
+        top: 17vh;
         width: 100vw;
     }
     
@@ -32,15 +32,16 @@
     }
     
     .selected {
-        color: $light-blue;
-        border-top: solid $light-blue 4px;
+
+        border-top: solid $light-blue 3px;
+
+        @include desk(){
+            border-top: initial;
+            border-bottom: solid $light-blue 3px;
+        }
     }
 
     span {
-        
-        border-top: solid grey 4px;
         font-size: 2vh;
-        color: grey;
-
     }
 }

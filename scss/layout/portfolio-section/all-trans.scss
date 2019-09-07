@@ -26,6 +26,10 @@
             margin-bottom: 8vh;
         }
 
+        @include desk(){
+
+            margin-top: 2vh;
+        }
     }
 
     // container for header

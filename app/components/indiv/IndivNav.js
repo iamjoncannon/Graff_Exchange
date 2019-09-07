@@ -76,7 +76,7 @@ class IndivNav extends React.Component {
              onClick={()=>this.setState({isModalShowing: true, whichModal: 'page-selector'})}
           />
           :
-          <div style={{width: isDesktop()? "0vw" : "7vw"}}></div>
+          <div style={{width: isDesktop()? "1.7vw" : "7vw"}}></div>
         
         }
 

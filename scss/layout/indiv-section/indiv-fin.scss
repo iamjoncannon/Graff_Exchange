@@ -48,8 +48,8 @@
 }
 
 .indiv-fin + .data-nav {
-
-    @include secondary-grey-text;
+    
+    color: black;
     text-transform: uppercase;
     display: flex;
     justify-content: space-evenly;
@@ -67,11 +67,12 @@
     @include desk(){
 
         position: fixed;
-        top: 23vh;
+        top: 20vh;
         width: 100vw;
-        height: 4vh;
+        height: 3vh;
         background-color: white;
         justify-content: center;
+        padding-top: 0vh;
     }
 
     span{

@@ -16,6 +16,11 @@
         font-weight: 100;
         margin-top: 4vh;
         margin-bottom: 4vh;
+
+        @include desk(){
+
+            margin-top: 2vh;
+        }
     }
 
     i {
@@ -38,10 +43,10 @@
         top: 2vh;
 
         @include desk(){
-
-            right: 38vh;
-            top: 13vh;
+            right: 28vh;
+            top: 11vh;
         }
+        
     }
 
     // the entire list 

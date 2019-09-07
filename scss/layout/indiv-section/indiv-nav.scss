@@ -5,6 +5,10 @@
     align-items: center;
     height: 10vh;
 
+    @include desk(){
+        height: 5.5vh;
+    }
+
     a {
         text-decoration: none;
     }
@@ -14,6 +18,11 @@
         font-size: 3vh;
         font-family: $second-text;
         color: $light-blue;
+        cursor: pointer;
+
+        &:hover{
+            text-decoration: underline;
+        }
         
         @include tab(){
 
