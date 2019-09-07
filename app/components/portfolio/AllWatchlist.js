@@ -19,9 +19,11 @@ class AllWatchList extends React.Component {
 
    componentDidMount(){
 
+      let storedHideList = localStorage.getItem('hideList')
+
       this.setState({
 
-        hideList: JSON.parse(localStorage.getItem('hideList'))
+        hideList: storedHideList ? JSON.parse( localStorage.getItem('hideList') ) : [] 
       })
    }
 

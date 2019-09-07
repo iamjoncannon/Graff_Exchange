@@ -12,11 +12,13 @@ export default function Portfolio_reducer (state = initialState, action) {
 
     case actions.HYDRATEPORTFOLIO: {
 
+      let {selectedPortfolioItem} = state 
+
       const { portfolio, transactionHistory } = action.payload
       
-      let selectedPortfolioItem = !state.selectedPortfolioItem ? portfolio[Object.keys(portfolio)[0]] : selectedPortfolioItem ;
+      let newSelectedPortfolioItem = selectedPortfolioItem === null ? portfolio[Object.keys(portfolio)[0]] : selectedPortfolioItem ;
 
-      return { portfolio, transactionHistory, selectedPortfolioItem }
+      return { portfolio, transactionHistory, selectedPortfolioItem : newSelectedPortfolioItem }
     }
     
     case actions.MAKETRADE: {
