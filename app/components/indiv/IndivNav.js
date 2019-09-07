@@ -20,7 +20,7 @@ class IndivNav extends React.Component {
     this.state = {
         whichItem: null,
         isModalShowing : false,
-        whichModal : null // options || tradeBox
+        whichModal : null 
     }
   }
 

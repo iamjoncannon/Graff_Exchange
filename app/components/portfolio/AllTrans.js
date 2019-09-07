@@ -34,21 +34,26 @@ class AllTrans extends React.Component {
         <div>
 
           {
-            Object.entries(this.props.transactionHistory).map((item, i)=>{
-              
-              let date = item[1].Date 
-              date = date.slice(0,date.indexOf("T"))
+            Object.entries(this.props.transactionHistory)
+              .filter(item =>{                
+                
+                  return item[1].Quantity > 0
+                })
+              .map((item, i)=>{
+                
+                let date = item[1].Date 
+                date = date.slice(0,date.indexOf("T"))
 
-              return(
+                return(
 
-                <div>
-                  <span>{item[1].Type}</span>
-                  <span>{item[1].Symbol} </span>
-                  <span>{item[1].Quantity}</span>
-                  <span>${item[1].Price}</span>
-                  <span>{date}</span>
-                </div>
-              )
+                  <div>
+                    <span>{item[1].Type}</span>
+                    <span>{item[1].Symbol} </span>
+                    <span>{item[1].Quantity}</span>
+                    <span>${item[1].Price}</span>
+                    <span>{date}</span>
+                  </div>
+                )
             })
           }
 

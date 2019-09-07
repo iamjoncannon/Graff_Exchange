@@ -27,12 +27,9 @@ class IndivPerf extends React.Component {
 
   render() {
 
-    
     const { selectedDataNavItem } = this.state
     
     const { selectedPortfolioItem } = this.props 
-
-    console.log(selectedPortfolioItem)
 
     function formatChange(input){
 

@@ -6,14 +6,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    // width: 100vw;
     height: 72vh;
     
 
     .ticker-box {
 
-        // display: inline;
-        // position: relative;
         font-family: 'Exo 2', sans-serif;
 
         @include desk(){
@@ -22,9 +19,6 @@
  
         span:first-child{
             font-size: 5vh;
-            // position: relative;
-            // left: 7vh;
-            // top: 5vh;
             color: $light-blue;
             margin-right: 2vh;
 
@@ -35,10 +29,7 @@
 
         span:nth-of-type(2){
             color: black;
-            // position: relative;
             font-size: 2vh;
-            // right: -1vh;
-            // top: 8vh;
             font-weight: 100;
 
             @include desk(){
@@ -52,8 +43,6 @@
         display: flex;
         width: 100vw;
         justify-content: space-evenly;
-        // position: relative;
-        // top: 12vh;
         font-family: 'Exo 2', sans-serif;
 
         @include desk(){
@@ -111,7 +100,6 @@
     .chart-container {
 
         height: 40vh;
-        // position: relative;
         width: 100vw;
         text-align: center;
         display: flex;
@@ -126,7 +114,8 @@
         }
 
         @include cell(){
-            // top: 22vh;
+
+            
         }
 
         @include desk(){
@@ -165,7 +154,8 @@
         span{
             cursor: pointer;
 
-            @include desk(){                
+            @include desk(){    
+                            
                 &:not(:last-child){
 
                 }

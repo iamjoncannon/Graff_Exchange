@@ -827,7 +827,8 @@ footer {
         margin-bottom: 8vh; } }
     @media only screen and (min-device-width: 1100px) {
       .all-trans > span {
-        margin-top: 2vh; } }
+        margin-top: 2vh;
+        margin-bottom: 5vh; } }
   .all-trans > div:nth-of-type(1) {
     position: sticky;
     top: -1vh;
@@ -840,7 +841,7 @@ footer {
       font-size: 2vh; }
       @media only screen and (min-device-width: 1100px) {
         .all-trans > div:nth-of-type(1) span {
-          font-size: 3vh;
+          font-size: 2vh;
           width: 10vw; } }
   .all-trans > div:nth-of-type(2) {
     text-align: center; }
@@ -854,6 +855,10 @@ footer {
         margin-top: 2vh;
         max-height: 67vh;
         overflow: scroll; } }
+    @media only screen and (min-device-width: 1100px) {
+      .all-trans > div:nth-of-type(2) {
+        margin-top: 0vh;
+        max-height: 72vh; } }
     .all-trans > div:nth-of-type(2) span {
       font-size: 1.8vh;
       display: inline-block;
@@ -862,13 +867,13 @@ footer {
       @media only screen and (min-device-width: 1100px) {
         .all-trans > div:nth-of-type(2) span {
           width: 10vw;
-          font-size: 3vh; } }
+          font-size: 2vh; } }
     .all-trans > div:nth-of-type(2) span:nth-of-type(5) {
       font-size: 1.5vh; }
       @media only screen and (min-device-width: 1100px) {
         .all-trans > div:nth-of-type(2) span:nth-of-type(5) {
           width: 10vw;
-          font-size: 3vh; } }
+          font-size: 1.75vh; } }
 
 html {
   font-size: 62.5%;

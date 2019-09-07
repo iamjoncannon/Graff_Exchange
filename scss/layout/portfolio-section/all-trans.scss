@@ -29,6 +29,7 @@
         @include desk(){
 
             margin-top: 2vh;
+            margin-bottom: 5vh;
         }
     }
 
@@ -50,7 +51,7 @@
             font-size: 2vh;
 
             @include desk(){
-                font-size: 3vh;
+                font-size: 2vh;
                 width: 10vw;
             }
         }
@@ -76,6 +77,11 @@
             overflow: scroll;
         }
 
+        @include desk(){
+            margin-top:0vh;
+            max-height: 72vh;
+        }
+
         span{
             font-size: 1.8vh;
             display:inline-block;
@@ -85,7 +91,7 @@
             @include desk(){
 
                 width: 10vw;
-                font-size: 3vh;
+                font-size: 2vh;
             }
         }
 
@@ -95,7 +101,7 @@
             @include desk(){
 
                 width: 10vw;
-                font-size: 3vh;
+                font-size: 1.75vh;
             }
         }
     }
