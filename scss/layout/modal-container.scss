@@ -6,15 +6,20 @@
     height: 100vh;
     background-color: rgba(0,0,0,.4);
     z-index: 4;
-
     display: flex;
     align-items: flex-start;
-    
     justify-content: center;
     
     @include desk(){
 
-        justify-content: flex-end;
+        &:not(:has(.symbol-selector)){
+
+            justify-content: flex-end;
+        }
+
+        &:has(.symbol-selector){
+            justify-content: center;
+        }
     }
 
     .trade-box {
@@ -26,8 +31,8 @@
         cursor: pointer;
 
         @include desk(){
-
-            margin-right: 20vw;
+            
+            margin-top: 21vh;
         }
         
         > div {
@@ -80,12 +85,27 @@
 
     .symbol-selector {
 
-        margin-top: 10vh;
         background-color: white;
         width: 30vh;
         cursor: pointer;
         font-size: 5vh;
-        color: $light-blue;
+        color: black;
+
+        margin-top: 10vh;
+        
+        @include desk(){
+
+            margin-top: 14vh;
+        }
+
+        span {
+            
+            &:hover{
+                
+                color: $light-blue;
+                text-decoration: underline;
+            }
+        }
         
         > div {
             

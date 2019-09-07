@@ -72,6 +72,11 @@
         position: relative;
         bottom: .1vh;
         left: 1vh;
+
+        @include desk(){
+
+            font-size: 3vh;
+        }
     }
 }
 

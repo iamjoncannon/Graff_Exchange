@@ -87,10 +87,10 @@ class IndivNav extends React.Component {
           <span>{selectedPortfolioItem && selectedPortfolioItem.symbol}</span> 
   
           
-          { !isDesktop() && 
+
           
             <i className="fas fa-angle-down fa-7x" />
-          }
+         
   
         </div>
   
