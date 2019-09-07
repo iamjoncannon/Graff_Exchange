@@ -23,7 +23,7 @@ function setTTL(hours){
 
 function hasTTLExpired(endTime){
 
-  let current = epoch() / (60*60)
+  let current = epoch()
 
   return current > endTime
 }
@@ -100,40 +100,58 @@ export const hydrateSinglePortfolioPage = (token, selectedPortfolioItem) => asyn
 
   let { symbol } = selectedPortfolioItem
 
-  // data for the news section
-
-  // basic pattern of implementing local storage with Unix epoch TTL
-  let inLocalStorage = !!localStorage.getItem(`news-${symbol}`)  // returns null if key doesn't exist
-
-  let expired = hasTTLExpired(localStorage.getItem(`news-${symbol}-TTL`)) 
   
-  if( inLocalStorage && !expired ){
-
-    dispatch(actions.handleNews({ symbol, data: JSON.parse(localStorage.getItem(`news-${symbol}`))}))
+  // basic pattern of implementing local storage with Unix epoch TTL
+  
+  // data for the news section
+  {
+    let inLocalStorage = !!localStorage.getItem(`news-${symbol}`)  // returns null if key doesn't exist
+    
+    let expired = hasTTLExpired(localStorage.getItem(`news-${symbol}-TTL`)) 
+    
+    if( inLocalStorage && !expired ){
+      
+      dispatch(actions.handleNews({ symbol, data: JSON.parse(localStorage.getItem(`news-${symbol}`))}))
+    }
+    else{
+      
+      // calling Gopher API
+      axios.post( urlPrefix + `/news/${symbol}`, {}, makeHeader(token) ).then( ({ data }) => {
+        
+        dispatch(actions.handleNews({ symbol, data }))
+        
+        localStorage.setItem(`news-${symbol}`, JSON.stringify(data))
+        localStorage.setItem(`news-${symbol}-TTL`, setTTL(.30) )
+      })
+      .catch(error=> console.log(error))
+    }
   }
-  else{
 
-    // calling the Gopher API
-    axios.post( urlPrefix + `/news/${symbol}`, {}, makeHeader(token) ).then( ({ data }) => {
+  // data for the quarterly financials section
+  {
+
+    let inLocalStorage = !!localStorage.getItem(`financials-${symbol}`)  
+    
+    let expired = hasTTLExpired(localStorage.getItem(`financials-${symbol}-TTL`)) 
+    
+    if( inLocalStorage && !expired ){
       
-      dispatch(actions.handleNews({ symbol, data }))
+      dispatch(actions.handleFinancials({ symbol, financials: JSON.parse(localStorage.getItem(`financials-${symbol}`))}))
+    }
+    else{
       
-      localStorage.setItem(`news-${symbol}`, JSON.stringify(data))
-      localStorage.setItem(`news-${symbol}-TTL`, setTTL(.30) )
-    })
-    .catch(error=> console.log(error))
+      axios.post( urlPrefix + `/financials/${symbol}`, {}, makeHeader(token) ).then( ({ data }) => {
+
+        let { financials } = data 
+        
+        dispatch(actions.handleFinancials({ symbol, financials }))
+        
+        localStorage.setItem(`financials-${symbol}`, JSON.stringify(financials))
+        localStorage.setItem(`financials-${symbol}-TTL`, setTTL(60*60*24) )
+      })
+      .catch(error=> console.log(error))
+    }
   }
-
-  // data for the quarterly financial statements
-
-  const quarterlyfinancialsURL = `https://api.financialmodelingprep.com/api/v3/financials/income-statement/${symbol}?period=quarter`
-
-  axios.get(quarterlyfinancialsURL).then( ({ data }) => {
-      
-    let { financials } = data 
-   
-    dispatch(actions.handleFinancials({ symbol, financials }))
-  })
 
   // data for the time series chart
   
