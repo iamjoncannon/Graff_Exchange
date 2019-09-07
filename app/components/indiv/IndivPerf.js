@@ -27,9 +27,12 @@ class IndivPerf extends React.Component {
 
   render() {
 
+    
     const { selectedDataNavItem } = this.state
-
+    
     const { selectedPortfolioItem } = this.props 
+
+    console.log(selectedPortfolioItem)
 
     function formatChange(input){
 
@@ -50,6 +53,7 @@ class IndivPerf extends React.Component {
     }
 
     return (
+
       <div className="indiv-perf">
         <div className="ticker-box">
 
@@ -65,12 +69,12 @@ class IndivPerf extends React.Component {
 
         </div>
 
-      {/* { selectedPortfolioItem && selectedPortfolioItem.data.open &&
+      { selectedPortfolioItem && selectedPortfolioItem.data.open &&
+        
           <div className="first-datapoints">
 
-                  {[["Open", `$${selectedPortfolioItem.data.open}`],
-                    ["Close", `$${selectedPortfolioItem.data.close}`],
-                    ["Change", `${formatChange(selectedPortfolioItem.data.change)}`]].map(item=>{
+                  {[["Holdings", `${selectedPortfolioItem.quantity}`],
+                    ["Value", `$${selectedPortfolioItem.quantity * selectedPortfolioItem.price}`]].map(item=>{
 
                     return(
 
@@ -85,8 +89,10 @@ class IndivPerf extends React.Component {
                     )
                   })}
           </div>
-        }
-
+        
+        } 
+        
+        {/* 
         { selectedPortfolioItem && selectedPortfolioItem.data.high &&
           <div className="second-datapoints">
             

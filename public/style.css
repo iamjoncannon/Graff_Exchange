@@ -504,44 +504,35 @@ footer {
         border-bottom: solid #34A9FF 0.5vh; } }
 
 .indiv-perf {
-  color: black; }
-  @media only screen and (min-device-width: 1100px) {
-    .indiv-perf {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100vw; } }
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 72vh; }
   .indiv-perf .ticker-box {
-    display: inline;
-    position: relative;
     font-family: 'Exo 2', sans-serif; }
     @media only screen and (min-device-width: 1100px) {
       .indiv-perf .ticker-box {
         position: static; } }
     .indiv-perf .ticker-box span:first-child {
       font-size: 5vh;
-      position: relative;
-      left: 7vh;
-      top: 5vh;
-      color: #34A9FF; }
+      color: #34A9FF;
+      margin-right: 2vh; }
       @media only screen and (min-device-width: 1100px) {
         .indiv-perf .ticker-box span:first-child {
           position: static; } }
     .indiv-perf .ticker-box span:nth-of-type(2) {
       color: black;
-      position: relative;
       font-size: 2vh;
-      right: -1vh;
-      top: 8vh;
       font-weight: 100; }
       @media only screen and (min-device-width: 1100px) {
         .indiv-perf .ticker-box span:nth-of-type(2) {
           position: static; } }
   .indiv-perf .first-datapoints {
     display: flex;
+    width: 100vw;
     justify-content: space-evenly;
-    position: relative;
-    top: 12vh;
     font-family: 'Exo 2', sans-serif; }
     @media only screen and (min-device-width: 1100px) {
       .indiv-perf .first-datapoints {
@@ -586,7 +577,7 @@ footer {
       display: block; }
   .indiv-perf .chart-container {
     height: 40vh;
-    position: relative;
+    width: 100vw;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -595,9 +586,6 @@ footer {
     font-size: 2vh; }
     .indiv-perf .chart-container span:first-child {
       font-size: 2vh !important; }
-    @media only screen and (max-device-width: 600px) {
-      .indiv-perf .chart-container {
-        top: 22vh; } }
     @media only screen and (min-device-width: 1100px) {
       .indiv-perf .chart-container {
         width: 75vw;

@@ -75,8 +75,12 @@ class IndivNav extends React.Component {
           <i className="fas fa-bars fa-7x" 
              onClick={()=>this.setState({isModalShowing: true, whichModal: 'page-selector'})}
           />
+          
           :
-          <div style={{width: isDesktop()? "1.7vw" : "7vw"}}></div>
+
+          <div style={ { width: isDesktop()? "1.7vw" : "7vw"} }>
+
+          </div>
         
         }
 
@@ -86,12 +90,8 @@ class IndivNav extends React.Component {
   
           <span>{selectedPortfolioItem && selectedPortfolioItem.symbol}</span> 
   
-          
-
-          
             <i className="fas fa-angle-down fa-7x" />
          
-  
         </div>
   
         <span     
@@ -140,8 +140,6 @@ class IndivNav extends React.Component {
               {
                 whichModal === 'symbol-selector' && portfolio &&
 
-                
-                
                   <div onClick={(e)=> { 
                       handleSymbolSelect(e.target.textContent)
                       this.setState({isModalShowing: false})
@@ -149,20 +147,15 @@ class IndivNav extends React.Component {
 
                     {Object.entries(portfolio).map((item)=>{
 
-                     
-
                         return(
                           <span>{item[0]}</span>
                         )
                     })}
                   </div>
-                
               }
-
           </div>
         </div>
       }
-
     </div>
     );
   }

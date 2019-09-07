@@ -1,18 +1,19 @@
 .indiv-perf {
+
     color: black;
 
-    @include desk(){
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100vw;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    // width: 100vw;
+    height: 72vh;
+    
 
     .ticker-box {
 
-        display: inline;
-        position: relative;
+        // display: inline;
+        // position: relative;
         font-family: 'Exo 2', sans-serif;
 
         @include desk(){
@@ -21,10 +22,11 @@
  
         span:first-child{
             font-size: 5vh;
-            position: relative;
-            left: 7vh;
-            top: 5vh;
+            // position: relative;
+            // left: 7vh;
+            // top: 5vh;
             color: $light-blue;
+            margin-right: 2vh;
 
             @include desk(){
                 position: static;
@@ -33,10 +35,10 @@
 
         span:nth-of-type(2){
             color: black;
-            position: relative;
+            // position: relative;
             font-size: 2vh;
-            right: -1vh;
-            top: 8vh;
+            // right: -1vh;
+            // top: 8vh;
             font-weight: 100;
 
             @include desk(){
@@ -48,9 +50,10 @@
     .first-datapoints {
 
         display: flex;
+        width: 100vw;
         justify-content: space-evenly;
-        position: relative;
-        top: 12vh;
+        // position: relative;
+        // top: 12vh;
         font-family: 'Exo 2', sans-serif;
 
         @include desk(){
@@ -108,7 +111,8 @@
     .chart-container {
 
         height: 40vh;
-        position: relative;
+        // position: relative;
+        width: 100vw;
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -122,7 +126,7 @@
         }
 
         @include cell(){
-            top: 22vh;
+            // top: 22vh;
         }
 
         @include desk(){

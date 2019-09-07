@@ -35,7 +35,6 @@ class IndivTrans extends React.Component {
           { transactionHistory &&
             Object.entries(transactionHistory)
               .filter(item =>{                
-                console.log(item)
                 return item[1].Symbol === selectedPortfolioItem.symbol && item[1].Quantity > 0
               })
               .map((item, i)=>{
