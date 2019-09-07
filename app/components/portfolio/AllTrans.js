@@ -35,6 +35,7 @@ class AllTrans extends React.Component {
 
           {
             Object.entries(this.props.transactionHistory)
+              .reverse()
               .filter(item =>{                
                 
                   return item[1].Quantity > 0

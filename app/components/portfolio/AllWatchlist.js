@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { isDesktop } from '../utils'
 import AddSymbolBox from "./AddSymbolBox"
+import { makeTradeThunk } from "../../../store/Portfolio/thunks_for_Portfolio.js"
 
 class AllWatchList extends React.Component {
  
@@ -11,7 +12,8 @@ class AllWatchList extends React.Component {
     this.state = {
 
         isModalShowing : false,
-        edit: false
+        edit: false,
+        unwatch: []
     }
 
    }
@@ -20,11 +22,24 @@ class AllWatchList extends React.Component {
 
       this.setState({ isModalShowing : false })
     }
+
+    handleEdit = (item) =>{
+      
+      // in the future could make an option to liquidate the holding
+      // this.props.makeTradeThunk(symbol, quantity, "Sell", price, this.props.token)
+
+      // for now-- just going to unwatch it for this session- could 
+      // put this in local storage as well in the future
+      this.setState({
+        unwatch : [...this.state.unwatch, item[1].symbol]
+      })
+
+    }
   
     render() {
 
       const { isModalShowing, edit } = this.state
-      const { portfolio } = this.props
+      const { portfolio, token } = this.props
   
       return (
 
@@ -52,50 +67,53 @@ class AllWatchList extends React.Component {
 
             { portfolio && 
 
-              Object.entries(portfolio).map((item, i)=>{
+              Object.entries(portfolio)
+                .filter((item)=>{
 
-                const { data } = item[1]
+                    return !this.state.unwatch.includes(item[1].symbol)
+                })
+                .map((item, i)=>{
 
-                const color = data.latestPrice < item[1].price ? "green" : "red";
+                  const { data } = item[1]
 
-                return(
+                  const color = data.latestPrice < item[1].price ? "green" : "red";
 
-                <div className="watchlist-item-container">
+                  return(
 
-                    { this.state.edit && 
+                  <div key={i} className="watchlist-item-container">
+
+                      { this.state.edit && 
+                        
+
+                        <i 
+                          className={`fas fa-minus fa-${isDesktop() ? "2" : "7"}x`} 
+                          onClick={()=> this.handleEdit(item) }
+                        />
                       
-                      <i 
-                        className={`fas fa-minus fa-${isDesktop() ? "2" : "7"}x`} 
-                      />
-                    
-                    }
+                      }
 
-                  <div className="watchlist-item">
+                    <div className="watchlist-item">
 
-                    <div>
+                      <div>
 
-                      <span style={{ color : color }}> {item[1].symbol}</span>
-                      <span> {data.companyName}</span>
-
-                      <span style={{ color : color }}> ${item[1].price} </span>
+                        <span style={{ color : color }}> {item[1].symbol}</span>
                       
-                    </div>
+                        <span> {data.companyName}</span>
 
-                    <div>
-                
-                      <span>{data.change}</span>
-                      <span>{data.changePercent}%</span>
+                        <span style={{ color : color }}> ${item[1].price} </span>
+                        
+                      </div>
+                      <div>
+                        <span>{data.change}</span>
+                        <span>{data.changePercent}%</span>
+                      </div>
                     </div>
-
                   </div>
-
-                </div>
-
-                )
-              })
+                  )
+                }
+              )
             }
           </div>
-
 
         </div>
 
@@ -117,13 +135,20 @@ class AllWatchList extends React.Component {
 }
 
 
-const mapStateToProps = ({ Portfolio_state }) => {
+const mapStateToProps = ({ User_state, Portfolio_state }) => {
+
   return {
+    token: User_state.token,
     portfolio : Portfolio_state.portfolio
   };
 };
 
+const mapDispatchToProps = dispatch => ({
+  makeTradeThunk: (...args) => dispatch(makeTradeThunk(...args)),
+});
+
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(AllWatchList);

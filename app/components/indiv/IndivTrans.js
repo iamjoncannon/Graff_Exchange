@@ -10,10 +10,6 @@ class IndivTrans extends React.Component {
     }
   }
 
-  componentDidMount(){
-
-  }
-
   render() {
 
     const {transactionHistory, selectedPortfolioItem} = this.props
