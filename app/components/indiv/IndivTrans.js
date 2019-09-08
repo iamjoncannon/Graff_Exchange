@@ -40,7 +40,7 @@ class IndivTrans extends React.Component {
 
                 return(
 
-                  <div>
+                  <div key={i}>
                     <span>{item[1].Type}</span>
                     <span>{item[1].Quantity}</span>
                     <span>${item[1].Price}</span>

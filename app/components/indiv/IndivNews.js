@@ -15,7 +15,7 @@ function IndivNews (props){
       { news && news.map((newsItem, i) =>{
 
           return (
-              <div className="news-box"> 
+              <div className="news-box" key={i}> 
                   
 
                   <div>

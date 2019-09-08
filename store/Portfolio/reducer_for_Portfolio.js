@@ -29,7 +29,7 @@ export default function Portfolio_reducer (state = initialState, action) {
 
       updatedPortfolio[symbol]["quantity"] = trade[1]
 
-      return { ...state, portfolio: updatedPortfolio  }
+      return { ...state, portfolio: updatedPortfolio, selectedPortfolioItem: updatedPortfolio[symbol]  }
     }
     
     case actions.GETONEPRICE: {
@@ -69,7 +69,7 @@ export default function Portfolio_reducer (state = initialState, action) {
 
       let updatedPortfolio = { ...state.portfolio}
 
-      updatedPortfolio[symbol]["financials"] = financials[0];
+      updatedPortfolio[symbol]["financials"] = financials
   
       return { ...state, portfolio: updatedPortfolio }
     }

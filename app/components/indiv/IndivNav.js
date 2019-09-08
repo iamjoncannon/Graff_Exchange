@@ -145,10 +145,10 @@ class IndivNav extends React.Component {
                       this.setState({isModalShowing: false})
                     }} > 
 
-                    {Object.entries(portfolio).map((item)=>{
+                    {Object.entries(portfolio).map((item, i )=>{
 
                         return(
-                          <span>{item[0]}</span>
+                          <span key={i}>{item[0]}</span>
                         )
                     })}
                   </div>

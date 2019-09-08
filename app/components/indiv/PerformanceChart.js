@@ -19,7 +19,7 @@ class PerformanceChart extends React.Component {
 
     }
 
-    componentDidUnmount(){
+    componentWillUnmount(){
 
         window.removeEventListener("resize", this.resize.bind(this))
 

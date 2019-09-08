@@ -83,7 +83,7 @@ class Landing extends React.Component {
                 <div className="sign-btns">
 
                   <span 
-                    className={ mode === "sign-up" && "unselected"}
+                    className={ mode === "sign-up" ? "unselected" : undefined}
                     onClick={()=>this.setState({mode: "sign-in"})}
                   >             
                       Sign In

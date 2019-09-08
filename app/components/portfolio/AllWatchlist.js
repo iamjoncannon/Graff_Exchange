@@ -14,7 +14,6 @@ class AllWatchList extends React.Component {
           edit: false,
           hideList: []
       }
-
    }
 
    componentDidMount(){
@@ -85,7 +84,7 @@ class AllWatchList extends React.Component {
           
           <div>
 
-            { portfolio && 
+            { portfolio &&
 
               Object.entries(portfolio)
                 .filter((item)=>{
@@ -103,8 +102,6 @@ class AllWatchList extends React.Component {
 
                   const { data, symbol } = item[1]
 
-                  const color = data.latestPrice < item[1].price ? "green" : "red";
-
                   const { hideList } = this.state 
 
                   return(
@@ -121,22 +118,26 @@ class AllWatchList extends React.Component {
                       
                       }
 
-                    <div className="watchlist-item" style={{opacity: hideList.includes(symbol) ? ".5" : "1" }}>
+                    { data && 
+                      <div className="watchlist-item" style={{opacity: hideList.includes(symbol) ? ".5" : "1" }}>
 
-                      <div>
 
-                        <span style={{ color : color }}> {item[1].symbol}</span>
-                      
-                        <span> {data.companyName}</span>
+                          <div>
 
-                        <span style={{ color : color }}> ${item[1].price} </span>
-                        
+                            <span style={{ color : data.latestPrice < item[1].price ? "green" : "red" }}> {item[1].symbol}</span>
+                          
+                            <span> {data.companyName}</span>
+
+                            <span style={{ color : data.latestPrice < item[1].price ? "green" : "red" }}> ${item[1].price} </span>
+                            
+                          </div>
+
+                        <div>
+                          <span>{data.change}</span>
+                          <span>{data.changePercent}%</span>
+                        </div>
                       </div>
-                      <div>
-                        <span>{data.change}</span>
-                        <span>{data.changePercent}%</span>
-                      </div>
-                    </div>
+                    }
                   </div>
                   )
                 }

@@ -63,9 +63,9 @@ export const hydratePortfolioThunk = (token) => async dispatch => {
 
   dispatch(actions.hydratePortfolio( { portfolio : {...portfolio}, 
                                        transactionHistory: {...JSON.parse(transactionHistory.data)},                 
-                                       financials : null,
-                                       historical : null,
-                                       news : null
+                                      //  financials : null,
+                                      //  historical : null,
+                                      //  news : null
                                       } 
                                      ))
   
@@ -94,17 +94,54 @@ export const hydratePortfolioThunk = (token) => async dispatch => {
 };
 
 
-// data will also be cached in local storage
+// data cached in local storage
 
 export const hydrateSinglePortfolioPage = (token, selectedPortfolioItem) => async dispatch => {
 
   let { symbol } = selectedPortfolioItem
 
-  
   // basic pattern of implementing local storage with Unix epoch TTL
+
+  // data for the time series chart
+
+  {
+
+    let inLocalStorage = !!localStorage.getItem(`time-series-${symbol}`)  
+    
+    let expired = hasTTLExpired(localStorage.getItem(`time-series-${symbol}-TTL`)) 
+    
+    if( inLocalStorage && !expired ){
+      
+      dispatch(actions.handleFinancials({ symbol, financials: JSON.parse(localStorage.getItem(`time-series-${symbol}`))}))
+    }
+    else{
+
+      let data 
+
+      try{
+
+        data = await axios.post( urlPrefix + `/time-series/${symbol}`, {}, makeHeader(token) ) 
+
+      }
+      catch(error){
+
+        console.log(error)
+      }
+        
+      if(data){
+        
+        let { historical } = data.data
+        dispatch(actions.handleHistoricalPrice({ symbol, historical }))
+        localStorage.setItem(`time-series-${symbol}`, JSON.stringify(historical))
+        localStorage.setItem(`time-series-${symbol}-TTL`, setTTL(60*60*24) )
+      }        
+    }
+  }
   
   // data for the news section
+  
   {
+
     let inLocalStorage = !!localStorage.getItem(`news-${symbol}`)  // returns null if key doesn't exist
     
     let expired = hasTTLExpired(localStorage.getItem(`news-${symbol}-TTL`)) 
@@ -116,16 +153,28 @@ export const hydrateSinglePortfolioPage = (token, selectedPortfolioItem) => asyn
     else{
       
       // calling Gopher API
-      axios.post( urlPrefix + `/news/${symbol}`, {}, makeHeader(token) ).then( ({ data }) => {
+      let data 
+      
+      try{
         
-        dispatch(actions.handleNews({ symbol, data }))
+        let response = await axios.post( urlPrefix + `/news/${symbol}`, {}, makeHeader(token) ) 
+
+        data = response.data
+      }
+      catch(error){
+
+        console.log(error)
+      }
+                
+      if(data){
         
-        localStorage.setItem(`news-${symbol}`, JSON.stringify(data))
-        localStorage.setItem(`news-${symbol}-TTL`, setTTL(.30) )
-      })
-      .catch(error=> console.log(error))
-    }
+          dispatch(actions.handleNews({ symbol, data }))
+          localStorage.setItem(`news-${symbol}`, JSON.stringify(data))
+          localStorage.setItem(`news-${symbol}-TTL`, setTTL(.30) )
+        }
+      }
   }
+
 
   // data for the quarterly financials section
   {
@@ -139,30 +188,41 @@ export const hydrateSinglePortfolioPage = (token, selectedPortfolioItem) => asyn
       dispatch(actions.handleFinancials({ symbol, financials: JSON.parse(localStorage.getItem(`financials-${symbol}`))}))
     }
     else{
-      
-      axios.post( urlPrefix + `/financials/${symbol}`, {}, makeHeader(token) ).then( ({ data }) => {
 
-        let { financials } = data 
+      let data 
+
+      try{
+
+        data = await axios.post( urlPrefix + `/financials/${symbol}`, {}, makeHeader(token) ) 
+
+      }
+      catch(error){
+
+        console.log(error)
+      }
         
+      if(data){
+        
+        let { financials } = data.data
         dispatch(actions.handleFinancials({ symbol, financials }))
-        
         localStorage.setItem(`financials-${symbol}`, JSON.stringify(financials))
         localStorage.setItem(`financials-${symbol}-TTL`, setTTL(60*60*24) )
-      })
-      .catch(error=> console.log(error))
+      }        
     }
   }
 
-  // data for the time series chart
   
-  const timeSeriesData = `https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?timeseries=365`
 
-  axios.get(timeSeriesData).then( ({ data }) => {
+  
+  // const timeSeriesData = `https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?timeseries=365`
 
-    const { historical } = data
+  // axios.get(timeSeriesData).then( ({ data }) => {
 
-    dispatch(actions.handleHistoricalPrice({ symbol, historical }))
-  })
+  //   const { historical } = data
+
+  //   dispatch(actions.handleHistoricalPrice({ symbol, historical }))
+  // })
+
 }
 
 export const makeTradeThunk = (symbol, Quantity, Type, Price, token) => async dispatch => {
@@ -197,11 +257,13 @@ async function getOpeningPriceThunk (symbol, token) {
   
   const url = urlPrefix + '/ohlc/' + symbol
 
-  let returned_data  
+  let returnData  
 
   try {
 
-    returned_data = await axios.post(url, {}, makeHeader(token))
+    let { data } = await axios.post(url, {}, makeHeader(token))
+
+    returnData = data
 
   }
   catch(error){
@@ -209,17 +271,20 @@ async function getOpeningPriceThunk (symbol, token) {
   }
 
   // returned from redis cache
-  if(typeof returned_data.data === "string"){
 
-    returned_data = JSON.parse(returned_data.data)
+  if(typeof returnData === "string"){
 
-  }
-  else{
-    
-    returned_data = returned_data.data
+    try{
+
+      returnData = JSON.parse(returnData)
+    }
+    catch(error){
+      console.log("error reading JSON: ", symbol, error)
+    }
+
   }
   
-  return returned_data
+  return returnData
 }
 
 export default {

@@ -13,10 +13,6 @@ class IndivPerf extends React.Component {
     }
   }
 
-  componentDidMount(){
-
-  }
-
   dataSwitch = (newDisplay) => {
 
     this.setState({
@@ -71,11 +67,11 @@ class IndivPerf extends React.Component {
           <div className="first-datapoints">
 
                   {[["Holdings", `${selectedPortfolioItem.quantity}`],
-                    ["Value", `$${selectedPortfolioItem.quantity * selectedPortfolioItem.price}`]].map(item=>{
+                    ["Value", `$${selectedPortfolioItem.quantity * selectedPortfolioItem.price}`]].map( (item, i)=>{
 
                     return(
 
-                      <div>
+                      <div key={i}>
                         <span>
                           {item[0]}
                         </span>
@@ -88,31 +84,6 @@ class IndivPerf extends React.Component {
           </div>
         
         } 
-        
-        {/* 
-        { selectedPortfolioItem && selectedPortfolioItem.data.high &&
-          <div className="second-datapoints">
-            
-                  {[["High", `$${selectedPortfolioItem.data.high}`],
-                  ["Low", `$${selectedPortfolioItem.data.low}`],
-                  ["Volume", `${selectedPortfolioItem.data.volume}`],
-                    ].map(item=>{
-
-                    return(
-
-                      <div>
-                        <span>
-                          {item[0]}
-                        </span>
-                        <span>
-                          {item[1]}
-                        </span>
-                      </div>
-                    )
-                  })}
-
-          </div>
-        } */}
 
         <div className="chart-container">
 
@@ -140,7 +111,8 @@ class IndivPerf extends React.Component {
 
 const mapStateToProps = ({ Portfolio_state }) => {
   return {
-    selectedPortfolioItem: Portfolio_state.selectedPortfolioItem
+    selectedPortfolioItem: Portfolio_state.selectedPortfolioItem,
+    quantity: Portfolio_state.selectedPortfolioItem.quantity
   };
 };
 

@@ -7,8 +7,8 @@ class IndivFin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
-      selectedDataNavItem : "Q2 2019",
+      dataNavItems: ["Q1 2019", "Q4 2018", "Q3 2018", "Q2 2018"],
+      selectedDataNavItem : "Q1 2019",
     }
   }
 
@@ -28,39 +28,46 @@ class IndivFin extends React.Component {
   render() {
 
     window.scrollTo(0, 0);
+
+    const { dataNavItems, selectedDataNavItem } = this.state
     
-    const {financials} = this.props
+    const whichFinancial = dataNavItems.indexOf(selectedDataNavItem)
 
     return (
 
       <div>
 
 
-        <div className="indiv-fin indiv-container">
+        { this.props.financials && this.props.financials.length && 
+          <div className="indiv-fin indiv-container">
 
-          <span>{this.state.selectedDataNavItem}</span>
+            <span>{selectedDataNavItem}</span>
 
-          { financials && Object.entries(financials).map(item=>{
             
-            return(
+              {Object.entries(this.props.financials[whichFinancial])
+                .reverse()
+                .map( (item, i) =>{
+              
+                  return(
 
-              <div>
-                  <span>
-                    {item[0]}
-                  </span>
-                
-                  <span>
-                    {item[1]}
-                  </span>
-              </div>
-            )
-          })}
+                    <div key={i}>
+                        <span>
+                          {item[0]}
+                        </span>
+                      
+                        <span>
+                          {item[1]}
+                        </span>
+                    </div>
+                  )
+                })}
 
-        </div>
+          </div>
+          }
 
         <DataNav 
-          data={["Q2 2019", "Q1 2019", "Q4 2018", "Q3 2018"]} 
-          selectedDataNavItem={this.state.selectedDataNavItem}
+          data={dataNavItems} 
+          selectedDataNavItem={selectedDataNavItem}
           switchItem={this.dataSwitch}
         />
 
