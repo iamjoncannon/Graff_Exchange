@@ -228,6 +228,13 @@ footer {
       position: static;
       height: 4vh;
       bottom: initial; }
+      .all-screens a {
+        display: flex;
+        align-items: center; }
+        .all-screens a * {
+          margin-left: 1vh; }
+        .all-screens a:hover {
+          opacity: .5; }
       .all-screens img {
         height: 6vh;
         z-index: 2; }
@@ -235,7 +242,9 @@ footer {
         margin-top: 2vh;
         margin-bottom: 2vh;
         color: grey;
-        font-size: 3vh; } }
+        font-size: 3vh; }
+      .all-screens span {
+        font-size: 2vh; } }
 
 @media only screen and (min-device-width: 1100px) {
   .desk-nav {

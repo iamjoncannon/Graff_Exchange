@@ -52,6 +52,19 @@
         position: static;
         height: 4vh;
         bottom: initial;
+
+        a {
+            display: flex;
+            align-items: center;
+
+            * {
+                margin-left: 1vh;
+            }
+
+            &:hover{
+                opacity: .5;
+            }
+        }
         
         img {
 
@@ -64,6 +77,12 @@
             margin-bottom: 2vh;
             color: grey;
             font-size: 3vh;
+        }
+
+        span {
+
+            font-size: 2vh;
+           
         }
     }
 

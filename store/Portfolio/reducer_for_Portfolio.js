@@ -1,4 +1,5 @@
 import actions from "./action_constants_for_PORTFOLIO"
+import User_actions from "../User/action_constants_for_User"
 
 const initialState = {
   selectedPortfolioItem: null,
@@ -103,6 +104,11 @@ export default function Portfolio_reducer (state = initialState, action) {
       const nextSelect = state.portfolio[action.payload]
 
       return { ...state, selectedPortfolioItem : nextSelect }
+    }
+
+    case User_actions.LOGOUT: {
+
+      return initialState
     }
     
     default:
