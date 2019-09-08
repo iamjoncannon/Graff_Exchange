@@ -256,10 +256,12 @@ footer {
     white-space: nowrap; }
     .desk-nav span {
       font-size: 2.5vh;
-      cursor: pointer; }
-      .desk-nav span:hover {
-        text-decoration: underline;
-        opacity: .5; }
+      margin-right: 2vh; }
+      .desk-nav span:last-child {
+        cursor: pointer; }
+        .desk-nav span:last-child:hover {
+          text-decoration: underline;
+          opacity: .5; }
     .desk-nav span:first-child {
       margin-top: .5vh;
       position: absolute;

@@ -28,6 +28,9 @@ function hasTTLExpired(endTime){
   return current > endTime
 }
 
+// this fetches data for the entire portfolio
+// after login- 
+
 export const hydratePortfolioThunk = (token) => async dispatch => {
  
   let portfolio
@@ -72,29 +75,23 @@ export const hydratePortfolioThunk = (token) => async dispatch => {
   // we have the initial portfolio, now we need to add current data
   // from an external API using an endpoint from the Gopher API
 
-  if(portfolio && transactionHistory.data){
-
-    for(let stock in portfolio){
-                                        // hoisted below
-        portfolio[stock].data = await getOpeningPriceThunk(stock, token)
-
-    }
-
-    dispatch(actions.hydratePortfolio( { portfolio : {...portfolio}, 
-                                         transactionHistory: {...JSON.parse(transactionHistory.data)},                 
-                                        } ))
-  }
-  else{
-
-    // registration user story
-    // callback({}, {1:{Symbol: "", Quantity: "", Date: ""}})
+  for(let stock in portfolio){
+                                      // hoisted below
+      portfolio[stock].data = await getOpeningPriceThunk(stock, token)
 
   }
+
+  dispatch(actions.hydratePortfolio( { portfolio : {...portfolio}, 
+                                        transactionHistory: {...JSON.parse(transactionHistory.data)},                 
+                                      } ))
   
+
 };
 
 
-// data cached in local storage
+// this hydrates data for a specific stock holding
+// on the "holdings" page- each data component
+// is cached in localstorage and redis
 
 export const hydrateSinglePortfolioPage = (token, selectedPortfolioItem) => async dispatch => {
 
@@ -209,9 +206,14 @@ export const hydrateSinglePortfolioPage = (token, selectedPortfolioItem) => asyn
       }        
     }
   }
+
 }
 
-export const makeTradeThunk = (symbol, Quantity, Type, Price, token) => async dispatch => {
+
+// this handles both making a trade
+// and adding a symbol to the watchlist
+
+export const makeTradeThunk = (symbol, Quantity, Type, Price, token, isNewSymbol) => async dispatch => {
 
   /*
     endpoint expects:
@@ -221,7 +223,7 @@ export const makeTradeThunk = (symbol, Quantity, Type, Price, token) => async di
      Price: ''
   */
  
-    Quantity = Number(Quantity)
+    Quantity = Number(Quantity) 
 
     let trade 
 
@@ -248,8 +250,24 @@ export const makeTradeThunk = (symbol, Quantity, Type, Price, token) => async di
       console.log(error)
     }
 
+    if(isNewSymbol){
+
+      let response = await getOpeningPriceThunk(symbol, token)
+
+      console.log(response)
+
+      trade.data = response
+    }
+
     dispatch(actions.makeTrade({symbol, trade, transactionHistory})) 
+
 };
+
+
+
+// after the portfolio is loaded, each stock gets
+// updated with additional data from an ohlc endpoint-
+// this is only cached in redis
 
 async function getOpeningPriceThunk (symbol, token) {
   
@@ -284,6 +302,8 @@ async function getOpeningPriceThunk (symbol, token) {
   
   return returnData
 }
+
+
 
 export default {
 	hydratePortfolioThunk,

@@ -2,8 +2,8 @@ import actions from "./action_constants_for_PORTFOLIO"
 import User_actions from "../User/action_constants_for_User"
 
 const initialState = {
-  selectedPortfolioItem: null,
-  portfolio: { },
+  selectedPortfolioItem: { },
+  portfolio: {},
   transactionHistory: { }
 }
 
@@ -15,9 +15,10 @@ export default function Portfolio_reducer (state = initialState, action) {
 
       let {selectedPortfolioItem} = state 
 
-      const { portfolio, transactionHistory } = action.payload
-      
-      let newSelectedPortfolioItem = selectedPortfolioItem === null ? portfolio[Object.keys(portfolio)[0]] : selectedPortfolioItem ;
+      let { portfolio, transactionHistory } = action.payload
+
+      // if no stock selected, default to the first stock in the portfolio
+      let newSelectedPortfolioItem = ( Object.keys(state.selectedPortfolioItem).length && Object.keys(portfolio).length) ? portfolio[Object.keys(portfolio)[0]] : selectedPortfolioItem ;
 
       return { portfolio, transactionHistory, selectedPortfolioItem : newSelectedPortfolioItem }
     }
@@ -30,8 +31,13 @@ export default function Portfolio_reducer (state = initialState, action) {
       
       if(!updatedPortfolio[symbol]){
 
-        updatedPortfolio[symbol] = { symbol: symbol, data: {}}
-        return { ...state, portfolio: updatedPortfolio }
+        updatedPortfolio[symbol] = { symbol: symbol, quantity: trade[1], data: trade.data }
+
+        return { ...state, 
+                 portfolio: updatedPortfolio, 
+                 selectedPortfolioItem : Object.keys(state.selectedPortfolioItem).length === 0 ? updatedPortfolio[symbol] : state.selectedPortfolioItem
+                }
+      
       }
       else{
 

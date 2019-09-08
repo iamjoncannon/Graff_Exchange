@@ -2,7 +2,7 @@ import React from 'react';
 import { logoUrl } from './utils'
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { loginThunk } from "../../store/User/thunks_for_User.js";
+import { loginThunk, registerThunk } from "../../store/User/thunks_for_User.js";
 
 class Landing extends React.Component {
  
@@ -12,19 +12,31 @@ class Landing extends React.Component {
       
       this.state = {
           mode : 'sign-in',
-          email : "webster@ross.com",
-          password : "password"
+          firstName: "",
+          lastName: "",
+          email : "",
+          password : ""
       }
   }
 
   componentDidMount(){
     
-      // this.props.handleLogin(this.state.email, this.state.password)
   }
 
   componentWillUnmount(){
 
     document.body.style.backgroundColor = 'white' 
+  }
+
+  DemoAccount = () => {
+
+    this.setState({
+          mode : 'sign-in',
+          email : "webster@ross.com",
+          password : "password"
+    })
+
+    setTimeout(()=>this.handleSubmit(), 50)
   }
 
   handleChange = (evt) => {
@@ -36,9 +48,18 @@ class Landing extends React.Component {
 
   handleSubmit = () => {
 
+      let { firstName, lastName, email, password } = this.state
+
       if(this.state.mode === "sign-in"){
 
-        this.props.handleLogin(this.state.email, this.state.password)
+        this.props.handleLogin(email, password)
+      }
+
+      if(this.state.mode === "sign-up"){
+
+        let Name = firstName + " " + lastName
+        
+        this.props.handleRegister(Name, email, password)
       }
   }
 
@@ -73,7 +94,7 @@ class Landing extends React.Component {
 
               <span className="blurb">
 
-              Gopher Exchange, a real-time stock portfolio dashboard powered by React, Redux, Socket.io, Sass, Golang, Redis, and PostgreSQL.
+                Gopher Exchange, a real-time stock portfolio dashboard powered by React, Redux, Socket.io, Sass, Golang, Redis, and PostgreSQL.
               </span>
               
               <img src={logoUrl} />
@@ -142,6 +163,9 @@ class Landing extends React.Component {
 
                 <input 
                   type="text"
+                  name="firstName"
+                  value={this.state.firstName}
+                  onChange={this.handleChange} 
                 />
 
               </div>
@@ -156,6 +180,9 @@ class Landing extends React.Component {
 
                 <input 
                   type="text"
+                  name="lastName"
+                  value={this.state.lastName}
+                  onChange={this.handleChange} 
                 />
 
               </div>         
@@ -171,6 +198,7 @@ class Landing extends React.Component {
                 value={this.state.email}
                 onChange={this.handleChange} 
               />
+
             </div>
 
             <div>
@@ -183,6 +211,7 @@ class Landing extends React.Component {
                 name="password"
                 value={this.state.password}
               />
+
             </div>
 
           {
@@ -206,7 +235,7 @@ class Landing extends React.Component {
               {mode === 'sign-in' ? "Sign In" : "Sign Up"}
           </button>
 
-          {mode === "sign-in" && <span>Sign into Demo Account</span> }
+          { mode === "sign-in" && <span onClick={this.DemoAccount}>Sign into Demo Account</span> }
           
           </div>      
         </div>
@@ -224,6 +253,7 @@ const mapStateToProps = ({ User_state }) => {
 const mapDispatchToProps = dispatch => ({
 
     handleLogin: (email, password) => dispatch(loginThunk(email, password)),
+    handleRegister: (...args) => dispatch(registerThunk(...args)),
 });
 
 export default connect(

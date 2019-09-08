@@ -20,14 +20,40 @@ export const loginThunk = (email, password) => async dispatch => {
   
 };
 
-export const registerThunk = () => dispatch => {
+export const registerThunk = (Name, Email, Password) => async dispatch => {
  
-  return fetch('/signup')
-      .then((resp) => resp.json()) 
-      .then(function( {data} ) {
- 
-          dispatch(actions.login(data))
-  });
+  console.log(Name, Email, Password)
+
+  const signUpInfo = { Name, Email, Password }
+
+  let response
+
+  try {
+
+    response = await axios.post(urlPrefix + '/signup', signUpInfo )
+
+    console.log("register response: ", response)
+  }
+  catch(error){
+    
+    let  duplicateEmail = error.response.data.message === `pq: duplicate key value violates unique constraint "unique_email"`
+
+    if (duplicateEmail){
+
+      alert("This Email is already on file, please try again with a unique email.")
+    }
+    else{
+
+      console.log(error)
+
+    }
+  }
+
+  signUpInfo.password = null 
+
+  let returnedToken = response.data
+
+  dispatch(actions.login({Balance: 5000, token: returnedToken, Name, Email}))
 };
 
 export default {

@@ -104,12 +104,16 @@
         span {
 
             font-size: 2.5vh;
+            margin-right: 2vh;
 
-            cursor: pointer;
-            
-            &:hover {
-                text-decoration: underline;
-                opacity: .5;
+            &:last-child{
+
+                cursor: pointer;
+
+                &:hover {
+                    text-decoration: underline;
+                    opacity: .5;
+                }
             }
         }
 

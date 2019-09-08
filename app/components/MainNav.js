@@ -40,6 +40,8 @@ class MainNav extends React.Component {
           <div className="desk-nav">
               <span>Gopher Exchange</span>
               {/* <span>Account</span> */}
+              <span>{this.props.Name}</span>
+              <span>Balance: ${Number(this.props.Balance).toFixed(2)}</span>
               <span onClick={this.props.LogOut}>Log Out</span>
           </div> 
         }
@@ -54,11 +56,15 @@ class MainNav extends React.Component {
 
           <img src={logoUrl} />
           
-          <Link to="/indiv/perf">
+    
+            <Link to={ Object.keys(this.props.portfolio).length > 0 ? "/indiv/perf" : "/all/watchlist"}>
 
-            {isDesktop && <span>Holdings</span>}          
-            <i className={`fas fa-chart-bar fa-${isDesktop ? "2" : "7"}x ${ pathname.includes("/indiv") ? "selected" : ""}`} />
-          </Link>
+              {isDesktop && <span>Holdings</span>}   
+
+              <i className={`fas fa-chart-bar fa-${isDesktop ? "2" : "7"}x ${ pathname.includes("/indiv") ? "selected" : ""}`} />
+            
+            </Link>
+ 
 
         </div>
 
@@ -69,10 +75,13 @@ class MainNav extends React.Component {
 
 };
 
-const mapStateToProps = ({ User_state, Nav_state }) => {
+const mapStateToProps = ({ User_state, Portfolio_state }) => {
   
   return {
+    Name: User_state.Name,
+    Balance: User_state.Balance,
     token: User_state.token,
+    portfolio: Portfolio_state.portfolio
   };
 };
 

@@ -20,7 +20,7 @@ export default function User_reducer (state = initialState, action) {
     
     case actions.REGISTER: {
 
-      return { ...state }
+      return {...action.payload, isLoggedIn: true } 
     }
     
     case actions.LOGOUT: {
