@@ -65,6 +65,8 @@ class IndivFin extends React.Component {
           </div>
           }
 
+        {this.props.financials && !this.props.financials.length && <span>Unavailable for stock</span>}
+
         <DataNav 
           data={dataNavItems} 
           selectedDataNavItem={selectedDataNavItem}

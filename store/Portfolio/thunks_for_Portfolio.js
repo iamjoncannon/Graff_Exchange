@@ -112,7 +112,7 @@ export const hydrateSinglePortfolioPage = (token, selectedPortfolioItem) => asyn
     
     if( inLocalStorage && !expired ){
       
-      dispatch(actions.handleFinancials({ symbol, financials: JSON.parse(localStorage.getItem(`time-series-${symbol}`))}))
+      dispatch(actions.handleHistoricalPrice({ symbol, historical: JSON.parse(localStorage.getItem(`time-series-${symbol}`))}))
     }
     else{
 

@@ -19,10 +19,6 @@
         font-family: $second-text;
         color: $light-blue;
         cursor: pointer;
-
-        &:hover{
-            text-decoration: underline;
-        }
         
         @include tab(){
 
