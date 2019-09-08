@@ -54,7 +54,7 @@ const mapStateToProps = ({ Portfolio_state }) => {
     };
   };
   
-  export default connect(
-    mapStateToProps,
-    null
-  )(IndivNews);
+export default connect(
+  mapStateToProps,
+  null
+)(IndivNews);

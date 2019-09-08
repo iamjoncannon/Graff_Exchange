@@ -48,6 +48,7 @@ class IndivPerf extends React.Component {
     return (
 
       <div className="indiv-perf">
+        
         <div className="ticker-box">
 
           <span>
@@ -67,7 +68,7 @@ class IndivPerf extends React.Component {
           <div className="first-datapoints">
 
                   {[["Holdings", `${selectedPortfolioItem.quantity}`],
-                    ["Value", `$${selectedPortfolioItem.quantity * selectedPortfolioItem.price}`]].map( (item, i)=>{
+                    ["Value", `$${ (selectedPortfolioItem.quantity * selectedPortfolioItem.price).toFixed(2)}`]].map( (item, i)=>{
 
                     return(
 

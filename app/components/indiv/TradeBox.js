@@ -71,6 +71,7 @@ class TradeBox extends React.Component {
   render(){
 
     return (
+
       <div>
 
             <span>
@@ -94,7 +95,10 @@ class TradeBox extends React.Component {
               </button>
 
             </div>
+
+            { this.state.isToolTipShowing && <span>{this.state.tooltipMessage}</span>}
       </div>
+
     );
   }
 };

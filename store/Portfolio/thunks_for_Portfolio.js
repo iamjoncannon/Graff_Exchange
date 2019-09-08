@@ -106,7 +106,7 @@ export const hydrateSinglePortfolioPage = (token, selectedPortfolioItem) => asyn
 
   {
 
-    let inLocalStorage = !!localStorage.getItem(`time-series-${symbol}`)  
+    let inLocalStorage = !!localStorage.getItem(`time-series-${symbol}`)  // returns null if key doesn't exist
     
     let expired = hasTTLExpired(localStorage.getItem(`time-series-${symbol}-TTL`)) 
     
@@ -142,7 +142,7 @@ export const hydrateSinglePortfolioPage = (token, selectedPortfolioItem) => asyn
   
   {
 
-    let inLocalStorage = !!localStorage.getItem(`news-${symbol}`)  // returns null if key doesn't exist
+    let inLocalStorage = !!localStorage.getItem(`news-${symbol}`)  
     
     let expired = hasTTLExpired(localStorage.getItem(`news-${symbol}-TTL`)) 
     
@@ -152,7 +152,6 @@ export const hydrateSinglePortfolioPage = (token, selectedPortfolioItem) => asyn
     }
     else{
       
-      // calling Gopher API
       let data 
       
       try{
@@ -210,19 +209,6 @@ export const hydrateSinglePortfolioPage = (token, selectedPortfolioItem) => asyn
       }        
     }
   }
-
-  
-
-  
-  // const timeSeriesData = `https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?timeseries=365`
-
-  // axios.get(timeSeriesData).then( ({ data }) => {
-
-  //   const { historical } = data
-
-  //   dispatch(actions.handleHistoricalPrice({ symbol, historical }))
-  // })
-
 }
 
 export const makeTradeThunk = (symbol, Quantity, Type, Price, token) => async dispatch => {
@@ -247,10 +233,22 @@ export const makeTradeThunk = (symbol, Quantity, Type, Price, token) => async di
 
       console.log(err)
     }
-
+    
     trade = trade.data
 
-    dispatch(actions.makeTrade({symbol, trade})) 
+    let transactionHistory 
+    
+    try{
+
+      let data = await axios.post(urlPrefix + '/getallTransactions', {}, makeHeader(token))
+      
+      transactionHistory = JSON.parse(data.data)
+    }
+    catch(error){
+      console.log(error)
+    }
+
+    dispatch(actions.makeTrade({symbol, trade, transactionHistory})) 
 };
 
 async function getOpeningPriceThunk (symbol, token) {
@@ -279,9 +277,9 @@ async function getOpeningPriceThunk (symbol, token) {
       returnData = JSON.parse(returnData)
     }
     catch(error){
+      
       console.log("error reading JSON: ", symbol, error)
     }
-
   }
   
   return returnData

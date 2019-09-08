@@ -192,6 +192,10 @@
         font-size: 4vh;
         color: $light-blue;
 
+        &:last-child{
+            font-size: 2vh;
+        }
+
     }
 
     button {

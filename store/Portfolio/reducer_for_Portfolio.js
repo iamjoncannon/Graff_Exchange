@@ -23,13 +23,26 @@ export default function Portfolio_reducer (state = initialState, action) {
     
     case actions.MAKETRADE: {
 
-      let { symbol, trade } = action.payload
+      let { symbol, trade, transactionHistory } = action.payload
 
-      let updatedPortfolio = {...state.portfolio } 
+      let updatedPortfolio = {...state.portfolio }
+      
+      if(!updatedPortfolio[symbol]){
 
-      updatedPortfolio[symbol]["quantity"] = trade[1]
+        updatedPortfolio[symbol] = { symbol: symbol, data: {}}
+        return { ...state, portfolio: updatedPortfolio }
+      }
+      else{
 
-      return { ...state, portfolio: updatedPortfolio, selectedPortfolioItem: updatedPortfolio[symbol]  }
+        updatedPortfolio[symbol]["quantity"] = trade[1]
+        
+        return { ...state, 
+                 portfolio: updatedPortfolio, 
+                 transactionHistory: transactionHistory,
+                 selectedPortfolioItem: updatedPortfolio[symbol]  
+               }
+      }
+
     }
     
     case actions.GETONEPRICE: {

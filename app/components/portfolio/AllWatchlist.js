@@ -87,6 +87,7 @@ class AllWatchList extends React.Component {
             { portfolio &&
 
               Object.entries(portfolio)
+                .sort()
                 .filter((item)=>{
 
                     if(this.state.edit){
@@ -154,7 +155,7 @@ class AllWatchList extends React.Component {
 
               <div onClick={ (e)=> e.stopPropagation()} >
                 
-                    <AddSymbolBox />
+                    <AddSymbolBox exit={this.closeModal}/>
               </div>
             </div>
           }
@@ -168,7 +169,8 @@ const mapStateToProps = ({ User_state, Portfolio_state }) => {
 
   return {
     token: User_state.token,
-    portfolio : Portfolio_state.portfolio
+    portfolio : Portfolio_state.portfolio,
+    portfolioSize: Portfolio_state.portfolio.length
   };
 };
 

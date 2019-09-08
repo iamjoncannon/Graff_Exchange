@@ -24,7 +24,8 @@
 			"Actions": [
 				"login",
 				"register",
-				"logout"
+				"logout",
+				"LogOut"
 			],
 			"Thunks": [
 				{
