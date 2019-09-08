@@ -119,7 +119,7 @@ class AllWatchList extends React.Component {
                       
                       }
 
-                    { data && 
+                    { data &&
                       <div className="watchlist-item" style={{opacity: hideList.includes(symbol) ? ".5" : "1" }}>
 
 
@@ -138,6 +138,7 @@ class AllWatchList extends React.Component {
                           <span>{data.changePercent}%</span>
                         </div>
                       </div>
+                     
                     }
                   </div>
                   )

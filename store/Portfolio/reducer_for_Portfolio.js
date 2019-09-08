@@ -18,7 +18,7 @@ export default function Portfolio_reducer (state = initialState, action) {
       let { portfolio, transactionHistory } = action.payload
 
       // if no stock selected, default to the first stock in the portfolio
-      let newSelectedPortfolioItem = ( Object.keys(state.selectedPortfolioItem).length && Object.keys(portfolio).length) ? portfolio[Object.keys(portfolio)[0]] : selectedPortfolioItem ;
+      let newSelectedPortfolioItem = ( !Object.keys(state.selectedPortfolioItem).length && Object.keys(portfolio).length) ? portfolio[Object.keys(portfolio)[0]] : selectedPortfolioItem ;
 
       return { portfolio, transactionHistory, selectedPortfolioItem : newSelectedPortfolioItem }
     }
