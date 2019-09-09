@@ -307,5 +307,9 @@ footer {
         background-color: white;
         padding: .5vh;
         border-radius: 10px;
+
+        &:hover{
+            opacity: .5;
+        }
     }
 }

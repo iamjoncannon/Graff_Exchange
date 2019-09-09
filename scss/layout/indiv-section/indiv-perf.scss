@@ -7,8 +7,12 @@
     align-items: center;
     justify-content: space-between;
     height: 72vh;
-    
 
+    @include cell(){
+
+        height: 60vh;
+    }
+    
     .ticker-box {
 
         font-family: 'Exo 2', sans-serif;
@@ -136,13 +140,12 @@
         text-transform: uppercase;
         display: flex;
         justify-content: space-evenly;
-
-
         position: fixed;
-        top: 85vh;
         width: 100vw;
         font-size: 2vh;
-
+        
+        top: 71vh;
+        
         @include desk(){
 
             position: static;

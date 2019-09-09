@@ -5,7 +5,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from 'react-redux' 
 import store from '../store/store'
 
-// localStorage.clear()
+localStorage.clear()
+
+console.log("clearnign local storage")
 
 ReactDOM.render(    
   <Provider store={store}>

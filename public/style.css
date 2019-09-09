@@ -1,6 +1,6 @@
 .loading-dots {
-  height: auto;
-  width: auto; }
+  height: auto !important;
+  width: auto !important; }
   .loading-dots :nth-child(1) {
     animation: blink 1s infinite; }
   .loading-dots :nth-child(2) {
@@ -204,12 +204,14 @@ footer {
     background-color: white;
     padding: .5vh;
     border-radius: 10px; }
+    footer img:hover {
+      opacity: .5; }
 
 .all-screens {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: rgba(97, 62, 234, 0.1);
+  background-color: rgba(97, 62, 234, 0.5);
   width: 100%; }
   .all-screens .selected {
     color: #34A9FF; }
@@ -462,7 +464,7 @@ footer {
   color: black; }
   @media only screen and (max-device-width: 600px) {
     .indiv-fin {
-      max-height: 75vh !important;
+      max-height: 60vh !important;
       width: 95%;
       margin: auto; } }
   @media only screen and (min-device-width: 601px) {
@@ -496,7 +498,7 @@ footer {
   justify-content: space-evenly;
   background-color: white;
   position: fixed;
-  top: 85vh;
+  top: 73vh;
   width: 100vw;
   font-size: 2vh;
   padding-top: 1vh; }
@@ -535,6 +537,9 @@ footer {
   align-items: center;
   justify-content: space-between;
   height: 72vh; }
+  @media only screen and (max-device-width: 600px) {
+    .indiv-perf {
+      height: 60vh; } }
   .indiv-perf .ticker-box {
     font-family: 'Exo 2', sans-serif; }
     @media only screen and (min-device-width: 1100px) {
@@ -623,9 +628,9 @@ footer {
     display: flex;
     justify-content: space-evenly;
     position: fixed;
-    top: 85vh;
     width: 100vw;
-    font-size: 2vh; }
+    font-size: 2vh;
+    top: 71vh; }
     @media only screen and (min-device-width: 1100px) {
       .indiv-perf .data-nav {
         position: static;
@@ -767,7 +772,7 @@ footer {
         top: 11vh; } }
   @media only screen and (max-device-width: 600px) {
     .all-watchlist > div:nth-child(3) {
-      max-height: 70vh;
+      max-height: 60vh;
       overflow: scroll; } }
   @media only screen and (min-device-width: 601px) {
     .all-watchlist > div:nth-child(3) {
@@ -885,7 +890,7 @@ footer {
     @media only screen and (max-device-width: 600px) {
       .all-trans > div:nth-of-type(2) {
         margin-top: 2vh;
-        max-height: 62vh;
+        max-height: 52vh;
         overflow: scroll; } }
     @media only screen and (min-device-width: 601px) {
       .all-trans > div:nth-of-type(2) {
@@ -947,7 +952,7 @@ button {
   overflow: scroll; }
   @media only screen and (max-device-width: 600px) {
     .indiv-container {
-      max-height: 83vh; } }
+      max-height: 67vh; } }
   @media only screen and (min-device-width: 601px) {
     .indiv-container {
       max-height: 77vh; } }

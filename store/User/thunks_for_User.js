@@ -53,7 +53,7 @@ export const registerThunk = (Name, Email, Password) => async dispatch => {
 
   let returnedToken = response.data
 
-  dispatch(actions.login({Balance: 5000, token: returnedToken, Name, Email}))
+  dispatch(actions.login({Balance: 50000, token: returnedToken, Name, Email}))
 };
 
 export default {

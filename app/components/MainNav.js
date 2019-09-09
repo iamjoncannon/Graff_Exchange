@@ -51,7 +51,9 @@ class MainNav extends React.Component {
           <Link to="/all/watchlist">
 
             <i className={`fas fa-home fa-${isDesktop ? "2" : "7"}x ${ pathname.includes("/all") ? "selected" : ""}`} />
-            {isDesktop && <span>Portfolio</span>}
+
+            {isDesktop() && <span>Portfolio</span>}
+          
           </Link>
 
           <img src={logoUrl} />
@@ -59,7 +61,7 @@ class MainNav extends React.Component {
     
             <Link to={ Object.keys(this.props.portfolio).length > 0 ? "/indiv/perf" : "/all/watchlist"}>
 
-              {isDesktop && <span>Holdings</span>}   
+              {isDesktop() && <span>Holdings</span>}   
 
               <i className={`fas fa-chart-bar fa-${isDesktop ? "2" : "7"}x ${ pathname.includes("/indiv") ? "selected" : ""}`} />
             
