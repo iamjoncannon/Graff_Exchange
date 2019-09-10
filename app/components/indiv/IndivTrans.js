@@ -12,7 +12,7 @@ class IndivTrans extends React.Component {
 
   render() {
 
-    const {transactionHistory, selectedPortfolioItem} = this.props
+    const { transactionHistory, selectedPortfolioItem } = this.props
 
     return (
       <div className="indiv-trans indiv-container">

@@ -34,11 +34,13 @@ class IndivNav extends React.Component {
   }
 
   componentDidUpdate(){
+      
+      let { selectedPortfolioItem } = this.props
 
-      if(this.props.selectedPortfolioItem.symbol !== this.state.whichItem){
+      if( selectedPortfolioItem.symbol !== this.state.whichItem){
           
           this.setState({
-              whichItem: this.props.selectedPortfolioItem.symbol
+              whichItem: selectedPortfolioItem.symbol
           })
 
           this.updateData()

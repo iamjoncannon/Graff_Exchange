@@ -78,6 +78,10 @@ export default function Portfolio_reducer (state = initialState, action) {
       const {symbol, data } = action.payload
       let updatedPortfolio = { ...state.portfolio}
 
+      if(data.data === []){
+        data.data = [{empty: "No News for this Stock"}]
+      }
+
       updatedPortfolio[symbol]["news"] = data.data;
   
       return { ...state, portfolio: updatedPortfolio }

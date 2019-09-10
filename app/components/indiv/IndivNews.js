@@ -2,55 +2,100 @@ import React from 'react';
 import { logoUrl } from '../utils'
 import { connect } from "react-redux";
 
-function IndivNews (props){
+class IndivNews extends React.Component {
 
-    const { news } = props
+  constructor(props) {
+    super(props);
 
-    window.scrollTo(0, 0);
+    this.state = {
 
-  return (
+      news : null
+    }
+  }
 
-    <div className="indiv-container">
+  componentDidMount(){
 
-      { news && news.map((newsItem, i) =>{
-
-          return (
-              <div className="news-box" key={i}> 
-                  
-
-                  <div>
-
-                      <span>
-                          <a href={newsItem.news_url} target="_blank">
-                          {newsItem.title}
-                          </a>
-                      </span>
-
-                      <span>
-                          {newsItem.date}
-                      </span>
-                      
-                      <span>
-                          {newsItem.text}
-                      </span>
-                  
-                  </div>
-
-                  <img 
-                      src={newsItem.image_url} 
-                  />
-              </div>
-          )
-      })
+    let { selectedPortfolioItem }  = this.props
     
+    if(selectedPortfolioItem){
+
+      this.setState({
+
+        news: selectedPortfolioItem.news
+      })
+    }
+    
+  }
+
+  componentDidUpdate(update){
+
+    const { selectedPortfolioItem } = this.props 
+    
+    if(selectedPortfolioItem){
+      if(selectedPortfolioItem.news){
+        if(selectedPortfolioItem.news.length){
+
+          if(selectedPortfolioItem.news[0].title !== this.state.news[0].title){
+        
+            this.setState({
+              
+              news: selectedPortfolioItem.news
+            })
+          }
+        }   
       }
-    </div>
-  );
-};
+    }
+}
+
+  render(){
+
+    let { news } = this.state
+
+    return (
+
+      <div className="indiv-container">
+  
+        { news && news.map((newsItem, i) =>{
+  
+            return (
+                <div className="news-box" key={i}> 
+                    
+                    <div>
+  
+                        <span>
+                            <a href={newsItem.news_url} target="_blank">
+                            {newsItem.title}
+                            </a>
+                        </span>
+  
+                        <span>
+                            {newsItem.date}
+                        </span>
+                        
+                        <span>
+                            {newsItem.text}
+                        </span>
+                    
+                    </div>
+  
+                    <img 
+                        src={newsItem.image_url} 
+                    />
+                </div>
+            )
+        })
+      
+        }
+      </div>
+    );
+
+  }
+}
 
 const mapStateToProps = ({ Portfolio_state }) => {
     return {
-      news: Portfolio_state.selectedPortfolioItem.news
+      selectedPortfolioItem: Portfolio_state.selectedPortfolioItem,
+      portfolio: Portfolio_state.portfolio
     };
   };
   
