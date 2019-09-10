@@ -14,7 +14,19 @@ class IndivPerf extends React.Component {
     }
   }
 
+  componentDidMount(){
 
+    let {selectedPortfolioItem} = this.props
+    
+    if(selectedPortfolioItem){
+
+      this.setState({
+
+        quantity: selectedPortfolioItem.quantity
+      })
+    }
+    
+  }
 
   componentDidUpdate(){
 
