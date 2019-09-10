@@ -25,7 +25,7 @@ class PerformanceChart extends React.Component {
 
     }
 
-    componentDidUpdate(argument){
+    componentDidUpdate(){
 
     }
     

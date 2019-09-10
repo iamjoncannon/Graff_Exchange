@@ -14,13 +14,6 @@ class IndivFin extends React.Component {
     }
   }
 
-  componentDidMount(){
-
-  }
-
-  componentDidUpdate(){
-
-  }
 
   dataSwitch = (newDisplay) => {
     window.scrollTo(0, 0);

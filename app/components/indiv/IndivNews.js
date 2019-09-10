@@ -7,55 +7,20 @@ class IndivNews extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-
-      news : null
-    }
+ 
   }
-
-  componentDidMount(){
-
-    let { selectedPortfolioItem }  = this.props
-    
-    if(selectedPortfolioItem){
-
-      this.setState({
-
-        news: selectedPortfolioItem.news
-      })
-    }
-    
-  }
-
-  componentDidUpdate(update){
-
-    const { selectedPortfolioItem } = this.props 
-    
-    if(selectedPortfolioItem){
-      if(selectedPortfolioItem.news){
-        if(selectedPortfolioItem.news.length){
-
-          if(selectedPortfolioItem.news[0].title !== this.state.news[0].title){
-        
-            this.setState({
-              
-              news: selectedPortfolioItem.news
-            })
-          }
-        }   
-      }
-    }
-}
 
   render(){
 
-    let { news } = this.state
+    let { selectedPortfolioItem } = this.props
 
     return (
 
       <div className="indiv-container">
   
-        { news && news.map((newsItem, i) =>{
+        { selectedPortfolioItem 
+          && selectedPortfolioItem.news 
+          && selectedPortfolioItem.news.map((newsItem, i) =>{
   
             return (
                 <div className="news-box" key={i}> 
@@ -95,7 +60,7 @@ class IndivNews extends React.Component {
 const mapStateToProps = ({ Portfolio_state }) => {
     return {
       selectedPortfolioItem: Portfolio_state.selectedPortfolioItem,
-      portfolio: Portfolio_state.portfolio
+      // portfolio: Portfolio_state.portfolio
     };
   };
   

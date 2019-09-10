@@ -144,7 +144,6 @@ const mapStateToProps = ({ Portfolio_state }) => {
   return {
     selectedPortfolioItem: Portfolio_state.selectedPortfolioItem,
     portfolio: Portfolio_state.portfolio
-    // quantity: Portfolio_state.selectedPortfolioItem.quantity
   };
 };
 

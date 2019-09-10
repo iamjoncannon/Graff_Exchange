@@ -75,16 +75,20 @@ export default function Portfolio_reducer (state = initialState, action) {
     
     case actions.HANDLENEWS: {
 
-      const {symbol, data } = action.payload
+      const { symbol, data } = action.payload
+      
       let updatedPortfolio = { ...state.portfolio}
 
-      if(data.data === []){
-        data.data = [{empty: "No News for this Stock"}]
-      }
-
+      let newSelectedPortfolioItem = { ...state.selectedPortfolioItem }
+      
       updatedPortfolio[symbol]["news"] = data.data;
   
-      return { ...state, portfolio: updatedPortfolio }
+      if(symbol === state.selectedPortfolioItem.symbol){
+        
+        newSelectedPortfolioItem["news"] = data.data;
+      }
+  
+      return { ...state, portfolio: updatedPortfolio, selectedPortfolioItem : newSelectedPortfolioItem }
     }
     
     case actions.HANDLEFINANCIALS: {
@@ -93,20 +97,34 @@ export default function Portfolio_reducer (state = initialState, action) {
 
       let updatedPortfolio = { ...state.portfolio}
 
+      let newSelectedPortfolioItem = { ...state.selectedPortfolioItem }
+
       updatedPortfolio[symbol]["financials"] = financials
+      
+      if(symbol === state.selectedPortfolioItem.symbol){
+        
+        newSelectedPortfolioItem["financials"] = financials
+      }
   
-      return { ...state, portfolio: updatedPortfolio }
+      return { ...state, portfolio: updatedPortfolio, selectedPortfolioItem : newSelectedPortfolioItem }      
     }
     
     case actions.HANDLEHISTORICALPRICE: {
 
-      const {symbol, historical } = action.payload
+      const { symbol, historical } = action.payload
       
-      let updatedPortfolio = { ...state.portfolio}
+      let updatedPortfolio = { ...state.portfolio }
+
+      let newSelectedPortfolioItem = { ...state.selectedPortfolioItem }
 
       updatedPortfolio[symbol]["historical"] = historical;
+
+      if(symbol === state.selectedPortfolioItem.symbol){
+        
+        newSelectedPortfolioItem["historical"] = historical;
+      }
   
-      return { ...state, portfolio: updatedPortfolio }
+      return { ...state, portfolio: updatedPortfolio, selectedPortfolioItem : newSelectedPortfolioItem }
     }
     
     case actions.HANDLESYMBOLSELECT: {
