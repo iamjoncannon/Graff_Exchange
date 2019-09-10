@@ -20,10 +20,6 @@ class IndivFin extends React.Component {
 
   componentDidUpdate(){
 
-    if(this.props.financials.length){
-
-      
-    }
   }
 
   dataSwitch = (newDisplay) => {
@@ -46,7 +42,6 @@ class IndivFin extends React.Component {
     return (
 
       <div>
-
 
         { this.props.financials && this.props.financials.length && 
           <div className="indiv-fin indiv-container">
@@ -73,9 +68,8 @@ class IndivFin extends React.Component {
                 })}
 
           </div>
-          }
 
-        {this.props.financials && !this.props.financials.length && <span>Unavailable for stock</span>}
+          }
 
         <DataNav 
           data={dataNavItems} 

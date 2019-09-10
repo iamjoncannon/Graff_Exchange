@@ -10,7 +10,22 @@ class IndivPerf extends React.Component {
     this.state = {
 
       selectedDataNavItem : "Week",
-      quantity: null
+      quantity: 0
+    }
+  }
+
+
+
+  componentDidUpdate(){
+
+    const { selectedPortfolioItem } = this.props 
+    
+    if(selectedPortfolioItem && selectedPortfolioItem.quantity !== this.state.quantity){
+
+      this.setState({
+
+        quantity: selectedPortfolioItem.quantity
+      })
     }
   }
 
@@ -26,8 +41,10 @@ class IndivPerf extends React.Component {
 
     const { selectedDataNavItem } = this.state
     
-    const { selectedPortfolioItem } = this.props 
+    const { selectedPortfolioItem, portfolio } = this.props 
 
+    let { quantity } = this.state
+    
     function formatChange(input){
 
       return (input * 100).toFixed(2)
@@ -68,8 +85,8 @@ class IndivPerf extends React.Component {
         
           <div className="first-datapoints">
 
-                  {[["Holdings", `${selectedPortfolioItem.quantity}`],
-                    ["Value", `$${ (selectedPortfolioItem.quantity * selectedPortfolioItem.price).toFixed(2)}`]].map( (item, i)=>{
+                  {[["Holdings", `${quantity}`],
+                    ["Value", `$${ (quantity * selectedPortfolioItem.price).toFixed(2)}`]].map( (item, i)=>{
 
                     return(
 
@@ -114,7 +131,8 @@ class IndivPerf extends React.Component {
 const mapStateToProps = ({ Portfolio_state }) => {
   return {
     selectedPortfolioItem: Portfolio_state.selectedPortfolioItem,
-    quantity: Portfolio_state.selectedPortfolioItem.quantity
+    portfolio: Portfolio_state.portfolio
+    // quantity: Portfolio_state.selectedPortfolioItem.quantity
   };
 };
 
