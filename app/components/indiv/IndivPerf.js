@@ -114,7 +114,7 @@ class IndivPerf extends React.Component {
 const mapStateToProps = ({ Portfolio_state }) => {
   return {
     selectedPortfolioItem: Portfolio_state.selectedPortfolioItem,
-    // quantity: Portfolio_state.selectedPortfolioItem.quantity
+    quantity: Portfolio_state.selectedPortfolioItem.quantity
   };
 };
 
