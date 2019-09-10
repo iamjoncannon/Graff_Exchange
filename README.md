@@ -2,7 +2,7 @@
 
 Fullstack application
 
-- front end- React/Redux/Sass (no CSS framework), socket connection to IEX api
+- front end- React/Redux/Sass (no CSS framework), responsive across cell/tablet/desktop viewports, socket connection to IEX api
 - back end- Golang, Redis, PostgreSQL, separate AWS deployment for front (S3) and back end (EC2) 
 
 Stateless JWT authentication, simluated ACID transaction, Redis and Local Storage caching strategy, data hydrated from three separate APIs
