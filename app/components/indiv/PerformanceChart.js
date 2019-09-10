@@ -43,7 +43,7 @@ class PerformanceChart extends React.Component {
 
         const { width, height } = this.state.dimensions;
 
-        const  {selectedPortfolioItem, period } = this.props
+        const  { selectedPortfolioItem, period } = this.props
 
         let data = selectedPortfolioItem.historical.slice(0, period)
 
@@ -83,7 +83,7 @@ class PerformanceChart extends React.Component {
 
             <div className="chart" ref={el => (this.container = el)}>
 
-                {dimensions && this.props.selectedPortfolioItem.historical && this.renderContent()}
+                { dimensions && this.props.selectedPortfolioItem.historical && this.renderContent()}
 
             </div>
         )
@@ -93,7 +93,6 @@ class PerformanceChart extends React.Component {
 const mapStateToProps = ({ Portfolio_state }) => {
 
     return {
-      historicalPrices : Portfolio_state.selectedPortfolioItem.historical,
       selectedPortfolioItem : Portfolio_state.selectedPortfolioItem
     };
 };
