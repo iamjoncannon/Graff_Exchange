@@ -18,6 +18,14 @@ class IndivFin extends React.Component {
 
   }
 
+  componentDidUpdate(){
+
+    if(this.props.financials.length){
+
+      
+    }
+  }
+
   dataSwitch = (newDisplay) => {
     window.scrollTo(0, 0);
 

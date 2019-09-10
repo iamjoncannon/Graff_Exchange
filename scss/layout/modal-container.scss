@@ -64,6 +64,10 @@
             font-size: 5vh;
             text-align: center;
 
+            @include cell(){
+                font-size: 3vh;
+            }
+
             &:nth-of-type(1){
                 margin-right: 4vh;
             }
@@ -85,11 +89,6 @@
             left: 9vw;
             padding: .5rem;
         } 
-
-        .symbol-box {
-
-            font-size: 2vh;
-        }
     }
 
     .symbol-selector {

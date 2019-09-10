@@ -60,7 +60,7 @@ class AddSymbolBox extends React.Component {
 
           return (
 
-            <div className="trade-box symbol-box">
+            <div className="trade-box symbol-box" id="add-symbol-box">
 
               <span>
                 Symbol
@@ -78,7 +78,7 @@ class AddSymbolBox extends React.Component {
                   onClick={this.handleSubmit} 
                   style={{opacity: stockName && !this.props.portfolio[input] ? "1" : ".3"}}
                 >
-                  Add
+                 Add
                 </button>
 
               </div>

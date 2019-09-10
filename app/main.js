@@ -7,8 +7,6 @@ import store from '../store/store'
 
 localStorage.clear()
 
-console.log("clearnign local storage")
-
 ReactDOM.render(    
   <Provider store={store}>
     <Router>
