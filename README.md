@@ -10,3 +10,6 @@ Stateless JWT authentication, simluated ACID transaction, Redis and Local Storag
 Codebase for back-end API: https://github.com/iamjoncannon/GopherExchangeAPI
 
 Deployed at http://www.gopher.joncannon.codes
+
+## structure of application
+

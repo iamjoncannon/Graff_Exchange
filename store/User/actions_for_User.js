@@ -16,6 +16,5 @@ const LogOut = (payload) => {
 
 export default {
 	login,
-	register,
 	LogOut,
 }

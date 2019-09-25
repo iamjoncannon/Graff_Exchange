@@ -1,28 +1,38 @@
 import actions from "./actions_for_User"
-import axios from 'axios'
-import { urlPrefix } from '../../secrets'
 import { client } from '../../app/main'
 import gql from 'graphql-tag'
-import { sign } from "crypto"
 
 export const loginThunk = (email, password) => async dispatch => {
 
-  let res 
+  const query = gql`query login_call($email: String, $password: String) {
 
-  try{
+    login(email: $email, password: $password){
+      email
+      first_name
+      last_name 
+      token
+      balance
+    }
+  }`
+
+  let variables = { email, password }
+
+  let response
+
+  try {
+
+    let { data : { login } } = await client.query({ query, variables })
     
-    res = await axios.post( (urlPrefix + '/login'), { email, password} )
-
+    response = login
   }
   catch(error){
 
-      alert(error.response.data.message)
+    console.log(error)
   }
   
-  dispatch(actions.login(JSON.parse(res.data)))
-
-
- };
+  dispatch(actions.login(response))
+ 
+};
 
 export const registerThunk = ( first_name, last_name, email, password ) => async dispatch => {
   
@@ -54,8 +64,6 @@ export const registerThunk = ( first_name, last_name, email, password ) => async
   
   dispatch(actions.login(response))
 };
-
-
 
 export default {
 	loginThunk,
