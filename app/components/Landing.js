@@ -70,8 +70,6 @@ class Landing extends React.Component {
     const isDesktop = window.innerWidth > 1100;
 
     const { mode } = this.state
-
-    console.log(this.state)
     
     if(this.props.isLoggedIn){
         

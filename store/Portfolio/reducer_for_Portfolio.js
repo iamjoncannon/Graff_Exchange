@@ -1,6 +1,13 @@
 import actions from "./action_constants_for_PORTFOLIO"
 import User_actions from "../User/action_constants_for_User"
 
+/*
+
+  NB- "portfolio" corresponds to [ Holding ] 
+  in GraphQL type_defs
+
+*/
+
 const initialState = {
   selectedPortfolioItem: { },
   portfolio: {},
@@ -11,9 +18,29 @@ export default function Portfolio_reducer (state = initialState, action) {
   
   switch (action.type) {
 
+    case User_actions.LOGIN: {
+      
+      // converting [ Holding ] to an object, where 
+      // the key is the symbol and value is the item
+      // in the array 
+
+      const restructured_portfolio_data = {}
+
+      for( let holding of action.payload.holdings){
+        restructured_portfolio_data[holding.symbol] = holding
+
+        // this needs to get migrated to a resolver for a "data"
+        // object - ideally it would also be renamed 
+
+        restructured_portfolio_data[holding.symbol].data = {}
+      }
+
+      return { ...state, portfolio : restructured_portfolio_data }
+    }
+
     case actions.HYDRATEPORTFOLIO: {
 
-      let {selectedPortfolioItem} = state 
+      let { selectedPortfolioItem } = state 
 
       let { portfolio, transactionHistory } = action.payload
 

@@ -28,8 +28,11 @@ function hasTTLExpired(endTime){
   return current > endTime
 }
 
-// this fetches data for the entire portfolio
-// after login- 
+// graphql migration note-
+// "portfolio" corresponds to [ Holdings ]
+
+// for mobile, want to hydrate full portfolio
+// by login call, whereas with desktop we can make granular calls
 
 export const hydratePortfolioThunk = (token) => async dispatch => {
  
@@ -52,7 +55,7 @@ export const hydratePortfolioThunk = (token) => async dispatch => {
   
   portfolio = JSON.parse(portfolio.data)
   
-  // prevent nullish errors
+  // prevent null errors
 
   for(let stock in portfolio){
     
