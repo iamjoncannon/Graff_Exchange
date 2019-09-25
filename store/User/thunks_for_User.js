@@ -1,6 +1,9 @@
 import actions from "./actions_for_User"
 import axios from 'axios'
 import { urlPrefix } from '../../secrets'
+import { client } from '../../app/main'
+import gql from 'graphql-tag'
+import { sign } from "crypto"
 
 export const loginThunk = (email, password) => async dispatch => {
 
@@ -17,44 +20,42 @@ export const loginThunk = (email, password) => async dispatch => {
   }
   
   dispatch(actions.login(JSON.parse(res.data)))
+
+
+ };
+
+export const registerThunk = ( first_name, last_name, email, password ) => async dispatch => {
   
-};
+  const mutation = gql`mutation sign_up_call($input: sign_up_input) {
 
-export const registerThunk = (Name, Email, Password) => async dispatch => {
- 
-  console.log(Name, Email, Password)
+    sign_up(input: $input) {
+      first_name,
+      last_name,
+      email,
+      token,
+      balance
+    }
+  }`
 
-  const signUpInfo = { Name, Email, Password }
+  let variables = { input : { first_name, last_name, email, password } }
 
   let response
 
   try {
 
-    response = await axios.post(urlPrefix + '/signup', signUpInfo )
-
-    console.log("register response: ", response)
+    let { data : { sign_up } } = await client.mutate({ mutation, variables })
+    
+    response = sign_up
   }
   catch(error){
-    
-    let  duplicateEmail = error.response.data.message === `pq: duplicate key value violates unique constraint "unique_email"`
 
-    if (duplicateEmail){
-
-      alert("This Email is already on file, please try again with a unique email.")
-    }
-    else{
-
-      console.log(error)
-
-    }
+    console.log(error)
   }
-
-  signUpInfo.password = null 
-
-  let returnedToken = response.data
-
-  dispatch(actions.login({Balance: 50000, token: returnedToken, Name, Email}))
+  
+  dispatch(actions.login(response))
 };
+
+
 
 export default {
 	loginThunk,

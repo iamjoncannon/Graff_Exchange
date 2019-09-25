@@ -7,13 +7,6 @@ const login = (payload) => {
       	}
       }
 
-const register = (payload) => {
-      	return {
-      		type: actions.REGISTER,
-      		payload
-      	}
-      }
-
 const LogOut = (payload) => {
       	return {
       		type: actions.LOGOUT,

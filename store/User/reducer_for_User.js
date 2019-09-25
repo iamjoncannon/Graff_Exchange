@@ -2,10 +2,11 @@ import actions from "./action_constants_for_USER"
 import Portfolio_actions from "../Portfolio/action_constants_for_PORTFOLIO"
 
 const initialState = {
-  balance: '',
-  name: '',
-  email: '', 
-  token: "", 
+  balance: "",
+  email: "",
+  first_name: "",
+  last_name: "",
+  token: '',
   isLoggedIn: false,
 }
 

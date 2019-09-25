@@ -12,15 +12,19 @@ class Landing extends React.Component {
       
       this.state = {
           mode : 'sign-in',
-          firstName: "",
-          lastName: "",
-          email : "",
-          password : ""
+          firstName: "Webster",
+          lastName: "Ross",
+          email : "webster@ross.com",
+          password : "password"
       }
   }
 
   componentDidMount(){
-    
+
+    // the background needs to be cream for the desktop to seem inset
+    // ...but only for this page
+
+    document.body.style.backgroundColor = "#F9FAFB" 
   }
 
   componentWillUnmount(){
@@ -56,10 +60,8 @@ class Landing extends React.Component {
       }
 
       if(this.state.mode === "sign-up"){
-
-        let Name = firstName + " " + lastName
         
-        this.props.handleRegister(Name, email, password)
+        this.props.handleRegister(firstName, lastName, email, password)
       }
   }
 
@@ -68,11 +70,8 @@ class Landing extends React.Component {
     const isDesktop = window.innerWidth > 1100;
 
     const { mode } = this.state
-    
-    // the background needs to be cream for the desktop to seem inset
-    // ...but only for this page
 
-    document.body.style.backgroundColor = "#F9FAFB" 
+    console.log(this.state)
     
     if(this.props.isLoggedIn){
         

@@ -18,7 +18,6 @@ import AllTrans from './portfolio/AllTrans'
 
 const App = (props) => {
 
-
   // login route
 
   if(props.location.pathname === "/"){
