@@ -15,10 +15,28 @@ export const loginThunk = (email, password) => async dispatch => {
       holdings {
         symbol
         current_holding
-        
+      }
+      transction_history{
+        id
+        type
+        symbol
+        quantity
+        price
+        date_conducted
       }
     }
   }`
+
+  /* 
+    note
+
+    GraphQL intentionally ommitted the wildcard option in queries, you have
+    to explicitly request every field, or else use a "fragment"
+    which is simply these fields enumerated and then reused
+    - since we're only making the request for transaction history once, 
+    this would not dry out anything
+  
+  */
 
   let variables = { email, password }
 
