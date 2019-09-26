@@ -113,19 +113,23 @@ export const hydrateSinglePortfolioPage = ( selectedPortfolioItem ) => async dis
         image_url 
         news_url 
       }
+      quarterly_financials {
+        data
+      }
     }
   }`
 
   let variables = { symbol }
 
-  let news 
+  let news
+  let quarterly_financials 
 
   try {
 
     let response = await client.query({ query, variables })
       
     news = response.data.all_individual_stock_data.news
-
+    quarterly_financials = JSON.parse(response.data.all_individual_stock_data.quarterly_financials.data)
   }
   catch(error){
 
@@ -133,6 +137,10 @@ export const hydrateSinglePortfolioPage = ( selectedPortfolioItem ) => async dis
   }
 
   dispatch(actions.handleNews({ symbol, news }))
+
+  dispatch(actions.handleFinancials({ symbol, quarterly_financials }))
+
+
 
   /*
 
@@ -253,6 +261,18 @@ export const hydrateSinglePortfolioPage = ( selectedPortfolioItem ) => async dis
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 // this handles both making a trade
 // and adding a symbol to the watchlist
 
@@ -305,6 +325,11 @@ export const makeTradeThunk = (symbol, Quantity, Type, Price, token, isNewSymbol
     dispatch(actions.makeTrade({symbol, trade, transactionHistory})) 
 
 };
+
+
+
+
+
 
 // after the portfolio is loaded, each stock gets
 // updated with additional data from an ohlc endpoint-
