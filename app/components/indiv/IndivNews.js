@@ -10,6 +10,8 @@ class IndivNews extends React.Component {
  
   }
 
+  
+
   render(){
 
     let { selectedPortfolioItem } = this.props

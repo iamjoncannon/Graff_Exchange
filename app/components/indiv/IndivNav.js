@@ -49,9 +49,9 @@ class IndivNav extends React.Component {
 
   updateData(){
 
-      const { selectedPortfolioItem, token } = this.props
+      const { selectedPortfolioItem } = this.props
 
-      this.props.hydrateSinglePortfolioPage(token, selectedPortfolioItem, this.props.portfolio)
+      this.props.hydrateSinglePortfolioPage( selectedPortfolioItem )
 
   }
 

@@ -4,6 +4,7 @@ import gql from 'graphql-tag'
 
 export const loginThunk = (email, password) => async dispatch => {
 
+  // mobile login call 
   const query = gql`query login_call($email: String, $password: String) {
 
     login(email: $email, password: $password){
@@ -17,7 +18,7 @@ export const loginThunk = (email, password) => async dispatch => {
           symbol
           current_holding
         }
-        financial_data {
+        ohlc_data {
           latestPrice
           companyName
           change

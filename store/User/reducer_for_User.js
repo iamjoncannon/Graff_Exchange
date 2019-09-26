@@ -16,6 +16,8 @@ export default function User_reducer (state = initialState, action) {
 
     case actions.LOGIN: {
 
+      localStorage.setItem("token", action.payload.token)
+
       // due to graphql restructring
       
       const stripped_user_object = JSON.parse(JSON.stringify(action.payload))
@@ -23,11 +25,6 @@ export default function User_reducer (state = initialState, action) {
       delete stripped_user_object.transaction_history 
 
       return {...stripped_user_object, isLoggedIn: true } 
-    }
-    
-    case actions.REGISTER: {
-
-      return {...action.payload, isLoggedIn: true } 
     }
     
     case actions.LOGOUT: {

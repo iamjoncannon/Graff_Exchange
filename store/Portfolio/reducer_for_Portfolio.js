@@ -19,6 +19,8 @@ export default function Portfolio_reducer (state = initialState, action) {
   switch (action.type) {
 
     case User_actions.LOGIN: {
+
+      let { selectedPortfolioItem } = state 
       
       // converting [ Holding ] to an object, where 
       // the key is the symbol and value is the item
@@ -28,10 +30,19 @@ export default function Portfolio_reducer (state = initialState, action) {
 
       for( let holding of action.payload.holdings){
 
-        restructured_portfolio_data[holding.user_data.symbol] = {...holding.user_data, data: holding.financial_data }
+        restructured_portfolio_data[holding.user_data.symbol] = {...holding.user_data, data: holding.ohlc_data }
       }
 
-      return { ...state, portfolio : restructured_portfolio_data, transactionHistory: action.payload.transaction_history }
+      // if no stock selected, default to the first stock in the portfolio
+
+      let newSelectedPortfolioItem = ( !Object.keys(state.selectedPortfolioItem).length && Object.keys(restructured_portfolio_data).length ) ? 
+                                        restructured_portfolio_data[Object.keys(restructured_portfolio_data)[0]] : 
+                                        selectedPortfolioItem ;
+
+      return { ...state, 
+               selectedPortfolioItem : newSelectedPortfolioItem,
+               portfolio : restructured_portfolio_data, 
+               transactionHistory: action.payload.transaction_history }
     }
 
     case actions.HYDRATEPORTFOLIO: {
@@ -40,8 +51,7 @@ export default function Portfolio_reducer (state = initialState, action) {
 
       let { portfolio, transactionHistory } = action.payload
 
-      // if no stock selected, default to the first stock in the portfolio
-      let newSelectedPortfolioItem = ( !Object.keys(state.selectedPortfolioItem).length && Object.keys(portfolio).length) ? portfolio[Object.keys(portfolio)[0]] : selectedPortfolioItem ;
+      let newSelectedPortfolioItem = ( !Object.keys(state.selectedPortfolioItem).length && Object.keys(portfolio).length ) ? portfolio[Object.keys(portfolio)[0]] : selectedPortfolioItem ;
 
       return { portfolio, transactionHistory, selectedPortfolioItem : newSelectedPortfolioItem }
     }
@@ -88,17 +98,17 @@ export default function Portfolio_reducer (state = initialState, action) {
     
     case actions.HANDLENEWS: {
 
-      const { symbol, data } = action.payload
+      const { symbol, news } = action.payload
       
       let updatedPortfolio = { ...state.portfolio}
 
       let newSelectedPortfolioItem = { ...state.selectedPortfolioItem }
       
-      updatedPortfolio[symbol]["news"] = data.data;
+      updatedPortfolio[symbol]["news"] = news;
   
       if(symbol === state.selectedPortfolioItem.symbol){
         
-        newSelectedPortfolioItem["news"] = data.data;
+        newSelectedPortfolioItem["news"] = news;
       }
   
       return { ...state, portfolio: updatedPortfolio, selectedPortfolioItem : newSelectedPortfolioItem }

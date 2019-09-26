@@ -1,6 +1,8 @@
 import actions from "./actions_for_Portfolio"
 import { urlPrefix } from '../../secrets'
 import axios from 'axios'
+import gql from 'graphql-tag'
+import { client } from '../../app/main'
 
 function makeHeader(token){
   
@@ -96,7 +98,43 @@ export const hydratePortfolioThunk = (token) => async dispatch => {
 // on the "holdings" page- each data component
 // is cached in localstorage and redis
 
-export const hydrateSinglePortfolioPage = (token, selectedPortfolioItem) => async dispatch => {
+export const hydrateSinglePortfolioPage = ( selectedPortfolioItem ) => async dispatch => {
+
+  const { symbol } = selectedPortfolioItem
+
+  const query = gql`query individual_stock_data_call($symbol:String){
+  
+    all_individual_stock_data(symbol: $symbol ){
+      
+      news{
+        title
+        date
+        text
+        image_url 
+        news_url 
+      }
+    }
+  }`
+
+  let variables = { symbol }
+
+  let news 
+
+  try {
+
+    let response = await client.query({ query, variables })
+      
+    news = response.data.all_individual_stock_data.news
+
+  }
+  catch(error){
+
+    console.log(error)
+  }
+
+  dispatch(actions.handleNews({ symbol, news }))
+
+  /*
 
   let { symbol } = selectedPortfolioItem
 
@@ -210,6 +248,8 @@ export const hydrateSinglePortfolioPage = (token, selectedPortfolioItem) => asyn
     }
   }
 
+  */
+
 }
 
 
@@ -265,8 +305,6 @@ export const makeTradeThunk = (symbol, Quantity, Type, Price, token, isNewSymbol
     dispatch(actions.makeTrade({symbol, trade, transactionHistory})) 
 
 };
-
-
 
 // after the portfolio is loaded, each stock gets
 // updated with additional data from an ohlc endpoint-
