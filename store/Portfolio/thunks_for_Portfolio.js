@@ -116,6 +116,13 @@ export const hydrateSinglePortfolioPage = ( selectedPortfolioItem ) => async dis
       quarterly_financials {
         data
       }
+      time_series {
+        date
+        open
+        high
+        low
+        close
+      }
     }
   }`
 
@@ -123,13 +130,17 @@ export const hydrateSinglePortfolioPage = ( selectedPortfolioItem ) => async dis
 
   let news
   let quarterly_financials 
+  let historical 
 
   try {
 
-    let response = await client.query({ query, variables })
+    let { data : {all_individual_stock_data} } = await client.query({ query, variables })
+
+    console.log(all_individual_stock_data)
       
-    news = response.data.all_individual_stock_data.news
-    quarterly_financials = JSON.parse(response.data.all_individual_stock_data.quarterly_financials.data)
+    news = all_individual_stock_data.news
+    quarterly_financials = JSON.parse(all_individual_stock_data.quarterly_financials.data)
+    historical = all_individual_stock_data.time_series
   }
   catch(error){
 
@@ -140,7 +151,7 @@ export const hydrateSinglePortfolioPage = ( selectedPortfolioItem ) => async dis
 
   dispatch(actions.handleFinancials({ symbol, quarterly_financials }))
 
-
+  dispatch(actions.handleHistoricalPrice({ symbol, historical }))
 
   /*
 
