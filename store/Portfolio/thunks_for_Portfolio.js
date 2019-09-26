@@ -135,8 +135,6 @@ export const hydrateSinglePortfolioPage = ( selectedPortfolioItem ) => async dis
   try {
 
     let { data : {all_individual_stock_data} } = await client.query({ query, variables })
-
-    console.log(all_individual_stock_data)
       
     news = all_individual_stock_data.news
     quarterly_financials = JSON.parse(all_individual_stock_data.quarterly_financials.data)

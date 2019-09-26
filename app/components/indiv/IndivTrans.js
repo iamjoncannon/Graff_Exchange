@@ -13,7 +13,7 @@ class IndivTrans extends React.Component {
   render() {
 
     const { transactionHistory, selectedPortfolioItem } = this.props
-
+    
     return (
       <div className="indiv-trans indiv-container">
 
@@ -31,20 +31,23 @@ class IndivTrans extends React.Component {
           { transactionHistory &&
             Object.entries(transactionHistory)
               .reverse()
-              .filter(item =>{                
-                return item[1].Symbol === selectedPortfolioItem.symbol && item[1].Quantity > 0
+              .filter(item =>{       
+
+                return item[1].symbol === selectedPortfolioItem.symbol && item[1].quantity > 0
               })
               .map((item, i)=>{
 
-                let date = item[1].Date 
-                date = date.slice(0,date.indexOf("T"))
+                console.log(item[1])
+
+                let date = item[1].date_conducted 
+                date = date.slice(0,date.indexOf(":")-2)
 
                 return(
 
                   <div key={i}>
-                    <span>{item[1].Type}</span>
-                    <span>{item[1].Quantity}</span>
-                    <span>${item[1].Price}</span>
+                    <span>{item[1].type}</span>
+                    <span>{item[1].quantity}</span>
+                    <span>${item[1].price}</span>
                     <span>{date}</span>
                   </div>
                 )

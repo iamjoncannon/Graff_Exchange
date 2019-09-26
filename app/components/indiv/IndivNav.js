@@ -38,6 +38,8 @@ class IndivNav extends React.Component {
       let { selectedPortfolioItem } = this.props
 
       if( selectedPortfolioItem.symbol !== this.state.whichItem){
+
+          console.log("inside indiv nav", this.state)
           
           this.setState({
               whichItem: selectedPortfolioItem.symbol
