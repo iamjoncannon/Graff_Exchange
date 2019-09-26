@@ -13,10 +13,18 @@ export const loginThunk = (email, password) => async dispatch => {
       token
       balance
       holdings {
-        symbol
-        current_holding
+        user_data{
+          symbol
+          current_holding
+        }
+        financial_data {
+          latestPrice
+          companyName
+          change
+          changePercent
+        }
       }
-      transction_history{
+      transaction_history{
         id
         type
         symbol

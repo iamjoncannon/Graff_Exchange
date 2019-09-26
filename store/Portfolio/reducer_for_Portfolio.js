@@ -28,18 +28,10 @@ export default function Portfolio_reducer (state = initialState, action) {
 
       for( let holding of action.payload.holdings){
 
-        restructured_portfolio_data[holding.symbol] = holding
-
-        // this needs to get migrated to a resolver for a "data"
-        // object - ideally it would also be renamed 
-        // since client is referencing it simply as "data" throughout,
-        // will give a better name in the API and then call it
-        // "data" here
-
-        restructured_portfolio_data[holding.symbol].data = {}
+        restructured_portfolio_data[holding.user_data.symbol] = {...holding.user_data, data: holding.financial_data }
       }
 
-      return { ...state, portfolio : restructured_portfolio_data, transactionHistory: action.payload.transction_history }
+      return { ...state, portfolio : restructured_portfolio_data, transactionHistory: action.payload.transaction_history }
     }
 
     case actions.HYDRATEPORTFOLIO: {
@@ -81,16 +73,6 @@ export default function Portfolio_reducer (state = initialState, action) {
                }
       }
 
-    }
-    
-    case actions.GETONEPRICE: {
-
-      return { ...state }
-    }
-    
-    case actions.GETOPENINGPRICE: {
-
-      return { ...state }
     }
     
     case actions.HANDLESOCKETMESSAGE: {

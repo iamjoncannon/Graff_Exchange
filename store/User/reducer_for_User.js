@@ -17,10 +17,12 @@ export default function User_reducer (state = initialState, action) {
     case actions.LOGIN: {
 
       // due to graphql restructring
-      // located in portfolio state as "portfolio" object
-      // delete action.payload.holdings
+      
+      const stripped_user_object = JSON.parse(JSON.stringify(action.payload))
+      delete stripped_user_object.holdings 
+      delete stripped_user_object.transaction_history 
 
-      return {...action.payload, isLoggedIn: true } 
+      return {...stripped_user_object, isLoggedIn: true } 
     }
     
     case actions.REGISTER: {

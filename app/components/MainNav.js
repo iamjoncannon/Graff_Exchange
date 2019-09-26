@@ -81,7 +81,7 @@ const mapStateToProps = ({ User_state, Portfolio_state }) => {
   
   return {
     Name: User_state.Name,
-    Balance: User_state.Balance,
+    Balance: User_state.balance,
     token: User_state.token,
     portfolio: Portfolio_state.portfolio
   };
