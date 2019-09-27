@@ -26,19 +26,37 @@ class IndivFin extends React.Component {
     })
   }
 
+  hydrate_data = () => {
+
+    const { hydrateQuarterlyFinancialsThunk, selectedPortfolioItem} = this.props
+      
+    hydrateQuarterlyFinancialsThunk(selectedPortfolioItem)
+  }
+
   componentDidMount(){
 
-    if(!isCell()){
-      
-      const { hydrateQuarterlyFinancialsThunk, selectedPortfolioItem} = this.props
+    !isCell() && this.hydrate_data()
+  }
 
-      hydrateQuarterlyFinancialsThunk(selectedPortfolioItem.symbol)
+  componentDidUpdate(){
+
+    const { selectedPortfolioItem, portfolio } = this.props
+
+    const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
+
+    if(!isCell() && !selectedPortfolioItem_object.financials){
+
+      this.hydrate_data()
     }
   }
 
   render() {
 
     window.scrollTo(0, 0);
+
+    const { selectedPortfolioItem, portfolio} = this.props
+
+    const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
 
     const { dataNavItems, selectedDataNavItem } = this.state
     
@@ -48,13 +66,13 @@ class IndivFin extends React.Component {
 
       <div>
 
-        { this.props.financials && this.props.financials.length && 
+        { selectedPortfolioItem_object && selectedPortfolioItem_object.financials && selectedPortfolioItem_object.financials.length && 
           <div className="indiv-fin indiv-container">
 
             <span>{selectedDataNavItem}</span>
 
             
-              {Object.entries(this.props.financials[whichFinancial])
+              {Object.entries(selectedPortfolioItem_object.financials[whichFinancial])
                 .map( (item, i) =>{
               
                   return(
@@ -89,8 +107,8 @@ class IndivFin extends React.Component {
 
 const mapStateToProps = ({ Portfolio_state }) => {
   return {
-    selectedPortfolioItem: Portfolio_state.selectedPortfolioItem,
-    financials: Portfolio_state.selectedPortfolioItem.financials
+    portfolio: Portfolio_state.portfolio,
+    selectedPortfolioItem: Portfolio_state.selectedPortfolioItem
   };
 };
 

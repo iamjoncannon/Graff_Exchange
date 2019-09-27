@@ -113,20 +113,13 @@ export default function Portfolio_reducer (state = initialState, action) {
     
     case actions.HANDLEFINANCIALS: {
 
-      const {symbol, quarterly_financials } = action.payload
+      const { symbol, quarterly_financials } = action.payload
 
       let updatedPortfolio = { ...state.portfolio}
 
-      let newSelectedPortfolioItem = { ...state.selectedPortfolioItem }
-
       updatedPortfolio[symbol]["financials"] = quarterly_financials
-      
-      if(symbol === state.selectedPortfolioItem.symbol){
         
-        newSelectedPortfolioItem["financials"] = quarterly_financials
-      }
-  
-      return { ...state, portfolio: updatedPortfolio, selectedPortfolioItem : newSelectedPortfolioItem }      
+      return { ...state, portfolio: updatedPortfolio }      
     }
     
     case actions.HANDLEHISTORICALPRICE: {
@@ -135,8 +128,6 @@ export default function Portfolio_reducer (state = initialState, action) {
       
       let updatedPortfolio = { ...state.portfolio }
 
-      
-      
       updatedPortfolio[symbol]["historical"] = historical;
   
       return { ...state, portfolio: updatedPortfolio }
