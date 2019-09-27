@@ -24,34 +24,29 @@ class IndivNav extends React.Component {
     }
   }
 
-  componentDidMount(){
-        
-      this.setState({
-          whichItem : this.props.selectedPortfolioItem.symbol
-      })
+  hydrate_data(){
 
-      isCell() && this.updateData()
+    const { selectedPortfolioItem } = this.props
+
+    this.props.hydrateSinglePortfolioPage( selectedPortfolioItem )
+
+  }
+
+  componentDidMount(){
+
+      isCell() && this.hydrate_data()
   }
 
   componentDidUpdate(){
-      
-      let { selectedPortfolioItem } = this.props
 
-      if( selectedPortfolioItem.symbol !== this.state.whichItem){
-          
-          this.setState({
-              whichItem: selectedPortfolioItem.symbol
-          })
+    const { selectedPortfolioItem, portfolio } = this.props
 
-          isCell() && this.updateData()
-      }
-  }
+    const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
 
-  updateData(){
+    if(isCell() && !selectedPortfolioItem_object.historical){
 
-      const { selectedPortfolioItem } = this.props
-
-      this.props.hydrateSinglePortfolioPage( selectedPortfolioItem )
+      this.hydrate_data()
+    }
 
   }
 
@@ -66,6 +61,8 @@ class IndivNav extends React.Component {
     const { pathname } = this.props.location
     const { selectedPortfolioItem, portfolio, handleSymbolSelect } = this.props
 
+    const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
+    
     return (
 
       <div>
@@ -90,7 +87,7 @@ class IndivNav extends React.Component {
           onClick={()=>this.setState({isModalShowing: true, whichModal: 'symbol-selector'})}
         >
   
-          <span>{selectedPortfolioItem && selectedPortfolioItem.symbol}</span> 
+          <span>{selectedPortfolioItem_object && selectedPortfolioItem_object.symbol}</span> 
   
             <i className="fas fa-angle-down fa-7x" />
          

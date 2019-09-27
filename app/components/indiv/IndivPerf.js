@@ -16,37 +16,38 @@ class IndivPerf extends React.Component {
     }
   }
 
+  // for mobile, data is hydrated by the nav
+  // component  
+
   componentDidMount(){
-
-    let { selectedPortfolioItem, portfolio } = this.props
     
-    if(selectedPortfolioItem){
+    if(!isCell()){
 
-      this.setState({
-
-        current_holding: selectedPortfolioItem.current_holding
-      })
-    }
-
-    if(!isCell() && !portfolio.historical){
-      
-      const { hydrateTimeSeriesDataThunk, selectedPortfolioItem} = this.props
-
-      hydrateTimeSeriesDataThunk(selectedPortfolioItem.symbol)
+      this.hydrate_data()
     }
   }
 
+  // the individual components don't remount when the nav component
+  // updates the selected portfolio item- we have to have each of them
+  // determine if they need to hydrate appropriate data upon update 
+  
   componentDidUpdate(){
 
-    const { selectedPortfolioItem } = this.props 
-    
-    if(selectedPortfolioItem && selectedPortfolioItem.current_holding !== this.state.current_holding){
+    const { selectedPortfolioItem, portfolio } = this.props
 
-      this.setState({
+    const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
 
-        current_holding: selectedPortfolioItem.current_holding
-      })
+    if(!isCell() && !selectedPortfolioItem_object.historical){
+
+      this.hydrate_data()
     }
+  }
+
+  hydrate_data = () => {
+      
+    const { hydrateTimeSeriesDataThunk, selectedPortfolioItem} = this.props
+
+    hydrateTimeSeriesDataThunk(selectedPortfolioItem)
   }
 
   dataSwitch = (newDisplay) => {
@@ -62,6 +63,8 @@ class IndivPerf extends React.Component {
     const { selectedDataNavItem } = this.state
     
     const { selectedPortfolioItem, portfolio } = this.props 
+
+    const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
 
     let { current_holding } = this.state
     
@@ -90,23 +93,23 @@ class IndivPerf extends React.Component {
         <div className="ticker-box">
 
           <span>
-            $ {selectedPortfolioItem && selectedPortfolioItem.price}
+            $ {selectedPortfolioItem_object && selectedPortfolioItem_object.price}
           </span>
 
           <span>
 
-            {selectedPortfolioItem && selectedPortfolioItem.data && formatChange(selectedPortfolioItem.data.changePercent)}%
+            {selectedPortfolioItem_object && selectedPortfolioItem_object.data && formatChange(selectedPortfolioItem_object.data.changePercent)}%
         
           </span>
 
         </div>
 
-      { selectedPortfolioItem && selectedPortfolioItem.price &&
+      { selectedPortfolioItem_object && selectedPortfolioItem_object.price &&
         
           <div className="first-datapoints">
 
                   {[["Holdings", `${current_holding}`],
-                    ["Value", `$${ (current_holding * selectedPortfolioItem.price).toFixed(2)}`]].map( (item, i)=>{
+                    ["Value", `$${ (current_holding * selectedPortfolioItem_object.price).toFixed(2)}`]].map( (item, i)=>{
 
                     return(
 

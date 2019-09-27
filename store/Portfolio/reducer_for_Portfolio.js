@@ -35,7 +35,7 @@ export default function Portfolio_reducer (state = initialState, action) {
       
       // if no stock selected, default to the first stock in the portfolio
 
-      let newSelectedPortfolioItem = restructured_portfolio_data[Object.keys(restructured_portfolio_data)[0]] // ( !Object.keys(state.selectedPortfolioItem).length && Object.keys(restructured_portfolio_data).length ) ? 
+      let newSelectedPortfolioItem =  Object.keys(restructured_portfolio_data)[0] // restructured_portfolio_data[Object.keys(restructured_portfolio_data)[0]] // ( !Object.keys(state.selectedPortfolioItem).length && Object.keys(restructured_portfolio_data).length ) ? 
       //                                   restructured_portfolio_data[Object.keys(restructured_portfolio_data)[0]] : 
       //                                   selectedPortfolioItem ;
 
@@ -135,23 +135,16 @@ export default function Portfolio_reducer (state = initialState, action) {
       
       let updatedPortfolio = { ...state.portfolio }
 
-      let newSelectedPortfolioItem = { ...state.selectedPortfolioItem }
-
+      
+      
       updatedPortfolio[symbol]["historical"] = historical;
-
-      if(symbol === state.selectedPortfolioItem.symbol){
-        
-        newSelectedPortfolioItem["historical"] = historical;
-      }
   
-      return { ...state, portfolio: updatedPortfolio, selectedPortfolioItem : newSelectedPortfolioItem }
+      return { ...state, portfolio: updatedPortfolio }
     }
     
     case actions.HANDLESYMBOLSELECT: {
 
-      const nextSelect = state.portfolio[action.payload]
-
-      return { ...state, selectedPortfolioItem : nextSelect }
+      return { ...state, selectedPortfolioItem : action.payload }
     }
 
     case User_actions.LOGOUT: {

@@ -24,10 +24,6 @@ class PerformanceChart extends React.Component {
         window.removeEventListener("resize", this.resize.bind(this))
 
     }
-
-    componentDidUpdate(){
-
-    }
     
     resize = () => {
 
@@ -43,9 +39,11 @@ class PerformanceChart extends React.Component {
 
         const { width, height } = this.state.dimensions;
 
-        const  { selectedPortfolioItem, period } = this.props
+        const  { selectedPortfolioItem, period, portfolio } = this.props
 
-        let data = selectedPortfolioItem.historical.slice(0, period)
+        const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
+
+        let data = selectedPortfolioItem_object.historical.slice(0, period)
 
         for(let each in data){
             data[each].date = data[each].date.replace("2019-", "").replace("2018-", "")
@@ -79,11 +77,15 @@ class PerformanceChart extends React.Component {
       
         const { dimensions } = this.state;
 
+        const { portfolio, selectedPortfolioItem } = this.props
+
+        const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
+
         return(
 
             <div className="chart" ref={el => (this.container = el)}>
 
-                { dimensions && this.props.selectedPortfolioItem.historical && this.renderContent()}
+                { dimensions && selectedPortfolioItem_object.historical && this.renderContent()}
 
             </div>
         )
@@ -93,7 +95,8 @@ class PerformanceChart extends React.Component {
 const mapStateToProps = ({ Portfolio_state }) => {
 
     return {
-      selectedPortfolioItem : Portfolio_state.selectedPortfolioItem
+      selectedPortfolioItem : Portfolio_state.selectedPortfolioItem,
+      portfolio: Portfolio_state.portfolio
     };
 };
   
