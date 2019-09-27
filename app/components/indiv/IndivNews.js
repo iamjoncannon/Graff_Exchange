@@ -1,17 +1,21 @@
 import React from 'react';
-import { logoUrl } from '../utils'
 import { connect } from "react-redux";
+import { hydrateNewsThunk } from "../../../store/Portfolio/thunks_for_Portfolio"
 
 class IndivNews extends React.Component {
 
   constructor(props) {
     super(props);
 
- 
   }
 
-  
+  componentDidMount(){
 
+    const { hydrateNewsThunk, selectedPortfolioItem} = this.props
+    
+    hydrateNewsThunk(selectedPortfolioItem.symbol)
+  }
+  
   render(){
 
     let { selectedPortfolioItem } = this.props
@@ -65,8 +69,13 @@ const mapStateToProps = ({ Portfolio_state }) => {
       // portfolio: Portfolio_state.portfolio
     };
   };
-  
+
+const mapDispatchToProps = dispatch => ({
+
+  hydrateNewsThunk: (symbol) => dispatch(hydrateNewsThunk(symbol))
+});
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(IndivNews);

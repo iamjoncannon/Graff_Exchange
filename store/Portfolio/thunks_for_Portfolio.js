@@ -1,35 +1,10 @@
 import actions from "./actions_for_Portfolio"
-import { urlPrefix } from '../../secrets'
-import axios from 'axios'
 import gql from 'graphql-tag'
 import { client } from '../../app/main'
 
 // called by non-mobile clients 
 // will just the OHLC data portion 
 // of the login call for mobile 
-
-/*
-
-query hydrate_portfolio_query{
-  
-  hydrate_portfolio{
-    holdings {
-      user_data{
-        current_holding
-        symbol
-      }
-      ohlc_data{
-        companyName
-        latestPrice 
-        change
-        changePercent
-        open 
-      }
-    }
-  }
-}
-
-*/
 
 export const hydratePortfolioThunk = () => async dispatch => {
  
@@ -49,8 +24,7 @@ export const hydratePortfolioThunk = () => async dispatch => {
                         }
                       }
                     }`
-
-                  
+ 
   let response
 
     try {
@@ -134,15 +108,19 @@ export const hydrateSinglePortfolioPage = ( selectedPortfolioItem ) => async dis
 
 export const makeTradeThunk = (symbol, quantity, type, price, _, isNewSymbol) => async dispatch => {
   
-    // theres definitely a better way to do this 
+    // refactor this 
     const graphQL_string =  !isNewSymbol ? `mutation make_trade_mutation_call($input: make_transaction_input) {
 
       make_trade_mutation(input: $input) {
-        transaction_result{
+        
+        transaction_result {
+          
           symbol
           balance 
           new_holding
+          
           transaction {
+
             symbol 
             quantity
             price 
@@ -155,7 +133,7 @@ export const makeTradeThunk = (symbol, quantity, type, price, _, isNewSymbol) =>
 
       make_trade_mutation(input: $input) {
 
-        transaction_result{
+        transaction_result {
           symbol
           balance 
           new_holding 
@@ -168,6 +146,7 @@ export const makeTradeThunk = (symbol, quantity, type, price, _, isNewSymbol) =>
             date_conducted
           }
         }
+
         ohlc_data{
           companyName
           latestPrice
@@ -175,7 +154,9 @@ export const makeTradeThunk = (symbol, quantity, type, price, _, isNewSymbol) =>
           changePercent
           open
         }
+
       }
+    
     }`
     
     const mutation = gql`${graphQL_string}`
@@ -211,44 +192,53 @@ export const makeTradeThunk = (symbol, quantity, type, price, _, isNewSymbol) =>
     }  
 };
 
-// after the portfolio is loaded, each stock gets
-// updated with additional data from an ohlc endpoint-
-// this is only cached in redis
 
-async function getOpeningPriceThunk (symbol, token) {
+/*
+
+query hydrate_news_query($symbol: String){
   
-  const url = urlPrefix + '/ohlc/' + symbol
+  hydrate_news(symbol: $symbol){
+    title
+    date
+    text
+    image_url
+    news_url
+  }
+}
 
-  let returnData  
+*/
+
+export const hydrateNewsThunk = ( symbol ) => async dispatch =>{
+
+  const query = gql`query hydrate_news_query($symbol: String){
+  
+    hydrate_news(symbol: $symbol){
+      title
+      date
+      text
+      image_url
+      news_url
+    }
+  }`
+
+  const variables = { symbol }
+
+  let response
 
   try {
 
-    let { data } = await axios.post(url, {}, makeHeader(token))
-
-    returnData = data
-
+    // let { data : { hydrate_news } } = await client.query({ query })
+    let { data : {hydrate_news}} = await client.query({ query, variables })
+    
+    response = hydrate_news
   }
   catch(error){
+
     console.log(error)
   }
 
-  // returned from redis cache
-
-  if(typeof returnData === "string"){
-
-    try{
-
-      returnData = JSON.parse(returnData)
-    }
-    catch(error){
-      
-      console.log("error reading JSON: ", symbol, error)
-    }
-  }
-  
-  return returnData
-}
-
+  dispatch(actions.handleNews({news: response, symbol}))
+} 
 
 
 export default {

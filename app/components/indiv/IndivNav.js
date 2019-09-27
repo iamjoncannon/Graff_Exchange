@@ -30,7 +30,7 @@ class IndivNav extends React.Component {
           whichItem : this.props.selectedPortfolioItem.symbol
       })
 
-      this.updateData()
+      isCell() && this.updateData()
   }
 
   componentDidUpdate(){
@@ -43,7 +43,7 @@ class IndivNav extends React.Component {
               whichItem: selectedPortfolioItem.symbol
           })
 
-          this.updateData()
+          isCell() && this.updateData()
       }
   }
 

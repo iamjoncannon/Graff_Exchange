@@ -54,8 +54,6 @@ export default function Portfolio_reducer (state = initialState, action) {
         restructured_portfolio_data[holding.user_data.symbol] = { ...restructured_portfolio_data[holding.user_data.symbol], data: holding.ohlc_data }
       }
 
-      let newSelectedPortfolioItem = restructured_portfolio_data[Object.keys(restructured_portfolio_data)[0]] 
-
       return { ...state, 
         portfolio : restructured_portfolio_data
       }
@@ -97,17 +95,17 @@ export default function Portfolio_reducer (state = initialState, action) {
     
     case actions.HANDLENEWS: {
 
-      const { symbol, news } = action.payload
-      
+      const { news, symbol } = action.payload 
+
       let updatedPortfolio = { ...state.portfolio}
 
       let newSelectedPortfolioItem = { ...state.selectedPortfolioItem }
       
-      updatedPortfolio[symbol]["news"] = news;
+      updatedPortfolio[symbol]["news"] = news
   
       if(symbol === state.selectedPortfolioItem.symbol){
         
-        newSelectedPortfolioItem["news"] = news;
+        newSelectedPortfolioItem["news"] = news
       }
   
       return { ...state, portfolio: updatedPortfolio, selectedPortfolioItem : newSelectedPortfolioItem }
