@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from "react-redux";
 import PerformanceChart from './PerformanceChart'
 import DataNav from '../DataNav'
+import { hydrateTimeSeriesDataThunk } from "../../../store/Portfolio/thunks_for_Portfolio"
+import { isCell } from "../utils"
 
 class IndivPerf extends React.Component {
  
@@ -16,7 +18,7 @@ class IndivPerf extends React.Component {
 
   componentDidMount(){
 
-    let {selectedPortfolioItem} = this.props
+    let { selectedPortfolioItem, portfolio } = this.props
     
     if(selectedPortfolioItem){
 
@@ -25,7 +27,13 @@ class IndivPerf extends React.Component {
         current_holding: selectedPortfolioItem.current_holding
       })
     }
-    
+
+    if(!isCell() && !portfolio.historical){
+      
+      const { hydrateTimeSeriesDataThunk, selectedPortfolioItem} = this.props
+
+      hydrateTimeSeriesDataThunk(selectedPortfolioItem.symbol)
+    }
   }
 
   componentDidUpdate(){
@@ -147,7 +155,12 @@ const mapStateToProps = ({ Portfolio_state }) => {
   };
 };
 
+const mapDispatchToProps = dispatch => ({
+
+  hydrateTimeSeriesDataThunk: (symbol) => dispatch(hydrateTimeSeriesDataThunk(symbol))
+});
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(IndivPerf);

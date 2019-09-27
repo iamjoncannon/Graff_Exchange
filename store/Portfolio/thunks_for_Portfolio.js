@@ -238,11 +238,39 @@ export const hydrateQuarterlyFinancialsThunk = ( symbol ) => async dispatch =>{
     console.log(error)
   }
 
-  console.log(response)
-
   dispatch(actions.handleFinancials({quarterly_financials: JSON.parse(response.data), symbol}))
 } 
 
+export const hydrateTimeSeriesDataThunk = ( symbol ) => async dispatch =>{
+
+  const query = gql`query hydrate_time_series_data_query($symbol: String){
+  
+    hydrate_time_series_data(symbol: $symbol){
+      date
+      open
+      high
+      low
+      close
+    }
+  }`
+
+  const variables = { symbol }
+
+  let response
+
+  try {
+
+    let { data : { hydrate_time_series_data }} = await client.query({ query, variables })
+    
+    response = hydrate_time_series_data
+  }
+  catch(error){
+
+    console.log(error)
+  }
+
+  dispatch(actions.handleHistoricalPrice({historical: response, symbol}))
+} 
 
 export default {
 	hydratePortfolioThunk,

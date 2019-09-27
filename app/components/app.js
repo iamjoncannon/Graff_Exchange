@@ -77,12 +77,7 @@ const mapStateToProps = ({ User_state }) => {
   };
 };
 
-
-// vvv wrapper hell vvv
-
 export default withRouter(connect(
   mapStateToProps,
   null
 )(App))
-
-// ^^^ wrapper hell ^^^

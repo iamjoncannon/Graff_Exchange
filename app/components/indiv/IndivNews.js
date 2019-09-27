@@ -68,8 +68,8 @@ class IndivNews extends React.Component {
 
 const mapStateToProps = ({ Portfolio_state }) => {
     return {
+      
       selectedPortfolioItem: Portfolio_state.selectedPortfolioItem,
-      // portfolio: Portfolio_state.portfolio
     };
   };
 
