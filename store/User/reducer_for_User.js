@@ -34,7 +34,8 @@ export default function User_reducer (state = initialState, action) {
 
     case Portfolio_actions.MAKETRADE: {
 
-      return { ...state, Balance :  action.payload.trade[0] }
+      return { ...state, balance :  action.payload.transaction_result.balance }
+    
     }
     
     default:

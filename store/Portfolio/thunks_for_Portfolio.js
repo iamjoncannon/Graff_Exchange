@@ -4,37 +4,9 @@ import axios from 'axios'
 import gql from 'graphql-tag'
 import { client } from '../../app/main'
 
-function makeHeader(token){
-  
-  return { headers: {"Authorization": 'Bearer ' + token}}
-}
-
-// local storage has no TTL mechanism like Redis,
-// so we have to roll our own 
-
-function epoch(){
-
-  // Unix epoch converted hours
-  return ( (new Date).getTime() / 1000 ) / (60*60)
-}
-
-function setTTL(hours){
-
-  return epoch() + hours
-}
-
-function hasTTLExpired(endTime){
-
-  let current = epoch()
-
-  return current > endTime
-}
-
-// graphql migration note-
-// "portfolio" corresponds to [ Holdings ]
-
-// for mobile, want to hydrate full portfolio
-// by login call, whereas with desktop we can make granular calls
+// called by non-mobile clients 
+// will just the OHLC data portion 
+// of the login call for mobile 
 
 export const hydratePortfolioThunk = (token) => async dispatch => {
  
@@ -151,194 +123,89 @@ export const hydrateSinglePortfolioPage = ( selectedPortfolioItem ) => async dis
 
   dispatch(actions.handleHistoricalPrice({ symbol, historical }))
 
-  /*
-
-  let { symbol } = selectedPortfolioItem
-
-  // basic pattern of implementing local storage with Unix epoch TTL
-
-  // data for the time series chart
-
-  {
-
-    let inLocalStorage = !!localStorage.getItem(`time-series-${symbol}`)  // returns null if key doesn't exist
-    
-    let expired = hasTTLExpired(localStorage.getItem(`time-series-${symbol}-TTL`)) 
-    
-    if( inLocalStorage && !expired ){
-      
-      dispatch(actions.handleHistoricalPrice({ symbol, historical: JSON.parse(localStorage.getItem(`time-series-${symbol}`))}))
-    }
-    else{
-
-      let data 
-
-      try{
-
-        data = await axios.post( urlPrefix + `/time-series/${symbol}`, {}, makeHeader(token) ) 
-
-      }
-      catch(error){
-
-        console.log(error)
-      }
-        
-      if(data){
-        
-        let { historical } = data.data
-        dispatch(actions.handleHistoricalPrice({ symbol, historical }))
-        localStorage.setItem(`time-series-${symbol}`, JSON.stringify(historical))
-        localStorage.setItem(`time-series-${symbol}-TTL`, setTTL(60*60*24) )
-      }        
-    }
-  }
-  
-  // data for the news section
-  
-  {
-
-    let inLocalStorage = !!localStorage.getItem(`news-${symbol}`)  
-    
-    let expired = hasTTLExpired(localStorage.getItem(`news-${symbol}-TTL`)) 
-    
-    if( inLocalStorage && !expired ){
-      
-      dispatch(actions.handleNews({ symbol, data: JSON.parse(localStorage.getItem(`news-${symbol}`))}))
-    }
-    else{
-      
-      let data 
-      
-      try{
-        
-        let response = await axios.post( urlPrefix + `/news/${symbol}`, {}, makeHeader(token) ) 
-
-        data = response.data
-      }
-      catch(error){
-
-        console.log(error)
-      }
-                
-      if(data){
-        
-          dispatch(actions.handleNews({ symbol, data }))
-          localStorage.setItem(`news-${symbol}`, JSON.stringify(data))
-          localStorage.setItem(`news-${symbol}-TTL`, setTTL(.30) )
-        }
-      }
-  }
-
-
-  // data for the quarterly financials section
-  {
-
-    let inLocalStorage = !!localStorage.getItem(`financials-${symbol}`)  
-    
-    let expired = hasTTLExpired(localStorage.getItem(`financials-${symbol}-TTL`)) 
-    
-    if( inLocalStorage && !expired ){
-      
-      dispatch(actions.handleFinancials({ symbol, financials: JSON.parse(localStorage.getItem(`financials-${symbol}`))}))
-    }
-    else{
-
-      let data 
-
-      try{
-
-        data = await axios.post( urlPrefix + `/financials/${symbol}`, {}, makeHeader(token) ) 
-
-      }
-      catch(error){
-
-        console.log(error)
-      }
-        
-      if(data){
-        
-        let { financials } = data.data
-        dispatch(actions.handleFinancials({ symbol, financials }))
-        localStorage.setItem(`financials-${symbol}`, JSON.stringify(financials))
-        localStorage.setItem(`financials-${symbol}-TTL`, setTTL(60*60*24) )
-      }        
-    }
-  }
-
-  */
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // this handles both making a trade
 // and adding a symbol to the watchlist
 
-export const makeTradeThunk = (symbol, Quantity, Type, Price, token, isNewSymbol) => async dispatch => {
+export const makeTradeThunk = (symbol, quantity, type, price, _, isNewSymbol) => async dispatch => {
+  
+    // theres definitely a better way to do this 
+    const graphQL_string =  !isNewSymbol ? `mutation make_trade_mutation_call($input: make_transaction_input) {
 
-  /*
-    endpoint expects:
-     Symbol: '',
-     Quantity: '',
-     Type: 'Buy',
-     Price: ''
-  */
- 
-    Quantity = Number(Quantity) 
+      make_trade_mutation(input: $input) {
+        transaction_result{
+          symbol
+          balance 
+          new_holding
+          transaction {
+            symbol 
+            quantity
+            price 
+            type
+            date_conducted
+          }
+        }
+      }
+    }` : `mutation make_trade_mutation_call($input: make_transaction_input) {
 
-    let trade 
+      make_trade_mutation(input: $input) {
 
-    try{
+        transaction_result{
+          symbol
+          balance 
+          new_holding 
 
-      trade = await axios.post( urlPrefix + '/maketransaction', {Symbol: symbol, Quantity, Type, Price}, makeHeader(token)) 
-    }
-    catch(err){
-
-      console.log(err)
-    }
+          transaction {
+            symbol 
+            quantity
+            price 
+            type
+            date_conducted
+          }
+        }
+        ohlc_data{
+          companyName
+          latestPrice
+          change
+          changePercent
+          open
+        }
+      }
+    }`
     
-    trade = trade.data
+    const mutation = gql`${graphQL_string}`
 
-    let transactionHistory 
-    
-    try{
+    quantity = Number(quantity)
 
-      let data = await axios.post(urlPrefix + '/getallTransactions', {}, makeHeader(token))
+    let variables = { input : { symbol, quantity, type, price } }
+
+    let response
+
+    try {
+
+      let { data : { make_trade_mutation } } = await client.mutate({ mutation, variables })
       
-      transactionHistory = JSON.parse(data.data)
+      response = make_trade_mutation
     }
     catch(error){
+
       console.log(error)
     }
 
-    if(isNewSymbol){
+    let { transaction_result } = response 
 
-      let response = await getOpeningPriceThunk(symbol, token)
+    if(response.ohlc_data){
 
-      console.log(response)
+      let { ohlc_data } = response
 
-      trade.data = response
+      dispatch(actions.makeTrade({ transaction_result, ohlc_data })) 
     }
-
-    dispatch(actions.makeTrade({symbol, trade, transactionHistory})) 
-
+    else{
+      
+      dispatch(actions.makeTrade({ transaction_result })) 
+    }  
 };
-
-
-
-
-
 
 // after the portfolio is loaded, each stock gets
 // updated with additional data from an ohlc endpoint-

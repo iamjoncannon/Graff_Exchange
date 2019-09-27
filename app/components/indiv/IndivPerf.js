@@ -10,7 +10,7 @@ class IndivPerf extends React.Component {
     this.state = {
 
       selectedDataNavItem : "Week",
-      quantity: 0
+      current_holding: 0
     }
   }
 
@@ -22,7 +22,7 @@ class IndivPerf extends React.Component {
 
       this.setState({
 
-        quantity: selectedPortfolioItem.quantity
+        current_holding: selectedPortfolioItem.current_holding
       })
     }
     
@@ -32,11 +32,11 @@ class IndivPerf extends React.Component {
 
     const { selectedPortfolioItem } = this.props 
     
-    if(selectedPortfolioItem && selectedPortfolioItem.quantity !== this.state.quantity){
+    if(selectedPortfolioItem && selectedPortfolioItem.current_holding !== this.state.current_holding){
 
       this.setState({
 
-        quantity: selectedPortfolioItem.quantity
+        current_holding: selectedPortfolioItem.current_holding
       })
     }
   }
@@ -55,7 +55,7 @@ class IndivPerf extends React.Component {
     
     const { selectedPortfolioItem, portfolio } = this.props 
 
-    let { quantity } = this.state
+    let { current_holding } = this.state
     
     function formatChange(input){
 
@@ -93,12 +93,12 @@ class IndivPerf extends React.Component {
 
         </div>
 
-      { selectedPortfolioItem && selectedPortfolioItem.data.open &&
+      { selectedPortfolioItem && selectedPortfolioItem.price &&
         
           <div className="first-datapoints">
 
-                  {[["Holdings", `${quantity}`],
-                    ["Value", `$${ (quantity * selectedPortfolioItem.price).toFixed(2)}`]].map( (item, i)=>{
+                  {[["Holdings", `${current_holding}`],
+                    ["Value", `$${ (current_holding * selectedPortfolioItem.price).toFixed(2)}`]].map( (item, i)=>{
 
                     return(
 

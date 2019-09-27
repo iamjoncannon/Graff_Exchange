@@ -36,9 +36,7 @@ class IndivTrans extends React.Component {
                 return item[1].symbol === selectedPortfolioItem.symbol && item[1].quantity > 0
               })
               .map((item, i)=>{
-
-                console.log(item[1])
-
+                
                 let date = item[1].date_conducted 
                 date = date.slice(0,date.indexOf(":")-2)
 

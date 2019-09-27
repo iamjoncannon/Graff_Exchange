@@ -23,6 +23,7 @@ export const loginThunk = (email, password) => async dispatch => {
           companyName
           change
           changePercent
+          open
         }
       }
       transaction_history{

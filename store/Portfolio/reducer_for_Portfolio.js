@@ -58,31 +58,25 @@ export default function Portfolio_reducer (state = initialState, action) {
     
     case actions.MAKETRADE: {
 
-      let { symbol, trade, transactionHistory } = action.payload
+      // update the holding of the stock
+
+      let { transaction_result: { symbol, new_holding, transaction } } = action.payload 
 
       let updatedPortfolio = {...state.portfolio }
+
+      if(!updatedPortfolio[symbol]) updatedPortfolio[symbol] = { symbol, data: action.payload.ohlc_data }
+
+      updatedPortfolio[symbol].current_holding = new_holding
+
+      // push the transaction into the transaction history 
+
+      const newTransactionHistory = [...state.transactionHistory, transaction]
       
-      if(!updatedPortfolio[symbol]){
-
-        updatedPortfolio[symbol] = { symbol: symbol, quantity: trade[1], data: trade.data }
-
-        return { ...state, 
-                 portfolio: updatedPortfolio, 
-                 selectedPortfolioItem : Object.keys(state.selectedPortfolioItem).length === 0 ? updatedPortfolio[symbol] : state.selectedPortfolioItem
-                }
-      
-      }
-      else{
-
-        updatedPortfolio[symbol]["quantity"] = trade[1]
-        
-        return { ...state, 
-                 portfolio: updatedPortfolio, 
-                 transactionHistory: transactionHistory,
-                 selectedPortfolioItem: updatedPortfolio[symbol]  
-               }
-      }
-
+      return { ...state, 
+                portfolio: updatedPortfolio, 
+                transactionHistory: newTransactionHistory,
+                selectedPortfolioItem: updatedPortfolio[symbol]  
+              }         
     }
     
     case actions.HANDLESOCKETMESSAGE: {

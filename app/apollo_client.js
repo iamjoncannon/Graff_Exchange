@@ -11,7 +11,7 @@ module.exports = () => {
         link: new HttpLink({
             uri: urlPrefix,
             headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`
+                Authorization: `${localStorage.getItem("token")}`
             }
         }),
         cache: new InMemoryCache()
