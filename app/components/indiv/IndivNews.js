@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { hydrateNewsThunk } from "../../../store/Portfolio/thunks_for_Portfolio"
+import { isCell } from "../utils"
 
 class IndivNews extends React.Component {
 
@@ -11,9 +12,12 @@ class IndivNews extends React.Component {
 
   componentDidMount(){
 
-    const { hydrateNewsThunk, selectedPortfolioItem} = this.props
-    
-    hydrateNewsThunk(selectedPortfolioItem.symbol)
+    if(!isCell()){
+ 
+      const { hydrateNewsThunk, selectedPortfolioItem} = this.props
+      
+      hydrateNewsThunk(selectedPortfolioItem.symbol)
+    }
   }
   
   render(){
@@ -55,7 +59,6 @@ class IndivNews extends React.Component {
                 </div>
             )
         })
-      
         }
       </div>
     );

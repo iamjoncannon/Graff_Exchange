@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from "react-redux";
 import DataNav from '../DataNav'
+import { hydrateQuarterlyFinancialsThunk } from "../../../store/Portfolio/thunks_for_Portfolio"
+import { isCell } from "../utils"
 
 // Financials Page- displays quarterly financial reports
 
@@ -10,7 +12,7 @@ class IndivFin extends React.Component {
     super(props);
     this.state = {
       dataNavItems: ["Q1 2019", "Q4 2018", "Q3 2018", "Q2 2018"],
-      selectedDataNavItem : "Q1 2019",
+      selectedDataNavItem : "Q1 2019"
     }
   }
 
@@ -22,6 +24,16 @@ class IndivFin extends React.Component {
 
       selectedDataNavItem : newDisplay,
     })
+  }
+
+  componentDidMount(){
+
+    if(!isCell()){
+      
+      const { hydrateQuarterlyFinancialsThunk, selectedPortfolioItem} = this.props
+
+      hydrateQuarterlyFinancialsThunk(selectedPortfolioItem.symbol)
+    }
   }
 
   render() {
@@ -43,7 +55,6 @@ class IndivFin extends React.Component {
 
             
               {Object.entries(this.props.financials[whichFinancial])
-                .reverse()
                 .map( (item, i) =>{
               
                   return(
@@ -78,11 +89,17 @@ class IndivFin extends React.Component {
 
 const mapStateToProps = ({ Portfolio_state }) => {
   return {
+    selectedPortfolioItem: Portfolio_state.selectedPortfolioItem,
     financials: Portfolio_state.selectedPortfolioItem.financials
   };
 };
 
+const mapDispatchToProps = dispatch => ({
+
+  hydrateQuarterlyFinancialsThunk: (symbol) => dispatch(hydrateQuarterlyFinancialsThunk(symbol))
+});
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(IndivFin);

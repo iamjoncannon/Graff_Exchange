@@ -2,10 +2,6 @@ import actions from "./actions_for_Portfolio"
 import gql from 'graphql-tag'
 import { client } from '../../app/main'
 
-// called by non-mobile clients 
-// will just the OHLC data portion 
-// of the login call for mobile 
-
 export const hydratePortfolioThunk = () => async dispatch => {
  
   const query = gql`query hydrate_portfolio_query{
@@ -43,10 +39,7 @@ export const hydratePortfolioThunk = () => async dispatch => {
 
 };
 
-
-// this hydrates data for a specific stock holding
-// on the "holdings" page- each data component
-// is cached in localstorage and redis
+// called by web version after log in 
 
 export const hydrateSinglePortfolioPage = ( selectedPortfolioItem ) => async dispatch => {
 
@@ -103,8 +96,6 @@ export const hydrateSinglePortfolioPage = ( selectedPortfolioItem ) => async dis
 
 }
 
-// this handles both making a trade
-// and adding a symbol to the watchlist
 
 export const makeTradeThunk = (symbol, quantity, type, price, _, isNewSymbol) => async dispatch => {
   
@@ -192,22 +183,6 @@ export const makeTradeThunk = (symbol, quantity, type, price, _, isNewSymbol) =>
     }  
 };
 
-
-/*
-
-query hydrate_news_query($symbol: String){
-  
-  hydrate_news(symbol: $symbol){
-    title
-    date
-    text
-    image_url
-    news_url
-  }
-}
-
-*/
-
 export const hydrateNewsThunk = ( symbol ) => async dispatch =>{
 
   const query = gql`query hydrate_news_query($symbol: String){
@@ -227,7 +202,6 @@ export const hydrateNewsThunk = ( symbol ) => async dispatch =>{
 
   try {
 
-    // let { data : { hydrate_news } } = await client.query({ query })
     let { data : {hydrate_news}} = await client.query({ query, variables })
     
     response = hydrate_news
@@ -238,6 +212,35 @@ export const hydrateNewsThunk = ( symbol ) => async dispatch =>{
   }
 
   dispatch(actions.handleNews({news: response, symbol}))
+} 
+
+export const hydrateQuarterlyFinancialsThunk = ( symbol ) => async dispatch =>{
+
+  const query = gql`query hydrate_quarterly_financials_query($symbol: String){
+  
+    hydrate_quarterly_financials(symbol: $symbol){
+      data
+    }
+  }`
+
+  const variables = { symbol }
+
+  let response
+
+  try {
+
+    let { data : {hydrate_quarterly_financials}} = await client.query({ query, variables })
+    
+    response = hydrate_quarterly_financials
+  }
+  catch(error){
+
+    console.log(error)
+  }
+
+  console.log(response)
+
+  dispatch(actions.handleFinancials({quarterly_financials: JSON.parse(response.data), symbol}))
 } 
 
 
