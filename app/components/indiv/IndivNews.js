@@ -10,27 +10,46 @@ class IndivNews extends React.Component {
 
   }
 
+  hydrate_data = () => {
+
+    const { hydrateNewsThunk, selectedPortfolioItem } = this.props 
+
+    console.log("calling hydrate data inside indiv news component", hydrateNewsThunk)
+
+    hydrateNewsThunk(selectedPortfolioItem)
+  }
+
   componentDidMount(){
 
-    if(!isCell()){
- 
-      const { hydrateNewsThunk, selectedPortfolioItem} = this.props
-      
-      hydrateNewsThunk(selectedPortfolioItem.symbol)
+    !isCell() && this.hydrate_data() 
+  }
+
+  componentDidUpdate(){
+    
+    const { selectedPortfolioItem, portfolio } = this.props
+    
+    const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
+
+    if(!isCell() && !selectedPortfolioItem_object.news){
+   
+      this.hydrate_data()
     }
   }
-  
+
   render(){
 
-    let { selectedPortfolioItem } = this.props
+    const { selectedPortfolioItem, portfolio } = this.props
+
+    const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
+
 
     return (
 
       <div className="indiv-container">
   
-        { selectedPortfolioItem 
-          && selectedPortfolioItem.news 
-          && selectedPortfolioItem.news.map((newsItem, i) =>{
+        { selectedPortfolioItem_object 
+          && selectedPortfolioItem_object.news 
+          && selectedPortfolioItem_object.news.map((newsItem, i) =>{
   
             return (
                 <div className="news-box" key={i}> 
@@ -68,7 +87,7 @@ class IndivNews extends React.Component {
 
 const mapStateToProps = ({ Portfolio_state }) => {
     return {
-      
+      portfolio: Portfolio_state.portfolio,     
       selectedPortfolioItem: Portfolio_state.selectedPortfolioItem,
     };
   };

@@ -28,6 +28,8 @@ class IndivNav extends React.Component {
 
     const { selectedPortfolioItem } = this.props
 
+    console.log("calling hydrate data inside indiv nav", selectedPortfolioItem)
+
     this.props.hydrateSinglePortfolioPage( selectedPortfolioItem )
 
   }

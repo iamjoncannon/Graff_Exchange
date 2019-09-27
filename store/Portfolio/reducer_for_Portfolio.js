@@ -98,17 +98,10 @@ export default function Portfolio_reducer (state = initialState, action) {
       const { news, symbol } = action.payload 
 
       let updatedPortfolio = { ...state.portfolio}
-
-      let newSelectedPortfolioItem = { ...state.selectedPortfolioItem }
-      
+    
       updatedPortfolio[symbol]["news"] = news
   
-      if(symbol === state.selectedPortfolioItem.symbol){
-        
-        newSelectedPortfolioItem["news"] = news
-      }
-  
-      return { ...state, portfolio: updatedPortfolio, selectedPortfolioItem : newSelectedPortfolioItem }
+      return { ...state, portfolio: updatedPortfolio }
     }
     
     case actions.HANDLEFINANCIALS: {

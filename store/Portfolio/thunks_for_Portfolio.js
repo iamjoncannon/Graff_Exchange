@@ -43,7 +43,7 @@ export const hydratePortfolioThunk = () => async dispatch => {
 
 export const hydrateSinglePortfolioPage = ( selectedPortfolioItem ) => async dispatch => {
 
-  const { symbol } = selectedPortfolioItem
+  const symbol  = selectedPortfolioItem
 
   const query = gql`query individual_stock_data_call($symbol:String){
   

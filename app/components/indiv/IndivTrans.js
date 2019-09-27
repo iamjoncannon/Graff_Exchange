@@ -33,7 +33,7 @@ class IndivTrans extends React.Component {
               .reverse()
               .filter(item =>{       
 
-                return item[1].symbol === selectedPortfolioItem.symbol && item[1].quantity > 0
+                return item[1].symbol === selectedPortfolioItem && item[1].quantity > 0
               })
               .map((item, i)=>{
                 
