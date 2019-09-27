@@ -87,7 +87,7 @@ class IndivPerf extends React.Component {
 
           <span>
 
-            {selectedPortfolioItem && formatChange(selectedPortfolioItem.data.changePercent)}%
+            {selectedPortfolioItem && selectedPortfolioItem.data && formatChange(selectedPortfolioItem.data.changePercent)}%
         
           </span>
 

@@ -8,60 +8,64 @@ import { client } from '../../app/main'
 // will just the OHLC data portion 
 // of the login call for mobile 
 
-export const hydratePortfolioThunk = (token) => async dispatch => {
+/*
+
+query hydrate_portfolio_query{
+  
+  hydrate_portfolio{
+    holdings {
+      user_data{
+        current_holding
+        symbol
+      }
+      ohlc_data{
+        companyName
+        latestPrice 
+        change
+        changePercent
+        open 
+      }
+    }
+  }
+}
+
+*/
+
+export const hydratePortfolioThunk = () => async dispatch => {
  
-  let portfolio
-  let transactionHistory
+  const query = gql`query hydrate_portfolio_query{
+                      hydrate_portfolio{
+                        holdings {
+                          user_data{
+                            symbol
+                          }
+                          ohlc_data{
+                            companyName
+                            latestPrice 
+                            change
+                            changePercent
+                            open 
+                          }
+                        }
+                      }
+                    }`
 
-  try {
+                  
+  let response
 
-    Promise.all( // allows us to run api calls in parallel rather than serially
-      [ 
-        ( portfolio = await axios.post( urlPrefix + '/getportfolio', {}, makeHeader(token)) ),
-        ( transactionHistory = await axios.post(urlPrefix + '/getallTransactions', {}, makeHeader(token)) )
-      ]
-    )
-  }
-  catch(error){
+    try {
 
-    console.log(error)
-  }
-  
-  portfolio = JSON.parse(portfolio.data)
-  
-  // prevent null errors
+      let { data : { hydrate_portfolio } } = await client.query({ query })
+      
+      response = hydrate_portfolio
+    }
+    catch(error){
 
-  for(let stock in portfolio){
-    
-    portfolio[stock].data = {}
-  }
-  
-  // update the store with what we have now, so it can
-  // start updating the table- this will cause the view
-  // to update gradually rather than waiting for all the data
-  // to return from the api in the next calls
+      console.log(error)
+    }
 
-  dispatch(actions.hydratePortfolio( { portfolio : {...portfolio}, 
-                                       transactionHistory: {...JSON.parse(transactionHistory.data)},                 
-                                      //  financials : null,
-                                      //  historical : null,
-                                      //  news : null
-                                      } 
-                                     ))
-  
-  // we have the initial portfolio, now we need to add current data
-  // from an external API using an endpoint from the Gopher API
 
-  for(let stock in portfolio){
-                                      // hoisted below
-      portfolio[stock].data = await getOpeningPriceThunk(stock, token)
-
-  }
-
-  dispatch(actions.hydratePortfolio( { portfolio : {...portfolio}, 
-                                        transactionHistory: {...JSON.parse(transactionHistory.data)},                 
-                                      } ))
-  
+  dispatch(actions.hydratePortfolio( response ))
 
 };
 

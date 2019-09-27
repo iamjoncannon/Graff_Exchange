@@ -8,6 +8,8 @@ import apollo_client from './apollo_client'
 
 export const client = apollo_client()
 
+if(localStorage.getItem("token")) localStorage.removeItem("token")
+
 ReactDOM.render(    
   <Provider store={store}>
     <Router>

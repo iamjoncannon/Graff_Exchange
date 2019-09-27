@@ -29,15 +29,15 @@ export default function Portfolio_reducer (state = initialState, action) {
       const restructured_portfolio_data = {}
 
       for( let holding of action.payload.holdings){
-
+        
         restructured_portfolio_data[holding.user_data.symbol] = {...holding.user_data, data: holding.ohlc_data }
       }
-
+      
       // if no stock selected, default to the first stock in the portfolio
 
-      let newSelectedPortfolioItem = ( !Object.keys(state.selectedPortfolioItem).length && Object.keys(restructured_portfolio_data).length ) ? 
-                                        restructured_portfolio_data[Object.keys(restructured_portfolio_data)[0]] : 
-                                        selectedPortfolioItem ;
+      let newSelectedPortfolioItem = restructured_portfolio_data[Object.keys(restructured_portfolio_data)[0]] // ( !Object.keys(state.selectedPortfolioItem).length && Object.keys(restructured_portfolio_data).length ) ? 
+      //                                   restructured_portfolio_data[Object.keys(restructured_portfolio_data)[0]] : 
+      //                                   selectedPortfolioItem ;
 
       return { ...state, 
                selectedPortfolioItem : newSelectedPortfolioItem,
@@ -47,13 +47,18 @@ export default function Portfolio_reducer (state = initialState, action) {
 
     case actions.HYDRATEPORTFOLIO: {
 
-      let { selectedPortfolioItem } = state 
+      const restructured_portfolio_data = {...state.portfolio}
+      
+      for( let holding of action.payload.holdings){
+        
+        restructured_portfolio_data[holding.user_data.symbol] = { ...restructured_portfolio_data[holding.user_data.symbol], data: holding.ohlc_data }
+      }
 
-      let { portfolio, transactionHistory } = action.payload
+      let newSelectedPortfolioItem = restructured_portfolio_data[Object.keys(restructured_portfolio_data)[0]] 
 
-      let newSelectedPortfolioItem = ( !Object.keys(state.selectedPortfolioItem).length && Object.keys(portfolio).length ) ? portfolio[Object.keys(portfolio)[0]] : selectedPortfolioItem ;
-
-      return { portfolio, transactionHistory, selectedPortfolioItem : newSelectedPortfolioItem }
+      return { ...state, 
+        portfolio : restructured_portfolio_data
+      }
     }
     
     case actions.MAKETRADE: {

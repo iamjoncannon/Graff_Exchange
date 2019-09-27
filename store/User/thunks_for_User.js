@@ -1,40 +1,45 @@
+import { isCell } from '../../app/components/utils'
 import actions from "./actions_for_User"
 import { client } from '../../app/main'
 import gql from 'graphql-tag'
 
 export const loginThunk = (email, password) => async dispatch => {
 
+  const OHLC_data = `ohlc_data {
+                      latestPrice
+                      companyName
+                      change
+                      changePercent
+                      open
+                    }`
+
+  const full_query = `login(email: $email, password: $password){
+    email
+    first_name
+    last_name 
+    token
+    balance
+    holdings {
+      user_data {
+        symbol
+        current_holding
+      }
+      ${ isCell() ? OHLC_data : ``}
+    }
+    transaction_history{
+      id
+      type
+      symbol
+      quantity
+      price
+      date_conducted
+    }
+  }
+  `  
+                  
   // mobile login call 
   const query = gql`query login_call($email: String, $password: String) {
-
-    login(email: $email, password: $password){
-      email
-      first_name
-      last_name 
-      token
-      balance
-      holdings {
-        user_data{
-          symbol
-          current_holding
-        }
-        ohlc_data {
-          latestPrice
-          companyName
-          change
-          changePercent
-          open
-        }
-      }
-      transaction_history{
-        id
-        type
-        symbol
-        quantity
-        price
-        date_conducted
-      }
-    }
+    ${full_query}
   }`
 
   /* 
@@ -71,12 +76,33 @@ export const registerThunk = ( first_name, last_name, email, password ) => async
   
   const mutation = gql`mutation sign_up_call($input: sign_up_input) {
 
-    sign_up(input: $input) {
-      first_name,
-      last_name,
-      email,
-      token,
+    sign_up(input: $input){
+      email
+      first_name
+      last_name 
+      token
       balance
+      holdings {
+        user_data {
+          symbol
+          current_holding
+        }
+        ohlc_data {
+          latestPrice
+          companyName
+          change
+          changePercent
+          open
+        }
+      }
+      transaction_history{
+        id
+        type
+        symbol
+        quantity
+        price
+        date_conducted
+      }
     }
   }`
 
@@ -96,6 +122,7 @@ export const registerThunk = ( first_name, last_name, email, password ) => async
   }
   
   dispatch(actions.login(response))
+
 };
 
 export default {
