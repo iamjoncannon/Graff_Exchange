@@ -21,4 +21,3 @@ Features:
 - Redis caching with cache eviction strategy for each data source
 
 Codebase for back-end API: https://github.com/iamjoncannon/Graff_Exchange_API
-
