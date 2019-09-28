@@ -8,6 +8,7 @@ const initialState = {
   last_name: "",
   token: '',
   isLoggedIn: false,
+  landing_page_error: null
 }
 
 export default function User_reducer (state = initialState, action) {
@@ -15,6 +16,26 @@ export default function User_reducer (state = initialState, action) {
   switch (action.type) {
 
     case actions.LOGIN: {
+
+      // handle login /signup errors 
+      if(action.payload.graphQLErrors){
+        
+        
+        const invalid_user = action.payload.message.includes("unable to find user") 
+        const invalid_password = action.payload.message.includes("Invalid password") 
+        
+        if(invalid_user){
+          console.log("invalid_user: ", invalid_user)
+          console.log(action.payload.message)
+          return {...state, landing_page_error: "Unable to find username"}
+        }
+
+        if(invalid_password){
+
+          return {...state, landing_page_error: "Invalid Password"}
+        }
+
+      }
 
       localStorage.setItem("token", action.payload.token)
 

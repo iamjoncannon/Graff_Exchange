@@ -20,6 +20,8 @@ export default function Portfolio_reducer (state = initialState, action) {
 
     case User_actions.LOGIN: {
 
+      if(action.payload.graphQLErrors) return {...state}
+
       let { selectedPortfolioItem } = state 
       
       // converting [ Holding ] to an object, where 

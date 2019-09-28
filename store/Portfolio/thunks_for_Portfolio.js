@@ -31,18 +31,9 @@ export const hydratePortfolioThunk = () => async dispatch => {
     }
     catch(error){
 
-      // if(response.errors 
-      //   && response.errors[0].message === "Context creation failed: token invalid:"){
-
-      //     // authentication error 
-
-      // }
-
-      console.log(error)
-
-      return 
+      response = error 
+      console.log(error) 
     }
-
 
   dispatch(actions.hydratePortfolio( response ))
 };

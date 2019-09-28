@@ -20,6 +20,12 @@
         width: 75%;
         @include absCenter();
     }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     
     .header {
             
@@ -200,16 +206,22 @@
             justify-content: center;
         }
 
-        div {
+        .error-message {
 
-            
+            position: absolute;
+            top: 5vh;
+
+            &:hover{
+                text-decoration: none;
+                opacity: 10;
+            }
         }
 
         span {
 
             display: block;
             color: black;
-            
+
             @include cell(){
 
                 font-size: 3vh;
