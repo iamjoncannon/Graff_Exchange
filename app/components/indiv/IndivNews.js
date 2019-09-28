@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { hydrateNewsThunk } from "../../../store/Portfolio/thunks_for_Portfolio"
 import { isCell } from "../utils"
+import LoadingDots from '../loadingDots'
 
 class IndivNews extends React.Component {
 
@@ -13,15 +14,21 @@ class IndivNews extends React.Component {
   hydrate_data = () => {
 
     const { hydrateNewsThunk, selectedPortfolioItem } = this.props 
-
-    console.log("calling hydrate data inside indiv news component", hydrateNewsThunk)
-
+    
     hydrateNewsThunk(selectedPortfolioItem)
   }
 
   componentDidMount(){
 
-    !isCell() && this.hydrate_data() 
+    const { selectedPortfolioItem, portfolio } = this.props
+    
+    const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
+
+    if(!isCell() && !selectedPortfolioItem_object.news){
+   
+      this.hydrate_data()
+    }
+    
   }
 
   componentDidUpdate(){
@@ -34,6 +41,7 @@ class IndivNews extends React.Component {
    
       this.hydrate_data()
     }
+
   }
 
   render(){
@@ -42,14 +50,19 @@ class IndivNews extends React.Component {
 
     const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
 
+    const is_loaded = selectedPortfolioItem_object 
+                      && selectedPortfolioItem_object.news 
+                      && selectedPortfolioItem_object.news.length
+
+    const no_news_data = selectedPortfolioItem_object 
+                        && selectedPortfolioItem_object.news 
+                        && selectedPortfolioItem_object.news.length === 0
 
     return (
 
       <div className="indiv-container">
   
-        { selectedPortfolioItem_object 
-          && selectedPortfolioItem_object.news 
-          && selectedPortfolioItem_object.news.map((newsItem, i) =>{
+        { is_loaded ? selectedPortfolioItem_object.news.map((newsItem, i) =>{
   
             return (
                 <div className="news-box" key={i}> 
@@ -78,6 +91,15 @@ class IndivNews extends React.Component {
                 </div>
             )
         })
+        : no_news_data ? 
+            <span className={"error_message"}>
+              Data Not Available
+            </span>
+
+        :
+        <div style={{display: "block", textAlign: "center"}}> 
+          <LoadingDots size={"10vh"} />
+        </div>
         }
       </div>
     );

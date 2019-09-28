@@ -1,6 +1,14 @@
+@keyframes blink {
+  0% {
+    opacity: .2; }
+  20% {
+    opacity: 1; }
+  100% {
+    opacity: .2; } }
+
 .loading-dots {
-  height: auto !important;
-  width: auto !important; }
+  height: auto;
+  width: auto; }
   .loading-dots :nth-child(1) {
     animation: blink 1s infinite; }
   .loading-dots :nth-child(2) {
@@ -616,7 +624,7 @@ footer {
     align-items: center;
     font-size: 2vh; }
     .indiv-perf .chart-container span:first-child {
-      font-size: 2vh !important; }
+      font-size: 2vh; }
     @media only screen and (min-device-width: 1100px) {
       .indiv-perf .chart-container {
         width: 75vw;
@@ -961,3 +969,9 @@ button {
     .indiv-container {
       max-height: 73vh;
       margin-top: 3vh; } }
+
+.error_message {
+  color: black;
+  font-size: 3vh;
+  display: block;
+  text-align: center; }

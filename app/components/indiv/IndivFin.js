@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import DataNav from '../DataNav'
 import { hydrateQuarterlyFinancialsThunk } from "../../../store/Portfolio/thunks_for_Portfolio"
 import { isCell } from "../utils"
+import LoadingDots from '../loadingDots'
 
 // Financials Page- displays quarterly financial reports
 
@@ -35,7 +36,15 @@ class IndivFin extends React.Component {
 
   componentDidMount(){
 
-    !isCell() && this.hydrate_data()
+    const { selectedPortfolioItem, portfolio } = this.props
+
+    const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
+
+    if(!isCell() && !selectedPortfolioItem_object.financials){
+
+      this.hydrate_data()
+    }
+
   }
 
   componentDidUpdate(){
@@ -48,6 +57,7 @@ class IndivFin extends React.Component {
 
       this.hydrate_data()
     }
+
   }
 
   render() {
@@ -62,17 +72,25 @@ class IndivFin extends React.Component {
     
     const whichFinancial = dataNavItems.indexOf(selectedDataNavItem)
 
+    const is_Loaded = selectedPortfolioItem_object 
+                      && selectedPortfolioItem_object.financials 
+                      && selectedPortfolioItem_object.financials.length
+
+    const no_financial_data = selectedPortfolioItem_object 
+                              && selectedPortfolioItem_object.financials
+                              && selectedPortfolioItem_object.financials.length === 0
+
     return (
 
       <div>
 
-        { selectedPortfolioItem_object && selectedPortfolioItem_object.financials && selectedPortfolioItem_object.financials.length && 
+        { is_Loaded ? 
           <div className="indiv-fin indiv-container">
 
             <span>{selectedDataNavItem}</span>
 
             
-              {Object.entries(selectedPortfolioItem_object.financials[whichFinancial])
+              { Object.entries(selectedPortfolioItem_object.financials[whichFinancial])
                 .map( (item, i) =>{
               
                   return(
@@ -87,10 +105,18 @@ class IndivFin extends React.Component {
                         </span>
                     </div>
                   )
-                })}
+                })
+              }
 
           </div>
-
+            : no_financial_data ? 
+            <span className={"error_message"}>
+              Data Not Available
+            </span>
+            :
+            <div style={{display: "block", textAlign: "center"}}> 
+                <LoadingDots size={"10vh"} />
+            </div>
           }
 
         <DataNav 

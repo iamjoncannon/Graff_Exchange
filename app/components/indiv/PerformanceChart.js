@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 import {isDesktop} from '../utils'
+import LoadingDots from '../loadingDots'
 
 class PerformanceChart extends React.Component {
 
@@ -85,7 +86,11 @@ class PerformanceChart extends React.Component {
 
             <div className="chart" ref={el => (this.container = el)}>
 
-                { dimensions && selectedPortfolioItem_object.historical && this.renderContent()}
+                { dimensions && selectedPortfolioItem_object.historical ? 
+                    this.renderContent()
+                    : 
+                    <LoadingDots size="10rem"/>
+                }
 
             </div>
         )

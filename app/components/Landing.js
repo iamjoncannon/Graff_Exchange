@@ -3,6 +3,7 @@ import { logoUrl } from './utils'
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { loginThunk, registerThunk } from "../../store/User/thunks_for_User.js";
+import LoadingDots from './loadingDots'
 
 class Landing extends React.Component {
  
@@ -15,7 +16,8 @@ class Landing extends React.Component {
           firstName: "Webster",
           lastName: "Ross",
           email : "webster@ross.com",
-          password : "password"
+          password : "password",
+          submitted: false 
       }
   }
 
@@ -63,6 +65,8 @@ class Landing extends React.Component {
         
         this.props.handleRegister(firstName, lastName, email, password)
       }
+
+      this.setState({submitted: true})
   }
 
   render() {
@@ -82,7 +86,7 @@ class Landing extends React.Component {
       return (
 
         <div className={ isDesktop && mode === "sign-up" ? "landing landing-rev" : "landing"} >
-
+        
           <div className="header">
 
               <span className="title">
@@ -108,7 +112,7 @@ class Landing extends React.Component {
                     </span>
 
                   <span 
-                    className={ mode === "sign-in" && !isDesktop && "unselected"}
+                    className={ mode === "sign-in" && !isDesktop ? "unselected" : undefined}
                     onClick={()=>this.setState({mode: "sign-up"})}
                   >
                     Sign Up
@@ -229,7 +233,12 @@ class Landing extends React.Component {
           <button
             onClick={ this.handleSubmit }
           >
-              {mode === 'sign-in' ? "Sign In" : "Sign Up"}
+              {
+                mode === 'sign-in' && !this.state.submitted ? "Sign In" : 
+                mode === 'sign-in' && !this.state.submitted ? "Sign Up" :
+                this.state.submitted ? "Loading..." : ""
+              }
+
           </button>
 
           { mode === "sign-in" && <span onClick={this.DemoAccount}>Sign into Demo Account</span> }

@@ -21,10 +21,15 @@ class IndivPerf extends React.Component {
 
   componentDidMount(){
     
-    if(!isCell()){
+    const { selectedPortfolioItem, portfolio } = this.props
+
+    const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
+
+    if(!isCell() && !selectedPortfolioItem_object.historical){
 
       this.hydrate_data()
     }
+    
   }
 
   // the individual components don't remount when the nav component
@@ -66,7 +71,7 @@ class IndivPerf extends React.Component {
 
     const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
 
-    let { current_holding } = this.state
+    let { current_holding } = selectedPortfolioItem_object
     
     function formatChange(input){
 

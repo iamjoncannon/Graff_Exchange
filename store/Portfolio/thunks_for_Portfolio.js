@@ -96,8 +96,7 @@ export const hydrateSinglePortfolioPage = ( selectedPortfolioItem ) => async dis
 
 }
 
-
-export const makeTradeThunk = (symbol, quantity, type, price, _, isNewSymbol) => async dispatch => {
+export const makeTradeThunk = (symbol, quantity, type, price, isNewSymbol) => async dispatch => {
   
     // refactor this 
     const graphQL_string =  !isNewSymbol ? `mutation make_trade_mutation_call($input: make_transaction_input) {

@@ -78,7 +78,7 @@ export default function Portfolio_reducer (state = initialState, action) {
       return { ...state, 
                 portfolio: updatedPortfolio, 
                 transactionHistory: newTransactionHistory,
-                selectedPortfolioItem: updatedPortfolio[symbol]  
+                selectedPortfolioItem: symbol  
               }         
     }
     
