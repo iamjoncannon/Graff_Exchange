@@ -4,7 +4,7 @@ module.exports = () => {
 
     return new ApolloClient({
         link: new HttpLink({
-            uri: "/graphql",
+            // uri: "/graphql",
             headers: {
                 Authorization: `${localStorage.getItem("token")}`
             }
