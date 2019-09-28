@@ -11,7 +11,8 @@ import User_actions from "../User/action_constants_for_User"
 const initialState = {
   selectedPortfolioItem: { },
   portfolio: {},
-  transactionHistory: { }
+  transactionHistory: { },
+  token_error: false 
 }
 
 export default function Portfolio_reducer (state = initialState, action) {
@@ -19,6 +20,14 @@ export default function Portfolio_reducer (state = initialState, action) {
   switch (action.type) {
 
     case User_actions.LOGIN: {
+
+      // invalid token from server 
+      if(action.payload=== "Context creation failed: token invalid: "){
+
+        return {...state, token_error: true}
+      }
+
+      if(action.payload.graphQLErrors) return {...state}
 
       let { selectedPortfolioItem } = state 
       
@@ -46,6 +55,12 @@ export default function Portfolio_reducer (state = initialState, action) {
     }
 
     case actions.HYDRATEPORTFOLIO: {
+
+      // invalid token from server 
+      if(action.payload=== "Context creation failed: token invalid: "){
+
+        return {...state, token_error: true}
+      }
 
       const restructured_portfolio_data = {...state.portfolio}
       

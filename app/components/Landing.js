@@ -17,7 +17,10 @@ class Landing extends React.Component {
           lastName: "Ross",
           email : "webster@ross.com",
           password : "password",
-          submitted: false 
+          confirm_password: "",
+          submitted: false,
+          server_landing_page_error: true, 
+          local_landing_page_error: null  
       }
   }
 
@@ -32,6 +35,16 @@ class Landing extends React.Component {
   componentWillUnmount(){
 
     document.body.style.backgroundColor = 'white' 
+  }
+
+  componentDidUpdate(){
+
+    if(this.props.server_landing_page_error && this.state.submitted){
+
+      this.setState({submitted: false, 
+                     server_landing_page_error: true
+                    })
+    }
   }
 
   DemoAccount = () => {
@@ -52,9 +65,33 @@ class Landing extends React.Component {
       })
   }
 
-  handleSubmit = () => {
+  handleSubmit = (evt) => {
+
+      if(evt){
+
+        evt.preventDefault()
+        evt.stopPropagation()
+      }
 
       let { firstName, lastName, email, password } = this.state
+
+      // validate email
+
+      const re = /\S+@\S+\.\S+/;
+
+      if(!re.test(email)){
+
+        this.setState({local_landing_page_error: "Invalid Email"}) 
+        setTimeout(()=> this.setState({local_landing_page_error: null}), 5000) 
+        return 
+      }
+      
+      if(password === ""){
+
+        this.setState({local_landing_page_error: "Invalid Password"}) 
+        setTimeout(()=> this.setState({local_landing_page_error: null}), 5000) 
+        return 
+      }
 
       if(this.state.mode === "sign-in"){
 
@@ -62,18 +99,36 @@ class Landing extends React.Component {
       }
 
       if(this.state.mode === "sign-up"){
-        
+
+        // validate that passwords match
+
+        if(password !== this.state.confirm_password){
+
+          this.setState({local_landing_page_error: "Passwords do not match"}) 
+          setTimeout(()=> this.setState({local_landing_page_error: null}), 5000) 
+
+          return 
+        }
+
         this.props.handleRegister(firstName, lastName, email, password)
       }
 
-      this.setState({submitted: true})
+      this.setState({submitted: true, server_landing_page_error: true})
+  }
+
+  handleMode = (mode) => {
+
+    this.setState( { mode: mode, server_landing_page_error: false, local_landing_page_error: null } )
   }
 
   render() {
 
     const isDesktop = window.innerWidth > 1100;
 
-    const { mode } = this.state
+    const { mode, local_landing_page_error } = this.state
+    
+    // this.state is a boolean- don't display if user switches between screens 
+    const server_landing_page_error = this.state.server_landing_page_error && this.props.server_landing_page_error
     
     if(this.props.isLoggedIn){
         
@@ -107,14 +162,14 @@ class Landing extends React.Component {
 
                   <span 
                     className={ mode === "sign-up" ? "unselected" : undefined}
-                    onClick={()=>this.setState({mode: "sign-in"})}
+                    onClick={()=>this.handleMode("sign-in")}
                   >             
                       Sign In
                     </span>
 
                   <span 
                     className={ mode === "sign-in" && !isDesktop ? "unselected" : undefined}
-                    onClick={()=>this.setState({mode: "sign-up"})}
+                    onClick={()=>this.handleMode("sign-up")}
                   >
                     Sign Up
                   </span>
@@ -130,7 +185,7 @@ class Landing extends React.Component {
 
                     
                       <span 
-                        onClick={()=>this.setState({mode: "sign-in"})}
+                        onClick={()=>this.handleMode("sign-in")}
                       >             
                           Sign In
                       </span> 
@@ -144,7 +199,7 @@ class Landing extends React.Component {
                 <span>Don't have an account? </span> 
 
                 <span 
-                  onClick={()=>this.setState({mode: "sign-up"})}
+                  onClick={()=>this.handleMode("sign-up")}
                 >
                   Sign Up
                 </span>
@@ -155,6 +210,7 @@ class Landing extends React.Component {
           </div>
 
           <div className="form">
+          <form>
 
             {
               mode === "sign-up" &&
@@ -195,8 +251,9 @@ class Landing extends React.Component {
               <span>Email</span>
 
               <input
-                type="text"
+                type="email"
                 name="email"
+                required
                 value={this.state.email}
                 onChange={this.handleChange} 
               />
@@ -225,8 +282,10 @@ class Landing extends React.Component {
               <span>Confirm Password</span>
 
               <input 
-                
+                onChange={this.handleChange}
                 type="password"
+                name="confirm_password"              
+                value={this.state.confirm_password}
               />
             </div>
           }
@@ -236,14 +295,16 @@ class Landing extends React.Component {
           >
               {
                 mode === 'sign-in' && !this.state.submitted ? "Sign In" : 
-                mode === 'sign-in' && !this.state.submitted ? "Sign Up" :
+                mode === 'sign-up' && !this.state.submitted ? "Sign Up" :
                 this.state.submitted ? "Loading..." : ""
               }
 
           </button>
 
+          { server_landing_page_error && <span className="error-message" >{this.props.server_landing_page_error}</span>}
+          { local_landing_page_error && <span className="error-message" >{local_landing_page_error}</span>}
           { mode === "sign-in" && <span onClick={this.DemoAccount}>Sign into Demo Account</span> }
-          
+          </form>
           </div>      
         </div>
       );
@@ -253,7 +314,8 @@ class Landing extends React.Component {
 
 const mapStateToProps = ({ User_state }) => {
   return {
-      isLoggedIn : User_state.isLoggedIn
+      isLoggedIn : User_state.isLoggedIn,
+      server_landing_page_error : User_state.landing_page_error
   };
 };
 

@@ -59,7 +59,7 @@ class AllWatchList extends React.Component {
     render() {
 
       const { isModalShowing, edit } = this.state
-      const { portfolio } = this.props
+      const { portfolio, token_error } = this.props
   
       return (
 
@@ -84,6 +84,13 @@ class AllWatchList extends React.Component {
           <span>Portfolio</span>
           
           <div>
+
+            {token_error && 
+                <div> 
+
+                  <span className="error_message">Error validating account- please try signing in again.</span>
+                  <span className="error_message">We apologize for the inconvenience</span>
+                </div>}
 
             { portfolio ?
 
@@ -169,11 +176,11 @@ class AllWatchList extends React.Component {
     };
 }
 
-const mapStateToProps = ({ User_state, Portfolio_state }) => {
+const mapStateToProps = ({ Portfolio_state }) => {
 
   return {
     portfolio : Portfolio_state.portfolio,
-    portfolioSize: Portfolio_state.portfolio.length
+    token_error: Portfolio_state.token_error
   };
 };
 

@@ -18,6 +18,6 @@ Features:
 - Authentication in GraphQL/Apollo Server via JWT
 - trade mutation with "atomic" SQL transaction 
 - data aggregated from PostgreSQL data store and external financial APIs 
-- Redis caching with cache eviction strategy for each data source,
+- Redis caching with cache eviction strategy for each data source
 
 Codebase for back-end API: https://github.com/iamjoncannon/Graff_Exchange_API

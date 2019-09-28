@@ -65,6 +65,8 @@ export const loginThunk = (email, password) => async dispatch => {
   }
   catch(error){
 
+    response = error 
+
     console.log(error)
   }
   

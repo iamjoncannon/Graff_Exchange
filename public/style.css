@@ -44,6 +44,10 @@ $light-blue: #34A9FF;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%); } }
+  .landing form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
   .landing .header {
     background-color: rgba(22, 30, 38, 0.8);
     display: flex;
@@ -156,6 +160,12 @@ $light-blue: #34A9FF;
       .landing .form {
         width: 60%;
         justify-content: center; } }
+    .landing .form .error-message {
+      position: absolute;
+      top: 5vh; }
+      .landing .form .error-message:hover {
+        text-decoration: none;
+        opacity: 10; }
     .landing .form span {
       display: block;
       color: black; }
