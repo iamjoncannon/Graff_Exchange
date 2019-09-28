@@ -1,12 +1,10 @@
-import { urlPrefix } from "../secrets"
-
 import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost'
 
 module.exports = () => {
 
     return new ApolloClient({
         link: new HttpLink({
-            uri: urlPrefix,
+            uri: "/graphql",
             headers: {
                 Authorization: `${localStorage.getItem("token")}`
             }
