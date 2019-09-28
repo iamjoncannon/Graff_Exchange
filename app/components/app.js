@@ -18,7 +18,6 @@ import AllTrans from './portfolio/AllTrans'
 
 const App = (props) => {
 
-
   // login route
 
   if(props.location.pathname === "/"){
@@ -78,12 +77,7 @@ const mapStateToProps = ({ User_state }) => {
   };
 };
 
-
-// vvv wrapper hell vvv
-
 export default withRouter(connect(
   mapStateToProps,
   null
 )(App))
-
-// ^^^ wrapper hell ^^^

@@ -1,59 +1,128 @@
+import { isCell } from '../../app/components/utils'
 import actions from "./actions_for_User"
-import axios from 'axios'
-import { urlPrefix } from '../../secrets'
+import { client } from '../../app/main'
+import gql from 'graphql-tag'
 
 export const loginThunk = (email, password) => async dispatch => {
 
-  let res 
+  const OHLC_data = `ohlc_data {
+                      latestPrice
+                      companyName
+                      change
+                      changePercent
+                      open
+                    }`
 
-  try{
-    
-    res = await axios.post( (urlPrefix + '/login'), { email, password} )
-
+  const full_query = `login(email: $email, password: $password){
+    email
+    first_name
+    last_name 
+    token
+    balance
+    holdings {
+      user_data {
+        symbol
+        current_holding
+      }
+      ${ isCell() ? OHLC_data : ``}
+    }
+    transaction_history{
+      id
+      type
+      symbol
+      quantity
+      price
+      date_conducted
+    }
   }
-  catch(error){
+  `  
+                  
+  // mobile login call 
+  const query = gql`query login_call($email: String, $password: String) {
+    ${full_query}
+  }`
 
-      alert(error.response.data.message)
-  }
+  /* 
+    note
+
+    GraphQL intentionally ommitted the wildcard option in queries, you have
+    to explicitly request every field, or else use a "fragment"
+    which is simply these fields enumerated and then reused
+    - since we're only making the request for transaction history once, 
+    this would not dry out anything
   
-  dispatch(actions.login(JSON.parse(res.data)))
-  
-};
+  */
 
-export const registerThunk = (Name, Email, Password) => async dispatch => {
- 
-  console.log(Name, Email, Password)
-
-  const signUpInfo = { Name, Email, Password }
+  let variables = { email, password }
 
   let response
 
   try {
 
-    response = await axios.post(urlPrefix + '/signup', signUpInfo )
-
-    console.log("register response: ", response)
+    let { data : { login } } = await client.query({ query, variables })
+    
+    response = login
   }
   catch(error){
-    
-    let  duplicateEmail = error.response.data.message === `pq: duplicate key value violates unique constraint "unique_email"`
 
-    if (duplicateEmail){
-
-      alert("This Email is already on file, please try again with a unique email.")
-    }
-    else{
-
-      console.log(error)
-
-    }
+    console.log(error)
   }
+  
+  dispatch(actions.login(response))
+ 
+};
 
-  signUpInfo.password = null 
+export const registerThunk = ( first_name, last_name, email, password ) => async dispatch => {
+  
+  const mutation = gql`mutation sign_up_call($input: sign_up_input) {
 
-  let returnedToken = response.data
+    sign_up(input: $input){
+      email
+      first_name
+      last_name 
+      token
+      balance
+      holdings {
+        user_data {
+          symbol
+          current_holding
+        }
+        ohlc_data {
+          latestPrice
+          companyName
+          change
+          changePercent
+          open
+        }
+      }
+      transaction_history{
+        id
+        type
+        symbol
+        quantity
+        price
+        date_conducted
+      }
+    }
+  }`
 
-  dispatch(actions.login({Balance: 50000, token: returnedToken, Name, Email}))
+  let variables = { input : { first_name, last_name, email, password } }
+
+  let response
+
+  try {
+
+    let { data : { sign_up } } = await client.mutate({ mutation, variables })
+    
+    response = sign_up
+  }
+  catch(error){
+
+    console.log(error)
+  }
+  
+  dispatch(actions.login(response))
+
 };
 
 export default {

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { isDesktop } from '../utils'
 import AddSymbolBox from "./AddSymbolBox"
+import LoadingDots from '../loadingDots'
 
 class AllWatchList extends React.Component {
  
@@ -58,7 +59,7 @@ class AllWatchList extends React.Component {
     render() {
 
       const { isModalShowing, edit } = this.state
-      const { portfolio, token } = this.props
+      const { portfolio } = this.props
   
       return (
 
@@ -84,7 +85,7 @@ class AllWatchList extends React.Component {
           
           <div>
 
-            { portfolio &&
+            { portfolio ?
 
               Object.entries(portfolio)
                 .sort()
@@ -129,7 +130,9 @@ class AllWatchList extends React.Component {
                           
                             <span> {data.companyName}</span>
 
-                            <span style={{ color : data.latestPrice < item[1].price ? "green" : "red" }}> ${item[1].price} </span>
+                            <span style={{ color : data.latestPrice < item[1].price ? "green" : "red" }}> 
+                              ${ item[1].price} 
+                            </span>
                             
                           </div>
 
@@ -138,12 +141,12 @@ class AllWatchList extends React.Component {
                           <span>{data.changePercent}%</span>
                         </div>
                       </div>
-                     
                     }
                   </div>
                   )
                 }
               )
+            : <LoadingDots size={"10rem"} />
             }
           </div>
 
@@ -169,7 +172,6 @@ class AllWatchList extends React.Component {
 const mapStateToProps = ({ User_state, Portfolio_state }) => {
 
   return {
-    token: User_state.token,
     portfolio : Portfolio_state.portfolio,
     portfolioSize: Portfolio_state.portfolio.length
   };

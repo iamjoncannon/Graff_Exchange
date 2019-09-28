@@ -48,7 +48,7 @@ class AddSymbolBox extends React.Component {
 
           if(stockName && !this.props.portfolio[input]){
 
-            makeTradeThunk( input, 0, "Sell", 0, this.props.token, true )
+            makeTradeThunk( input, 0, "Buy", 0, true )
           }
 
           exit()

@@ -1,26 +1,68 @@
 import React from 'react';
-import { logoUrl } from '../utils'
 import { connect } from "react-redux";
+import { hydrateNewsThunk } from "../../../store/Portfolio/thunks_for_Portfolio"
+import { isCell } from "../utils"
+import LoadingDots from '../loadingDots'
 
 class IndivNews extends React.Component {
 
   constructor(props) {
     super(props);
 
- 
+  }
+
+  hydrate_data = () => {
+
+    const { hydrateNewsThunk, selectedPortfolioItem } = this.props 
+    
+    hydrateNewsThunk(selectedPortfolioItem)
+  }
+
+  componentDidMount(){
+
+    const { selectedPortfolioItem, portfolio } = this.props
+    
+    const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
+
+    if(!isCell() && !selectedPortfolioItem_object.news){
+   
+      this.hydrate_data()
+    }
+    
+  }
+
+  componentDidUpdate(){
+    
+    const { selectedPortfolioItem, portfolio } = this.props
+    
+    const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
+
+    if(!isCell() && !selectedPortfolioItem_object.news){
+   
+      this.hydrate_data()
+    }
+
   }
 
   render(){
 
-    let { selectedPortfolioItem } = this.props
+    const { selectedPortfolioItem, portfolio } = this.props
+
+    const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
+
+    const is_loaded = selectedPortfolioItem_object 
+                      && selectedPortfolioItem_object.news 
+                      && selectedPortfolioItem_object.news.length
+
+    const no_news_data = selectedPortfolioItem_object 
+                        && selectedPortfolioItem_object.news 
+                        && selectedPortfolioItem_object.news.length === 0
 
     return (
 
       <div className="indiv-container">
   
-        { selectedPortfolioItem 
-          && selectedPortfolioItem.news 
-          && selectedPortfolioItem.news.map((newsItem, i) =>{
+        { is_loaded ? selectedPortfolioItem_object.news.map((newsItem, i) =>{
   
             return (
                 <div className="news-box" key={i}> 
@@ -49,7 +91,15 @@ class IndivNews extends React.Component {
                 </div>
             )
         })
-      
+        : no_news_data ? 
+            <span className={"error_message"}>
+              Data Not Available
+            </span>
+
+        :
+        <div style={{display: "block", textAlign: "center"}}> 
+          <LoadingDots size={"10vh"} />
+        </div>
         }
       </div>
     );
@@ -59,12 +109,17 @@ class IndivNews extends React.Component {
 
 const mapStateToProps = ({ Portfolio_state }) => {
     return {
+      portfolio: Portfolio_state.portfolio,     
       selectedPortfolioItem: Portfolio_state.selectedPortfolioItem,
-      // portfolio: Portfolio_state.portfolio
     };
   };
-  
+
+const mapDispatchToProps = dispatch => ({
+
+  hydrateNewsThunk: (symbol) => dispatch(hydrateNewsThunk(symbol))
+});
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(IndivNews);

@@ -51,6 +51,7 @@
             position: absolute;
             top: 2vh;
             right: 2vh;
+            border: 1px solid black;
             
             @include cell(){
                 
@@ -64,7 +65,7 @@
 
             @include desk(){
 
-                height: 6vh;
+                height: 10vh;
             }
         }
             

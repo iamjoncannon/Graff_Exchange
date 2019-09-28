@@ -1,8 +1,9 @@
 import React from 'react';
-import { logoUrl } from './utils'
+import { blurb, logoUrl } from './utils'
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { loginThunk, registerThunk } from "../../store/User/thunks_for_User.js";
+
 
 class Landing extends React.Component {
  
@@ -12,15 +13,20 @@ class Landing extends React.Component {
       
       this.state = {
           mode : 'sign-in',
-          firstName: "",
-          lastName: "",
-          email : "",
-          password : ""
+          firstName: "Webster",
+          lastName: "Ross",
+          email : "webster@ross.com",
+          password : "password",
+          submitted: false 
       }
   }
 
   componentDidMount(){
-    
+
+    // the background needs to be cream for the desktop to seem inset
+    // ...but only for this page
+
+    document.body.style.backgroundColor = "#F9FAFB" 
   }
 
   componentWillUnmount(){
@@ -56,11 +62,11 @@ class Landing extends React.Component {
       }
 
       if(this.state.mode === "sign-up"){
-
-        let Name = firstName + " " + lastName
         
-        this.props.handleRegister(Name, email, password)
+        this.props.handleRegister(firstName, lastName, email, password)
       }
+
+      this.setState({submitted: true})
   }
 
   render() {
@@ -68,11 +74,6 @@ class Landing extends React.Component {
     const isDesktop = window.innerWidth > 1100;
 
     const { mode } = this.state
-    
-    // the background needs to be cream for the desktop to seem inset
-    // ...but only for this page
-
-    document.body.style.backgroundColor = "#F9FAFB" 
     
     if(this.props.isLoggedIn){
         
@@ -85,16 +86,17 @@ class Landing extends React.Component {
       return (
 
         <div className={ isDesktop && mode === "sign-up" ? "landing landing-rev" : "landing"} >
-
+        
           <div className="header">
 
               <span className="title">
-                Gopher Exchange
+                Graff Exchange
               </span>
 
               <span className="blurb">
 
-                Gopher Exchange, a real-time stock portfolio dashboard powered by React, Redux, Socket.io, Sass, Golang, Redis, and PostgreSQL.
+                {blurb}
+                
               </span>
               
               <img src={logoUrl} />
@@ -111,7 +113,7 @@ class Landing extends React.Component {
                     </span>
 
                   <span 
-                    className={ mode === "sign-in" && !isDesktop && "unselected"}
+                    className={ mode === "sign-in" && !isDesktop ? "unselected" : undefined}
                     onClick={()=>this.setState({mode: "sign-up"})}
                   >
                     Sign Up
@@ -232,7 +234,12 @@ class Landing extends React.Component {
           <button
             onClick={ this.handleSubmit }
           >
-              {mode === 'sign-in' ? "Sign In" : "Sign Up"}
+              {
+                mode === 'sign-in' && !this.state.submitted ? "Sign In" : 
+                mode === 'sign-in' && !this.state.submitted ? "Sign Up" :
+                this.state.submitted ? "Loading..." : ""
+              }
+
           </button>
 
           { mode === "sign-in" && <span onClick={this.DemoAccount}>Sign into Demo Account</span> }

@@ -2,16 +2,18 @@ import React from "react";
 
 const LoadingDots = (props) => {
 
-    console.log(props)
+    const style = {
+        display: "inline", 
+        color: "black", 
+        fontSize: props.size
+    }
 
     return (
         
         <div className={"loading-dots"}>
-
-            <span style={{fontSize: props.size}}>.</span>
-            <span style={{fontSize: props.size}}>.</span>
-            <span style={{fontSize: props.size}}>.</span>
-        
+            <span style={style}>.</span>
+            <span style={style}>.</span>
+            <span style={style}>.</span>        
         </div>
     )
 }

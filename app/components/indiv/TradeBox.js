@@ -16,20 +16,14 @@ class TradeBox extends React.Component {
 
   handleTrade = (type) =>{
 
-      /*
-          endpoint expects:
-          Symbol: '',
-          Quantity: '',
-          Type: 'Buy',
-          Price: "",
-      */
-
-      const { token, 
+      const { portfolio, 
               selectedPortfolioItem, 
               makeTradeThunk,
               balance } = this.props
 
-      const { quantity, price, symbol } = selectedPortfolioItem
+      const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
+
+      const { quantity, price, symbol } = selectedPortfolioItem_object
 
       // validate the trade
 
@@ -61,7 +55,7 @@ class TradeBox extends React.Component {
       }
       else{
           
-          makeTradeThunk(symbol, this.state.size, type, price, token)
+          makeTradeThunk(symbol, this.state.size, type, price)
           this.setState({size: 0})
           this.props.exit()
           return
@@ -106,6 +100,7 @@ class TradeBox extends React.Component {
 const mapStateToProps = ({ User_state, Portfolio_state }) => {
   return {
     token: User_state.token,
+    portfolio: Portfolio_state.portfolio, 
     selectedPortfolioItem : Portfolio_state.selectedPortfolioItem,
     balance: User_state.Balance
   };

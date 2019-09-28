@@ -10,9 +10,6 @@ class AllTrans extends React.Component {
     }
   }
 
-  componentDidMount(){
-
-  }
 
   render() {
 
@@ -38,20 +35,23 @@ class AllTrans extends React.Component {
               .reverse()
               .filter(item =>{                
                 
-                  return item[1].Quantity > 0
+                  return item[1].quantity > 0
                 })
               .map((item, i)=>{
                 
-                let date = item[1].Date 
-                date = date.slice(0,date.indexOf("T"))
+                // note- date is relative to GMT from server
+                // conversion 
+                let date = item[1].date_conducted
+                                  .slice(0, item[1].date_conducted.indexOf("GMT"))
+                                  .slice(0, item[1].date_conducted.indexOf(":")-2)
 
                 return(
 
                   <div key={i}>
-                    <span>{item[1].Type}</span>
-                    <span>{item[1].Symbol} </span>
-                    <span>{item[1].Quantity}</span>
-                    <span>${item[1].Price}</span>
+                    <span>{item[1].type}</span>
+                    <span>{item[1].symbol} </span>
+                    <span>{item[1].quantity}</span>
+                    <span>${item[1].price.toFixed(2)}</span>
                     <span>{date}</span>
                   </div>
                 )

@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from "react-redux";
 import PerformanceChart from './PerformanceChart'
 import DataNav from '../DataNav'
+import { hydrateTimeSeriesDataThunk } from "../../../store/Portfolio/thunks_for_Portfolio"
+import { isCell } from "../utils"
 
 class IndivPerf extends React.Component {
  
@@ -10,35 +12,47 @@ class IndivPerf extends React.Component {
     this.state = {
 
       selectedDataNavItem : "Week",
-      quantity: 0
+      current_holding: 0
     }
   }
+
+  // for mobile, data is hydrated by the nav
+  // component  
 
   componentDidMount(){
-
-    let {selectedPortfolioItem} = this.props
     
-    if(selectedPortfolioItem){
+    const { selectedPortfolioItem, portfolio } = this.props
 
-      this.setState({
+    const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
 
-        quantity: selectedPortfolioItem.quantity
-      })
+    if(!isCell() && !selectedPortfolioItem_object.historical){
+
+      this.hydrate_data()
     }
     
   }
 
+  // the individual components don't remount when the nav component
+  // updates the selected portfolio item- we have to have each of them
+  // determine if they need to hydrate appropriate data upon update 
+  
   componentDidUpdate(){
 
-    const { selectedPortfolioItem } = this.props 
-    
-    if(selectedPortfolioItem && selectedPortfolioItem.quantity !== this.state.quantity){
+    const { selectedPortfolioItem, portfolio } = this.props
 
-      this.setState({
+    const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
 
-        quantity: selectedPortfolioItem.quantity
-      })
+    if(!isCell() && !selectedPortfolioItem_object.historical){
+
+      this.hydrate_data()
     }
+  }
+
+  hydrate_data = () => {
+      
+    const { hydrateTimeSeriesDataThunk, selectedPortfolioItem} = this.props
+
+    hydrateTimeSeriesDataThunk(selectedPortfolioItem)
   }
 
   dataSwitch = (newDisplay) => {
@@ -55,7 +69,9 @@ class IndivPerf extends React.Component {
     
     const { selectedPortfolioItem, portfolio } = this.props 
 
-    let { quantity } = this.state
+    const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
+
+    let { current_holding } = selectedPortfolioItem_object
     
     function formatChange(input){
 
@@ -82,23 +98,23 @@ class IndivPerf extends React.Component {
         <div className="ticker-box">
 
           <span>
-            $ {selectedPortfolioItem && selectedPortfolioItem.price}
+            $ {selectedPortfolioItem_object && selectedPortfolioItem_object.price}
           </span>
 
           <span>
 
-            {selectedPortfolioItem && formatChange(selectedPortfolioItem.data.changePercent)}%
+            {selectedPortfolioItem_object && selectedPortfolioItem_object.data && formatChange(selectedPortfolioItem_object.data.changePercent)}%
         
           </span>
 
         </div>
 
-      { selectedPortfolioItem && selectedPortfolioItem.data.open &&
+      { selectedPortfolioItem_object && selectedPortfolioItem_object.price &&
         
           <div className="first-datapoints">
 
-                  {[["Holdings", `${quantity}`],
-                    ["Value", `$${ (quantity * selectedPortfolioItem.price).toFixed(2)}`]].map( (item, i)=>{
+                  {[["Holdings", `${current_holding}`],
+                    ["Value", `$${ (current_holding * selectedPortfolioItem_object.price).toFixed(2)}`]].map( (item, i)=>{
 
                     return(
 
@@ -147,7 +163,12 @@ const mapStateToProps = ({ Portfolio_state }) => {
   };
 };
 
+const mapDispatchToProps = dispatch => ({
+
+  hydrateTimeSeriesDataThunk: (symbol) => dispatch(hydrateTimeSeriesDataThunk(symbol))
+});
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(IndivPerf);
