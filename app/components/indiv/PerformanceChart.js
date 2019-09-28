@@ -44,7 +44,7 @@ class PerformanceChart extends React.Component {
 
         const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
 
-        let data = selectedPortfolioItem_object.historical.slice(0, period)
+        let data = selectedPortfolioItem_object.historical.slice(0, period).reverse()
 
         for(let each in data){
             data[each].date = data[each].date.replace("2019-", "").replace("2018-", "")

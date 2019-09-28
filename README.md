@@ -1,15 +1,24 @@
-# Gopher Exchange
+# Graff Exchange
 
-Fullstack application
+Fullstack application with data from web socket, SQL data store, external APIs, Redis cache
 
-- front end- React/Redux/Sass (no CSS framework), socket connection to IEX api
-- back end- Golang, Redis, PostgreSQL, separate AWS deployment for front (S3) and back end (EC2) 
+## Front End
 
-Stateless JWT authentication, simluated ACID transaction, Redis and Local Storage caching strategy, data hydrated from three separate APIs
+- React, global state management with Redux
+- SASS (no CSS framework) 
+- socket connection to IEX api integrated into Redux store
 
-Codebase for back-end API: https://github.com/iamjoncannon/GopherExchangeAPI
+Deployed: http://www.graff.joncannon.codes
 
-Deployed at http://www.gopher.joncannon.codes
+## Back End
 
-## structure of application
+technologies: Node.js, GraphQL (Apollo client/server), Redis, PostgreSQL, AWS(EC2) 
+
+Features:
+- Authentication in GraphQL/Apollo Server via JWT
+- trade mutation with "atomic" SQL transaction 
+- data aggregated from PostgreSQL data store and external financial APIs 
+- Redis caching with cache eviction strategy for each data source,
+
+Codebase for back-end API: https://github.com/iamjoncannon/Graff_Exchange_API
 
