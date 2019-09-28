@@ -31,8 +31,17 @@ export const hydratePortfolioThunk = () => async dispatch => {
     }
     catch(error){
 
-      response = error 
-      console.log(error) 
+      // invalid token error 
+      if(error.networkError){
+        
+        // the object return from Apollo
+        // is very nested
+        response = error.networkError.result.errors[0].message
+      }
+      else{
+
+        response = error 
+      }
     }
 
   dispatch(actions.hydratePortfolio( response ))
