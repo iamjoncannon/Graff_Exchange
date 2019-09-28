@@ -31,12 +31,20 @@ export const hydratePortfolioThunk = () => async dispatch => {
     }
     catch(error){
 
+      // if(response.errors 
+      //   && response.errors[0].message === "Context creation failed: token invalid:"){
+
+      //     // authentication error 
+
+      // }
+
       console.log(error)
+
+      return 
     }
 
 
   dispatch(actions.hydratePortfolio( response ))
-
 };
 
 // called by web version after log in 

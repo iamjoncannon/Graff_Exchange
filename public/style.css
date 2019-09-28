@@ -1,3 +1,12 @@
+/*
+
+original theme;
+
+$purple : #613EEA;
+$purple-light: rgba(97, 62, 234, .1);
+$light-blue: #34A9FF;
+
+*/
 @keyframes blink {
   0% {
     opacity: .2; }
@@ -36,7 +45,7 @@
       left: 50%;
       transform: translate(-50%, -50%); } }
   .landing .header {
-    background-color: #613EEA;
+    background-color: rgba(22, 30, 38, 0.8);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -55,7 +64,8 @@
     .landing .header img {
       position: absolute;
       top: 2vh;
-      right: 2vh; }
+      right: 2vh;
+      border: 1px solid black; }
       @media only screen and (max-device-width: 600px) {
         .landing .header img {
           height: 15rem; } }
@@ -64,7 +74,7 @@
           height: 12rem; } }
       @media only screen and (min-device-width: 1100px) {
         .landing .header img {
-          height: 6vh; } }
+          height: 10vh; } }
     .landing .header .title {
       font-family: "Exo 2", sans-serif;
       font-weight: 100; }
@@ -204,7 +214,7 @@ footer {
   position: fixed;
   bottom: 0;
   justify-content: space-evenly;
-  background-color: rgba(97, 62, 234, 0.1);
+  background-color: rgba(22, 30, 38, 0.4);
   padding: 1vh;
   width: 100vw; }
   footer img {
@@ -222,7 +232,9 @@ footer {
   background-color: rgba(97, 62, 234, 0.5);
   width: 100%; }
   .all-screens .selected {
-    color: #34A9FF; }
+    color: #e535ab; }
+  .all-screens img {
+    border: 1px solid black; }
   @media only screen and (max-device-width: 600px) {
     .all-screens {
       position: fixed;
@@ -272,7 +284,7 @@ footer {
   .desk-nav {
     width: 100%;
     height: 5vh;
-    background-color: #613EEA;
+    background-color: rgba(22, 30, 38, 0.8);
     text-align: right;
     position: relative;
     white-space: nowrap; }
@@ -338,7 +350,7 @@ footer {
     .modal-container .trade-box button {
       width: 10.5vh;
       height: 8vh;
-      background-color: #34A9FF;
+      background-color: #e535ab;
       font-size: 5vh;
       text-align: center; }
       @media only screen and (max-device-width: 600px) {
@@ -348,7 +360,7 @@ footer {
         margin-right: 4vh; }
     .modal-container .trade-box > div > span {
       font-size: 5vh;
-      color: #34A9FF; }
+      color: #e535ab; }
     .modal-container .trade-box .trade-tooltip {
       top: -7vh;
       font-size: .8rem;
@@ -369,7 +381,7 @@ footer {
       .modal-container .symbol-selector {
         margin-top: 14vh; } }
     .modal-container .symbol-selector span:hover {
-      color: #34A9FF;
+      color: #e535ab;
       text-decoration: underline; }
     .modal-container .symbol-selector > div {
       max-height: 81vh;
@@ -391,7 +403,7 @@ footer {
   .individual-nav span {
     font-size: 3vh;
     font-family: "Exo 2", sans-serif;
-    color: #34A9FF;
+    color: #e535ab;
     cursor: pointer; }
     @media only screen and (min-device-width: 601px) {
       .individual-nav span {
@@ -399,7 +411,7 @@ footer {
   .individual-nav > span {
     cursor: pointer; }
     .individual-nav > span:hover {
-      border-bottom: solid #34A9FF 3px; }
+      border-bottom: solid #e535ab 3px; }
   .individual-nav > i {
     color: black; }
   .individual-nav div:nth-child(2) {
@@ -416,7 +428,7 @@ footer {
         flex-grow: initial;
         left: 2vh; } }
   .individual-nav div > i {
-    color: #34A9FF;
+    color: #e535ab;
     position: relative;
     bottom: .1vh;
     left: 1vh; }
@@ -451,7 +463,7 @@ footer {
     justify-content: space-evenly; } }
 
 .page-selector .selected {
-  border-bottom: solid #34A9FF 3px; }
+  border-bottom: solid #e535ab 3px; }
 
 .page-selector span, .page-selector a {
   color: black;
@@ -533,11 +545,11 @@ footer {
         .indiv-fin + .data-nav span:not(:last-child) {
           margin-right: 3vh; } }
   .indiv-fin + .data-nav .selected {
-    border-top: solid #34A9FF 10px; }
+    border-top: solid #e535ab 10px; }
     @media only screen and (min-device-width: 1100px) {
       .indiv-fin + .data-nav .selected {
         border-top: initial;
-        border-bottom: solid #34A9FF 0.5vh; } }
+        border-bottom: solid #e535ab 0.5vh; } }
 
 .indiv-perf {
   color: black;
@@ -556,7 +568,7 @@ footer {
         position: static; } }
     .indiv-perf .ticker-box span:first-child {
       font-size: 5vh;
-      color: #34A9FF;
+      color: #e535ab;
       margin-right: 2vh; }
       @media only screen and (min-device-width: 1100px) {
         .indiv-perf .ticker-box span:first-child {
@@ -649,7 +661,7 @@ footer {
     .indiv-perf .data-nav span {
       cursor: pointer; }
     .indiv-perf .data-nav .selected {
-      border-top: solid #34A9FF 3px; }
+      border-top: solid #e535ab 3px; }
 
 .news-box {
   width: 100%;
@@ -739,11 +751,11 @@ footer {
   .all-nav a {
     text-decoration: none; }
   .all-nav .selected {
-    border-top: solid #34A9FF 3px; }
+    border-top: solid #e535ab 3px; }
     @media only screen and (min-device-width: 1100px) {
       .all-nav .selected {
         border-top: initial;
-        border-bottom: solid #34A9FF 3px; } }
+        border-bottom: solid #e535ab 3px; } }
   .all-nav span {
     font-size: 2vh; }
 
@@ -851,7 +863,7 @@ footer {
     height: 10vh !important; }
   .symbol-box span {
     font-size: 4vh;
-    color: #34A9FF; }
+    color: #e535ab; }
     .symbol-box span:last-child {
       font-size: 2vh; }
   .symbol-box button {
@@ -949,7 +961,7 @@ a {
   outline: none; }
 
 button {
-  background-color: #613EEA;
+  background-color: rgba(22, 30, 38, 0.8);
   color: white;
   cursor: pointer; }
   button:hover {

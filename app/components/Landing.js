@@ -1,9 +1,9 @@
 import React from 'react';
-import { logoUrl } from './utils'
+import { blurb, logoUrl } from './utils'
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { loginThunk, registerThunk } from "../../store/User/thunks_for_User.js";
-import LoadingDots from './loadingDots'
+
 
 class Landing extends React.Component {
  
@@ -90,12 +90,13 @@ class Landing extends React.Component {
           <div className="header">
 
               <span className="title">
-                Gopher Exchange
+                Graff Exchange
               </span>
 
               <span className="blurb">
 
-                Gopher Exchange, a real-time stock portfolio dashboard powered by React, Redux, Socket.io, Sass, Golang, Redis, and PostgreSQL.
+                {blurb}
+                
               </span>
               
               <img src={logoUrl} />

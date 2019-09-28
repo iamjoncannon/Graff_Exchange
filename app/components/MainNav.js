@@ -38,7 +38,7 @@ class MainNav extends React.Component {
         { isDesktop && 
     
           <div className="desk-nav">
-              <span>Gopher Exchange</span>
+              <span>Graff Exchange</span>
               {/* <span>Account</span> */}
               <span>{this.props.Name}</span>
               <span>Balance: ${Number(this.props.Balance).toFixed(2)}</span>

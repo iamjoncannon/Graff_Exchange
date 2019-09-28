@@ -12,11 +12,9 @@ class IndivFin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataNavItems: ["Q1 2019", "Q4 2018", "Q3 2018", "Q2 2018"],
-      selectedDataNavItem : "Q1 2019"
+      selectedDataNavItem : null 
     }
   }
-
 
   dataSwitch = (newDisplay) => {
     window.scrollTo(0, 0);
@@ -67,11 +65,8 @@ class IndivFin extends React.Component {
     const { selectedPortfolioItem, portfolio} = this.props
 
     const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
-
-    const { dataNavItems, selectedDataNavItem } = this.state
     
-    const whichFinancial = dataNavItems.indexOf(selectedDataNavItem)
-
+                      // have to cascade like this to prevent null errors
     const is_Loaded = selectedPortfolioItem_object 
                       && selectedPortfolioItem_object.financials 
                       && selectedPortfolioItem_object.financials.length
@@ -80,11 +75,39 @@ class IndivFin extends React.Component {
                               && selectedPortfolioItem_object.financials
                               && selectedPortfolioItem_object.financials.length === 0
 
+    // harvest dates of reports from data 
+    let data_nav_items = []
+    
+    if(is_Loaded){
+
+      const { financials } = selectedPortfolioItem_object
+
+      financials.forEach(each=> data_nav_items.push(each.date))
+    }
+
+    // interesting situation- we want to manage this nav state locally,
+    // but state depends on data hydrated globally 
+
+    let selectedDataNavItem 
+    
+    // solution- if this state proprty is null, ie component just mounted 
+    if(!this.state.selectedDataNavItem){
+
+      selectedDataNavItem = data_nav_items[0]
+
+    }
+    else{
+
+      selectedDataNavItem = this.state.selectedDataNavItem
+    }
+
+    let whichFinancial = data_nav_items.indexOf(selectedDataNavItem)
+
     return (
 
       <div>
 
-        { is_Loaded ? 
+        { is_Loaded && whichFinancial !== undefined? 
           <div className="indiv-fin indiv-container">
 
             <span>{selectedDataNavItem}</span>
@@ -120,7 +143,7 @@ class IndivFin extends React.Component {
           }
 
         <DataNav 
-          data={dataNavItems} 
+          data={data_nav_items} 
           selectedDataNavItem={selectedDataNavItem}
           switchItem={this.dataSwitch}
         />

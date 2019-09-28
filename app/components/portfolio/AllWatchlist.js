@@ -59,7 +59,7 @@ class AllWatchList extends React.Component {
     render() {
 
       const { isModalShowing, edit } = this.state
-      const { portfolio, token } = this.props
+      const { portfolio } = this.props
   
       return (
 
@@ -172,7 +172,6 @@ class AllWatchList extends React.Component {
 const mapStateToProps = ({ User_state, Portfolio_state }) => {
 
   return {
-    token: User_state.token,
     portfolio : Portfolio_state.portfolio,
     portfolioSize: Portfolio_state.portfolio.length
   };

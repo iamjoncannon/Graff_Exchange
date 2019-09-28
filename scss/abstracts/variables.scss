@@ -1,10 +1,22 @@
 // vars
+// I should not have named this "purple" but 
+// rather "color-primary" 
+
+
+$purple: rgba(22, 30, 38, .8);
+$purple-light: rgba(22, 30, 38, .4);
+$light-blue: #e535ab;
+$white-background : rgba(255,255,255,.1);
+$max: max-device-width;
+$min: min-device-width;
+$second-text: 'Exo 2', sans-serif;
+
+/*
+
+original theme;
 
 $purple : #613EEA;
 $purple-light: rgba(97, 62, 234, .1);
 $light-blue: #34A9FF;
-$white-background : rgba(255,255,255,.1);
 
-$max: max-device-width;
-$min: min-device-width;
-$second-text: 'Exo 2', sans-serif;
+*/
