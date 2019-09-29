@@ -13,17 +13,19 @@ class AllWatchList extends React.Component {
 
           isModalShowing : false,
           edit: false,
-          hideList: []
+          hideList: [],
       }
    }
 
    componentDidMount(){
 
-      let storedHideList = localStorage.getItem('hideList')
+      let LS_Key = `${this.props.email}-hideList`
+
+      let storedHideList = localStorage.getItem(LS_Key)
 
       this.setState({
 
-        hideList: storedHideList ? JSON.parse( localStorage.getItem('hideList') ) : [] 
+        hideList: storedHideList ? JSON.parse( localStorage.getItem(LS_Key) ) : [] 
       })
    }
 
@@ -36,6 +38,7 @@ class AllWatchList extends React.Component {
       
       const { hideList } = this.state
       let { symbol } = item[1]
+      let LS_Key = `${this.props.email}-hideList`
       
       let newHidelist 
 
@@ -48,7 +51,7 @@ class AllWatchList extends React.Component {
         newHidelist = [ ...this.state.hideList, item[1].symbol ]
       }
 
-      localStorage.setItem('hideList', JSON.stringify(newHidelist))
+      localStorage.setItem(LS_Key, JSON.stringify(newHidelist))
 
       this.setState({
 
@@ -176,9 +179,10 @@ class AllWatchList extends React.Component {
     };
 }
 
-const mapStateToProps = ({ Portfolio_state }) => {
+const mapStateToProps = ({ User_state, Portfolio_state }) => {
 
   return {
+    email: User_state.email,
     portfolio : Portfolio_state.portfolio,
     token_error: Portfolio_state.token_error
   };
