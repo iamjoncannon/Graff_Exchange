@@ -51,7 +51,7 @@ class Landing extends React.Component {
 
     this.setState({
           mode : 'sign-in',
-          email : "webster@ross.com",
+          email : "moneybags@graff.app",
           password : "password"
     })
 
