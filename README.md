@@ -5,8 +5,8 @@ Fullstack application with data from web socket, SQL data store, external APIs, 
 ## Front End
 
 - React, global state management with Redux
+- Responsive design across mobile, tablet, desktop viewports, implemented in SASS with no CSS framework. 
 - lazy loaded components to increase performance  
-- SASS (no CSS framework) 
 - socket connection to IEX api integrated into Redux store
 
 Deployed: http://graff.joncannon.codes
