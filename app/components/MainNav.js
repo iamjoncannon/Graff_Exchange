@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { connect } from "react-redux";
 import { logoUrl } from './utils'
 import { Link } from 'react-router-dom'
-import Socket from './Socket'
+// import Socket from './Socket'
 import { isDesktop } from './utils'
 import { hydratePortfolioThunk } from "../../store/Portfolio/thunks_for_Portfolio.js"
 import UserActions from "../../store/User/actions_for_User.js"
+
+const Socket = lazy(()=> import("./Socket"))
 
 // since the main nav gets mounted 
 // when the user logs in, and its mounted
@@ -35,7 +37,9 @@ class MainNav extends React.Component {
 
       <div className="main-nav">
 
-          <Socket />
+        <Suspense fallback="">
+            <Socket />
+        </Suspense>
 
         { isDesktop && 
     

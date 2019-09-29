@@ -6,9 +6,10 @@ module.exports = {
   ],
   entry: ['babel-polyfill', './app/main'],
   output: {
-    chunkFilename: '[name].[chunkhash].js',
-    path: resolve(__dirname, './public/indiv'),
-    filename: './modules/indiv/bundle.js'
+    publicPath: '/',
+    chunkFilename: './modules/[name].[chunkhash].js',
+    path: resolve(__dirname, './public'),
+    filename: './modules/bundle.js'
   },
   mode: 'development',
   context: __dirname,
