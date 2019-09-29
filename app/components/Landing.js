@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { loginThunk, registerThunk } from "../../store/User/thunks_for_User.js";
 
-
 class Landing extends React.Component {
  
   constructor(props){
@@ -13,10 +12,10 @@ class Landing extends React.Component {
       
       this.state = {
           mode : 'sign-in',
-          firstName: "Webster",
-          lastName: "Ross",
-          email : "webster@ross.com",
-          password : "password",
+          firstName: "",
+          lastName: "",
+          email : "",
+          password : "",
           confirm_password: "",
           submitted: false,
           server_landing_page_error: true, 
@@ -51,7 +50,7 @@ class Landing extends React.Component {
 
     this.setState({
           mode : 'sign-in',
-          email : "webster@ross.com",
+          email : "moneybags@graff.app",
           password : "password"
     })
 

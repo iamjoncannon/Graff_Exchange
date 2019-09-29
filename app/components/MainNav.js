@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { connect } from "react-redux";
 import { logoUrl } from './utils'
 import { Link } from 'react-router-dom'
@@ -22,7 +22,9 @@ class MainNav extends React.Component {
 
   componentDidMount(){
 
-    this.props.hydratePortfolio()
+    const { token, hydratePortfolio } = this.props
+    
+    hydratePortfolio(token)
   }
 
   render(){
@@ -33,7 +35,7 @@ class MainNav extends React.Component {
 
       <div className="main-nav">
 
-          <Socket />
+            <Socket />
 
         { isDesktop && 
     

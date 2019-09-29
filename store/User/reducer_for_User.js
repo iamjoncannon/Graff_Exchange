@@ -36,10 +36,8 @@ export default function User_reducer (state = initialState, action) {
         }
 
       }
-
+      
       localStorage.setItem("token", action.payload.token)
-
-      // due to graphql restructring
       
       const stripped_user_object = JSON.parse(JSON.stringify(action.payload))
       delete stripped_user_object.holdings 

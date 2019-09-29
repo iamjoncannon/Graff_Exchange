@@ -21,6 +21,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "acorn-dynamic-import": "^4.0.0",
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-client": "^2.6.4",
     "apollo-link": "^1.2.13",
@@ -60,7 +61,7 @@
     "pm2": "^3.5.0",
     "react-svg-loader": "^3.0.3",
     "style-loader": "^0.21.0",
-    "webpack": "^4.29.6",
+    "webpack": "^4.28.4",
     "webpack-cli": "^3.2.3"
   },
   "description": ""

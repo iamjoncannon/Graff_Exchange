@@ -37,7 +37,7 @@ class IndivNav extends React.Component {
 
     const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
 
-    if(isCell() && !selectedPortfolioItem_object.historical){
+    if( isCell() && !selectedPortfolioItem_object.historical){
 
       this.hydrate_data()
     }

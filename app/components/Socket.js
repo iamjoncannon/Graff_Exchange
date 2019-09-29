@@ -8,7 +8,7 @@ class Socket extends React.Component {
   constructor(props) {
     super(props);
     
-    this.state ={ // portfolioSize
+    this.state ={ 
 
     }
   }

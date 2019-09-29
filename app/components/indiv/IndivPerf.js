@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { connect } from "react-redux";
-import PerformanceChart from './PerformanceChart'
 import DataNav from '../DataNav'
 import { hydrateTimeSeriesDataThunk } from "../../../store/Portfolio/thunks_for_Portfolio"
 import { isCell } from "../utils"
+
+const PerformanceChart = lazy(() => import('./PerformanceChart'))
 
 class IndivPerf extends React.Component {
  
@@ -98,7 +99,12 @@ class IndivPerf extends React.Component {
         <div className="ticker-box">
 
           <span>
-            $ {selectedPortfolioItem_object && selectedPortfolioItem_object.price}
+            $ {selectedPortfolioItem_object && selectedPortfolioItem_object.price 
+                ?   
+                selectedPortfolioItem_object.price
+                :
+                selectedPortfolioItem_object.data.latestPrice
+              }
           </span>
 
           <span>
@@ -139,9 +145,9 @@ class IndivPerf extends React.Component {
             {selectedDataNavItem}
           
           </span>
-
-          <PerformanceChart period={chartPeriod(selectedDataNavItem)} />
-
+          <Suspense fallback="Loading...">
+            <PerformanceChart period={chartPeriod(selectedDataNavItem)} />
+          </Suspense>
         </div>
 
         <DataNav 

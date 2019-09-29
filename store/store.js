@@ -6,7 +6,8 @@ import combinedReducers from './combine_reducers'
 
 const middleware = composeWithDevTools(
   
-  applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
+  // applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
+  applyMiddleware(thunkMiddleware)
 )
 
 export default createStore(combinedReducers, middleware)

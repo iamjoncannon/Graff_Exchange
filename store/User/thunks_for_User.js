@@ -36,22 +36,10 @@ export const loginThunk = (email, password) => async dispatch => {
     }
   }
   `  
-                  
-  // mobile login call 
+
   const query = gql`query login_call($email: String, $password: String) {
     ${full_query}
   }`
-
-  /* 
-    note
-
-    GraphQL intentionally ommitted the wildcard option in queries, you have
-    to explicitly request every field, or else use a "fragment"
-    which is simply these fields enumerated and then reused
-    - since we're only making the request for transaction history once, 
-    this would not dry out anything
-  
-  */
 
   let variables = { email, password }
 
@@ -62,6 +50,8 @@ export const loginThunk = (email, password) => async dispatch => {
     let { data : { login } } = await client.query({ query, variables })
     
     response = login
+
+    localStorage.setItem("token", response.token)
   }
   catch(error){
 
@@ -71,7 +61,6 @@ export const loginThunk = (email, password) => async dispatch => {
   }
   
   dispatch(actions.login(response))
- 
 };
 
 export const registerThunk = ( first_name, last_name, email, password ) => async dispatch => {
@@ -122,9 +111,10 @@ export const registerThunk = ( first_name, last_name, email, password ) => async
 
     console.log(error)
   }
+
+  localStorage.setItem("token", response.token)
   
   dispatch(actions.login(response))
-
 };
 
 export default {
