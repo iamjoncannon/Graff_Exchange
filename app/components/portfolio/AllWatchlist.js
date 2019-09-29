@@ -139,11 +139,16 @@ class AllWatchList extends React.Component {
                             <span style={{ color : data.latestPrice < item[1].price ? "green" : "red" }}> {item[1].symbol}</span>
                           
                             <span> {data.companyName}</span>
-
-                            <span style={{ color : data.latestPrice < item[1].price ? "green" : "red" }}> 
-                              ${ item[1].price} 
-                            </span>
                             
+                            ${ item[1].price ?
+                            <span style={{ color : data.latestPrice < item[1].price ? "green" : "red" }}> 
+                               {item[1].price} 
+                            </span>
+                            :
+                            <span style={{ color : data.latestPrice > data.open ? "green" : "red" }}> 
+                              {data.latestPrice} 
+                            </span>
+                            }
                           </div>
 
                         <div>

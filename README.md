@@ -5,6 +5,7 @@ Fullstack application with data from web socket, SQL data store, external APIs, 
 ## Front End
 
 - React, global state management with Redux
+- lazy loaded components to increase performance  
 - SASS (no CSS framework) 
 - socket connection to IEX api integrated into Redux store
 
