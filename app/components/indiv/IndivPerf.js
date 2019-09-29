@@ -99,7 +99,12 @@ class IndivPerf extends React.Component {
         <div className="ticker-box">
 
           <span>
-            $ {selectedPortfolioItem_object && selectedPortfolioItem_object.price}
+            $ {selectedPortfolioItem_object && selectedPortfolioItem_object.price 
+                ?   
+                selectedPortfolioItem_object.price
+                :
+                selectedPortfolioItem_object.data.latestPrice
+              }
           </span>
 
           <span>
