@@ -2,10 +2,10 @@ import actions from "./actions_for_Portfolio"
 import gql from 'graphql-tag'
 import { client } from '../../app/main'
 
-export const hydratePortfolioThunk = () => async dispatch => {
+export const hydratePortfolioThunk = ( token ) => async dispatch => {
  
-  const query = gql`query hydrate_portfolio_query{
-                      hydrate_portfolio{
+  const query = gql`query hydrate_portfolio_query($token: String){
+                      hydrate_portfolio(token: $token){
                         holdings {
                           user_data{
                             symbol
@@ -23,9 +23,11 @@ export const hydratePortfolioThunk = () => async dispatch => {
  
   let response
 
+  const variables = { token }
+
     try {
 
-      let { data : { hydrate_portfolio } } = await client.query({ query })
+      let { data : { hydrate_portfolio } } = await client.query({ query, variables })
       
       response = hydrate_portfolio
     }

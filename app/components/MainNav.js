@@ -22,7 +22,9 @@ class MainNav extends React.Component {
 
   componentDidMount(){
 
-    this.props.hydratePortfolio()
+    const { token, hydratePortfolio } = this.props
+    
+    hydratePortfolio(token)
   }
 
   render(){
