@@ -4,8 +4,6 @@ import { logoUrl } from "./utils"
 const front_end_url = "https://github.com/iamjoncannon/Graff_Exchange"
 const back_end_url = "https://github.com/iamjoncannon/Graff_Exchange_API"
 
-// http://pluspng.com/img-png/nodejs-logo-png-create-a-model-to-persist-data-in-a-node-js-loopback-api-from-beeman-nl-on-eggheadio-1200.png
-
 const Footer = (props) => {
 
     return (

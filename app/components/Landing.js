@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { loginThunk, registerThunk } from "../../store/User/thunks_for_User.js";
 
-
 class Landing extends React.Component {
  
   constructor(props){
