@@ -13,10 +13,10 @@ class Landing extends React.Component {
       
       this.state = {
           mode : 'sign-in',
-          firstName: "Webster",
-          lastName: "Ross",
-          email : "webster@ross.com",
-          password : "password",
+          firstName: "",
+          lastName: "",
+          email : "",
+          password : "",
           confirm_password: "",
           submitted: false,
           server_landing_page_error: true, 
