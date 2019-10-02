@@ -17,7 +17,6 @@ class IndivFin extends React.Component {
   }
 
   dataSwitch = (newDisplay) => {
-    window.scrollTo(0, 0);
 
     this.setState({
 
@@ -60,9 +59,7 @@ class IndivFin extends React.Component {
 
   render() {
 
-    window.scrollTo(0, 0);
-
-    const { selectedPortfolioItem, portfolio} = this.props
+    const { selectedPortfolioItem, portfolio } = this.props
 
     const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
     
@@ -147,9 +144,7 @@ class IndivFin extends React.Component {
           selectedDataNavItem={selectedDataNavItem}
           switchItem={this.dataSwitch}
         />
-
       </div>
-
     );
   }
 }

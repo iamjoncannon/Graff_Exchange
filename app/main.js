@@ -1,6 +1,5 @@
 import React, { Suspense, lazy } from 'react';
 import ReactDOM from "react-dom";
-// import App from "./components/app";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from 'react-redux' 
 import store from '../store/store'
@@ -20,5 +19,5 @@ ReactDOM.render(
       </Suspense>
     </Router>
   </Provider>,
-  document.getElementById("app")
+  document.getElementById("app") || document.createElement('app')
 );

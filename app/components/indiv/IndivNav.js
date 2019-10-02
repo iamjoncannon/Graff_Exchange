@@ -168,9 +168,8 @@ class IndivNav extends React.Component {
   }
 }
 
-const mapStateToProps = ({ Portfolio_state, User_state }) => {
+const mapStateToProps = ({ Portfolio_state }) => {
   return {
-    token: User_state.token,
     selectedPortfolioItem: Portfolio_state.selectedPortfolioItem,
     portfolio: Portfolio_state.portfolio
   };

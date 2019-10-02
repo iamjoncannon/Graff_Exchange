@@ -99,7 +99,6 @@ class TradeBox extends React.Component {
 
 const mapStateToProps = ({ User_state, Portfolio_state }) => {
   return {
-    token: User_state.token,
     portfolio: Portfolio_state.portfolio, 
     selectedPortfolioItem : Portfolio_state.selectedPortfolioItem,
     balance: User_state.Balance
