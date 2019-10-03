@@ -2,62 +2,13 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
 import IndivNav from './IndivNav'
-import { mount, shallow } from 'enzyme'
 import configureStore from 'redux-mock-store';
 import thunk from "redux-thunk"
 const mockStore = configureStore([thunk]);
 import { hydrateSinglePortfolioPage } from "../../../store/Portfolio/thunks_for_Portfolio"
-import nocked from "../../../test/nock.setup.js"
+import actions from "../../../store/Portfolio/actions_for_Portfolio"
 import { BrowserRouter as Router } from "react-router-dom";
-
-/*
-
-tests
-
-unit test (display)- 
-
-renders a span with the selected portfolio item and an 
-angle down icon 
-    - if you click, sets state to symbol selector modal
-
-renders a span that says Trade 
-    - if you click on Trade, sets state to Trade modal
-
-if cell, renders an "fa-bars" icon, 
-    - if you click, sets state to page selector modal 
-
-if not cell, 
-    renders a holder div with a specific length
-    renders an Indiv Selector component
-
-integration tests- 
-
-if historical not defined, and viewport is cell phone,
-calls hydrateSinglePortfolioPage with fake data
-and dispatches to the store 
-
-* if modal showing
-
-renders container
-
-    - if you click the container, it exits the modal
-
-    if modal is page, 
-        renders individual selector
-        - if you click on indiv exit, it exits the modal
-
-    if modal is trade, 
-        renders trade box
-        - if you click on trade exit, it exits the modal
-        
-    if modal is symbol, 
-        renders div 
-        - if clicked, handlesymbol selector callback and setstate
-        to modal false 
-        renders list of portfolio's symbols
-
-
-*/
+import nocked from "../../../test/nock.setup.js"
 
 const fake_store_with_historical_data =  { 
 
@@ -212,6 +163,11 @@ describe("IndivNav", ()=>{
         connected_react_component = component.root.children[0].children[0].children[0].children[0]._fiber.stateNode
     })
 
+    afterEach(()=>{
+
+        store.clearActions();
+    })
+
     it(">> if cell viewport <<", ()=>{})
 
     it("7) renders bars icon", ()=>{
@@ -224,14 +180,10 @@ describe("IndivNav", ()=>{
     })
 
     it("8) if props.portfolio.historical is defined, does not call hydrateSinglePortfolioPage", ()=>{
-
-        store.dispatch( hydrateSinglePortfolioPage("FB") )
-            .then(()=> {
+        
+        let dispatched_actions = store.getActions()
                 
-                expect(dispatched_actions.length).toEqual(1)
-                    
-                done()
-            })             
+        expect(dispatched_actions.length).toEqual(0)             
     })
 })
 
@@ -280,8 +232,6 @@ describe("IndivNav", ()=>{
 
     beforeEach(()=>{
         
-        window.outerWidth = 600
-
         store = mockStore( fake_store_with_historical_data );
 
         component = renderer.create(
@@ -294,6 +244,11 @@ describe("IndivNav", ()=>{
 
         // the actual component is contained within several wrappers
         connected_react_component = component.root.children[0].children[0].children[0].children[0]._fiber.stateNode
+    })
+
+    afterEach(()=>{
+
+        store.clearActions();
     })
 
     it(">> if modal showing <<", ()=>{})
@@ -387,5 +342,47 @@ describe("IndivNav", ()=>{
         })
         
         expect(connected_react_component.state.isModalShowing).toBe(false)
+    })
+})
+
+describe("IndivNav", ()=>{
+
+    let component 
+    let connected_react_component
+    let store 
+
+    beforeEach(()=>{
+        
+        store = mockStore( fake_store_with_historical_data );
+
+        component = renderer.create(
+            <Provider store={store} >
+                <Router >
+                    <IndivNav location={{pathname: "/"}}/>
+                </Router>
+            </Provider>
+        );
+
+        // the actual component is contained within several wrappers
+        connected_react_component = component.root.children[0].children[0].children[0].children[0]._fiber.stateNode
+    })
+
+    it("16) clicking the spans calls handleSymbolSelect action", ()=>{
+
+        renderer.act(()=>{
+
+            connected_react_component.setState({ isModalShowing: true, whichModal: 'symbol-selector' }) 
+        })
+
+        let final_div = component.root.findAllByType("div")
+
+        renderer.act(()=>{
+
+            final_div[final_div.length-1].props.onClick({target: {textContent: "AAPL"}})
+        })
+
+        let dispatched_actions = store.getActions()
+        
+        expect(dispatched_actions.length).toEqual(1)
     })
 })

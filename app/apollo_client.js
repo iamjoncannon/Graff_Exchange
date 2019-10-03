@@ -18,7 +18,7 @@ const authLink = new ApolloLink((operation, forward) => {
   return forward(operation);
 });
 
-module.exports = () => {
+export default () => {
 
     return new ApolloClient({
         link: authLink.concat(httpLink), 

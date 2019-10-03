@@ -53,6 +53,19 @@ const fake_store_with_no_financial_data =  {
     }, 
 }
 
+const fake_api_data = { data: '[{"date":"2019-06-30","Revenue":"38944000000.0"}]', __typename: "Quarterly_Financials" }
+
+const fake_endpoint = { data: { hydrate_quarterly_financials: fake_api_data } }
+
+const store_setup = (store) => {
+
+    return renderer.create(
+        <Provider store={store}>
+            <IndivFin />
+        </Provider>
+    );
+}
+
 describe("IndivFin", ()=>{
 
     let store;
@@ -63,11 +76,7 @@ describe("IndivFin", ()=>{
 
         store = mockStore( fake_store_with_financials_defined );
 
-        component = renderer.create(
-            <Provider store={store}>
-                <IndivFin />
-            </Provider>
-        );
+        component = store_setup(store)
 
         connected_react_component = component.root.children[0].children[0]._fiber.stateNode
     });
@@ -84,9 +93,9 @@ describe("IndivFin", ()=>{
         expect(tree).toMatchSnapshot();
     });
 
-    it("*if props.portfolio.financials is defined--", ()=>{ })
+    it(">>if props.portfolio.financials is defined<<", ()=>{ })
 
-    it("    2) it renders a span containing the first item's date", () => {
+    it("2) it renders a span containing the first item's date", () => {
         
         const target_className = "indiv-fin indiv-container"
                 
@@ -100,7 +109,7 @@ describe("IndivFin", ()=>{
       
     });
 
-    it("    3) it renders the key/value pairs in the portfolio state's financials object in spans", ()=>{
+    it("3) it renders the key/value pairs in the portfolio state's financials object in spans", ()=>{
 
         let elements = component.root.findAllByType("span").map(el=>el.props.children)
 
@@ -110,16 +119,16 @@ describe("IndivFin", ()=>{
         expect(elements.includes("otherValue")).toBeTruthy()
     })
 
-    it("    4) it does not call hydrateQuarterlyFinancialsThunk" , ()=>{
+    it("4) it does not call hydrateQuarterlyFinancialsThunk" , ()=>{
 
         let dispatched_actions = store.getActions()
             
         expect(dispatched_actions.length).toEqual(0)
     })
 
-    it("    *if dataNav callback clicked", ()=>{})
+    it(">>if dataNav callback clicked<<", ()=>{})
 
-    it("        5) calls dataSwitch to set state to new selectedDataNavItem" , ()=>{
+    it("5) calls dataSwitch to set state to new selectedDataNavItem" , ()=>{
         
         const dataNav = component.root.find(node => node.props.className === 'data-nav')
 
@@ -131,7 +140,7 @@ describe("IndivFin", ()=>{
        expect(connected_react_component.state.selectedDataNavItem).toEqual('12/3/15')
     })
 
-    it("        6) renders selected quarterly financial report" , ()=>{
+    it("6) renders selected quarterly financial report" , ()=>{
         
         const dataNav = component.root.find(node => node.props.className === 'data-nav')
 
@@ -160,19 +169,12 @@ describe("IndivFin", ()=>{
 
     beforeEach(  () => {
 
-        const fake_api_data = { data: '[{"date":"2019-06-30","Revenue":"38944000000.0"}]', __typename: "Quarterly_Financials" }
-
-        const fake_endpoint = { data: { hydrate_quarterly_financials: fake_api_data } }
-
         nocked(fake_endpoint)
 
         store = mockStore( fake_store_without_financials_defined );
 
-        component = renderer.create(
-            <Provider store={store}>
-                <IndivFin />
-            </Provider>
-        );
+        component = store_setup(store)
+
     });
 
     afterEach(()=>{
@@ -180,9 +182,9 @@ describe("IndivFin", ()=>{
         store.clearActions();
     })
 
-    it("*if props.portfolio.financials is not defined", ()=>{} )
+    it(">>>if props.portfolio.financials is not defined<<<", ()=>{} )
     
-    it("    7) it displays loading dots while loading",()=>{
+    it("7) it displays loading dots while loading",()=>{
 
         const target_className = "loading-dots"
 
@@ -191,7 +193,7 @@ describe("IndivFin", ()=>{
         expect(target).toBeTruthy()
     })
 
-    it("    8) it calls hydrateQuarterlyFinancialsThunk with the selectedPortfolioItem", async (done) =>{
+    it("8) it calls hydrateQuarterlyFinancialsThunk with the selectedPortfolioItem", async (done) =>{
 
         store.dispatch( hydrateQuarterlyFinancialsThunk("FB") )
             .then(()=> {
@@ -215,11 +217,8 @@ describe("IndivFin", ()=>{
 
         store = mockStore( fake_store_with_no_financial_data );
 
-        component = renderer.create(
-            <Provider store={store}>
-                <IndivFin />
-            </Provider>
-        );
+        component = store_setup(store)
+
     });
 
     afterEach(()=>{
@@ -227,9 +226,9 @@ describe("IndivFin", ()=>{
         store.clearActions();
     })
 
-    it("*if props.portfolio.financials has no data", ()=>expect(true).toBeTruthy())
+    it(">>>if props.portfolio.financials has no data<<<", ()=>expect(true).toBeTruthy())
     
-    it("    9) renders a span stating 'Data Not Available'",  () =>{
+    it("9) renders a span stating 'Data Not Available'",  () =>{
 
         const target = component.root.find(node=> node.props.className === "error_message")
     
