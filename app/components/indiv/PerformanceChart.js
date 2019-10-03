@@ -28,6 +28,12 @@ class PerformanceChart extends React.Component {
     
     resize = () => {
 
+        if(process.env.NODE_ENV === "test"){
+            this.container = {}
+            this.container.offsetHeight = 100
+            this.container.offsetWidth = 100 
+        }
+
         this.setState({
             dimensions: {
               width: this.container.offsetWidth,
