@@ -68,7 +68,6 @@ describe("IndivNav", ()=>{
             </Provider>
         );
 
-        // the actual component is contained within several wrappers
         connected_react_component = component.root.children[0].children[0].children[0].children[0]._fiber.stateNode
     })
 
