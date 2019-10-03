@@ -32,7 +32,7 @@ describe("IndivSelector", ()=>{
         expect(tree).toMatchSnapshot();
     })
 
-    it("2) renders four links with span children", ()=>{
+    it("2) renders four React-Router Link components with span children", ()=>{
 
         const links = component.root.findAll(node=> node.type.displayName === "Link")
 
@@ -61,7 +61,7 @@ describe("IndivSelector", ()=>{
            </Provider>)
     })
 
-    it("3) if pathname includes abbreviation, className is 'selected' ", ()=>{
+    it("3) if pathname includes abbreviation, className of span is 'selected' ", ()=>{
 
         const selected = component.root.find(node => node.props.className === "selected")
 

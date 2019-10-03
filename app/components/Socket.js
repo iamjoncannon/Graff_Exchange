@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from "react-redux";
-import symbolHash from './symbolHash.json'
 import  actions  from "../../store/Portfolio/actions_for_Portfolio.js"
 
 class Socket extends React.Component {

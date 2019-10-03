@@ -60,7 +60,7 @@ describe("IndivTrans", ()=>{
         expect(spans).toEqual( ['Type', 'Quantity', 'Price', 'Date' ])
     })
 
-    it("3) renders transaction history item with four spans", ()=>{
+    it("3) renders transaction history item in four spans", ()=>{
 
         const className = "indiv-trans indiv-container"
 

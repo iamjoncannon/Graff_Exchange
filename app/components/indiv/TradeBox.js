@@ -67,7 +67,6 @@ class TradeBox extends React.Component {
     return (
 
       <div>
-
             <span>
               Quantity
             </span>
