@@ -23,11 +23,11 @@ class TradeBox extends React.Component {
 
       const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
 
-      const { quantity, price, symbol } = selectedPortfolioItem_object
+      const { current_holding, price, symbol } = selectedPortfolioItem_object
 
       // validate the trade
 
-      if(type === "Sell" && (this.state.size > quantity) ) {
+      if(type === "Sell" && (this.state.size > current_holding) ) {
 
           this.setState({
               isToolTipShowing: true,
@@ -100,7 +100,7 @@ const mapStateToProps = ({ User_state, Portfolio_state }) => {
   return {
     portfolio: Portfolio_state.portfolio, 
     selectedPortfolioItem : Portfolio_state.selectedPortfolioItem,
-    balance: User_state.Balance
+    balance: User_state.balance
   };
 };
 

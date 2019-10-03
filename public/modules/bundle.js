@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "./modules/" + ({}[chunkId]||chunkId) + "." + {"0":"2eff70d9c83ff8322a31","1":"0ac6f7e276c0bfed6af7","2":"28dba0491a6132257fa9"}[chunkId] + ".js"
+/******/ 		return __webpack_require__.p + "./modules/" + ({}[chunkId]||chunkId) + "." + {"0":"2eff70d9c83ff8322a31","1":"50b45949890051d4e434","2":"1584cbca4efbabf734e8"}[chunkId] + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -725,7 +725,7 @@ function previouslyCompared(a, b) {
 /*!*****************************************************!*\
   !*** ./node_modules/apollo-boost/lib/bundle.esm.js ***!
   \*****************************************************/
-/*! exports provided: HttpLink, gql, default, ApolloClient, ApolloError, FetchType, NetworkStatus, ObservableQuery, isApolloError, Observable, getOperationName, ApolloLink, concat, createOperation, empty, execute, from, fromError, fromPromise, makePromise, split, toPromise, HeuristicFragmentMatcher, InMemoryCache, IntrospectionFragmentMatcher, ObjectCache, StoreReader, StoreWriter, WriteError, assertIdValue, defaultDataIdFromObject, defaultNormalizedCacheFactory, enhanceErrorWithDocument */
+/*! exports provided: ApolloClient, ApolloError, FetchType, NetworkStatus, ObservableQuery, isApolloError, Observable, getOperationName, ApolloLink, concat, createOperation, empty, execute, from, fromError, fromPromise, makePromise, split, toPromise, HeuristicFragmentMatcher, InMemoryCache, IntrospectionFragmentMatcher, ObjectCache, StoreReader, StoreWriter, WriteError, assertIdValue, defaultDataIdFromObject, defaultNormalizedCacheFactory, enhanceErrorWithDocument, HttpLink, gql, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -51188,7 +51188,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -58612,8 +58612,6 @@ function Portfolio_reducer (state = initialState, action) {
       }
 
       if(action.payload.graphQLErrors) return {...state}
-
-      let { selectedPortfolioItem } = state 
       
       // converting [ Holding ] to an object, where 
       // the key is the symbol and value is the item
@@ -58628,9 +58626,7 @@ function Portfolio_reducer (state = initialState, action) {
       
       // if no stock selected, default to the first stock in the portfolio
 
-      let newSelectedPortfolioItem =  Object.keys(restructured_portfolio_data)[0] // restructured_portfolio_data[Object.keys(restructured_portfolio_data)[0]] // ( !Object.keys(state.selectedPortfolioItem).length && Object.keys(restructured_portfolio_data).length ) ? 
-      //                                   restructured_portfolio_data[Object.keys(restructured_portfolio_data)[0]] : 
-      //                                   selectedPortfolioItem ;
+      let newSelectedPortfolioItem =  Object.keys(restructured_portfolio_data)[0] 
 
       return { ...state, 
                selectedPortfolioItem : newSelectedPortfolioItem,
@@ -58901,13 +58897,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const middleware = Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__["composeWithDevTools"])(
-  
-  Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2__["default"], Object(redux_logger__WEBPACK_IMPORTED_MODULE_1__["createLogger"])({collapsed: true}))
-  // applyMiddleware(thunkMiddleware)
-)
+let middleware 
+
+if(false){}
+else{
+
+  middleware = Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__["composeWithDevTools"])( 
+    Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2__["default"], Object(redux_logger__WEBPACK_IMPORTED_MODULE_1__["createLogger"])({collapsed: true}))
+  )
+}
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_combine_reducers__WEBPACK_IMPORTED_MODULE_4__["default"], middleware));
+
 
 /***/ }),
 

@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddSymbolBox 1) renders successfully with data from redux store 1`] = `
+<div
+  className="trade-box symbol-box"
+  id="add-symbol-box"
+>
+  <span>
+    Symbol
+  </span>
+  <input
+    max="5"
+    min="1"
+    onChange={[Function]}
+    type="text"
+  />
+  <div>
+    <button
+      onClick={[Function]}
+      style={
+        Object {
+          "opacity": ".3",
+        }
+      }
+    >
+      Add
+    </button>
+  </div>
+  <span>
+     
+  </span>
+</div>
+`;
