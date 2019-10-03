@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IndivTrans 1) renders successfully with data from redux store 1`] = `
+<div
+  className="indiv-trans indiv-container"
+>
+  <div>
+    <span>
+      Type
+    </span>
+    <span>
+      Quantity
+    </span>
+    <span>
+      Price
+    </span>
+    <span>
+      Date
+    </span>
+  </div>
+  <div>
+    <div>
+      <span>
+        Buy
+      </span>
+      <span>
+        100
+      </span>
+      <span>
+        $
+        10.329999923706055
+      </span>
+      <span>
+        Wed Jul 17 2019 
+      </span>
+    </div>
+  </div>
+</div>
+`;

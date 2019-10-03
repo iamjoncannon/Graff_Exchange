@@ -22,6 +22,7 @@ describe("IndivSelector", ()=>{
                    <IndivSelector pathname={"/"} />
                </Router>
            </Provider>)
+        
     })
 
     it('1) renders successfully with data from redux store', ()=>{
@@ -64,8 +65,6 @@ describe("IndivSelector", ()=>{
 
         const selected = component.root.find(node => node.props.className === "selected")
 
-        console.log(selected.children)
-
-        expect(selected.children[0]).toEqual(Performance)
+        expect(selected.children[0]).toEqual("Performance")
     })
 })
