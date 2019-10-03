@@ -1,39 +1,45 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
-import IndivFin from './IndivFin'
+import IndivNav from './IndivNav'
+import { mount, shallow } from 'enzyme'
 import configureStore from 'redux-mock-store';
 import thunk from "redux-thunk"
 const mockStore = configureStore([thunk]);
-import { hydrateQuarterlyFinancialsThunk } from "../../../store/Portfolio/thunks_for_Portfolio"
+import { hydrateSinglePortfolioPage } from "../../../store/Portfolio/thunks_for_Portfolio"
 import nocked from "../../../test/nock.setup.js"
-
+import { BrowserRouter as Router } from "react-router-dom";
 
 /*
 
 tests
 
-if historical not defined, and viewport is cell phone,
-calls hydrateSinglePortfolioPage
-
-if cell, renders an "fa-bars" icon, else renders a holder div
-with a specific length
-    - if you click, displays page selector modal 
+unit test (display)- 
 
 renders a span with the selected portfolio item and an 
 angle down icon 
-    - if you click, displays symbol selector modal
+    - if you click, sets state to symbol selector modal
 
 renders a span that says Trade 
-    - if you click on Trade, displays Trade modal
+    - if you click on Trade, sets state to Trade modal
 
-if not cell, renders an Indiv Selector component
-don't need to unit or integration test that, because
-it dispatches to the store directly
+if cell, renders an "fa-bars" icon, 
+    - if you click, sets state to page selector modal 
 
-if modal showing
+if not cell, 
+    renders a holder div with a specific length
+    renders an Indiv Selector component
+
+integration tests- 
+
+if historical not defined, and viewport is cell phone,
+calls hydrateSinglePortfolioPage with fake data
+and dispatches to the store 
+
+* if modal showing
 
 renders container
+
     - if you click the container, it exits the modal
 
     if modal is page, 
@@ -44,242 +50,342 @@ renders container
         renders trade box
         - if you click on trade exit, it exits the modal
         
-    if modeal is symbol, renders div with onclick callback
-
-    renders 
+    if modal is symbol, 
+        renders div 
+        - if clicked, handlesymbol selector callback and setstate
+        to modal false 
+        renders list of portfolio's symbols
 
 
 */
 
-/*
+const fake_store_with_historical_data =  { 
 
-const fake_store_with_financials_defined =  { 
     Portfolio_state: {
         portfolio: {
             FB: {
-                financials: [{
-                    date: "9/3/15",
-                    key: "value", 
-                    otherkey: "otherValue"
-                },
-                {
-                    date: "12/3/15",
-                    key: "value in second financials", 
-                    otherkey: "otherValue in second financials"
-                }]
+                symbol: "FB",
+                historical: []
+            },
+            GOOGL: {
+
+            },
+            AAPL: {
 
             }
         },
         selectedPortfolioItem: "FB"
+    }, 
+    User_state: {
+
+        balance: 0
     }
 }
 
-const fake_store_without_financials_defined =  { 
+const fake_store_without_historical_data =  { 
 
     Portfolio_state: {
         portfolio: {
             FB: {
-   
+                symbol: "FB",
+                historical: []
             }
         },
         selectedPortfolioItem: "FB"
     }, 
+    User_state: {
+
+        balance: 0
+    }
 }
 
-const fake_store_with_no_financial_data =  { 
+describe("IndivNav", ()=>{
 
-    Portfolio_state: {
-        portfolio: {
-            FB: {
-                financials: []
-            }
-        },
-        selectedPortfolioItem: "FB"
-    }, 
-}
-
-describe("IndivFin", ()=>{
-
-    let store;
     let component 
     let connected_react_component
+    let store 
 
-    beforeEach(() => {
-
-        store = mockStore( fake_store_with_financials_defined );
+    beforeEach(()=>{
+        
+        store = mockStore( fake_store_with_historical_data );
 
         component = renderer.create(
-            <Provider store={store}>
-                <IndivFin />
+            <Provider store={store} >
+                <Router >
+                    <IndivNav location={{pathname: "/"}}/>
+                </Router>
             </Provider>
         );
 
-        connected_react_component = component.root.children[0].children[0]._fiber.stateNode
-    });
-
-    afterEach(()=>{
-
-        store.clearActions();
+        // the actual component is contained within several wrappers
+        connected_react_component = component.root.children[0].children[0].children[0].children[0]._fiber.stateNode
     })
 
-    test('1) renders successfully with data from redux store', () => {
+    it('1) renders successfully with data from redux store', ()=>{
+
+        expect(true).toBeTruthy()
 
         let tree = component.toJSON();
         
         expect(tree).toMatchSnapshot();
-    });
-
-    it("*if props.portfolio.financials is defined--", ()=>{ })
-
-    it("    2) it renders a span containing the first item's date", () => {
-        
-        const target_className = "indiv-fin indiv-container"
-                
-        let target = component.root.find((node)=> node.props.className === target_className)
-        
-        target = target.props.children[0]
-
-        expect(target.type).toEqual("span")
-        
-        expect(target.props.children).toEqual("9/3/15")
-      
-    });
-
-    it("    3) it renders the key/value pairs in the portfolio state's financials object in spans", ()=>{
-
-        let elements = component.root.findAllByType("span").map(el=>el.props.children)
-
-        expect(elements.includes("key")).toBeTruthy()
-        expect(elements.includes("value")).toBeTruthy()
-        expect(elements.includes("otherkey")).toBeTruthy()
-        expect(elements.includes("otherValue")).toBeTruthy()
     })
 
-    it("    4) it does not call hydrateQuarterlyFinancialsThunk" , ()=>{
-
-        let dispatched_actions = store.getActions()
-            
-        expect(dispatched_actions.length).toEqual(0)
-    })
-
-    it("    *if dataNav callback clicked", ()=>{})
-
-    it("        5) calls dataSwitch to set state to new selectedDataNavItem" , ()=>{
+    it("2) renders a span with the selected portfolio item and an angle down icon", ()=>{
         
-        const dataNav = component.root.find(node => node.props.className === 'data-nav')
-
-       renderer.act(() => {
-
-          dataNav.children[1].props.onClick()
-       });
+        let className = "fas fa-angle-down fa-7x"
     
-       expect(connected_react_component.state.selectedDataNavItem).toEqual('12/3/15')
+        let angle = component.root.find(node => node.props.className === className  )
+
+        expect(angle).toBeTruthy()
+
+        let sibling = angle.parent.props.children[0]
+
+        expect(sibling.props.children).toEqual("FB")   
+    })
+    
+    it("3) clicking the angle's parent div sets state to symbol selector modal",()=>{
+
+        let className = "fas fa-angle-down fa-7x"
+    
+        let angle = component.root.find(node => node.props.className === className  )
+
+        renderer.act(()=>{
+
+            angle.parent.props.onClick()
+        })
+
+        expect(connected_react_component.state.isModalShowing).toEqual(true)
+        expect(connected_react_component.state.whichModal).toEqual('symbol-selector')
     })
 
-    it("        6) renders selected quarterly financial report" , ()=>{
+    it("4) renders a span containing 'Trade'", ()=>{
         
-        const dataNav = component.root.find(node => node.props.className === 'data-nav')
+        let trade_span = component.root.find(node => node.props.children === "Trade")
 
-       renderer.act(() => {
-
-          dataNav.children[1].props.onClick()
-       });
-
-       const target_className = "indiv-fin indiv-container"
-
-       let target = component.root.find(node => node.props.className === target_className)
-
-       target = target.props.children
-
-       let elements = component.root.findAllByType("span").map(el=>el.props.children)
-
-        expect(elements.includes("value in second financials")).toBeTruthy()
-        expect(elements.includes("otherValue in second financials")).toBeTruthy()
+        expect(trade_span).toBeTruthy()
+        expect(trade_span.type).toEqual("span")
     })
+    
+    it("5) clicking trade sets state to Trade modal", ()=>{
+        
+        let trade_span = component.root.find(node => node.props.children === "Trade")
+
+        renderer.act(()=>{
+
+            trade_span.props.onClick()
+        })
+
+        expect(connected_react_component.state.isModalShowing).toEqual(true)
+        expect(connected_react_component.state.whichModal).toEqual('trade-box')
+    })
+    
+    it("6) if not cell viewport, renders Indiv Selector component", ()=> {
+    
+        let indiv_selector = component.root.find( node => node.type.name === "IndivSelector")
+
+        expect(indiv_selector).toBeTruthy()
+    })
+
 })
 
-describe("IndivFin", ()=>{
+describe("IndivNav", ()=>{
 
-    let store 
     let component 
+    let connected_react_component
+    let store 
 
-    beforeEach(  () => {
+    beforeEach(()=>{
+        
+        window.outerWidth = 600
 
-        const fake_api_data = { data: '[{"date":"2019-06-30","Revenue":"38944000000.0"}]', __typename: "Quarterly_Financials" }
-
-        const fake_endpoint = { data: { hydrate_quarterly_financials: fake_api_data } }
-
-        nocked(fake_endpoint)
-
-        store = mockStore( fake_store_without_financials_defined );
+        store = mockStore( fake_store_with_historical_data );
 
         component = renderer.create(
-            <Provider store={store}>
-                <IndivFin />
+            <Provider store={store} >
+                <Router >
+                    <IndivNav location={{pathname: "/"}}/>
+                </Router>
             </Provider>
         );
-    });
 
-    afterEach(()=>{
-
-        store.clearActions();
+        // the actual component is contained within several wrappers
+        connected_react_component = component.root.children[0].children[0].children[0].children[0]._fiber.stateNode
     })
 
-    it("*if props.portfolio.financials is not defined", ()=>{} )
-    
-    it("    7) it displays loading dots while loading",()=>{
+    it(">> if cell viewport <<", ()=>{})
 
-        const target_className = "loading-dots"
+    it("7) renders bars icon", ()=>{
 
-        const target = component.root.find(node=> node.props.className === target_className )
-    
-        expect(target).toBeTruthy()
+        const className = "fas fa-bars fa-7x" 
+
+        const bars = component.root.find(node => node.props.className === className  )
+
+        expect(bars).toBeTruthy()
     })
 
-    it("    8) it calls hydrateQuarterlyFinancialsThunk with the selectedPortfolioItem", async (done) =>{
+    it("8) if props.portfolio.historical is defined, does not call hydrateSinglePortfolioPage", ()=>{
 
-        store.dispatch( hydrateQuarterlyFinancialsThunk("FB") )
+        store.dispatch( hydrateSinglePortfolioPage("FB") )
             .then(()=> {
                 
-                let dispatched_actions = store.getActions()
-                
-                expect(dispatched_actions[0].type).toEqual(dispatched_actions[1].type)
-                expect(dispatched_actions[0].payload.data).toEqual(dispatched_actions[1].payload.data)
-                
+                expect(dispatched_actions.length).toEqual(1)
+                    
                 done()
-            })  
+            })             
     })
 })
 
-describe("IndivFin", ()=>{
+describe("IndivNav", ()=>{
 
-    let store 
     let component 
+    let connected_react_component
+    let store 
 
-    beforeEach(  () => {
+    beforeEach(()=>{
+        
+        window.outerWidth = 600
 
-        store = mockStore( fake_store_with_no_financial_data );
+        store = mockStore( fake_store_without_historical_data );
 
         component = renderer.create(
-            <Provider store={store}>
-                <IndivFin />
+            <Provider store={store} >
+                <Router >
+                    <IndivNav location={{pathname: "/"}}/>
+                </Router>
             </Provider>
         );
-    });
 
-    afterEach(()=>{
-
-        store.clearActions();
+        // the actual component is contained within several wrappers
+        connected_react_component = component.root.children[0].children[0].children[0].children[0]._fiber.stateNode
     })
 
-    it("*if props.portfolio.financials has no data", ()=>expect(true).toBeTruthy())
-    
-    it("    9) renders a span stating 'Data Not Available'",  () =>{
+    it("9) if historical not defined, calls hydrateSinglePortfolioPage", ()=>{
 
-        const target = component.root.find(node=> node.props.className === "error_message")
-    
-        expect(target).toBeTruthy()
+        store.dispatch( hydrateSinglePortfolioPage("FB") )
+            .then(()=> {
+                
+                expect(dispatched_actions.length).toEqual(2)
+                expect(dispatched_actions[0].type).toEqual(dispatched_actions[1].type)
+                    
+                done()
+            })   
     })
 })
 
-*/
+describe("IndivNav", ()=>{
+
+    let component 
+    let connected_react_component
+    let store 
+
+    beforeEach(()=>{
+        
+        window.outerWidth = 600
+
+        store = mockStore( fake_store_with_historical_data );
+
+        component = renderer.create(
+            <Provider store={store} >
+                <Router >
+                    <IndivNav location={{pathname: "/"}}/>
+                </Router>
+            </Provider>
+        );
+
+        // the actual component is contained within several wrappers
+        connected_react_component = component.root.children[0].children[0].children[0].children[0]._fiber.stateNode
+    })
+
+    it(">> if modal showing <<", ()=>{})
+
+    it("10) if modal is page-selector, renders individual selector", ()=>{
+
+        renderer.act(()=>{
+
+            connected_react_component.setState({ isModalShowing: true, whichModal: "page-selector" }) 
+         
+        })
+
+        let indiv_selector = component.root.find( node => node.type.name === "IndivSelector")
+ 
+        expect(indiv_selector).toBeTruthy()
+    })
+
+    it("11) clicking individual selector exit prop closes the modal", ()=>{
+
+        renderer.act(()=>{
+
+            connected_react_component.setState({ isModalShowing: true, whichModal: "page-selector" }) 
+        })
+        
+        let indiv_selector = component.root.find( node => node.type.name === "IndivSelector")
+        
+        renderer.act(()=>{
+
+            indiv_selector.props.exit()
+        })
+ 
+        expect(connected_react_component.state.isModalShowing).toEqual(false)
+    })
+
+    it("12) if modal is trade-box, renders trade box", ()=>{
+
+        renderer.act(()=>{
+
+            connected_react_component.setState({ isModalShowing: true, whichModal: 'trade-box' }) 
+        })
+        
+        let trade_box = component.root.find( node => node.type.name === "TradeBox")
+
+        expect(trade_box).toBeTruthy()
+        
+    })
+
+    it("13) clicking trade box exit prop closes the modal", ()=>{
+
+        renderer.act(()=>{
+
+            connected_react_component.setState({ isModalShowing: true, whichModal: 'trade-box' }) 
+        })
+        
+        let trade_box = component.root.find( node => node.type.name === "TradeBox")
+        
+        renderer.act(()=>{
+
+            trade_box.props.exit()
+        })
+ 
+        expect(connected_react_component.state.isModalShowing).toEqual(false)
+    })
+
+    it("14) if modal is symbol-selector, renders div with list of portfolio's symbols", ()=>{
+        
+        renderer.act(()=>{
+
+            connected_react_component.setState({ isModalShowing: true, whichModal: 'symbol-selector' }) 
+        })
+
+        let elements = component.root.findAllByType( "span" ).map(el=>el.props.children)
+                
+        expect(elements.includes("AAPL")).toBeTruthy()
+        expect(elements.includes("GOOGL")).toBeTruthy()
+        expect(elements.includes("FB")).toBeTruthy()
+    })
+
+    it("15) clicking the div sets state to modal false", ()=>{
+
+        renderer.act(()=>{
+
+            connected_react_component.setState({ isModalShowing: true, whichModal: 'symbol-selector' }) 
+        })
+
+        let final_div = component.root.findAllByType("div")
+
+        renderer.act(()=>{
+
+            final_div[final_div.length-1].props.onClick({target: {textContent: null}})
+        })
+        
+        expect(connected_react_component.state.isModalShowing).toBe(false)
+    })
+})

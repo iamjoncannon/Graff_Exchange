@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom'
 import { isDesktop, isCell, isTab } from '../utils'
 import IndivSelector from './IndivSelector'
 import TradeBox from './TradeBox'
