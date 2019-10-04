@@ -122,7 +122,6 @@ class AllWatchList extends React.Component {
 
                       { this.state.edit && 
                         
-
                         <i 
                           className={`fas fa-${ hideList.includes(symbol) ? "plus" : "minus"} fa-${isDesktop() ? "2" : "7"}x`} 
                           onClick={()=> this.handleEdit(item) }

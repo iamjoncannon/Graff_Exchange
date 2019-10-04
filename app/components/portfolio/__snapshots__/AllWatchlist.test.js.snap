@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AllWatchlist 1) renders successfully with data from redux store 1`] = `
+<div>
+  <div
+    className="all-watchlist"
+  >
+    <div>
+      <i
+        className="fas fa-plus fa-plus-edit fa-7x"
+        onClick={[Function]}
+      />
+      <i
+        className="fas fa-edit fa-7x"
+        onClick={[Function]}
+      />
+    </div>
+    <span>
+      Portfolio
+    </span>
+    <div>
+      <div>
+        <span
+          className="error_message"
+        >
+          Error validating account- please try signing in again.
+        </span>
+        <span
+          className="error_message"
+        >
+          We apologize for the inconvenience
+        </span>
+      </div>
+      <div
+        className="watchlist-item-container"
+      >
+        <div
+          className="watchlist-item"
+          style={
+            Object {
+              "opacity": "1",
+            }
+          }
+        >
+          <div>
+            <span
+              style={
+                Object {
+                  "color": "red",
+                }
+              }
+            >
+               
+              FB
+            </span>
+            <span>
+               
+            </span>
+            $
+            <span
+              style={
+                Object {
+                  "color": "red",
+                }
+              }
+            >
+              100
+            </span>
+          </div>
+          <div>
+            <span />
+            <span>
+              0.03
+              %
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

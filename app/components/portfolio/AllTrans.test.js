@@ -40,7 +40,6 @@ describe("AllTrans", ()=>{
            </Provider>)
 
         connected_react_component = component.root.children[0].children[0].children[0].children[0]._fiber.stateNode
-
     })
 
     it('1) renders successfully with data from redux store', ()=>{
@@ -70,9 +69,7 @@ describe("AllTrans", ()=>{
         expect(parent.props.children.length).toEqual(5)
 
         let spans = parent.props.children.map(node => node.props.children)
-        
-        console.log(spans)
-
+    
         expect(spans).toEqual([ 'Buy', 'F', 100, [ '$', '10.33' ], 'Wed Jul 17 2019 ' ])
     })
 })
