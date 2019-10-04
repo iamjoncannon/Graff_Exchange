@@ -19,8 +19,7 @@ export default function User_reducer (state = initialState, action) {
 
       // handle login /signup errors 
       if(action.payload.graphQLErrors){
-        
-        
+         
         const invalid_user = action.payload.message.includes("unable to find user") 
         const invalid_password = action.payload.message.includes("Invalid password") 
         

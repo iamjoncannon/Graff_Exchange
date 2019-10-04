@@ -23,7 +23,12 @@ class TradeBox extends React.Component {
 
       const selectedPortfolioItem_object = portfolio[selectedPortfolioItem]
 
-      const { current_holding, price, symbol } = selectedPortfolioItem_object
+      let { current_holding, price, symbol } = selectedPortfolioItem_object
+
+      if(!price){
+
+        price = selectedPortfolioItem_object.data.latestPrice
+      }
 
       // validate the trade
 

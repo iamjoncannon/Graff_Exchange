@@ -6,8 +6,6 @@ import configureStore from 'redux-mock-store';
 import thunk from "redux-thunk"
 const mockStore = configureStore([thunk]);
 import { BrowserRouter as Router } from "react-router-dom";
-import nocked from "../../../test/nock.setup.js"
-import { connect } from 'tls';
 
 const fake_api_data = {"data":
     {"hydrate_time_series_data":

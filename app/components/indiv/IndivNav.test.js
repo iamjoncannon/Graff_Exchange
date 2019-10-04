@@ -6,7 +6,6 @@ import configureStore from 'redux-mock-store';
 import thunk from "redux-thunk"
 const mockStore = configureStore([thunk]);
 import { hydrateSinglePortfolioPage } from "../../../store/Portfolio/thunks_for_Portfolio"
-import actions from "../../../store/Portfolio/actions_for_Portfolio"
 import { BrowserRouter as Router } from "react-router-dom";
 import nocked from "../../../test/nock.setup.js"
 
@@ -49,6 +48,11 @@ const fake_store_without_historical_data =  {
         balance: 0
     }
 }
+
+const fake_api_data = { data: '[{"date":"2019-06-30","Revenue":"38944000000.0"}]', __typename: "Quarterly_Financials" }
+
+const fake_endpoint = { data: { hydrate_quarterly_financials: fake_api_data } }
+
 
 describe("IndivNav", ()=>{
 
@@ -196,6 +200,8 @@ describe("IndivNav", ()=>{
         
         window.outerWidth = 600
 
+        nocked(fake_endpoint)
+        
         store = mockStore( fake_store_without_historical_data );
 
         component = renderer.create(
@@ -214,11 +220,10 @@ describe("IndivNav", ()=>{
 
         store.dispatch( hydrateSinglePortfolioPage("FB") )
             .then(()=> {
+
+                const dispatched_actions = store.getActions()
                 
-                expect(dispatched_actions.length).toEqual(2)
-                expect(dispatched_actions[0].type).toEqual(dispatched_actions[1].type)
-                    
-                done()
+                expect(dispatched_actions.length).toEqual(3)    
             })   
     })
 })

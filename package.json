@@ -4,7 +4,7 @@
   "main": "main.js",
   "scripts": {
     "test-summary": "jest --config=jest.config.js --coverage --watch -- -u",
-    "test": "jest --config=jest.config.js --verbose --watch -- -u",
+    "test": "jest --config=jest.config.js --watch -- -u",
     "sass": "node-sass scss/main.scss public/style.css -w -r",
     "sass-bund": "node-sass scss/main.scss public/style.css",
     "sh": "cd ~/.ssh & ssh -i $key ubuntu@$gopher_api_addy",
@@ -53,6 +53,7 @@
     "redux-mock-store": "^1.5.3",
     "redux-thunk": "^2.2.0",
     "sequelize": "^5.2.13",
+    "socket.io-client": "^2.3.0",
     "unfetch": "^4.1.0",
     "waait": "^1.0.5"
   },

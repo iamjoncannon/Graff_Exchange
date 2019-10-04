@@ -8,7 +8,7 @@ import User_actions from "../User/action_constants_for_User"
 
 */
 
-const initialState = {
+export const initialState = {
   selectedPortfolioItem: { },
   portfolio: {},
   transactionHistory: { },
@@ -16,7 +16,7 @@ const initialState = {
 }
 
 export default function Portfolio_reducer (state = initialState, action) {
-  
+    
   switch (action.type) {
 
     case User_actions.LOGIN: {

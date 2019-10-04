@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "./modules/" + ({}[chunkId]||chunkId) + "." + {"0":"2eff70d9c83ff8322a31","1":"50b45949890051d4e434","2":"1584cbca4efbabf734e8"}[chunkId] + ".js"
+/******/ 		return __webpack_require__.p + "./modules/" + ({}[chunkId]||chunkId) + "." + {"0":"2eff70d9c83ff8322a31","1":"66d7519f21ad8fc2bd25","2":"ff9dd4d93e6de4f23643","3":"ac99c1f185f94d190db7"}[chunkId] + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -256,7 +256,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(function () {
-  return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./components/app */ "./app/components/app.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/app */ "./app/components/app.js"));
 });
 var client = Object(_apollo_client__WEBPACK_IMPORTED_MODULE_5__["default"])();
 if (localStorage.getItem("token")) localStorage.removeItem("token");
@@ -58600,7 +58600,7 @@ const initialState = {
 }
 
 function Portfolio_reducer (state = initialState, action) {
-  
+    
   switch (action.type) {
 
     case _User_action_constants_for_User__WEBPACK_IMPORTED_MODULE_1__["default"].LOGIN: {

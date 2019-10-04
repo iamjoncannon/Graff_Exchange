@@ -43,6 +43,7 @@ export let hydratePortfolioThunk = ( token ) => async dispatch => {
       else{
 
         response = error 
+        console.log(error)
       }
     }
 
@@ -192,7 +193,7 @@ export const makeTradeThunk = (symbol, quantity, type, price, isNewSymbol) => as
     }  
 };
 
-export const hydrateNewsThunk = ( symbol ) => async dispatch =>{
+export const hydrateNewsThunk = ( symbol ) => async dispatch => {
 
   const query = gql`query hydrate_news_query($symbol: String){
   
@@ -217,6 +218,7 @@ export const hydrateNewsThunk = ( symbol ) => async dispatch =>{
   }
   catch(error){
 
+    response = error
     console.log(error)
   }
 
@@ -245,6 +247,8 @@ export let hydrateQuarterlyFinancialsThunk = ( symbol ) => async dispatch =>{
     
   }
   catch(error){
+
+    response = error
     
     console.log(error)
   }
@@ -276,6 +280,8 @@ export const hydrateTimeSeriesDataThunk = ( symbol ) => async dispatch =>{
     response = hydrate_time_series_data
   }
   catch(error){
+
+    response = error
 
     console.log(error)
   }
