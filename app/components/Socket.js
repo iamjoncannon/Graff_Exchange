@@ -1,7 +1,13 @@
 import React from 'react';
 import { connect } from "react-redux";
-import symbolHash from './symbolHash.json'
 import  actions  from "../../store/Portfolio/actions_for_Portfolio.js"
+
+let io 
+
+if(!io){
+
+  io = require('socket.io-client')  
+}
 
 class Socket extends React.Component {
  
@@ -15,7 +21,7 @@ class Socket extends React.Component {
 
   connectToSocket = () => {
 
-    const socket = io('https://ws-api.iextrading.com/1.0/last')
+    const socket = io('https://ws-api.iextrading.com/1.0/last', { transports: ["websocket", "polling"]})
     
     const myBook = []
     

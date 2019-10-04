@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts';
 import {isDesktop} from '../utils'
 import LoadingDots from '../loadingDots'
 
@@ -27,6 +27,12 @@ class PerformanceChart extends React.Component {
     }
     
     resize = () => {
+
+        if(process.env.NODE_ENV === "test"){
+            this.container = {}
+            this.container.offsetHeight = 100
+            this.container.offsetWidth = 100 
+        }
 
         this.setState({
             dimensions: {
@@ -56,16 +62,10 @@ class PerformanceChart extends React.Component {
                 width={width} height={height} data={data}
                 margin={{top: 30, right: 30, left: 30, bottom: 5}}
             >
-
                 <XAxis dataKey="date"  hide={ !isDesktop() || period > 100 ? true : false}/>
-
                 <YAxis domain={['auto', 'auto']} />
-                
-                {/* <CartesianGrid strokeDasharray="3 3"/> */}
                 <Tooltip/>
-                {/* <Legend /> */}
                 <Line type="monotone" dataKey="open" stroke="blue" dot={false} /> 
-                {/* activeDot={{r: 1}} */}
                 <Line type="monotone" dataKey="high" stroke="green"dot={false} />
                 <Line type="monotone" dataKey="low" stroke="red" dot={false} />
                 <Line type="monotone" dataKey="close" stroke="black" dot={false}/>

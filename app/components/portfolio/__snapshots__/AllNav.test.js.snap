@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AllNav 1) renders successfully with data from redux store 1`] = `
+<div
+  className="all-nav"
+>
+  <a
+    href="/all/watchlist"
+    onClick={[Function]}
+  >
+    <span>
+      Portfolio
+    </span>
+  </a>
+  <a
+    href="/all/transactions"
+    onClick={[Function]}
+  >
+    <span>
+      Transactions
+    </span>
+  </a>
+</div>
+`;

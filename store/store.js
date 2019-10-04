@@ -4,10 +4,20 @@ import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import combinedReducers from './combine_reducers'
 
-const middleware = composeWithDevTools(
-  
-  // applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
-  applyMiddleware(thunkMiddleware)
-)
+let middleware 
+
+if(process.env.NODE_ENV === "production" || process.env.NODE_ENV === "test"){
+
+  middleware = composeWithDevTools(
+
+    applyMiddleware(thunkMiddleware)
+  )
+}
+else{
+
+  middleware = composeWithDevTools( 
+    applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
+  )
+}
 
 export default createStore(combinedReducers, middleware)

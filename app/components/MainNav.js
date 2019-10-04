@@ -41,7 +41,6 @@ class MainNav extends React.Component {
     
           <div className="desk-nav">
               <span>Graff Exchange</span>
-              {/* <span>Account</span> */}
               <span>{this.props.Name}</span>
               <span>Balance: ${Number(this.props.Balance).toFixed(2)}</span>
               <span onClick={this.props.LogOut}>Log Out</span>
@@ -87,6 +86,7 @@ const mapStateToProps = ({ User_state, Portfolio_state }) => {
     token: User_state.token,
     portfolio: Portfolio_state.portfolio
   };
+
 };
 
 const mapDispatchToProps = dispatch => ({

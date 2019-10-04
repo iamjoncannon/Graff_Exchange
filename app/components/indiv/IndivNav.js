@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom'
 import { isDesktop, isCell, isTab } from '../utils'
 import IndivSelector from './IndivSelector'
 import TradeBox from './TradeBox'
@@ -168,9 +167,8 @@ class IndivNav extends React.Component {
   }
 }
 
-const mapStateToProps = ({ Portfolio_state, User_state }) => {
+const mapStateToProps = ({ Portfolio_state }) => {
   return {
-    token: User_state.token,
     selectedPortfolioItem: Portfolio_state.selectedPortfolioItem,
     portfolio: Portfolio_state.portfolio
   };

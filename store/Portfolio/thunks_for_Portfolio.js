@@ -2,7 +2,7 @@ import actions from "./actions_for_Portfolio"
 import gql from 'graphql-tag'
 import { client } from '../../app/main'
 
-export const hydratePortfolioThunk = ( token ) => async dispatch => {
+export let hydratePortfolioThunk = ( token ) => async dispatch => {
  
   const query = gql`query hydrate_portfolio_query($token: String){
                       hydrate_portfolio(token: $token){
@@ -43,6 +43,7 @@ export const hydratePortfolioThunk = ( token ) => async dispatch => {
       else{
 
         response = error 
+        console.log(error)
       }
     }
 
@@ -192,7 +193,7 @@ export const makeTradeThunk = (symbol, quantity, type, price, isNewSymbol) => as
     }  
 };
 
-export const hydrateNewsThunk = ( symbol ) => async dispatch =>{
+export const hydrateNewsThunk = ( symbol ) => async dispatch => {
 
   const query = gql`query hydrate_news_query($symbol: String){
   
@@ -217,13 +218,14 @@ export const hydrateNewsThunk = ( symbol ) => async dispatch =>{
   }
   catch(error){
 
+    response = error
     console.log(error)
   }
 
   dispatch(actions.handleNews({news: response, symbol}))
 } 
 
-export const hydrateQuarterlyFinancialsThunk = ( symbol ) => async dispatch =>{
+export let hydrateQuarterlyFinancialsThunk = ( symbol ) => async dispatch =>{
 
   const query = gql`query hydrate_quarterly_financials_query($symbol: String){
   
@@ -238,15 +240,19 @@ export const hydrateQuarterlyFinancialsThunk = ( symbol ) => async dispatch =>{
 
   try {
 
-    let { data : {hydrate_quarterly_financials}} = await client.query({ query, variables })
+    let { data : { hydrate_quarterly_financials }} = await client.query({ query, variables })
     
     response = hydrate_quarterly_financials
+
+    
   }
   catch(error){
 
+    response = error
+    
     console.log(error)
   }
-
+  
   dispatch(actions.handleFinancials({quarterly_financials: JSON.parse(response.data), symbol}))
 } 
 
@@ -274,6 +280,8 @@ export const hydrateTimeSeriesDataThunk = ( symbol ) => async dispatch =>{
     response = hydrate_time_series_data
   }
   catch(error){
+
+    response = error
 
     console.log(error)
   }

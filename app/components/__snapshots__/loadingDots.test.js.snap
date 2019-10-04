@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loadingDots 1) renders successfully 1`] = `
+<div
+  className="loading-dots"
+>
+  <span
+    style={
+      Object {
+        "color": "black",
+        "display": "inline",
+        "fontSize": "3rem",
+      }
+    }
+  >
+    .
+  </span>
+  <span
+    style={
+      Object {
+        "color": "black",
+        "display": "inline",
+        "fontSize": "3rem",
+      }
+    }
+  >
+    .
+  </span>
+  <span
+    style={
+      Object {
+        "color": "black",
+        "display": "inline",
+        "fontSize": "3rem",
+      }
+    }
+  >
+    .
+  </span>
+</div>
+`;

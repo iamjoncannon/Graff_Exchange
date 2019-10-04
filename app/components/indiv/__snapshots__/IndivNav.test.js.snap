@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IndivNav 1) renders successfully with data from redux store 1`] = `
+<div>
+  <div
+    className="individual-nav"
+  >
+    <div
+      style={
+        Object {
+          "width": "7vw",
+        }
+      }
+    />
+    <div
+      onClick={[Function]}
+    >
+      <span>
+        FB
+      </span>
+      <i
+        className="fas fa-angle-down fa-7x"
+      />
+    </div>
+    <span
+      onClick={[Function]}
+    >
+      Trade
+    </span>
+  </div>
+  <div
+    className="page-selector"
+  >
+    <div
+      onClick={[Function]}
+    >
+      <a
+        href="/indiv/perf"
+        onClick={[Function]}
+      >
+        <span>
+          Performance
+        </span>
+      </a>
+      <a
+        href="/indiv/finan"
+        onClick={[Function]}
+      >
+        <span>
+          Financials
+        </span>
+      </a>
+      <a
+        href="/indiv/news"
+        onClick={[Function]}
+      >
+        <span>
+          News
+        </span>
+      </a>
+      <a
+        href="/indiv/trans"
+        onClick={[Function]}
+      >
+        <span>
+          Transactions
+        </span>
+      </a>
+    </div>
+  </div>
+</div>
+`;

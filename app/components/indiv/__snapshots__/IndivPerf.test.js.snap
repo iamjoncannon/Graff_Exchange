@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IndivPerf 1) renders successfully with data from redux store 1`] = `
+<div
+  className="indiv-perf"
+>
+  <div
+    className="ticker-box"
+  >
+    <span>
+      $ 
+      100
+    </span>
+    <span>
+      %
+    </span>
+  </div>
+  <div
+    className="first-datapoints"
+  >
+    <div>
+      <span>
+        Holdings
+      </span>
+      <span>
+        3
+      </span>
+    </div>
+    <div>
+      <span>
+        Value
+      </span>
+      <span>
+        $300.00
+      </span>
+    </div>
+  </div>
+  <div
+    className="chart-container"
+  >
+    <span>
+      Week
+    </span>
+    Loading...
+  </div>
+  <div
+    className="data-nav"
+  >
+    <span
+      className="selected"
+      onClick={[Function]}
+    >
+      Week
+    </span>
+    <span
+      onClick={[Function]}
+    >
+      Month
+    </span>
+    <span
+      onClick={[Function]}
+    >
+      Year
+    </span>
+  </div>
+</div>
+`;

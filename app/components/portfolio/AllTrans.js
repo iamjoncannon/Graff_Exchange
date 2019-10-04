@@ -47,9 +47,9 @@ class AllTrans extends React.Component {
 
                 return(
 
-                  <div key={i}>
+                  <div key={i} className={"_allTransItem"}>
                     <span>{item[1].type}</span>
-                    <span>{item[1].symbol} </span>
+                    <span>{item[1].symbol}</span>
                     <span>{item[1].quantity}</span>
                     <span>${item[1].price.toFixed(2)}</span>
                     <span>{date}</span>

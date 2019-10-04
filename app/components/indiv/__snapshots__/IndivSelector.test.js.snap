@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IndivSelector 1) renders successfully with data from redux store 1`] = `
+<div>
+  <a
+    href="/indiv/perf"
+    onClick={[Function]}
+  >
+    <span>
+      Performance
+    </span>
+  </a>
+  <a
+    href="/indiv/finan"
+    onClick={[Function]}
+  >
+    <span>
+      Financials
+    </span>
+  </a>
+  <a
+    href="/indiv/news"
+    onClick={[Function]}
+  >
+    <span>
+      News
+    </span>
+  </a>
+  <a
+    href="/indiv/trans"
+    onClick={[Function]}
+  >
+    <span>
+      Transactions
+    </span>
+  </a>
+</div>
+`;
