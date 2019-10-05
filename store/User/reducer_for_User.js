@@ -24,8 +24,7 @@ export default function User_reducer (state = initialState, action) {
         const invalid_password = action.payload.message.includes("Invalid password") 
         
         if(invalid_user){
-          console.log("invalid_user: ", invalid_user)
-          console.log(action.payload.message)
+          
           return {...state, landing_page_error: "Unable to find username"}
         }
 

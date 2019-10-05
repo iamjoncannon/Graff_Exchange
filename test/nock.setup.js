@@ -11,6 +11,7 @@ function nocked(data){
     return  nock("http://localhost:3000")
                  .post("/graphql")
                  .reply(200, data )
+                 .log(console.log)
 
 }
 

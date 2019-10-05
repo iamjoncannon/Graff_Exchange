@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "./modules/" + ({}[chunkId]||chunkId) + "." + {"0":"2eff70d9c83ff8322a31","1":"66d7519f21ad8fc2bd25","2":"ff9dd4d93e6de4f23643","3":"ac99c1f185f94d190db7"}[chunkId] + ".js"
+/******/ 		return __webpack_require__.p + "./modules/" + ({}[chunkId]||chunkId) + "." + {"0":"2eff70d9c83ff8322a31","1":"66d7519f21ad8fc2bd25","2":"cec7bcde18faba97bdbe","3":"ac99c1f185f94d190db7"}[chunkId] + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -725,7 +725,7 @@ function previouslyCompared(a, b) {
 /*!*****************************************************!*\
   !*** ./node_modules/apollo-boost/lib/bundle.esm.js ***!
   \*****************************************************/
-/*! exports provided: ApolloClient, ApolloError, FetchType, NetworkStatus, ObservableQuery, isApolloError, Observable, getOperationName, ApolloLink, concat, createOperation, empty, execute, from, fromError, fromPromise, makePromise, split, toPromise, HeuristicFragmentMatcher, InMemoryCache, IntrospectionFragmentMatcher, ObjectCache, StoreReader, StoreWriter, WriteError, assertIdValue, defaultDataIdFromObject, defaultNormalizedCacheFactory, enhanceErrorWithDocument, HttpLink, gql, default */
+/*! exports provided: HttpLink, gql, default, ApolloClient, ApolloError, FetchType, NetworkStatus, ObservableQuery, isApolloError, Observable, getOperationName, ApolloLink, concat, createOperation, empty, execute, from, fromError, fromPromise, makePromise, split, toPromise, HeuristicFragmentMatcher, InMemoryCache, IntrospectionFragmentMatcher, ObjectCache, StoreReader, StoreWriter, WriteError, assertIdValue, defaultDataIdFromObject, defaultNormalizedCacheFactory, enhanceErrorWithDocument */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -51188,7 +51188,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -58574,11 +58574,12 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************************************!*\
   !*** ./store/Portfolio/reducer_for_Portfolio.js ***!
   \**************************************************/
-/*! exports provided: default */
+/*! exports provided: initialState, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initialState", function() { return initialState; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Portfolio_reducer; });
 /* harmony import */ var _action_constants_for_PORTFOLIO__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./action_constants_for_PORTFOLIO */ "./store/Portfolio/action_constants_for_PORTFOLIO.js");
 /* harmony import */ var _User_action_constants_for_User__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../User/action_constants_for_User */ "./store/User/action_constants_for_User.js");
@@ -58807,14 +58808,12 @@ function User_reducer (state = initialState, action) {
 
       // handle login /signup errors 
       if(action.payload.graphQLErrors){
-        
-        
+         
         const invalid_user = action.payload.message.includes("unable to find user") 
         const invalid_password = action.payload.message.includes("Invalid password") 
         
         if(invalid_user){
-          console.log("invalid_user: ", invalid_user)
-          console.log(action.payload.message)
+          
           return {...state, landing_page_error: "Unable to find username"}
         }
 
