@@ -8,6 +8,7 @@ Fullstack application with data from web socket, SQL data store, external APIs, 
 - Responsive design across mobile, tablet, desktop viewports, implemented in SASS with no CSS framework. 
 - lazy loaded components to increase performance  
 - socket connection to IEX api integrated into Redux store
+- test suite- Jest/react-renderer
 
 Deployed: http://graff.joncannon.codes
 
@@ -20,5 +21,6 @@ Features:
 - trade mutation with "atomic" SQL transaction 
 - data aggregated from PostgreSQL data store and external financial APIs 
 - Redis caching with cache eviction strategy for each data source
+- test suite- Jest
 
 Codebase for back-end API: https://github.com/iamjoncannon/Graff_Exchange_API
