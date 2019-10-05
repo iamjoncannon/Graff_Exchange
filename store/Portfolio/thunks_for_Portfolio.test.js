@@ -70,7 +70,6 @@ describe("thunks_for_Portfolio", ()=>{
 
         nocked( api_data )
 
-        
         store.dispatch(thunks.hydrateSinglePortfolioPage("GOOGL"))
             .then(()=>{
 

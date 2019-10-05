@@ -105,11 +105,12 @@ export const registerThunk = ( first_name, last_name, email, password ) => async
 
     let { data : { sign_up } } = await client.mutate({ mutation, variables })
     
+   
     response = sign_up
   }
   catch(error){
-
-    console.log(error)
+    response = error 
+    console.error(error)
   }
 
   localStorage.setItem("token", response.token)
